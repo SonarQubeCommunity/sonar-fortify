@@ -168,6 +168,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <!-- required for compatibility with Java 5 -->
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jaxb_2.2_spec</artifactId>
+      <version>1.0.1</version>
+    </dependency>
 
 
     <!-- unit tests -->
