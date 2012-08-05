@@ -17,15 +17,15 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify;
+package org.sonar.plugins.fortify.base;
 
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class FortifyPluginTest {
+public class FortifyMetricsTest {
   @Test
-  public void test_extensions() {
-    assertThat(new FortifyPlugin().getExtensions()).isNotEmpty();
+  public void getMetrics() {
+    assertThat(new FortifyMetrics().getMetrics()).isNotNull();
   }
 }

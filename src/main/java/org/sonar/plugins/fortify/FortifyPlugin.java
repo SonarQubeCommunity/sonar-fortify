@@ -20,13 +20,16 @@
 package org.sonar.plugins.fortify;
 
 import org.sonar.api.SonarPlugin;
-import java.util.Collections;
+import org.sonar.plugins.fortify.base.FortifyJavaRules;
+import org.sonar.plugins.fortify.base.FortifyMetrics;
+
+import java.util.Arrays;
 import java.util.List;
 
 public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
-    return Collections.emptyList();
+    return Arrays.asList(FortifyMetrics.class, FortifyJavaRules.class);
   }
 
 }

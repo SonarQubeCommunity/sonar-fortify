@@ -17,15 +17,25 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify;
+package org.sonar.plugins.fortify.base;
 
-import org.junit.Test;
+import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Metrics;
 
-import static org.fest.assertions.Assertions.assertThat;
+import java.util.Arrays;
+import java.util.List;
 
-public class FortifyPluginTest {
-  @Test
-  public void test_extensions() {
-    assertThat(new FortifyPlugin().getExtensions()).isNotEmpty();
+public final class FortifyMetrics implements Metrics {
+
+  public static final String SECURITY_RATING_KEY = "fortify-security-rating";
+  public static final Metric SECURITY_RATING = new Metric.Builder(SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.FLOAT)
+    .setDescription("Fortify Security Rating")
+    .setDirection(Metric.DIRECTION_BETTER)
+    .setQualitative(true)
+    .setDomain("Security")
+    .create();
+
+  public List<Metric> getMetrics() {
+    return Arrays.asList(SECURITY_RATING);
   }
 }

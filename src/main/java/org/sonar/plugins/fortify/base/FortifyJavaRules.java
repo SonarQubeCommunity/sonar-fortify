@@ -17,15 +17,21 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify;
+package org.sonar.plugins.fortify.base;
 
-import org.junit.Test;
+import org.sonar.api.rules.Rule;
+import org.sonar.api.rules.RuleRepository;
 
-import static org.fest.assertions.Assertions.assertThat;
+import java.util.Collections;
+import java.util.List;
 
-public class FortifyPluginTest {
-  @Test
-  public void test_extensions() {
-    assertThat(new FortifyPlugin().getExtensions()).isNotEmpty();
+public class FortifyJavaRules extends RuleRepository {
+  protected FortifyJavaRules() {
+    super("fortify-java", "java");
+  }
+
+  @Override
+  public List<Rule> createRules() {
+    return Collections.emptyList();
   }
 }

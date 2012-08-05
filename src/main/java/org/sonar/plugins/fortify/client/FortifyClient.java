@@ -19,13 +19,8 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.manager.schema.IssueInstance;
-import com.fortify.manager.schema.Project;
-import com.fortify.manager.schema.ProjectVersionLite;
-import com.fortify.ws.client.AuditClient;
-import com.fortify.ws.client.FortifyWebServiceException;
-import com.fortify.ws.client.ProjectClient;
-import com.fortify.ws.client.ProjectVersionClient;
+import com.fortify.manager.schema.*;
+import com.fortify.ws.client.*;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
@@ -37,6 +32,7 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.InputStreamResource;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 public class FortifyClient {
@@ -107,6 +103,30 @@ public class FortifyClient {
       } catch (Exception e) {
         LoggerFactory.getLogger(FortifyClient.class).error("Fail to end Fortify session on project version " + projectVersionId, e);
       }
+    }
+  }
+
+  /**
+   * Example of indicator keys : "CFPO", "FILES", "OWASP2004A1"
+   */
+  public List<VariableHistory> getVariables(long projectVersionId, List<String> variableKeys) {
+    try {
+      MeasurementClient measureClient = new MeasurementClient(templateProvider, credential, null);
+      return measureClient.getMostRecentVariableHistories(Arrays.asList(projectVersionId), variableKeys);
+    } catch (Exception e) {
+      throw Throwables.propagate(e);
+    }
+  }
+
+  /**
+   * Example of indicator keys : "FortifySecurityRating", "TotalRemediationEffort", "PercentCriticalPriorityIssuesAudited"
+   */
+  public List<MeasurementHistory> getPerformanceIndicators(long projectVersionId, List<String> indicatorKeys) {
+    try {
+      MeasurementClient measureClient = new MeasurementClient(templateProvider, credential, null);
+      return measureClient.getMostRecentMeasurementHistories(Arrays.asList(projectVersionId), indicatorKeys);
+    } catch (Exception e) {
+      throw Throwables.propagate(e);
     }
   }
 
