@@ -1,0 +1,18 @@
+<rules>
+
+  <!--
+  <rule>
+    <key>com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck</key>
+    <priority>MAJOR</priority>
+    <configKey>Checker/Header</configKey>
+    <param>
+      <key>header</key>
+      <type>s</type>
+    </param>
+    <param>
+      <key>ignoreLines</key>
+      <type>s</type>
+    </param>
+  </rule>
+-->
+</rules>
