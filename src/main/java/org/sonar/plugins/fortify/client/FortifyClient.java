@@ -44,8 +44,7 @@ public class FortifyClient implements BatchExtension {
 
   private final Settings settings;
   private final ClientFactory clientFactory;
-  private ContextTemplateProvider templateProvider;
-  private Credential credential;
+
 
   public FortifyClient(Settings settings) {
     this(settings, new ClientFactory());
@@ -76,31 +75,26 @@ public class FortifyClient implements BatchExtension {
       xmlReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_NONE);
       xmlReader.loadBeanDefinitions(new InputStreamResource(input));
       ctx.refresh();
-      templateProvider = (ContextTemplateProvider) ctx.getBean("templateProvider");
+      ContextTemplateProvider templateProvider = (ContextTemplateProvider) ctx.getBean("templateProvider");
       templateProvider.setUri(rootUri + "/fm-ws/services");
-      this.credential = credential;
+      clientFactory.init(templateProvider, credential);
     } finally {
       Closeables.closeQuietly(input);
     }
   }
 
   @VisibleForTesting
-  ContextTemplateProvider getTemplateProvider() {
-    return templateProvider;
-  }
-
-  @VisibleForTesting
-  Credential getCredential() {
-    return credential;
+  ClientFactory getClientFactory() {
+    return clientFactory;
   }
 
   public boolean isEnabled() {
-    return templateProvider != null;
+    return clientFactory.isInitialized();
   }
 
   public List<Project> getProjects() {
     try {
-      return clientFactory.newClient(ProjectClient.class, templateProvider, credential).getProjects();
+      return clientFactory.newClient(ProjectClient.class).getProjects();
     } catch (FortifyWebServiceException e) {
       throw Throwables.propagate(e);
     }
@@ -111,14 +105,14 @@ public class FortifyClient implements BatchExtension {
    */
   public List<ProjectVersionLite> getProjectVersions() {
     try {
-      return clientFactory.newClient(ProjectVersionClient.class, templateProvider, credential).getProjectVersions();
+      return clientFactory.newClient(ProjectVersionClient.class).getProjectVersions();
     } catch (FortifyWebServiceException e) {
       throw Throwables.propagate(e);
     }
   }
 
   public List<IssueInstance> getIssues(long projectVersionId) {
-    AuditClient auditClient = clientFactory.newClient(AuditClient.class, templateProvider, credential);
+    AuditClient auditClient = clientFactory.newClient(AuditClient.class);
     try {
       auditClient.startSession(projectVersionId);
       return auditClient.listIssues().getIssues().getIssue();
@@ -139,7 +133,7 @@ public class FortifyClient implements BatchExtension {
    */
   public List<VariableHistory> getVariables(long projectVersionId, List<String> variableKeys) {
     try {
-      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class, templateProvider, credential);
+      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class);
       return measureClient.getMostRecentVariableHistories(Arrays.asList(projectVersionId), variableKeys);
     } catch (Exception e) {
       throw Throwables.propagate(e);
@@ -151,7 +145,7 @@ public class FortifyClient implements BatchExtension {
    */
   public List<MeasurementHistory> getPerformanceIndicators(long projectVersionId, List<String> indicatorKeys) {
     try {
-      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class, templateProvider, credential);
+      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class);
       return measureClient.getMostRecentMeasurementHistories(Arrays.asList(projectVersionId), indicatorKeys);
     } catch (Exception e) {
       throw Throwables.propagate(e);
@@ -159,7 +153,20 @@ public class FortifyClient implements BatchExtension {
   }
 
   static class ClientFactory {
-    <T extends AbstractWSClient> T newClient(Class<T> clazz, ContextTemplateProvider templateProvider, Credential credential) {
+    ContextTemplateProvider templateProvider;
+    Credential credential;
+
+    ClientFactory init(ContextTemplateProvider templateProvider, Credential credential) {
+      this.templateProvider = templateProvider;
+      this.credential = credential;
+      return this;
+    }
+
+    boolean isInitialized() {
+      return templateProvider != null;
+    }
+
+    <T extends AbstractWSClient> T newClient(Class<T> clazz) {
       try {
         Constructor<T> constructor = clazz.getConstructor(WSTemplateProvider.class, WSAuthenticationProvider.class, String.class);
         return constructor.newInstance(templateProvider, credential, null);
