@@ -15,7 +15,7 @@
   <inceptionYear>2012</inceptionYear>
 
   <properties>
-    <sonar.version>3.1</sonar.version>
+    <sonar.version>3.0</sonar.version>
   </properties>
 
   <organization>
@@ -67,23 +67,16 @@
     <dependency>
       <groupId>com.fortify</groupId>
       <artifactId>wsclient</artifactId>
-      <version>3.20</version>
+      <version>3.50</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/wsclient-3.20.jar</systemPath>
+      <systemPath>${project.basedir}/lib/wsclient-3.50.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>com.fortify</groupId>
       <artifactId>wsobjects</artifactId>
-      <version>3.20</version>
+      <version>3.50</version>
       <scope>system</scope>
-      <systemPath>${project.basedir}/lib/wsobjects-3.20.jar</systemPath>
-    </dependency>
-    <dependency>
-      <groupId>com.fortify</groupId>
-      <artifactId>common</artifactId>
-      <version>3.20</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/common-3.20.jar</systemPath>
+      <systemPath>${project.basedir}/lib/wsobjects-3.50.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.springframework.ws</groupId>
@@ -208,7 +201,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>1.8.5</version>
+      <version>1.9.0</version>
       <scope>test</scope>
     </dependency>
 
