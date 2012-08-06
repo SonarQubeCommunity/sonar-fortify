@@ -63,13 +63,13 @@ public class FortifyClient implements BatchExtension {
       String token = settings.getString(FortifyConstants.PROPERTY_TOKEN);
       String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
       String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
-      Credential credential = (Strings.isNullOrEmpty(token) ? Credential.forLogin(login, password) : Credential.forToken(token));
-      init(url, credential);
+      Credential c = (Strings.isNullOrEmpty(token) ? Credential.forLogin(login, password) : Credential.forToken(token));
+      init(url, c);
     }
   }
 
   private void init(String rootUri, Credential credential) {
-    InputStream input = getClass().getResourceAsStream("/org/sonar/plugins/fortify/client/fortify-spring-wsclient-config.xml");
+    InputStream input = FortifyClient.class.getResourceAsStream("/org/sonar/plugins/fortify/client/fortify-spring-wsclient-config.xml");
     try {
       GenericApplicationContext ctx = new GenericApplicationContext();
       XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
