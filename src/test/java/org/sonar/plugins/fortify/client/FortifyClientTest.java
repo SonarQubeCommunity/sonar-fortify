@@ -19,36 +19,55 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.sonar.api.config.Settings;
+import org.sonar.plugins.fortify.base.FortifyConstants;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 public class FortifyClientTest {
 
-  @Rule
-  public ExpectedException thrown = ExpectedException.none();
-
   @Test
   public void test_spring_configuration() {
-    FortifyClient client = FortifyClient.create("http://localhost:8081/ssc/fm-ws/services", Credential.forToken("ABCDE"));
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
+    settings.setProperty(FortifyConstants.PROPERTY_TOKEN, "ABCDE");
+
+    FortifyClient client = new FortifyClient(settings);
+    client.start();
 
     assertThat(client.getTemplateProvider()).isNotNull();
+    assertThat(client.getTemplateProvider().getUri()).isEqualTo("http://localhost:8081/ssc/fm-ws/services");
+    assertThat(client.getTemplateProvider().getTemplate()).isNotNull();
+    assertThat(client.getTemplateProvider().getAuthenicationProvider()).isNull();
     assertThat(client.getCredential().getToken()).isEqualTo("ABCDE");
+    assertThat(client.isEnabled()).isTrue();
   }
 
   @Test
-  public void uri_is_mandatory() {
-    thrown.expect(IllegalArgumentException.class);
-    thrown.expectMessage("Fortify SCA URL must be set");
-    FortifyClient.create("", Credential.forToken("ABCDE"));
+  public void should_be_disabled_if_no_url() {
+    FortifyClient client = new FortifyClient(new Settings());
+    client.start();
+
+    assertThat(client.isEnabled()).isFalse();
+    assertThat(client.getTemplateProvider()).isNull();
+    assertThat(client.getCredential()).isNull();
   }
 
   @Test
-  public void credential_is_mandatory() {
-    thrown.expect(NullPointerException.class);
-    thrown.expectMessage("Fortify credentials must be set");
-    FortifyClient.create("http://localhost:8081/ssc/fm-ws/services", null);
+  public void test_login_password_credential() {
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
+    settings.setProperty(FortifyConstants.PROPERTY_LOGIN, "admin");
+    settings.setProperty(FortifyConstants.PROPERTY_PASSWORD, "<password>");
+
+    FortifyClient client = new FortifyClient(settings);
+    client.start();
+
+    assertThat(client.getTemplateProvider()).isNotNull();
+    assertThat(client.getCredential().getToken()).isNull();
+    assertThat(client.getCredential().getUserName()).isEqualTo("admin");
+    assertThat(client.getCredential().getPassword()).isEqualTo("<password>");
+    assertThat(client.isEnabled()).isTrue();
   }
 }

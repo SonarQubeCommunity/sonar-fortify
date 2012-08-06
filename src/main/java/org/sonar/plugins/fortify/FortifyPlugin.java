@@ -19,17 +19,36 @@
  */
 package org.sonar.plugins.fortify;
 
+import org.sonar.api.Properties;
+import org.sonar.api.Property;
+import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
-import org.sonar.plugins.fortify.base.FortifyJavaRules;
+import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
+import org.sonar.plugins.fortify.batch.FortifyProject;
+import org.sonar.plugins.fortify.batch.PerformanceIndicatorSensor;
+import org.sonar.plugins.fortify.client.FortifyClient;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Properties({
+  // connection properties, can be overridden on projects
+  @Property(key = FortifyConstants.PROPERTY_URL, name = "SSC URL", global = true, project = true),
+  @Property(key = FortifyConstants.PROPERTY_LOGIN, name = "SSC Login", global = true, project = true),
+  @Property(key = FortifyConstants.PROPERTY_PASSWORD, name = "SSC Password", type = PropertyType.PASSWORD, global = true, project = true),
+  @Property(key = FortifyConstants.PROPERTY_TOKEN, name = "SSC Token", global = true, project = true),
+
+  // optional project properties
+  @Property(key = FortifyConstants.PROPERTY_PROJECT_NAME, name = "Fortify Project Name", global = false, project = true),
+  @Property(key = FortifyConstants.PROPERTY_PROJECT_VERSION, name = "Fortify Project Version", global = false, project = true)
+})
 public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
-    return Arrays.asList(FortifyMetrics.class, FortifyJavaRules.class);
+    return Arrays.asList(FortifyMetrics.class,
+
+      FortifyClient.class, FortifyProject.class, PerformanceIndicatorSensor.class);
   }
 
 }

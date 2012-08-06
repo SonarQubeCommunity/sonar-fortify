@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="messageFactory" class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+        <property name="payloadCaching" value="true"/>
+        <property name="attachmentCaching" value="true"/>
+    </bean>
+
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value=""/>
+        <property name="marshaller" ref="jaxbMarshaller"/>
+        <property name="unmarshaller" ref="jaxbMarshaller"/>
+        <property name="interceptors" ref="securityInterceptor"/>
+    </bean>
+
+    <!--
+    Turn on validation in the marshaller so that validation exceptions will be caught on the client
+    before making the request to the server.  This should make debugging easier, but may impact performance.
+    -->
+
+    <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="com.fortify.manager.schema"/>
+        <property name="mtomEnabled" value="true"/>
+    </bean>
+
+    <bean id="securityInterceptor" class="com.fortify.ws.core.ClientAuthenticationInterceptor">
+        <property name="securementActions" value="UsernameToken Timestamp"/>
+        <property name="validationActions" value="Timestamp"/>
+        <property name="securementPasswordType" value="PasswordText"/>
+    </bean>
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+    <bean id="templateProvider" class="org.sonar.plugins.fortify.client.ContextTemplateProvider">
+        <property name="webServiceTemplate" ref="webServiceTemplate"/>
+    </bean>
+</beans>

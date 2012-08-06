@@ -19,19 +19,12 @@
  */
 package org.sonar.plugins.fortify.base;
 
-import org.sonar.api.rules.Rule;
-import org.sonar.api.rules.RuleRepository;
+public interface FortifyConstants {
+  String PROPERTY_URL = "sonar.fortify.sscUrl";
+  String PROPERTY_LOGIN = "sonar.fortify.sscLogin.secured";
+  String PROPERTY_PASSWORD = "sonar.fortify.sscPassword.secured";
+  String PROPERTY_TOKEN = "sonar.fortify.sscToken.secured";
 
-import java.util.Collections;
-import java.util.List;
-
-public class FortifyJavaRules extends RuleRepository {
-  protected FortifyJavaRules() {
-    super("fortify-java", "java");
-  }
-
-  @Override
-  public List<Rule> createRules() {
-    return Collections.emptyList();
-  }
+  String PROPERTY_PROJECT_NAME = "sonar.fortify.projectName";
+  String PROPERTY_PROJECT_VERSION = "sonar.fortify.projectVersion";
 }

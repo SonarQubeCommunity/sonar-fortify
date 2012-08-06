@@ -22,11 +22,13 @@ package org.sonar.plugins.fortify.client;
 import com.fortify.manager.schema.*;
 import com.fortify.ws.client.*;
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
 import com.google.common.io.Closeables;
 import org.slf4j.LoggerFactory;
+import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.InputStreamResource;
@@ -35,19 +37,29 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
-public class FortifyClient {
+public class FortifyClient implements BatchExtension {
 
+  private final Settings settings;
   private ContextTemplateProvider templateProvider;
   private Credential credential;
 
-  private FortifyClient() {
+  public FortifyClient(Settings settings) {
+    this.settings = settings;
   }
 
-  private FortifyClient init(String uri, Credential credential) {
-    Preconditions.checkArgument(!Strings.isNullOrEmpty(uri), "Fortify SCA URL must be set");
-    Preconditions.checkNotNull(credential, "Fortify credentials must be set");
+  public void start() {
+    String url = settings.getString(FortifyConstants.PROPERTY_URL);
+    if (!Strings.isNullOrEmpty(url)) {
+      String token = settings.getString(FortifyConstants.PROPERTY_TOKEN);
+      String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
+      String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
+      Credential credential = (Strings.isNullOrEmpty(token) ? Credential.forLogin(login, password) : Credential.forToken(token));
+      init(url, credential);
+    }
+  }
 
-    InputStream input = getClass().getResourceAsStream("/fortify-spring-wsclient-config.xml");
+  private void init(String rootUri, Credential credential) {
+    InputStream input = getClass().getResourceAsStream("/org/sonar/plugins/fortify/client/fortify-spring-wsclient-config.xml");
     try {
       GenericApplicationContext ctx = new GenericApplicationContext();
       XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
@@ -55,9 +67,8 @@ public class FortifyClient {
       xmlReader.loadBeanDefinitions(new InputStreamResource(input));
       ctx.refresh();
       templateProvider = (ContextTemplateProvider) ctx.getBean("templateProvider");
-      templateProvider.setUri(uri);
+      templateProvider.setUri(rootUri + "/fm-ws/services");
       this.credential = credential;
-      return this;
     } finally {
       Closeables.closeQuietly(input);
     }
@@ -73,6 +84,10 @@ public class FortifyClient {
     return credential;
   }
 
+  public boolean isEnabled() {
+    return templateProvider != null;
+  }
+
   public List<Project> getProjects() {
     try {
       return new ProjectClient(templateProvider, credential, null).getProjects();
@@ -81,6 +96,9 @@ public class FortifyClient {
     }
   }
 
+  /**
+   * The versions of all the projects. Unfortunately it's not possible to get the versions of a give project.
+   */
   public List<ProjectVersionLite> getProjectVersions() {
     try {
       return new ProjectVersionClient(templateProvider, credential, null).getProjectVersions();
@@ -128,9 +146,5 @@ public class FortifyClient {
     } catch (Exception e) {
       throw Throwables.propagate(e);
     }
-  }
-
-  public static FortifyClient create(String uri, Credential credential) {
-    return new FortifyClient().init(uri, credential);
   }
 }
