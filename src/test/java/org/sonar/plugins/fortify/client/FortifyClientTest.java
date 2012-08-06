@@ -19,13 +19,29 @@
  */
 package org.sonar.plugins.fortify.client;
 
+import com.fortify.manager.schema.IssueListing;
+import com.fortify.manager.schema.Project;
+import com.fortify.manager.schema.ProjectVersionLite;
+import com.fortify.manager.schema.Status;
+import com.fortify.ws.client.*;
+import com.google.common.collect.Lists;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 
+import java.util.List;
+
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 
 public class FortifyClientTest {
+
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
 
   @Test
   public void test_spring_configuration() {
@@ -69,5 +85,94 @@ public class FortifyClientTest {
     assertThat(client.getCredential().getUserName()).isEqualTo("admin");
     assertThat(client.getCredential().getPassword()).isEqualTo("<password>");
     assertThat(client.isEnabled()).isTrue();
+  }
+
+  @Test
+  public void instantiate_fortify_clients() {
+    FortifyClient.ClientFactory factory = new FortifyClient.ClientFactory();
+    ContextTemplateProvider templateProvider = new ContextTemplateProvider();
+    Credential credential = Credential.forToken("ABCDE");
+
+    assertThat(factory.newClient(AuditClient.class, templateProvider, credential).getClass()).isEqualTo(AuditClient.class);
+    assertThat(factory.newClient(ProjectClient.class, templateProvider, credential).getClass()).isEqualTo(ProjectClient.class);
+    assertThat(factory.newClient(ProjectVersionClient.class, templateProvider, credential).getClass()).isEqualTo(ProjectVersionClient.class);
+    assertThat(factory.newClient(MeasurementClient.class, templateProvider, credential).getClass()).isEqualTo(MeasurementClient.class);
+  }
+
+  @Test
+  public void get_projects() throws Exception {
+    ProjectClient projectClient = mock(ProjectClient.class);
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(ProjectClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(projectClient);
+
+    List<Project> projects = new FortifyClient(new Settings(), clientFactory).getProjects();
+
+    verify(projectClient).getProjects();
+    assertThat(projects).isNotNull();
+  }
+
+  @Test
+  public void fail_to_get_projects() throws Exception {
+    thrown.expect(RuntimeException.class);
+
+    ProjectClient projectClient = mock(ProjectClient.class);
+    when(projectClient.getProjects()).thenThrow(new FortifyWebServiceException(new Status()));
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(ProjectClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(projectClient);
+
+    new FortifyClient(new Settings(), clientFactory).getProjects();
+  }
+
+  @Test
+  public void get_project_versions() throws Exception {
+    ProjectVersionClient vClient = mock(ProjectVersionClient.class);
+    when(vClient.getProjectVersions()).thenReturn(Lists.<ProjectVersionLite>newArrayList());
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(ProjectVersionClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(vClient);
+
+    List<ProjectVersionLite> projectVersions = new FortifyClient(new Settings(), clientFactory).getProjectVersions();
+
+    verify(vClient).getProjectVersions();
+    assertThat(projectVersions).isNotNull();
+  }
+
+  @Test
+  public void fail_to_get_project_versions() throws Exception {
+    thrown.expect(RuntimeException.class);
+
+    ProjectVersionClient vClient = mock(ProjectVersionClient.class);
+    when(vClient.getProjectVersions()).thenThrow(new FortifyWebServiceException(new Status()));
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(ProjectVersionClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(vClient);
+
+    new FortifyClient(new Settings(), clientFactory).getProjectVersions();
+  }
+
+  @Test
+  public void get_issues() throws Exception {
+    AuditClient auditClient = mock(AuditClient.class);
+    IssueListing issueListing = new IssueListing();
+    issueListing.setIssues(new IssueListing.Issues());
+    when(auditClient.listIssues()).thenReturn(issueListing);
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(AuditClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(auditClient);
+
+    new FortifyClient(new Settings(), clientFactory).getIssues(3L);
+
+    verify(auditClient).startSession(3L);
+    verify(auditClient).listIssues();
+    verify(auditClient).endSession();
+  }
+
+  @Test
+  public void fail_to_get_issues() throws Exception {
+    thrown.expect(RuntimeException.class);
+
+    AuditClient auditClient = mock(AuditClient.class);
+    when(auditClient.listIssues()).thenThrow(new FortifyWebServiceException(new Status()));
+    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
+    when(clientFactory.newClient(eq(AuditClient.class), any(ContextTemplateProvider.class), any(Credential.class))).thenReturn(auditClient);
+
+    new FortifyClient(new Settings(), clientFactory).getIssues(3L);
   }
 }

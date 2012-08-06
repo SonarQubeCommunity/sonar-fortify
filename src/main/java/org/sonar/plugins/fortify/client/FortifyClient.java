@@ -21,6 +21,8 @@ package org.sonar.plugins.fortify.client;
 
 import com.fortify.manager.schema.*;
 import com.fortify.ws.client.*;
+import com.fortify.ws.core.WSAuthenticationProvider;
+import com.fortify.ws.core.WSTemplateProvider;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
@@ -34,17 +36,25 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.InputStreamResource;
 
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.List;
 
 public class FortifyClient implements BatchExtension {
 
   private final Settings settings;
+  private final ClientFactory clientFactory;
   private ContextTemplateProvider templateProvider;
   private Credential credential;
 
   public FortifyClient(Settings settings) {
+    this(settings, new ClientFactory());
+  }
+
+  @VisibleForTesting
+  FortifyClient(Settings settings, ClientFactory clientFactory) {
     this.settings = settings;
+    this.clientFactory = clientFactory;
   }
 
   public void start() {
@@ -90,7 +100,7 @@ public class FortifyClient implements BatchExtension {
 
   public List<Project> getProjects() {
     try {
-      return new ProjectClient(templateProvider, credential, null).getProjects();
+      return clientFactory.newClient(ProjectClient.class, templateProvider, credential).getProjects();
     } catch (FortifyWebServiceException e) {
       throw Throwables.propagate(e);
     }
@@ -101,14 +111,14 @@ public class FortifyClient implements BatchExtension {
    */
   public List<ProjectVersionLite> getProjectVersions() {
     try {
-      return new ProjectVersionClient(templateProvider, credential, null).getProjectVersions();
+      return clientFactory.newClient(ProjectVersionClient.class, templateProvider, credential).getProjectVersions();
     } catch (FortifyWebServiceException e) {
       throw Throwables.propagate(e);
     }
   }
 
   public List<IssueInstance> getIssues(long projectVersionId) {
-    AuditClient auditClient = new AuditClient(templateProvider, credential, null);
+    AuditClient auditClient = clientFactory.newClient(AuditClient.class, templateProvider, credential);
     try {
       auditClient.startSession(projectVersionId);
       return auditClient.listIssues().getIssues().getIssue();
@@ -129,7 +139,7 @@ public class FortifyClient implements BatchExtension {
    */
   public List<VariableHistory> getVariables(long projectVersionId, List<String> variableKeys) {
     try {
-      MeasurementClient measureClient = new MeasurementClient(templateProvider, credential, null);
+      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class, templateProvider, credential);
       return measureClient.getMostRecentVariableHistories(Arrays.asList(projectVersionId), variableKeys);
     } catch (Exception e) {
       throw Throwables.propagate(e);
@@ -141,10 +151,21 @@ public class FortifyClient implements BatchExtension {
    */
   public List<MeasurementHistory> getPerformanceIndicators(long projectVersionId, List<String> indicatorKeys) {
     try {
-      MeasurementClient measureClient = new MeasurementClient(templateProvider, credential, null);
+      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class, templateProvider, credential);
       return measureClient.getMostRecentMeasurementHistories(Arrays.asList(projectVersionId), indicatorKeys);
     } catch (Exception e) {
       throw Throwables.propagate(e);
+    }
+  }
+
+  static class ClientFactory {
+    <T extends AbstractWSClient> T newClient(Class<T> clazz, ContextTemplateProvider templateProvider, Credential credential) {
+      try {
+        Constructor<T> constructor = clazz.getConstructor(WSTemplateProvider.class, WSAuthenticationProvider.class, String.class);
+        return constructor.newInstance(templateProvider, credential, null);
+      } catch (Exception e) {
+        throw new IllegalStateException("Fail to instantiate Fortify component: " + clazz, e);
+      }
     }
   }
 }
