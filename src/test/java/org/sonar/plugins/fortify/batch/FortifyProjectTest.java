@@ -25,6 +25,8 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import org.junit.Test;
+import org.sonar.api.config.Settings;
+import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
 
 import java.util.Arrays;
@@ -42,12 +44,7 @@ public class FortifyProjectTest {
     sonarProject.setName("Sonar");
     sonarProject.setAnalysisVersion("3.3");
 
-    ListMultimap data = ArrayListMultimap.create();
-    data.putAll(newProject(100L, "Struts"), Arrays.asList(newVersion(1001L, "1.3.9"), newVersion(10002L, "1.4")));
-    data.putAll(newProject(200L, "Sonar"), Arrays.asList(newVersion(2001L, "3.2"), newVersion(20002L, "3.3")));
-    FortifyClient client = mockClient(data);
-
-    FortifyProject fortifyProject = new FortifyProject(client, sonarProject);
+    FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarProject, new Settings());
     fortifyProject.start();
 
     assertThat(fortifyProject.exists()).isTrue();
@@ -60,11 +57,7 @@ public class FortifyProjectTest {
     sonarProject.setName("Sonar");
     sonarProject.setAnalysisVersion("5.0");
 
-    ListMultimap data = ArrayListMultimap.create();
-    data.putAll(newProject(200L, "Sonar"), Arrays.asList(newVersion(2001L, "3.2"), newVersion(20002L, "3.3")));
-    FortifyClient client = mockClient(data);
-
-    FortifyProject fortifyProject = new FortifyProject(client, sonarProject);
+    FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarProject, new Settings());
     fortifyProject.start();
 
     assertThat(fortifyProject.exists()).isFalse();
@@ -77,11 +70,7 @@ public class FortifyProjectTest {
     sonarProject.setName("Commons Lang");
     sonarProject.setAnalysisVersion("2.0");
 
-    ListMultimap data = ArrayListMultimap.create();
-    data.putAll(newProject(200L, "Sonar"), Arrays.asList(newVersion(2001L, "3.2"), newVersion(20002L, "3.3")));
-    FortifyClient client = mockClient(data);
-
-    FortifyProject fortifyProject = new FortifyProject(client, sonarProject);
+    FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarProject, new Settings());
     fortifyProject.start();
 
     assertThat(fortifyProject.exists()).isFalse();
@@ -99,18 +88,36 @@ public class FortifyProjectTest {
     sonarModule.setAnalysisVersion("3.3");
     sonarModule.setParent(sonarProject);
 
-    ListMultimap data = ArrayListMultimap.create();
-    data.putAll(newProject(200L, "Sonar"), Arrays.asList(newVersion(2001L, "3.2"), newVersion(20002L, "3.3")));
-    FortifyClient client = mockClient(data);
-
-    FortifyProject fortifyProject = new FortifyProject(client, sonarModule);
+    FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarModule, new Settings());
     fortifyProject.start();
 
     assertThat(fortifyProject.exists()).isFalse();
     assertThat(fortifyProject.getVersionId()).isNull();
   }
 
-  private FortifyClient mockClient(ListMultimap<Project, ProjectVersionLite> data) {
+  @Test
+  public void name_and_version_could_be_overridden() {
+    org.sonar.api.resources.Project sonarProject = new org.sonar.api.resources.Project("org.codehaus.sonar:sonar");
+    sonarProject.setName("Something");
+    sonarProject.setAnalysisVersion("1.0");
+
+
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.PROPERTY_PROJECT_NAME, "Sonar");
+    settings.setProperty(FortifyConstants.PROPERTY_PROJECT_VERSION, "3.3");
+
+    FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarProject, settings);
+    fortifyProject.start();
+
+    assertThat(fortifyProject.exists()).isTrue();
+    assertThat(fortifyProject.getVersionId()).isEqualTo(20002L);
+  }
+
+  private FortifyClient mockClient() {
+    ListMultimap<Project, ProjectVersionLite> data = ArrayListMultimap.create();
+    data.putAll(newProject(100L, "Struts"), Arrays.asList(newVersion(1001L, "1.3.9"), newVersion(10002L, "1.4")));
+    data.putAll(newProject(200L, "Sonar"), Arrays.asList(newVersion(2001L, "3.2"), newVersion(20002L, "3.3")));
+
     for (Map.Entry<Project, ProjectVersionLite> entry : data.entries()) {
       entry.getValue().setProjectId(entry.getKey().getId());
     }

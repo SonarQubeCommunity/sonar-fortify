@@ -23,9 +23,12 @@ import com.fortify.manager.schema.Project;
 import com.fortify.manager.schema.ProjectVersionLite;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
 
 import javax.annotation.Nullable;
@@ -38,15 +41,19 @@ public class FortifyProject implements BatchExtension {
   private final FortifyClient client;
   private final org.sonar.api.resources.Project sonarProject;
   private Long versionId = null;
+  private Settings settings;
 
-  public FortifyProject(FortifyClient client, org.sonar.api.resources.Project sonarProject) {
+  public FortifyProject(FortifyClient client, org.sonar.api.resources.Project sonarProject, Settings settings) {
     this.client = client;
     this.sonarProject = sonarProject;
+    this.settings = settings;
   }
 
   public void start() {
     if (sonarProject.isRoot() && client.isEnabled()) {
-      initProjectVersionId();
+      String fortifyName = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
+      String fortifyVersion = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
+      initProjectVersionId(fortifyName, fortifyVersion);
     }
   }
 
@@ -58,22 +65,19 @@ public class FortifyProject implements BatchExtension {
     return versionId;
   }
 
-  /**
-   * <p>The current algorithm is really simple : [sonar project name, sonar project version] must match [fortify project name, fortify project version].</p>
-   */
-  private void initProjectVersionId() {
+  private void initProjectVersionId(final String fortifyName, final String fortifyVersion) {
     // Fortify webservices do not allow to request a specific project. All the projects must be loaded.
     List<Project> projects = client.getProjects();
     final Project project = Iterables.find(projects, new Predicate<Project>() {
       public boolean apply(@Nullable Project project) {
-        return project != null && sonarProject.getName().equals(project.getName());
+        return project != null && fortifyName.equals(project.getName());
       }
     }, null);
     ProjectVersionLite pv = null;
     if (project != null) {
       pv = Iterables.find(client.getProjectVersions(), new Predicate<ProjectVersionLite>() {
         public boolean apply(@Nullable ProjectVersionLite pv) {
-          return pv != null && pv.getProjectId() == project.getId() && sonarProject.getAnalysisVersion().equals(pv.getName());
+          return pv != null && pv.getProjectId() == project.getId() && fortifyVersion.equals(pv.getName());
         }
       }, null);
     }
