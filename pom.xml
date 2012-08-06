@@ -210,6 +210,35 @@
   <build>
     <plugins>
       <plugin>
+        <!--
+          Dependencies with scope 'system' are not embedded in plugins. This workaround
+          copies these dependencies in the JAR without relying on sonar classpath mechanism.
+          See https://jira.codehaus.org/browse/SONAR-3720
+         -->
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>jarjar-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jarjar</goal>
+            </goals>
+            <configuration>
+              <includes>
+                <include>com.fortify:wsclient</include>
+                <include>com.fortify:wsobjects</include>
+              </includes>
+              <rules>
+                <keep>
+                  <pattern>*.**</pattern>
+                </keep>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.sonar</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
         <configuration>
