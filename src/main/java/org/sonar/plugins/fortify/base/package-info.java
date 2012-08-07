@@ -17,13 +17,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
+@ParametersAreNonnullByDefault
 package org.sonar.plugins.fortify.base;
 
-public interface FortifyConstants {
-  String PROPERTY_URL = "sonar.fortify.sscUrl";
-  String PROPERTY_LOGIN = "sonar.fortify.sscLogin.secured";
-  String PROPERTY_PASSWORD = "sonar.fortify.sscPassword.secured";
-
-  String PROPERTY_PROJECT_NAME = "sonar.fortify.projectName";
-  String PROPERTY_PROJECT_VERSION = "sonar.fortify.projectVersion";
-}
+import javax.annotation.ParametersAreNonnullByDefault;

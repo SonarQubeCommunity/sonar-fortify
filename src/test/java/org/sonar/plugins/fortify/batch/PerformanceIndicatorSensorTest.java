@@ -19,13 +19,13 @@
  */
 package org.sonar.plugins.fortify.batch;
 
-import com.fortify.manager.schema.MeasurementHistory;
 import org.junit.Test;
 import org.mockito.AdditionalMatchers;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.resources.Project;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -57,6 +57,13 @@ public class PerformanceIndicatorSensorTest {
     PerformanceIndicatorSensor sensor = new PerformanceIndicatorSensor(client, fortifyProject);
 
     assertThat(sensor.shouldExecuteOnProject(sonarProject)).isFalse();
+  }
+
+  @Test
+  public void test_to_string() {
+    PerformanceIndicatorSensor sensor = new PerformanceIndicatorSensor(mock(FortifyClient.class), mock(FortifyProject.class));
+    // overridden, not something like "org.sonar.plugins.fortify.batch.PerformanceIndicatorSensor@276bab54"
+    assertThat(sensor.toString()).doesNotContain("@");
   }
 
   @Test

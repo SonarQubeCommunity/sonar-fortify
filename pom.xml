@@ -16,6 +16,7 @@
 
   <properties>
     <sonar.version>3.0</sonar.version>
+    <cxf.version>2.6.1</cxf.version>
   </properties>
 
   <organization>
@@ -65,118 +66,55 @@
 
     <!-- Fortify wsclient -->
     <dependency>
-      <groupId>com.fortify</groupId>
-      <artifactId>wsclient</artifactId>
-      <version>3.50</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/wsclient-3.50.jar</systemPath>
-    </dependency>
-    <dependency>
-      <groupId>com.fortify</groupId>
-      <artifactId>wsobjects</artifactId>
-      <version>3.50</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/wsobjects-3.50.jar</systemPath>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.ws</groupId>
-      <artifactId>spring-ws-core</artifactId>
-      <version>1.5.7</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
       <exclusions>
         <exclusion>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-web</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
+          <groupId>asm</groupId>
+          <artifactId>asm</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.springframework.ws</groupId>
-      <artifactId>spring-oxm-tiger</artifactId>
-      <version>1.5.7</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.ws</groupId>
-      <artifactId>spring-ws-security</artifactId>
-      <version>1.5.7</version>
-      <exclusions>
-        <exclusion>
-          <groupId>xalan</groupId>
-          <artifactId>xalan</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.xml.wss</groupId>
-          <artifactId>xws-security</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-tx</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.ws.commons.axiom</groupId>
-      <artifactId>axiom-impl</artifactId>
-      <version>1.2.8</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>geronimo-activation_1.1_spec</artifactId>
-          <groupId>org.apache.geronimo.specs</groupId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>jaxen</groupId>
-          <artifactId>jaxen</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>commons-httpclient</groupId>
-      <artifactId>commons-httpclient</artifactId>
-      <version>3.1</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-ws-security</artifactId>
+      <version>${cxf.version}</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.sf.ehcache</groupId>
+          <artifactId>ehcache-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.opensaml</groupId>
+          <artifactId>opensaml</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
 
-    <!-- Compatibility with Java 5 -->
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jaxb_2.2_spec</artifactId>
-      <version>1.0.1</version>
-    </dependency>
+    <!-- compatibility with Java 5 -->
     <dependency>
       <groupId>javax.xml</groupId>
-      <artifactId>jaxb-impl</artifactId>
+      <artifactId>jaxb-api</artifactId>
       <version>2.1</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-activation_1.1_spec</artifactId>
-      <version>1.1</version>
+      <groupId>javax.xml.ws</groupId>
+      <artifactId>jaxws-api</artifactId>
+      <version>2.2.8</version>
     </dependency>
 
     <!-- unit tests -->
@@ -204,36 +142,51 @@
       <version>1.9.0</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <!--
-          Dependencies with scope 'system' are not embedded in plugins. This workaround
-          copies these dependencies in the JAR without relying on sonar classpath mechanism.
-          See https://jira.codehaus.org/browse/SONAR-3720
-         -->
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>jarjar-maven-plugin</artifactId>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated-sources</sourceRoot>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>
+                    ${project.basedir}/src/main/wsdl/fws-2.50-patched.wsdl
+                  </wsdl>
+                  <extraargs>
+                    <extraarg>-client</extraarg>
+                    <extraarg>-mark-generated</extraarg>
+                  </extraargs>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.5</version>
         <executions>
           <execution>
-            <phase>package</phase>
+            <id>test</id>
+            <phase>generate-sources</phase>
             <goals>
-              <goal>jarjar</goal>
+              <goal>add-source</goal>
             </goals>
             <configuration>
-              <includes>
-                <include>com.fortify:wsclient</include>
-                <include>com.fortify:wsobjects</include>
-              </includes>
-              <rules>
-                <keep>
-                  <pattern>*.**</pattern>
-                </keep>
-              </rules>
+              <sources>
+                <source>${project.basedir}/target/generated-sources</source>
+              </sources>
             </configuration>
           </execution>
         </executions>

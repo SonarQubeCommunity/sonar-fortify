@@ -19,8 +19,6 @@
  */
 package org.sonar.plugins.fortify.batch;
 
-import com.fortify.manager.schema.Project;
-import com.fortify.manager.schema.ProjectVersionLite;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +28,8 @@ import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
+import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -40,8 +40,8 @@ public class FortifyProject implements BatchExtension {
 
   private final FortifyClient client;
   private final org.sonar.api.resources.Project sonarProject;
+  private final Settings settings;
   private Long versionId = null;
-  private Settings settings;
 
   public FortifyProject(FortifyClient client, org.sonar.api.resources.Project sonarProject, Settings settings) {
     this.client = client;
@@ -83,9 +83,9 @@ public class FortifyProject implements BatchExtension {
     }
     if (pv != null) {
       versionId = pv.getId();
-      LOG.info("Fortify SSC Project: ");
+      LOG.info("Fortify SSC Project: " + fortifyName + ", version: " + fortifyVersion);
     } else {
-      LoggerFactory.getLogger(FortifyProject.class).info("Fortify SSC not found");
+      LoggerFactory.getLogger(FortifyProject.class).info("Fortify SSC Project does not exist");
     }
   }
 }

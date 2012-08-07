@@ -19,29 +19,30 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import org.junit.Test;
-import org.springframework.ws.client.core.WebServiceTemplate;
+import com.google.common.annotations.VisibleForTesting;
+import org.apache.ws.security.WSPasswordCallback;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import javax.annotation.Nullable;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
+import java.io.IOException;
 
-public class ContentTemplateProviderTest {
-  @Test
-  public void authentication_provider_is_set_directly_from_clients() {
-    assertThat(new ContextTemplateProvider().getAuthenicationProvider()).isNull();
+public final class PasswordCallback implements CallbackHandler {
+
+  private String password;
+
+  PasswordCallback(@Nullable String password) {
+    this.password = password;
   }
 
-  @Test
-  public void set_uri() {
-    String uri = "http://localhost:8180/ssc/fm-ws/services";
+  @VisibleForTesting
+  String getPassword() {
+    return password;
+  }
 
-    ContextTemplateProvider provider = new ContextTemplateProvider();
-    WebServiceTemplate wsTemplate = mock(WebServiceTemplate.class);
-    provider.setWebServiceTemplate(wsTemplate);
-    provider.setUri(uri);
-
-    assertThat(provider.getUri()).isEqualTo(uri);
-    verify(wsTemplate).setDefaultUri(uri);
+  public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+    WSPasswordCallback pc = (WSPasswordCallback) callbacks[0];
+    pc.setPassword(password);
   }
 }

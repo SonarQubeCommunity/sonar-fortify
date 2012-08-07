@@ -19,17 +19,22 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.manager.schema.IssueListing;
-import com.fortify.manager.schema.Project;
-import com.fortify.manager.schema.ProjectVersionLite;
-import com.fortify.manager.schema.Status;
-import com.fortify.ws.client.*;
-import com.google.common.collect.Lists;
+import com.fortify.schema.fws.CreateAuditSessionRequest;
+import com.fortify.schema.fws.InvalidateAuditSessionRequest;
+import com.fortify.schema.fws.IssueListRequest;
+import com.fortify.schema.fws.Services;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
+import org.apache.ws.security.handler.WSHandlerConstants;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
+import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
+import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
+import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 
 import java.util.List;
 
@@ -42,20 +47,18 @@ public class FortifyClientTest {
   public ExpectedException thrown = ExpectedException.none();
 
   @Test
-  public void test_spring_configuration() {
-    Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
-    settings.setProperty(FortifyConstants.PROPERTY_TOKEN, "ABCDE");
+  public void should_init_cxf() {
+    JaxWsProxyFactoryBean factoryBean = FortifyClient.initCxf("http://localhost:8081/ssc", "admin", "passwd");
 
-    FortifyClient client = new FortifyClient(settings);
-    client.start();
+    assertThat(factoryBean.getAddress()).isEqualTo("http://localhost:8081/ssc/fm-ws/services");
 
-    assertThat(client.isEnabled()).isTrue();
-    assertThat(client.getClientFactory()).isNotNull();
-    assertThat(client.getClientFactory().templateProvider.getUri()).isEqualTo("http://localhost:8081/ssc/fm-ws/services");
-    assertThat(client.getClientFactory().templateProvider.getTemplate()).isNotNull();
-    assertThat(client.getClientFactory().templateProvider.getAuthenicationProvider()).isNull();
-    assertThat(client.getClientFactory().credential.getToken()).isEqualTo("ABCDE");
+    // ws-security is used instead of standard basic auth
+    assertThat(factoryBean.getUsername()).isNull();
+    assertThat(factoryBean.getPassword()).isNull();
+    WSS4JOutInterceptor wsSecurityInterceptor = (WSS4JOutInterceptor) factoryBean.getOutInterceptors().get(0);
+    PasswordCallback passwordCallback = (PasswordCallback) wsSecurityInterceptor.getProperties().get(WSHandlerConstants.PW_CALLBACK_REF);
+    assertThat(passwordCallback.getPassword()).isEqualTo("passwd");
+
   }
 
   @Test
@@ -64,8 +67,7 @@ public class FortifyClientTest {
     client.start();
 
     assertThat(client.isEnabled()).isFalse();
-    assertThat(client.getClientFactory().templateProvider).isNull();
-    assertThat(client.getClientFactory().credential).isNull();
+    assertThat(client.getServices()).isNull();
   }
 
   @Test
@@ -79,100 +81,88 @@ public class FortifyClientTest {
     client.start();
 
     assertThat(client.isEnabled()).isTrue();
-    assertThat(client.getClientFactory().templateProvider).isNotNull();
-    Credential credential = client.getClientFactory().credential;
-    assertThat(credential.getToken()).isNull();
-    assertThat(credential.getUserName()).isEqualTo("admin");
-    assertThat(credential.getPassword()).isEqualTo("<password>");
-  }
-
-  @Test
-  public void instantiate_fortify_clients() {
-    ContextTemplateProvider templateProvider = new ContextTemplateProvider();
-    Credential credential = Credential.forToken("ABCDE");
-    FortifyClient.ClientFactory factory = new FortifyClient.ClientFactory().init(templateProvider, credential);
-
-    assertThat(factory.newClient(AuditClient.class).getClass()).isEqualTo(AuditClient.class);
-    assertThat(factory.newClient(ProjectClient.class).getClass()).isEqualTo(ProjectClient.class);
-    assertThat(factory.newClient(ProjectVersionClient.class).getClass()).isEqualTo(ProjectVersionClient.class);
-    assertThat(factory.newClient(MeasurementClient.class).getClass()).isEqualTo(MeasurementClient.class);
+//    assertThat(client.getClientFactory().templateProvider).isNotNull();
+//    PasswordCallback credential = client.getClientFactory().credential;
+//    assertThat(credential.getToken()).isNull();
+//    assertThat(credential.getUserName()).isEqualTo("admin");
+//    assertThat(credential.getPassword()).isEqualTo("<password>");
   }
 
   @Test
   public void get_projects() throws Exception {
-    ProjectClient projectClient = mock(ProjectClient.class);
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(ProjectClient.class)).thenReturn(projectClient);
+    Services services = mockValidServices();
 
-    List<Project> projects = new FortifyClient(new Settings(), clientFactory).getProjects();
+    List<Project> projects = new FortifyClient(new Settings(), services).getProjects();
 
-    verify(projectClient).getProjects();
+    verify(services).projectList("");
     assertThat(projects).isNotNull();
+  }
+
+  private Services mockValidServices() {
+    return mock(Services.class, Mockito.withSettings().defaultAnswer(Mockito.RETURNS_MOCKS));
   }
 
   @Test
   public void fail_to_get_projects() throws Exception {
     thrown.expect(RuntimeException.class);
 
-    ProjectClient projectClient = mock(ProjectClient.class);
-    when(projectClient.getProjects()).thenThrow(new FortifyWebServiceException(new Status()));
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(ProjectClient.class)).thenReturn(projectClient);
+    Services services = mock(Services.class);
+    when(services.projectList("")).thenThrow(new IllegalStateException());
 
-    new FortifyClient(new Settings(), clientFactory).getProjects();
+    new FortifyClient(new Settings(), services).getProjects();
   }
 
   @Test
   public void get_project_versions() throws Exception {
-    ProjectVersionClient vClient = mock(ProjectVersionClient.class);
-    when(vClient.getProjectVersions()).thenReturn(Lists.<ProjectVersionLite>newArrayList());
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(ProjectVersionClient.class)).thenReturn(vClient);
+    Services services = mockValidServices();
+    List<ProjectVersionLite> versions = new FortifyClient(new Settings(), services).getProjectVersions();
 
-    List<ProjectVersionLite> projectVersions = new FortifyClient(new Settings(), clientFactory).getProjectVersions();
-
-    verify(vClient).getProjectVersions();
-    assertThat(projectVersions).isNotNull();
+    verify(services).activeProjectVersionList("");
+    assertThat(versions).isNotNull();
   }
 
   @Test
   public void fail_to_get_project_versions() throws Exception {
     thrown.expect(RuntimeException.class);
 
-    ProjectVersionClient vClient = mock(ProjectVersionClient.class);
-    when(vClient.getProjectVersions()).thenThrow(new FortifyWebServiceException(new Status()));
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(ProjectVersionClient.class)).thenReturn(vClient);
+    Services services = mock(Services.class);
+    when(services.activeProjectVersionList("")).thenThrow(new IllegalStateException());
 
-    new FortifyClient(new Settings(), clientFactory).getProjectVersions();
+    new FortifyClient(new Settings(), services).getProjectVersions();
   }
 
   @Test
   public void get_issues() throws Exception {
-    AuditClient auditClient = mock(AuditClient.class);
-    IssueListing issueListing = new IssueListing();
-    issueListing.setIssues(new IssueListing.Issues());
-    when(auditClient.listIssues()).thenReturn(issueListing);
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(AuditClient.class)).thenReturn(auditClient);
+    Services services = mockValidServices();
+    List<IssueInstance> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
-    new FortifyClient(new Settings(), clientFactory).getIssues(3L);
+    verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
+    verify(services).issueList(any(IssueListRequest.class));
+    verify(services).invalidateAuditSession(any(InvalidateAuditSessionRequest.class));
+    assertThat(issues).isNotNull();
+  }
 
-    verify(auditClient).startSession(3L);
-    verify(auditClient).listIssues();
-    verify(auditClient).endSession();
+  @Test
+  public void fail_quietly_to_close_issues_session() throws Exception {
+    Services services = mockValidServices();
+    when(services.invalidateAuditSession(any(InvalidateAuditSessionRequest.class))).thenThrow(new IllegalStateException());
+
+    List<IssueInstance> issues = new FortifyClient(new Settings(), services).getIssues(123L);
+
+    verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
+    verify(services).issueList(any(IssueListRequest.class));
+    verify(services).invalidateAuditSession(any(InvalidateAuditSessionRequest.class));
+    assertThat(issues).isNotNull();
   }
 
   @Test
   public void fail_to_get_issues() throws Exception {
     thrown.expect(RuntimeException.class);
 
-    AuditClient auditClient = mock(AuditClient.class);
-    when(auditClient.listIssues()).thenThrow(new FortifyWebServiceException(new Status()));
-    FortifyClient.ClientFactory clientFactory = mock(FortifyClient.ClientFactory.class);
-    when(clientFactory.newClient(AuditClient.class)).thenReturn(auditClient);
+    Services services = mock(Services.class);
+    when(services.issueList(any(IssueListRequest.class))).thenThrow(IllegalStateException.class);
 
-    new FortifyClient(new Settings(), clientFactory).getIssues(3L);
+    new FortifyClient(new Settings(), services).getIssues(3L);
   }
 
 

@@ -17,28 +17,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify.client;
+@ParametersAreNonnullByDefault
+package org.sonar.plugins.fortify.batch;
 
-import org.junit.Test;
-
-import static org.fest.assertions.Assertions.assertThat;
-
-public class CredentialTest {
-  @Test
-  public void test_login() {
-    Credential credential = Credential.forLogin("teddyrinner", "jo2012");
-    assertThat(credential.isUsingTokenAuth()).isFalse();
-    assertThat(credential.getUserName()).isEqualTo("teddyrinner");
-    assertThat(credential.getPassword()).isEqualTo("jo2012");
-    assertThat(credential.getToken()).isNull();
-  }
-
-  @Test
-  public void test_token() {
-    Credential credential = Credential.forToken("ABCDE");
-    assertThat(credential.isUsingTokenAuth()).isTrue();
-    assertThat(credential.getUserName()).isNull();
-    assertThat(credential.getPassword()).isNull();
-    assertThat(credential.getToken()).isEqualTo("ABCDE");
-  }
-}
+import javax.annotation.ParametersAreNonnullByDefault;

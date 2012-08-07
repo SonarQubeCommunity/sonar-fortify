@@ -19,24 +19,24 @@
  */
 package org.sonar.plugins.fortify.client;
 
+import org.apache.ws.security.WSPasswordCallback;
 import org.junit.Test;
-import org.springframework.ws.client.core.WebServiceTemplate;
 
-import static org.fest.assertions.Assertions.assertThat;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.UnsupportedCallbackException;
+import java.io.IOException;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class ContextTemplateProviderTest {
+public class PasswordCallbackTest {
   @Test
-  public void propagate_uri() {
-    // that sounds to be required by fortify client
-    ContextTemplateProvider provider = new ContextTemplateProvider();
-    WebServiceTemplate wsTemplate = mock(WebServiceTemplate.class);
-    provider.setWebServiceTemplate(wsTemplate);
-    String uri = "http://1.2.3.4:9000/ssc/fm-ws/services";
-    provider.setUri(uri);
+  public void should_set_password() throws UnsupportedCallbackException, IOException {
+    PasswordCallback callback = new PasswordCallback("passwd");
+    WSPasswordCallback mock = mock(WSPasswordCallback.class);
 
-    verify(wsTemplate).setDefaultUri(uri);
-    assertThat(provider.getUri()).isEqualTo(uri);
+    callback.handle(new Callback[]{mock});
+
+    verify(mock).setPassword("passwd");
   }
 }

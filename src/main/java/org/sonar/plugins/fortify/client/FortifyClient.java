@@ -19,111 +19,130 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.manager.schema.*;
-import com.fortify.ws.client.*;
-import com.fortify.ws.core.WSAuthenticationProvider;
-import com.fortify.ws.core.WSTemplateProvider;
+import com.fortify.schema.fws.*;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
-import com.google.common.base.Throwables;
-import com.google.common.io.Closeables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.apache.cxf.interceptor.LoggingInInterceptor;
+import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
+import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
+import org.apache.ws.security.WSConstants;
+import org.apache.ws.security.handler.WSHandlerConstants;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.support.GenericApplicationContext;
-import org.springframework.core.io.InputStreamResource;
+import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
+import xmlns.www_fortify_com.schema.issuemanagement.IssueListDescription;
+import xmlns.www_fortifysoftware_com.schema.wstypes.*;
 
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
+import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 
 public class FortifyClient implements BatchExtension {
 
   private final Settings settings;
-  private final ClientFactory clientFactory;
-
+  private Services services;
 
   public FortifyClient(Settings settings) {
-    this(settings, new ClientFactory());
+    this(settings, null);
   }
 
   @VisibleForTesting
-  FortifyClient(Settings settings, ClientFactory clientFactory) {
+  FortifyClient(Settings settings, @Nullable Services services) {
     this.settings = settings;
-    this.clientFactory = clientFactory;
+    this.services = services;
   }
 
   public void start() {
     String url = settings.getString(FortifyConstants.PROPERTY_URL);
     if (!Strings.isNullOrEmpty(url)) {
-      String token = settings.getString(FortifyConstants.PROPERTY_TOKEN);
       String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
       String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
-      Credential c = (Strings.isNullOrEmpty(token) ? Credential.forLogin(login, password) : Credential.forToken(token));
-      init(url, c);
-    }
-  }
-
-  private void init(String rootUri, Credential credential) {
-    InputStream input = FortifyClient.class.getResourceAsStream("/org/sonar/plugins/fortify/client/fortify-spring-wsclient-config.xml");
-    try {
-      GenericApplicationContext ctx = new GenericApplicationContext();
-      XmlBeanDefinitionReader xmlReader = new XmlBeanDefinitionReader(ctx);
-      xmlReader.setValidationMode(XmlBeanDefinitionReader.VALIDATION_NONE);
-      xmlReader.loadBeanDefinitions(new InputStreamResource(input));
-      ctx.refresh();
-      ContextTemplateProvider templateProvider = (ContextTemplateProvider) ctx.getBean("templateProvider");
-      templateProvider.setUri(rootUri + "/fm-ws/services");
-      clientFactory.init(templateProvider, credential);
-    } finally {
-      Closeables.closeQuietly(input);
+      JaxWsProxyFactoryBean factory = initCxf(url, login, password);
+      services = factory.create(Services.class);
     }
   }
 
   @VisibleForTesting
-  ClientFactory getClientFactory() {
-    return clientFactory;
+  static JaxWsProxyFactoryBean initCxf(String rootUri, String login, String password) {
+    JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+    factory.setServiceClass(Services.class);
+    factory.setAddress(rootUri + "/fm-ws/services");
+
+    Map<String, Object> outProps = Maps.newHashMap();
+    outProps.put(WSHandlerConstants.ACTION, "UsernameToken Timestamp");
+    outProps.put(WSHandlerConstants.USER, login);
+    outProps.put(WSHandlerConstants.PASSWORD_TYPE, WSConstants.PW_TEXT);
+    outProps.put(WSHandlerConstants.PW_CALLBACK_REF, new PasswordCallback(password));
+    factory.getOutInterceptors().add(new WSS4JOutInterceptor(outProps));
+
+    Map<String, Object> inProps = Maps.newHashMap();
+    inProps.put(WSHandlerConstants.ACTION, "Timestamp");
+    factory.getInInterceptors().add(new WSS4JInInterceptor(inProps));
+
+    if (LoggerFactory.getLogger(FortifyClient.class).isDebugEnabled()) {
+      factory.getInInterceptors().add(new LoggingInInterceptor());
+      factory.getOutInterceptors().add(new LoggingOutInterceptor());
+    }
+    return factory;
+  }
+
+  @VisibleForTesting
+  Services getServices() {
+    return services;
   }
 
   public boolean isEnabled() {
-    return clientFactory.isInitialized();
+    return services != null;
   }
 
   public List<Project> getProjects() {
-    try {
-      return clientFactory.newClient(ProjectClient.class).getProjects();
-    } catch (FortifyWebServiceException e) {
-      throw Throwables.propagate(e);
-    }
+    return services.projectList("").getProject();
   }
 
   /**
    * The versions of all the projects. Unfortunately it's not possible to get the versions of a give project.
    */
   public List<ProjectVersionLite> getProjectVersions() {
-    try {
-      return clientFactory.newClient(ProjectVersionClient.class).getProjectVersions();
-    } catch (FortifyWebServiceException e) {
-      throw Throwables.propagate(e);
-    }
+    return services.activeProjectVersionList("").getProjectVersion();
   }
 
   public List<IssueInstance> getIssues(long projectVersionId) {
-    AuditClient auditClient = clientFactory.newClient(AuditClient.class);
+    String sessionId = createAuditSession(projectVersionId);
     try {
-      auditClient.startSession(projectVersionId);
-      return auditClient.listIssues().getIssues().getIssue();
+      ProjectIdentifier pid = new ProjectIdentifier();
+      pid.setProjectVersionId(projectVersionId);
 
-    } catch (Exception e) {
-      throw Throwables.propagate(e);
+      IssueListRequest req = new IssueListRequest();
+      req.setSessionId(sessionId);
+      req.setProjectIdentifier(pid);
+      req.setIssueListDescription(new IssueListDescription());
+      return services.issueList(req).getIssueList().getIssues().getIssue();
+
     } finally {
+      closeAuditSession(sessionId);
+    }
+  }
+
+  private String createAuditSession(long projectVersionId) {
+    CreateAuditSessionRequest req = new CreateAuditSessionRequest();
+    req.setProjectVersionId(projectVersionId);
+    return services.createAuditSession(req).getSessionId();
+  }
+
+  private void closeAuditSession(@Nullable String sessionId) {
+    if (sessionId != null) {
       try {
-        auditClient.endSession();
+        InvalidateAuditSessionRequest req = new InvalidateAuditSessionRequest();
+        req.setSessionId(sessionId);
+        services.invalidateAuditSession(req);
       } catch (Exception e) {
-        LoggerFactory.getLogger(FortifyClient.class).error("Fail to end Fortify session on project version " + projectVersionId, e);
+        LoggerFactory.getLogger(FortifyClient.class).error("Fail to close audit session " + sessionId, e);
       }
     }
   }
@@ -132,47 +151,19 @@ public class FortifyClient implements BatchExtension {
    * Example of indicator keys : "CFPO", "FILES", "OWASP2004A1"
    */
   public List<VariableHistory> getVariables(long projectVersionId, List<String> variableKeys) {
-    try {
-      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class);
-      return measureClient.getMostRecentVariableHistories(Arrays.asList(projectVersionId), variableKeys);
-    } catch (Exception e) {
-      throw Throwables.propagate(e);
-    }
+    VariableHistoryListRequest req = new VariableHistoryListRequest();
+    req.getProjectVersionIDs().add(projectVersionId);
+    req.getVariableGuids().addAll(variableKeys);
+    return FortifyClientUtils.keepMoreRecent(services.variableHistoryList(req));
   }
 
   /**
    * Example of indicator keys : "FortifySecurityRating", "TotalRemediationEffort", "PercentCriticalPriorityIssuesAudited"
    */
   public List<MeasurementHistory> getPerformanceIndicators(long projectVersionId, List<String> indicatorKeys) {
-    try {
-      MeasurementClient measureClient = clientFactory.newClient(MeasurementClient.class);
-      return measureClient.getMostRecentMeasurementHistories(Arrays.asList(projectVersionId), indicatorKeys);
-    } catch (Exception e) {
-      throw Throwables.propagate(e);
-    }
-  }
-
-  static class ClientFactory {
-    ContextTemplateProvider templateProvider;
-    Credential credential;
-
-    ClientFactory init(ContextTemplateProvider templateProvider, Credential credential) {
-      this.templateProvider = templateProvider;
-      this.credential = credential;
-      return this;
-    }
-
-    boolean isInitialized() {
-      return templateProvider != null;
-    }
-
-    <T extends AbstractWSClient> T newClient(Class<T> clazz) {
-      try {
-        Constructor<T> constructor = clazz.getConstructor(WSTemplateProvider.class, WSAuthenticationProvider.class, String.class);
-        return constructor.newInstance(templateProvider, credential, null);
-      } catch (Exception e) {
-        throw new IllegalStateException("Fail to instantiate Fortify component: " + clazz, e);
-      }
-    }
+    MeasurementHistoryListRequest req = new MeasurementHistoryListRequest();
+    req.getProjectVersionIDs().add(projectVersionId);
+    req.getMeasurementGuids().addAll(indicatorKeys);
+    return FortifyClientUtils.keepMoreRecent(services.measurementHistoryList(req));
   }
 }

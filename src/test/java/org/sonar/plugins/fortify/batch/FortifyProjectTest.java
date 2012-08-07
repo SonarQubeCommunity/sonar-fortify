@@ -19,8 +19,6 @@
  */
 package org.sonar.plugins.fortify.batch;
 
-import com.fortify.manager.schema.Project;
-import com.fortify.manager.schema.ProjectVersionLite;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
@@ -28,6 +26,8 @@ import org.junit.Test;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
+import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 
 import java.util.Arrays;
 import java.util.Map;

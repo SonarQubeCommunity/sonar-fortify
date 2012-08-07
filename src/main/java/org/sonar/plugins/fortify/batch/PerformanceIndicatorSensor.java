@@ -19,7 +19,6 @@
  */
 package org.sonar.plugins.fortify.batch;
 
-import com.fortify.manager.schema.MeasurementHistory;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import org.sonar.api.batch.Sensor;
@@ -28,6 +27,7 @@ import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
 
 import java.util.List;
 import java.util.Map;
@@ -58,5 +58,10 @@ public class PerformanceIndicatorSensor implements Sensor {
 
   private Map<String, Metric> keyToMetrics() {
     return ImmutableMap.of("FortifySecurityRating", FortifyMetrics.SECURITY_RATING);
+  }
+
+  @Override
+  public String toString() {
+    return "Fortify Performance Indicators";
   }
 }
