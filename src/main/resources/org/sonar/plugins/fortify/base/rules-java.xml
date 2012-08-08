@@ -1,18 +1,9 @@
 <rules>
 
-  <!--
+  <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck</key>
+    <key>sql_injection_hibernate</key>
     <priority>MAJOR</priority>
-    <configKey>Checker/Header</configKey>
-    <param>
-      <key>header</key>
-      <type>s</type>
-    </param>
-    <param>
-      <key>ignoreLines</key>
-      <type>s</type>
-    </param>
   </rule>
--->
+
 </rules>
