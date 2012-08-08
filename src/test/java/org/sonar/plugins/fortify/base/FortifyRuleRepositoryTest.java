@@ -42,4 +42,10 @@ public class FortifyRuleRepositoryTest {
     assertThat(repository.getName()).isEqualTo("Fortify");
     assertThat(repository.getLanguage()).isEqualTo("java");
   }
+
+  @Test
+  public void test_repository_key() {
+    assertThat(FortifyRuleRepository.fortifyRepositoryKey("cobol")).isEqualTo("fortify-cobol");
+    assertThat(FortifyRuleRepository.fortifyRepositoryKey("COBOL")).isEqualTo("fortify-cobol");
+  }
 }

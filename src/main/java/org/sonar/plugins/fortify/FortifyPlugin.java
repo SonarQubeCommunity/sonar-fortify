@@ -27,6 +27,7 @@ import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
 import org.sonar.plugins.fortify.batch.FortifyProject;
+import org.sonar.plugins.fortify.batch.IssueSensor;
 import org.sonar.plugins.fortify.batch.PerformanceIndicatorSensor;
 import org.sonar.plugins.fortify.client.FortifyClient;
 
@@ -47,7 +48,7 @@ public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
     return Arrays.asList(FortifyMetrics.class, FortifyRuleRepositories.class,
-      FortifyClient.class, FortifyProject.class, PerformanceIndicatorSensor.class);
+      FortifyClient.class, FortifyProject.class, PerformanceIndicatorSensor.class, IssueSensor.class);
   }
 
 }

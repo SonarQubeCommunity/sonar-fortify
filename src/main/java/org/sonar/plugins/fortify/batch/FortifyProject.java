@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
+import org.sonar.api.resources.Qualifiers;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
@@ -50,7 +51,7 @@ public class FortifyProject implements BatchExtension {
   }
 
   public void start() {
-    if (sonarProject.isRoot() && client.isEnabled()) {
+    if (Qualifiers.PROJECT.equals(sonarProject.getQualifier()) && client.isEnabled()) {
       String fortifyName = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
       String fortifyVersion = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
       initProjectVersionId(fortifyName, fortifyVersion);
@@ -66,7 +67,7 @@ public class FortifyProject implements BatchExtension {
   }
 
   private void initProjectVersionId(final String fortifyName, final String fortifyVersion) {
-    // Fortify webservices do not allow to request a specific project. All the projects must be loaded.
+    // Fortify webservices do not allow to request a specific project. All the projects must be loaded then filtered.
     List<Project> projects = client.getProjects();
     final Project project = Iterables.find(projects, new Predicate<Project>() {
       public boolean apply(@Nullable Project project) {

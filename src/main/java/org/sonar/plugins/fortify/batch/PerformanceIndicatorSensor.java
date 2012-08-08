@@ -34,8 +34,8 @@ import java.util.Map;
 
 public class PerformanceIndicatorSensor implements Sensor {
 
-  private FortifyClient client;
-  private FortifyProject fortifyProject;
+  private final FortifyClient client;
+  private final FortifyProject fortifyProject;
 
   public PerformanceIndicatorSensor(FortifyClient client, FortifyProject fortifyProject) {
     this.client = client;
@@ -57,6 +57,7 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   private Map<String, Metric> keyToMetrics() {
+    // List here the indicators to download
     return ImmutableMap.of("FortifySecurityRating", FortifyMetrics.SECURITY_RATING);
   }
 

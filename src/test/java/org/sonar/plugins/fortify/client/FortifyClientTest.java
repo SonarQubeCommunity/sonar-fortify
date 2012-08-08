@@ -134,7 +134,7 @@ public class FortifyClientTest {
   @Test
   public void get_issues() throws Exception {
     Services services = mockValidServices();
-    List<IssueInstance> issues = new FortifyClient(new Settings(), services).getIssues(123L);
+    List<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
     verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
     verify(services).issueList(any(IssueListRequest.class));
@@ -147,7 +147,7 @@ public class FortifyClientTest {
     Services services = mockValidServices();
     when(services.invalidateAuditSession(any(InvalidateAuditSessionRequest.class))).thenThrow(new IllegalStateException());
 
-    List<IssueInstance> issues = new FortifyClient(new Settings(), services).getIssues(123L);
+    List<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
     verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
     verify(services).issueList(any(IssueListRequest.class));

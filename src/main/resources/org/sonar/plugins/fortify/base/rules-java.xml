@@ -4,6 +4,7 @@
   <rule>
     <key>sql_injection_hibernate</key>
     <priority>MAJOR</priority>
+    <configKey>SQL Injection: Hibernate</configKey>
   </rule>
 
 </rules>

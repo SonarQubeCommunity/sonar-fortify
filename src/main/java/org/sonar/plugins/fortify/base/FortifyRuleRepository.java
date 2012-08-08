@@ -20,6 +20,7 @@
 package org.sonar.plugins.fortify.base;
 
 import com.google.common.io.Closeables;
+import org.apache.commons.lang.StringUtils;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleRepository;
 import org.sonar.api.rules.XMLRuleParser;
@@ -30,7 +31,7 @@ import java.util.List;
 public final class FortifyRuleRepository extends RuleRepository {
 
   FortifyRuleRepository(String language) {
-    super("fortify-" + language, language);
+    super(fortifyRepositoryKey(language), language);
     setName("Fortify");
   }
 
@@ -42,5 +43,9 @@ public final class FortifyRuleRepository extends RuleRepository {
     } finally {
       Closeables.closeQuietly(input);
     }
+  }
+
+  public static String fortifyRepositoryKey(String language) {
+    return "fortify-" + StringUtils.lowerCase(language);
   }
 }
