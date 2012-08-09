@@ -27,6 +27,65 @@
       </td>
       <td width="10"></td>
       <td valign="top">
+        <table style="border-collapse: collapse; empty-cells: show">
+          <colgroup>
+            <col style=" width: 0.45in">
+            <col style=" width: 0.15in">
+            <col style=" width: 0.6in">
+            <col style=" width: 0.6in">
+          </colgroup>
+          <tbody>
+          <tr valign="top" style=" height: 0.6in;">
+            <td valign="middle" rowspan="2">
+              <div style="text-align:center;color: rgb(126, 111, 105); margin: 0; padding: 0 1pt 0 0;">Impact</div>
+            </td>
+            <td valign="middle" rowspan="2">
+              <div>
+                <img style=" height: 100%;display: block;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'skinny_up_arrow.png') -%>">
+              </div>
+            </td>
+            <td align="center" valign="middle" style="color: rgb(255, 255, 255); border: medium solid rgb(128, 128, 128); background-color: rgb(255, 140, 0);">
+              <div style=" text-align:center;" style="font-size: 10pt; color: black; margin: 0pt; padding: 1pt;">
+                <%= format_measure('fortify-cfpo') -%>
+              </div>
+            </td>
+            <td align="center" valign="middle" style="color: rgb(255, 255, 255); border: medium solid rgb(128, 128, 128); background-color: red">
+              <div style=" text-align:center;" class="style_57">
+                <%= format_measure('fortify-hfpo') -%>
+              </div>
+            </td>
+          </tr>
+          <tr valign="top" style=" height: 0.6in;">
+            <td align="center" valign="middle" class="style_60">
+              <div style=" text-align:center;" class="style_57">
+                <%= format_measure('fortify-mfpo') -%>
+              </div>
+            </td>
+            <td align="center" valign="middle" class="style_62">
+              <div style=" text-align:center;" class="style_57">
+                <%= format_measure('fortify-lfpo') -%>
+              </div>
+            </td>
+          </tr>
+          <tr valign="top" style=" height: 0.15in;">
+            <td></td>
+            <td valign="middle"></td>
+            <td align="center" colspan="2" class="style_63">
+              <div>
+                <img style=" width: 100%;display: block;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'skinny_right_arrow.png') -%>">
+              </div>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td></td>
+            <td valign="middle"></td>
+            <td colspan="2">
+              <div style=" text-align:center;" class="style_64">Likelihood</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
         <img style="position: absolute; bottom: 10px; right: 10px;  width: 100px;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'fortify_logo.png') -%>">
       </td>
     </tr>

@@ -20,12 +20,27 @@
 package org.sonar.plugins.fortify.base;
 
 import org.junit.Test;
+import org.sonar.api.measures.Metric;
 
 import static org.fest.assertions.Assertions.assertThat;
 
 public class FortifyMetricsTest {
   @Test
-  public void getMetrics() {
+  public void test_getMetrics() {
     assertThat(new FortifyMetrics().getMetrics()).isNotNull();
+  }
+
+  @Test
+  public void keys_should_be_prefixed_with_fortify() {
+    for (Metric metric : new FortifyMetrics().getMetrics()) {
+      assertThat(metric.getKey()).startsWith("fortify-");
+    }
+  }
+
+  @Test
+  public void domain_should_be_specific_to_fortify() {
+    for (Metric metric : new FortifyMetrics().getMetrics()) {
+      assertThat(metric.getDomain()).isEqualTo(FortifyMetrics.DOMAIN);
+    }
   }
 }

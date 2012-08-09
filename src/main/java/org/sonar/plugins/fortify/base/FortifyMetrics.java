@@ -27,20 +27,60 @@ import java.util.List;
 
 public final class FortifyMetrics implements Metrics {
 
+  public static final String DOMAIN = "Fortify";
+
   public static final String SECURITY_RATING_KEY = "fortify-security-rating";
   public static final Metric SECURITY_RATING = new Metric.Builder(SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.FLOAT)
     .setDescription("Fortify Security Rating")
     .setDirection(Metric.DIRECTION_BETTER)
     .setQualitative(true)
-    .setDomain("Security")
+    .setDomain(DOMAIN)
+    .setBestValue(5.0)
     .create();
 
   public static final String AUDIT_CONTEXT_KEY = "fortify-audit-context";
   public static final Metric AUDIT_CONTEXT = new Metric.Builder(AUDIT_CONTEXT_KEY, "Fortify Audit Context", Metric.ValueType.DATA)
     .setHidden(true)
+    .setDomain(DOMAIN)
     .create();
 
+  /**
+   * The following metrics are used for the chart Impact versus Likelihood
+   */
+  public static final Metric CFPO = new Metric.Builder("fortify-CFPO", "Fortify Critical Priority Issues", Metric.ValueType.INT)
+    .setDescription("Fortify Critical Priority Issues")
+    .setDirection(Metric.DIRECTION_WORST)
+    .setQualitative(false)
+    .setDomain(DOMAIN)
+    .setBestValue(0.0)
+    .create();
+
+  public static final Metric HFPO = new Metric.Builder("fortify-HFPO", "Fortify High Priority Issues", Metric.ValueType.INT)
+    .setDescription("Fortify High Priority Issues")
+    .setDirection(Metric.DIRECTION_WORST)
+    .setQualitative(false)
+    .setDomain(DOMAIN)
+    .setBestValue(0.0)
+    .create();
+
+  public static final Metric MFPO = new Metric.Builder("fortify-MFPO", "Fortify Medium Priority Issues", Metric.ValueType.INT)
+    .setDescription("Fortify Medium Priority Issues")
+    .setDirection(Metric.DIRECTION_WORST)
+    .setQualitative(false)
+    .setDomain(DOMAIN)
+    .setBestValue(0.0)
+    .create();
+
+  public static final Metric LFPO = new Metric.Builder("fortify-LFPO", "Fortify Low Priority Issues", Metric.ValueType.INT)
+    .setDescription("Fortify Low Priority Issues")
+    .setDirection(Metric.DIRECTION_WORST)
+    .setQualitative(false)
+    .setDomain(DOMAIN)
+    .setBestValue(0.0)
+    .create();
+
+
   public List<Metric> getMetrics() {
-    return Arrays.asList(SECURITY_RATING, AUDIT_CONTEXT);
+    return Arrays.asList(SECURITY_RATING, AUDIT_CONTEXT, CFPO, HFPO, MFPO, LFPO);
   }
 }

@@ -25,7 +25,10 @@ import org.sonar.api.batch.SensorContext;
 import org.sonar.api.resources.Project;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import xmlns.www_fortifysoftware_com.schema.activitytemplate.EquationVariable;
+import xmlns.www_fortifysoftware_com.schema.activitytemplate.Variable;
 import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
+import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -96,10 +99,37 @@ public class PerformanceIndicatorSensorTest {
     verifyZeroInteractions(sensorContext);
   }
 
+  @Test
+  public void should_load_variables() {
+    FortifyClient client = mock(FortifyClient.class);
+    when(client.getVariables(eq(3L), anyList())).thenReturn(Arrays.asList(
+      newVariable("CFPO", 100),
+      newVariable("HFPO", 250)
+    ));
+    FortifyProject fortifyProject = mock(FortifyProject.class);
+    when(fortifyProject.getVersionId()).thenReturn(3L);
+    SensorContext sensorContext = mock(SensorContext.class);
+
+    PerformanceIndicatorSensor sensor = new PerformanceIndicatorSensor(client, fortifyProject);
+    sensor.analyse(sonarProject, sensorContext);
+
+    verify(sensorContext).saveMeasure(eq(FortifyMetrics.CFPO), AdditionalMatchers.eq(100.0, 0.01));
+    verify(sensorContext).saveMeasure(eq(FortifyMetrics.HFPO), AdditionalMatchers.eq(250.0, 0.01));
+  }
+
   private MeasurementHistory newIndicator(String key, float val) {
     MeasurementHistory mh = new MeasurementHistory();
     mh.setMeasurementGuid(key);
     mh.setMeasurementValue(val);
     return mh;
+  }
+
+  private VariableHistory newVariable(String key, int val) {
+    VariableHistory vh = new VariableHistory();
+    Variable variable = new EquationVariable();
+    variable.setVariable(key);
+    vh.setVariable(variable);
+    vh.setVariableValue(val);
+    return vh;
   }
 }

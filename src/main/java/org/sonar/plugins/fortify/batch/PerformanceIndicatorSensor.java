@@ -28,6 +28,7 @@ import org.sonar.api.resources.Project;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
+import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
 
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,12 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   public void analyse(Project project, SensorContext sensorContext) {
-    Map<String, Metric> mapping = keyToMetrics();
+    importPerformanceIndicators(sensorContext);
+    importVariables(sensorContext);
+  }
+
+  private void importPerformanceIndicators(SensorContext sensorContext) {
+    Map<String, Metric> mapping = measureKeyToMetrics();
     List<MeasurementHistory> indicators = client.getPerformanceIndicators(fortifyProject.getVersionId(), Lists.newArrayList(mapping.keySet()));
     for (MeasurementHistory indicator : indicators) {
       Metric metric = mapping.get(indicator.getMeasurementGuid());
@@ -55,10 +61,29 @@ public class PerformanceIndicatorSensor implements Sensor {
     }
   }
 
-  private Map<String, Metric> keyToMetrics() {
+  private void importVariables(SensorContext sensorContext) {
+      Map<String, Metric> mapping = variableKeyToMetrics();
+      List<VariableHistory> variables = client.getVariables(fortifyProject.getVersionId(), Lists.newArrayList(mapping.keySet()));
+      for (VariableHistory v : variables) {
+        Metric metric = mapping.get(v.getVariable().getVariable());
+        sensorContext.saveMeasure(metric, (double) v.getVariableValue());
+      }
+    }
+
+  private Map<String, Metric> measureKeyToMetrics() {
     // List here the indicators to download
     return ImmutableMap.of("FortifySecurityRating", FortifyMetrics.SECURITY_RATING);
   }
+
+  private Map<String, Metric> variableKeyToMetrics() {
+      // List here the variables to download
+      return ImmutableMap.of(
+        "CFPO", FortifyMetrics.CFPO,
+        "HFPO", FortifyMetrics.HFPO,
+        "LFPO", FortifyMetrics.LFPO,
+        "MFPO", FortifyMetrics.MFPO
+      );
+    }
 
   @Override
   public String toString() {
