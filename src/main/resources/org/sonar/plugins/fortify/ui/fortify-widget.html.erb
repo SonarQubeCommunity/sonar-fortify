@@ -3,11 +3,23 @@
    security_rating = measure('fortify-security-rating')
    if audit_context
 %>
+  <style>
+    .fortify-inner {
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      font-size: 10pt;
+      color: #444;
+      margin: 0;
+      padding: 1pt;
+      border: 0;
+    }
+  </style>
   <table width="100%">
     <tr>
       <td valign="top" width="48%" nowrap>
         <div class="dashbox">
-          <h3>Fortify Security Rating</h3>
+          <h3><%= message('fortify.widget.securityRating') -%></h3>
 
           <p>
             <span class="big"><%= format_measure(security_rating) -%> / 5</span>
@@ -21,48 +33,50 @@
                fortify_name=context_hash['name']
                fortify_version=context_hash['version']
             %>
-            <a href="<%= ssc_url -%>/flex/index.jsp?projectName=<%= u fortify_name -%>&projectVersionName=<%= u fortify_version -%>">Open report</a>
+            <a href="<%= ssc_url -%>/flex/index.jsp?projectName=<%= u fortify_name -%>&projectVersionName=<%= u fortify_version -%>" class="action"><%= message('fortify.widget.openReport') -%></a>
           </p>
         </div>
+        <img style="position: absolute; bottom: 10px; left: 10px;  width: 100px;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'fortify_logo.png') -%>">
       </td>
       <td width="10"></td>
       <td valign="top">
+        <h3 class="marginbottom10"><%= message('fortify.widget.issuesByPriority') -%></h3>
         <table style="border-collapse: collapse; empty-cells: show">
           <colgroup>
-            <col style=" width: 0.45in">
-            <col style=" width: 0.15in">
-            <col style=" width: 0.6in">
-            <col style=" width: 0.6in">
+            <col style="width: 0.45in">
+            <col style="width: 0.15in">
+            <col style="width: 0.6in">
+            <col style="width: 0.6in">
           </colgroup>
           <tbody>
           <tr valign="top" style=" height: 0.6in;">
             <td valign="middle" rowspan="2">
-              <div style="text-align:center;color: rgb(126, 111, 105); margin: 0; padding: 0 1pt 0 0;">Impact</div>
+              <div style="text-align:center;color: #444; margin: 0; padding: 0 1pt 0 0;font-size: 9pt"><%= message('fortify.widget.impactAxis') -%></div>
             </td>
             <td valign="middle" rowspan="2">
               <div>
                 <img style=" height: 100%;display: block;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'skinny_up_arrow.png') -%>">
               </div>
             </td>
-            <td align="center" valign="middle" style="color: rgb(255, 255, 255); border: medium solid rgb(128, 128, 128); background-color: rgb(255, 140, 0);">
-              <div style=" text-align:center;" style="font-size: 10pt; color: black; margin: 0pt; padding: 1pt;">
+            <td align="center" valign="middle" style="font-weight: bold; color: rgb(255, 255, 255); border: thin solid rgb(128, 128, 128); background-color: rgb(255, 140, 0);">
+              <div class="fortify-inner">
                 <%= format_measure('fortify-cfpo') -%>
               </div>
             </td>
-            <td align="center" valign="middle" style="color: rgb(255, 255, 255); border: medium solid rgb(128, 128, 128); background-color: red">
-              <div style=" text-align:center;" class="style_57">
+            <td align="center" valign="middle" style="font-weight: bold; color: rgb(255, 255, 255); border: thin solid rgb(128, 128, 128); background-color: red;">
+              <div class="fortify-inner">
                 <%= format_measure('fortify-hfpo') -%>
               </div>
             </td>
           </tr>
           <tr valign="top" style=" height: 0.6in;">
-            <td align="center" valign="middle" class="style_60">
-              <div style=" text-align:center;" class="style_57">
+            <td align="center" valign="middle" style="font-weight: bold; color: rgb(255, 255, 255); border: thin solid rgb(128, 128, 128); background-color: rgb(255, 255, 150);">
+              <div class="fortify-inner">
                 <%= format_measure('fortify-mfpo') -%>
               </div>
             </td>
-            <td align="center" valign="middle" class="style_62">
-              <div style=" text-align:center;" class="style_57">
+            <td align="center" valign="middle" style="font-weight: bold; color: rgb(255, 255, 255); border: thin solid rgb(128, 128, 128); background-color: rgb(255, 200, 0);">
+              <div class="fortify-inner">
                 <%= format_measure('fortify-lfpo') -%>
               </div>
             </td>
@@ -70,7 +84,7 @@
           <tr valign="top" style=" height: 0.15in;">
             <td></td>
             <td valign="middle"></td>
-            <td align="center" colspan="2" class="style_63">
+            <td align="center" colspan="2" style="padding-left: 5pt;">
               <div>
                 <img style=" width: 100%;display: block;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'skinny_right_arrow.png') -%>">
               </div>
@@ -80,13 +94,11 @@
             <td></td>
             <td valign="middle"></td>
             <td colspan="2">
-              <div style=" text-align:center;" class="style_64">Likelihood</div>
+              <div style="font-size: 9pt; color: #444; margin: 0;text-align:center;"><%= message('fortify.widget.likelihoodAxis') -%></div>
             </td>
           </tr>
           </tbody>
         </table>
-
-        <img style="position: absolute; bottom: 10px; right: 10px;  width: 100px;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'fortify_logo.png') -%>">
       </td>
     </tr>
   </table>
