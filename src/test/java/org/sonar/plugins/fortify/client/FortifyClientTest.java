@@ -32,10 +32,10 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
-import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
 import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -134,7 +134,7 @@ public class FortifyClientTest {
   @Test
   public void get_issues() throws Exception {
     Services services = mockValidServices();
-    List<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
+    Collection<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
     verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
     verify(services).issueList(any(IssueListRequest.class));
@@ -147,7 +147,7 @@ public class FortifyClientTest {
     Services services = mockValidServices();
     when(services.invalidateAuditSession(any(InvalidateAuditSessionRequest.class))).thenThrow(new IllegalStateException());
 
-    List<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
+    Collection<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
     verify(services).createAuditSession(any(CreateAuditSessionRequest.class));
     verify(services).issueList(any(IssueListRequest.class));

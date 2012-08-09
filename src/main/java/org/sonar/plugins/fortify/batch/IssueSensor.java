@@ -19,28 +19,37 @@
  */
 package org.sonar.plugins.fortify.batch;
 
+import com.google.common.annotations.VisibleForTesting;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.resources.Project;
+import org.sonar.api.resources.*;
 import org.sonar.api.rules.ActiveRule;
 import org.sonar.api.rules.Violation;
 import org.sonar.plugins.fortify.base.FortifyRuleRepository;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import org.sonar.plugins.fortify.client.IssueWrapper;
 
+import java.util.Collection;
 import java.util.List;
 
 public class IssueSensor implements Sensor {
   private final FortifyClient client;
   private final FortifyProject fortifyProject;
   private final RulesProfile profile;
+  private ResourceMatcher resourceMatcher;
 
   public IssueSensor(FortifyClient client, FortifyProject fortifyProject, RulesProfile profile) {
+    this(client, fortifyProject, profile, new ResourceMatcher());
+  }
+
+  @VisibleForTesting
+  IssueSensor(FortifyClient client, FortifyProject fortifyProject, RulesProfile profile, ResourceMatcher resourceMatcher) {
     this.client = client;
     this.fortifyProject = fortifyProject;
     this.profile = profile;
+    this.resourceMatcher = resourceMatcher;
   }
 
   public boolean shouldExecuteOnProject(Project project) {
@@ -52,21 +61,38 @@ public class IssueSensor implements Sensor {
     String repositoryKey = FortifyRuleRepository.fortifyRepositoryKey(project.getLanguageKey());
 
     // TODO optimization : load only the issues on enabled rules -> that would prevent from requesting details on issues to be ignored.
-    List<IssueWrapper> issues = client.getIssues(fortifyProject.getVersionId());
+    Collection<IssueWrapper> issues = client.getIssues(fortifyProject.getVersionId());
     LoggerFactory.getLogger(IssueSensor.class).info("Loading " + issues.size() + " Fortify issues");
     for (IssueWrapper issue : issues) {
       ActiveRule activeRule = profile.getActiveRuleByConfigKey(repositoryKey, issue.getRuleConfigKey());
       if (activeRule != null) {
-        Violation violation = Violation.create(activeRule, null);
+        Resource resource = resourceMatcher.resourceOf(issue, project.getFileSystem());
+        if (!sensorContext.isIndexed(resource, true)) {
+          resource = null;
+        }
+        Violation violation = Violation.create(activeRule, resource);
         violation.setLineId(issue.getLine());
         violation.setMessage(issue.getHtmlAbstract());
         sensorContext.saveViolation(violation);
       }
     }
+
   }
 
   @Override
   public String toString() {
     return "Fortify Issues";
+  }
+
+
+  static class ResourceMatcher {
+    Resource resourceOf(IssueWrapper issue, ProjectFileSystem fileSystem) {
+      // hack for java... still have to be fixed in sonar core
+      java.io.File file = new java.io.File(fileSystem.getBasedir(), issue.getFilePath());
+      if (Java.isJavaFile(file)) {
+        return new JavaFile(issue.getPackageName(), issue.getClassName());
+      }
+      return File.fromIOFile(file, fileSystem.getSourceDirs());
+    }
   }
 }

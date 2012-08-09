@@ -26,19 +26,21 @@ import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
+import org.sonar.plugins.fortify.batch.AuditContextSensor;
 import org.sonar.plugins.fortify.batch.FortifyProject;
 import org.sonar.plugins.fortify.batch.IssueSensor;
 import org.sonar.plugins.fortify.batch.PerformanceIndicatorSensor;
 import org.sonar.plugins.fortify.client.FortifyClient;
+import org.sonar.plugins.fortify.ui.FortifyWidget;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Properties({
-  // connection properties, can be overridden on projects
-  @Property(key = FortifyConstants.PROPERTY_URL, name = "SSC URL", global = true, project = true),
-  @Property(key = FortifyConstants.PROPERTY_LOGIN, name = "SSC Login", global = true, project = true),
-  @Property(key = FortifyConstants.PROPERTY_PASSWORD, name = "SSC Password", type = PropertyType.PASSWORD, global = true, project = true),
+  // connection properties
+  @Property(key = FortifyConstants.PROPERTY_URL, name = "SSC URL"),
+  @Property(key = FortifyConstants.PROPERTY_LOGIN, name = "SSC Login"),
+  @Property(key = FortifyConstants.PROPERTY_PASSWORD, name = "SSC Password", type = PropertyType.PASSWORD),
 
   // optional project properties
   @Property(key = FortifyConstants.PROPERTY_PROJECT_NAME, name = "Fortify Project Name", global = false, project = true),
@@ -47,8 +49,9 @@ import java.util.List;
 public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
-    return Arrays.asList(FortifyMetrics.class, FortifyRuleRepositories.class,
-      FortifyClient.class, FortifyProject.class, PerformanceIndicatorSensor.class, IssueSensor.class);
+    return Arrays.asList(FortifyMetrics.class, FortifyRuleRepositories.class, FortifyClient.class,
+      FortifyProject.class, AuditContextSensor.class, PerformanceIndicatorSensor.class, IssueSensor.class,
+      FortifyWidget.class);
   }
 
 }

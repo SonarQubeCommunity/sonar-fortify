@@ -33,7 +33,10 @@ public class IssueWrapperTest {
     InstanceInfo instanceInfo = new InstanceInfo();
     IssueLocation location = new IssueLocation();
     location.setLineNumber(3);
-    location.setSourceFilePath("src/main/java/Hello.java");
+    location.setSourceFilePath("src/main/java/foo/Caller.java");
+    location.setFilePath("src/main/java/foo/Callee.java");
+    location.setPackage("foo");
+    location.setClassName("Callee");
     instanceInfo.setIssueLocation(location);
     fortifyIssue.setGroupName("SQL Injection");
     fortifyIssue.setInstanceInfo(instanceInfo);
@@ -42,8 +45,8 @@ public class IssueWrapperTest {
     assertThat(issue.getHtmlAbstract()).isNull();
     assertThat(issue.getLine()).isEqualTo(3);
     assertThat(issue.getRuleConfigKey()).isEqualTo("SQL Injection");
-    assertThat(issue.getSourcePath()).isEqualTo("src/main/java/Hello.java");
-
-
+    assertThat(issue.getFilePath()).isEqualTo("src/main/java/foo/Callee.java");
+    assertThat(issue.getPackageName()).isEqualTo("foo");
+    assertThat(issue.getClassName()).isEqualTo("Callee");
   }
 }

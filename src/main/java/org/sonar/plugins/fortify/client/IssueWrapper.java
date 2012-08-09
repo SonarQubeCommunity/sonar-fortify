@@ -25,7 +25,9 @@ public class IssueWrapper {
   private String ruleConfigKey;
   private String htmlAbstract;
   private int line;
-  private String sourcePath;
+  private String filePath;
+  private String packageName;
+  private String className;
 
   public String getRuleConfigKey() {
     return ruleConfigKey;
@@ -54,19 +56,39 @@ public class IssueWrapper {
     return this;
   }
 
-  public String getSourcePath() {
-    return sourcePath;
+  public String getFilePath() {
+    return filePath;
   }
 
-  public IssueWrapper setSourcePath(String sourcePath) {
-    this.sourcePath = sourcePath;
+  public IssueWrapper setFilePath(String filePath) {
+    this.filePath = filePath;
+    return this;
+  }
+
+  public String getPackageName() {
+    return packageName;
+  }
+
+  public IssueWrapper setPackageName(String s) {
+    this.packageName = s;
+    return this;
+  }
+
+  public String getClassName() {
+    return className;
+  }
+
+  public IssueWrapper setClassName(String s) {
+    this.className = s;
     return this;
   }
 
   static IssueWrapper create(IssueInstance fortifyIssue) {
     return new IssueWrapper()
       .setLine(fortifyIssue.getInstanceInfo().getIssueLocation().getLineNumber())
-      .setSourcePath(fortifyIssue.getInstanceInfo().getIssueLocation().getSourceFilePath())
-      .setRuleConfigKey(fortifyIssue.getGroupName());
+      .setFilePath(fortifyIssue.getInstanceInfo().getIssueLocation().getFilePath())
+      .setRuleConfigKey(fortifyIssue.getGroupName())
+      .setPackageName(fortifyIssue.getInstanceInfo().getIssueLocation().getPackage())
+      .setClassName(fortifyIssue.getInstanceInfo().getIssueLocation().getClassName());
   }
 }

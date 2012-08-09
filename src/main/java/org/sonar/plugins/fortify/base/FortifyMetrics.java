@@ -35,7 +35,12 @@ public final class FortifyMetrics implements Metrics {
     .setDomain("Security")
     .create();
 
+  public static final String AUDIT_CONTEXT_KEY = "fortify-audit-context";
+  public static final Metric AUDIT_CONTEXT = new Metric.Builder(AUDIT_CONTEXT_KEY, "Fortify Audit Context", Metric.ValueType.DATA)
+    .setHidden(true)
+    .create();
+
   public List<Metric> getMetrics() {
-    return Arrays.asList(SECURITY_RATING);
+    return Arrays.asList(SECURITY_RATING, AUDIT_CONTEXT);
   }
 }

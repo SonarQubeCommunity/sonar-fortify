@@ -42,6 +42,9 @@ public class FortifyProject implements BatchExtension {
   private final FortifyClient client;
   private final org.sonar.api.resources.Project sonarProject;
   private final Settings settings;
+
+  private String name = null;
+  private String version = null;
   private Long versionId = null;
 
   public FortifyProject(FortifyClient client, org.sonar.api.resources.Project sonarProject, Settings settings) {
@@ -52,9 +55,9 @@ public class FortifyProject implements BatchExtension {
 
   public void start() {
     if (Qualifiers.PROJECT.equals(sonarProject.getQualifier()) && client.isEnabled()) {
-      String fortifyName = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
-      String fortifyVersion = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
-      initProjectVersionId(fortifyName, fortifyVersion);
+      name = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
+      version = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
+      versionId = initProjectVersionId(client, name, version);
     }
   }
 
@@ -62,11 +65,19 @@ public class FortifyProject implements BatchExtension {
     return versionId != null;
   }
 
-  Long getVersionId() {
+  public String getName() {
+    return name;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public Long getVersionId() {
     return versionId;
   }
 
-  private void initProjectVersionId(final String fortifyName, final String fortifyVersion) {
+  private static Long initProjectVersionId(FortifyClient client, final String fortifyName, final String fortifyVersion) {
     // Fortify webservices do not allow to request a specific project. All the projects must be loaded then filtered.
     List<Project> projects = client.getProjects();
     final Project project = Iterables.find(projects, new Predicate<Project>() {
@@ -82,11 +93,14 @@ public class FortifyProject implements BatchExtension {
         }
       }, null);
     }
+
+    Long versionId = null;
     if (pv != null) {
       versionId = pv.getId();
       LOG.info("Fortify SSC Project: " + fortifyName + ", version: " + fortifyVersion);
     } else {
       LoggerFactory.getLogger(FortifyProject.class).info("Fortify SSC Project does not exist");
     }
+    return versionId;
   }
 }

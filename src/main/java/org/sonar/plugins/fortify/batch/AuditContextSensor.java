@@ -19,26 +19,21 @@
  */
 package org.sonar.plugins.fortify.batch;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
-import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.Measure;
 import org.sonar.api.resources.Project;
+import org.sonar.api.utils.KeyValueFormat;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
-import org.sonar.plugins.fortify.client.FortifyClient;
-import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
 
-import java.util.List;
 import java.util.Map;
 
-public class PerformanceIndicatorSensor implements Sensor {
+public class AuditContextSensor implements Sensor {
 
-  private final FortifyClient client;
   private final FortifyProject fortifyProject;
 
-  public PerformanceIndicatorSensor(FortifyClient client, FortifyProject fortifyProject) {
-    this.client = client;
+  public AuditContextSensor(FortifyProject fortifyProject) {
     this.fortifyProject = fortifyProject;
   }
 
@@ -47,21 +42,14 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   public void analyse(Project project, SensorContext sensorContext) {
-    Map<String, Metric> mapping = keyToMetrics();
-    List<MeasurementHistory> indicators = client.getPerformanceIndicators(fortifyProject.getVersionId(), Lists.newArrayList(mapping.keySet()));
-    for (MeasurementHistory indicator : indicators) {
-      Metric metric = mapping.get(indicator.getMeasurementGuid());
-      sensorContext.saveMeasure(metric, (double) indicator.getMeasurementValue());
-    }
-  }
-
-  private Map<String, Metric> keyToMetrics() {
-    // List here the indicators to download
-    return ImmutableMap.of("FortifySecurityRating", FortifyMetrics.SECURITY_RATING);
+    Map<String,String> context = Maps.newTreeMap();
+    context.put("name", fortifyProject.getName());
+    context.put("version", fortifyProject.getVersion());
+    sensorContext.saveMeasure(new Measure(FortifyMetrics.AUDIT_CONTEXT, KeyValueFormat.format(context)));
   }
 
   @Override
   public String toString() {
-    return "Fortify Performance Indicators";
+    return "Fortify Audit Context";
   }
 }

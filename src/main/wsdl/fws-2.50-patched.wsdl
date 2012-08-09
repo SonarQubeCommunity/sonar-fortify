@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:tns="http://www.fortify.com/schema/fws" targetNamespace="http://www.fortify.com/schema/fws">
+  <!--
+
+
+  Sonar : the operations that can't be compiled by CXF are disabled
+
+
+    -->
   <wsdl:types>
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
                xmlns="http://www.fortify.com/schema/fws"

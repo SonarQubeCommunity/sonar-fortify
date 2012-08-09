@@ -1,0 +1,34 @@
+<%
+   audit_context = measure('fortify-audit-context')
+   security_rating = measure('fortify-security-rating')
+   if audit_context
+%>
+  <table width="100%">
+    <tr>
+      <td valign="top" width="48%" nowrap>
+        <div class="dashbox">
+          <h3>Fortify Security Rating</h3>
+
+          <p>
+            <span class="big"><%= format_measure(security_rating) -%> / 5</span>
+            <%= dashboard_configuration.selected_period? ? format_variation(security_rating) : trend_icon(security_rating) -%>
+          </p>
+
+          <p>
+            <%
+               context_hash=Hash[*(audit_context.data.split(';').map { |elt| elt.split('=') }.flatten)]
+               ssc_url = controller.java_facade.getConfigurationValue('sonar.fortify.sscUrl')
+               fortify_name=context_hash['name']
+               fortify_version=context_hash['version']
+            %>
+            <a href="<%= ssc_url -%>/flex/index.jsp?projectName=<%= u fortify_name -%>&projectVersionName=<%= u fortify_version -%>">Open report</a>
+          </p>
+        </div>
+      </td>
+      <td width="10"></td>
+      <td valign="top">
+        <img style="position: absolute; bottom: 10px; right: 10px;  width: 100px;" alt="" src="<%= url_for_static(:plugin => 'fortify', :path => 'fortify_logo.png') -%>">
+      </td>
+    </tr>
+  </table>
+<% end %>

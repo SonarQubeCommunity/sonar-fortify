@@ -24,7 +24,6 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
@@ -43,7 +42,6 @@ import xmlns.www_fortifysoftware_com.schema.wstypes.*;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class FortifyClient implements BatchExtension {
 
@@ -129,25 +127,17 @@ public class FortifyClient implements BatchExtension {
       listDescription.setIncludeSuppressed(false);
       req.setIssueListDescription(listDescription);
 
-      // The web service (or the soap client ?) duplicates some issues.
-      // We have tp remove them to prevent from creating multiple sonar violations.
-      Set<String> instanceIds = Sets.newHashSet();
-
       List<IssueWrapper> result = Lists.newArrayList();
       for (IssueInstance issueInstance : services.issueList(req).getIssueList().getIssues().getIssue()) {
-        if (!instanceIds.contains(issueInstance.getInstanceId())) {
-          IssueWrapper issue = IssueWrapper.create(issueInstance);
-          result.add(issue);
-          instanceIds.contains(issueInstance.getInstanceId());
-
-          DescriptionAndRecommendationRequest detailReq = new DescriptionAndRecommendationRequest();
-          detailReq.setProjectIdentifier(pid);
-          detailReq.setIssueId(issueInstance.getInstanceId());
-          detailReq.setSessionId(sessionId);
-          DescriptionAndRecommendationResponse recommendation = services.descriptionAndRecommendation(detailReq);
-          if (recommendation != null) {
-            issue.setHtmlAbstract(recommendation.getAbstract());
-          }
+        IssueWrapper issue = IssueWrapper.create(issueInstance);
+        result.add(issue);
+        DescriptionAndRecommendationRequest detailReq = new DescriptionAndRecommendationRequest();
+        detailReq.setProjectIdentifier(pid);
+        detailReq.setIssueId(issueInstance.getInstanceId());
+        detailReq.setSessionId(sessionId);
+        DescriptionAndRecommendationResponse recommendation = services.descriptionAndRecommendation(detailReq);
+        if (recommendation != null) {
+          issue.setHtmlAbstract(recommendation.getAbstract());
         }
       }
       return result;

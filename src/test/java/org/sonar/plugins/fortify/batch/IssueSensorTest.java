@@ -19,19 +19,24 @@
  */
 package org.sonar.plugins.fortify.batch;
 
+import com.google.common.collect.Lists;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.resources.JavaFile;
 import org.sonar.api.resources.Project;
+import org.sonar.api.resources.ProjectFileSystem;
+import org.sonar.api.resources.Resource;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RulePriority;
 import org.sonar.api.rules.Violation;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import org.sonar.plugins.fortify.client.IssueWrapper;
 
-import java.util.Arrays;
+import java.io.File;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -90,20 +95,33 @@ public class IssueSensorTest {
     RulesProfile profile = new RulesProfile();
     profile.activateRule(Rule.create("fortify-java", "SQL Injection").setConfigKey("SQL"), RulePriority.MAJOR);
     FortifyClient client = mock(FortifyClient.class);
-    when(client.getIssues(3L)).thenReturn(Arrays.asList(
-      new IssueWrapper().setRuleConfigKey("SQL").setSourcePath("src/main/java/Foo.java").setLine(40).setHtmlAbstract("message"),
-      new IssueWrapper().setRuleConfigKey("SQL").setSourcePath("src/main/java/Bar.java").setLine(50).setHtmlAbstract("another message"),
-      new IssueWrapper().setRuleConfigKey("XSS").setSourcePath("src/main/java/Bar.java").setLine(20).setHtmlAbstract("this rule is disabled")
+    when(client.getIssues(3L)).thenReturn(Lists.newArrayList(
+      new IssueWrapper().setRuleConfigKey("SQL").setFilePath("src/main/java/Foo.java").setLine(40).setHtmlAbstract("message"),
+      new IssueWrapper().setRuleConfigKey("SQL").setFilePath("src/main/java/Bar.java").setLine(50).setHtmlAbstract("another message"),
+      new IssueWrapper().setRuleConfigKey("XSS").setFilePath("src/main/java/Bar.java").setLine(20).setHtmlAbstract("this rule is disabled")
     ));
 
     FortifyProject fortifyProject = mock(FortifyProject.class);
     when(fortifyProject.getVersionId()).thenReturn(3L);
-    IssueSensor sensor = new IssueSensor(client, fortifyProject, profile);
+    IssueSensor.ResourceMatcher resourceMatcher = mock(IssueSensor.ResourceMatcher.class, Mockito.withSettings().defaultAnswer(Mockito.RETURNS_SMART_NULLS));
+    IssueSensor sensor = new IssueSensor(client, fortifyProject, profile, resourceMatcher);
     SensorContext context = mock(SensorContext.class);
     sensor.analyse(newJavaProject(), context);
 
     verify(context).saveViolation(argThat(new ViolationMatcher("SQL Injection", 40, "message")));
     verify(context).saveViolation(argThat(new ViolationMatcher("SQL Injection", 50, "another message")));
+  }
+
+  @Test
+  public void should_match_java_file() {
+    IssueWrapper issue = new IssueWrapper().setFilePath("src/main/java/foo/Hello.java").setPackageName("foo").setClassName("Hello");
+    ProjectFileSystem fileSystem = mock(ProjectFileSystem.class);
+    when(fileSystem.getBasedir()).thenReturn(new File("."));
+    Resource resource = new IssueSensor.ResourceMatcher().resourceOf(issue, fileSystem);
+
+    assertThat(resource).isInstanceOf(JavaFile.class);
+    assertThat(resource.getKey()).isEqualTo("foo.Hello");
+    assertThat(((JavaFile) resource).getParent().getKey()).isEqualTo("foo");
   }
 
   static class ViolationMatcher extends BaseMatcher<Violation> {
