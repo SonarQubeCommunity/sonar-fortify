@@ -40,11 +40,11 @@ public class FortifyClientUtilsTest {
   @Test
   public void keep_more_recent_measures() throws DatatypeConfigurationException {
     MeasurementHistoryListResponse response = new MeasurementHistoryListResponse();
-    response.getMeasurementHistories().add(newMeasure("FortifySecurityRating", "2012-01-01"));
-    response.getMeasurementHistories().add(newMeasure("FortifySecurityRating", "2010-01-01"));
-    response.getMeasurementHistories().add(newMeasure("FortifySecurityRating", "2011-01-01"));
-    response.getMeasurementHistories().add(newMeasure("Other", "2011-01-01"));
-    response.getMeasurementHistories().add(newMeasure("Other", "2012-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("FortifySecurityRating", "2012-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("FortifySecurityRating", "2010-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("FortifySecurityRating", "2011-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("Other", "2011-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("Other", "2012-01-01"));
 
     List<MeasurementHistory> sorted = FortifyClientUtils.keepMoreRecent(response);
 
@@ -55,29 +55,14 @@ public class FortifyClientUtilsTest {
     }
   }
 
-  private MeasurementHistory newMeasure(String key, String date) throws DatatypeConfigurationException {
-    MeasurementHistory measure = new MeasurementHistory();
-    measure.setMeasurementGuid(key);
-    Snapshot snapshot = new Snapshot();
-    snapshot.setDate(newDate(date));
-    measure.setSnapshot(snapshot);
-    return measure;
-  }
-
-  private XMLGregorianCalendar newDate(String s) throws DatatypeConfigurationException {
-    GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-    cal.setTime(DateUtils.parseDate(s));
-    return DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-  }
-
   @Test
   public void keep_more_recent_variables() throws DatatypeConfigurationException {
     VariableHistoryListResponse response = new VariableHistoryListResponse();
-    response.getVariableHistories().add(newVariable("CFPO", "2012-01-01"));
-    response.getVariableHistories().add(newVariable("CFPO", "2010-01-01"));
-    response.getVariableHistories().add(newVariable("CFPO", "2011-01-01"));
-    response.getVariableHistories().add(newVariable("FILES", "2011-01-01"));
-    response.getVariableHistories().add(newVariable("FILES", "2012-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("CFPO", "2012-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("CFPO", "2010-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("CFPO", "2011-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("FILES", "2011-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("FILES", "2012-01-01"));
 
     List<VariableHistory> sorted = FortifyClientUtils.keepMoreRecent(response);
 
@@ -88,14 +73,5 @@ public class FortifyClientUtilsTest {
     }
   }
 
-  private VariableHistory newVariable(String key, String date) throws DatatypeConfigurationException {
-    VariableHistory result = new VariableHistory();
-    EquationVariable v = new EquationVariable();
-    v.setVariable(key);
-    result.setVariable(v);
-    Snapshot snapshot = new Snapshot();
-    snapshot.setDate(newDate(date));
-    result.setSnapshot(snapshot);
-    return result;
-  }
+
 }

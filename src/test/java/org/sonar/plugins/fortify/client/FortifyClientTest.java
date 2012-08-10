@@ -19,22 +19,25 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.schema.fws.CreateAuditSessionRequest;
-import com.fortify.schema.fws.InvalidateAuditSessionRequest;
-import com.fortify.schema.fws.IssueListRequest;
-import com.fortify.schema.fws.Services;
+import com.fortify.schema.fws.*;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
 import org.apache.ws.security.handler.WSHandlerConstants;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
+import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
 import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
+import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -77,15 +80,14 @@ public class FortifyClientTest {
     settings.setProperty(FortifyConstants.PROPERTY_LOGIN, "admin");
     settings.setProperty(FortifyConstants.PROPERTY_PASSWORD, "<password>");
 
-    FortifyClient client = new FortifyClient(settings);
-    client.start();
+    JaxWsProxyFactoryBean cxf = FortifyClient.initCxf("http://localhost:8081/ssc", "admin", "<passwd>");
 
-    assertThat(client.isEnabled()).isTrue();
-//    assertThat(client.getClientFactory().templateProvider).isNotNull();
-//    PasswordCallback credential = client.getClientFactory().credential;
-//    assertThat(credential.getToken()).isNull();
-//    assertThat(credential.getUserName()).isEqualTo("admin");
-//    assertThat(credential.getPassword()).isEqualTo("<password>");
+    WSS4JOutInterceptor wss = (WSS4JOutInterceptor) cxf.getOutInterceptors().get(0);
+    assertThat(wss.getProperties().get(WSHandlerConstants.USER)).isEqualTo("admin");
+
+    PasswordCallback passwordCallback = (PasswordCallback) wss.getProperties().get(WSHandlerConstants.PW_CALLBACK_REF);
+    assertThat(passwordCallback).isNotNull();
+    assertThat(passwordCallback.getPassword()).isEqualTo("<passwd>");
   }
 
   @Test
@@ -156,7 +158,7 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void fail_to_get_issues() throws Exception {
+  public void should_fail_to_get_issues() throws Exception {
     thrown.expect(RuntimeException.class);
 
     Services services = mock(Services.class);
@@ -165,5 +167,64 @@ public class FortifyClientTest {
     new FortifyClient(new Settings(), services).getIssues(3L);
   }
 
+  @Test
+  public void should_get_variables() throws DatatypeConfigurationException {
+    VariableHistoryListResponse response = new VariableHistoryListResponse();
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("CFPO", "2010-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("CFPO", "2012-01-01"));
+    response.getVariableHistories().add(FortifyTestUtils.newVariable("HFPO", "2012-01-01"));
+
+    Services services = mockValidServices();
+    when(services.variableHistoryList(argThat(new BaseMatcher<VariableHistoryListRequest>() {
+      public boolean matches(Object o) {
+        VariableHistoryListRequest req = (VariableHistoryListRequest) o;
+        return req.getProjectVersionIDs().contains(3L) && req.getVariableGuids().containsAll(Arrays.asList("CFPO", "HFPO"));
+      }
+
+      public void describeTo(Description description) {
+      }
+    }))).thenReturn(response);
+
+
+    List<VariableHistory> variables = new FortifyClient(new Settings(), services).getVariables(3L, Arrays.asList("CFPO", "HFPO"));
+
+    assertThat(variables).hasSize(2);
+    assertThat(variables).onProperty("variable.variable").containsOnly("CFPO", "HFPO");
+
+    // only most recent variables must be kept
+    for (VariableHistory variable : variables) {
+      assertThat(variable.getSnapshot().getDate().getYear()).isEqualTo(2012);
+    }
+  }
+
+  @Test
+  public void should_get_measures() throws DatatypeConfigurationException {
+    MeasurementHistoryListResponse response = new MeasurementHistoryListResponse();
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("Perf1", "2010-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("Perf1", "2012-01-01"));
+    response.getMeasurementHistories().add(FortifyTestUtils.newMeasure("Perf2", "2012-01-01"));
+
+    Services services = mockValidServices();
+    when(services.measurementHistoryList(argThat(new BaseMatcher<MeasurementHistoryListRequest>() {
+      public boolean matches(Object o) {
+        MeasurementHistoryListRequest req = (MeasurementHistoryListRequest) o;
+        return req.getProjectVersionIDs().contains(3L) && req.getMeasurementGuids().containsAll(Arrays.asList("Perf1", "Perf2"));
+      }
+
+      public void describeTo(Description description) {
+      }
+    }))).thenReturn(response);
+
+
+    List<MeasurementHistory> measures = new FortifyClient(new Settings(), services).getPerformanceIndicators(3L, Arrays.asList("Perf1", "Perf2"));
+
+    assertThat(measures).hasSize(2);
+    assertThat(measures).onProperty("measurementGuid").containsOnly("Perf1", "Perf2");
+
+    // only most recent measures must be kept
+    for (MeasurementHistory measure : measures) {
+      assertThat(measure.getSnapshot().getDate().getYear()).isEqualTo(2012);
+    }
+  }
 
 }

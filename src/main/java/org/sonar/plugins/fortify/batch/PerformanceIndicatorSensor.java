@@ -62,13 +62,13 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   private void importVariables(SensorContext sensorContext) {
-      Map<String, Metric> mapping = variableKeyToMetrics();
-      List<VariableHistory> variables = client.getVariables(fortifyProject.getVersionId(), Lists.newArrayList(mapping.keySet()));
-      for (VariableHistory v : variables) {
-        Metric metric = mapping.get(v.getVariable().getVariable());
-        sensorContext.saveMeasure(metric, (double) v.getVariableValue());
-      }
+    Map<String, Metric> mapping = variableKeyToMetrics();
+    List<VariableHistory> variables = client.getVariables(fortifyProject.getVersionId(), Lists.newArrayList(mapping.keySet()));
+    for (VariableHistory v : variables) {
+      Metric metric = mapping.get(v.getVariable().getVariable());
+      sensorContext.saveMeasure(metric, (double) v.getVariableValue());
     }
+  }
 
   private Map<String, Metric> measureKeyToMetrics() {
     // List here the indicators to download
@@ -76,14 +76,14 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   private Map<String, Metric> variableKeyToMetrics() {
-      // List here the variables to download
-      return ImmutableMap.of(
-        "CFPO", FortifyMetrics.CFPO,
-        "HFPO", FortifyMetrics.HFPO,
-        "LFPO", FortifyMetrics.LFPO,
-        "MFPO", FortifyMetrics.MFPO
-      );
-    }
+    // List here the variables to download
+    return ImmutableMap.of(
+      "CFPO", FortifyMetrics.CFPO,
+      "HFPO", FortifyMetrics.HFPO,
+      "LFPO", FortifyMetrics.LFPO,
+      "MFPO", FortifyMetrics.MFPO
+    );
+  }
 
   @Override
   public String toString() {
