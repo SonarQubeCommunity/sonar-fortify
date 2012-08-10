@@ -74,12 +74,21 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void test_login_password_credential() {
+  public void should_be_enabled_if_no_url() {
     Settings settings = new Settings();
     settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
     settings.setProperty(FortifyConstants.PROPERTY_LOGIN, "admin");
     settings.setProperty(FortifyConstants.PROPERTY_PASSWORD, "<password>");
 
+    FortifyClient client = new FortifyClient(settings);
+    client.start();
+
+    assertThat(client.isEnabled()).isTrue();
+    assertThat(client.getServices()).isNotNull();
+  }
+
+  @Test
+  public void test_login_password_credential() {
     JaxWsProxyFactoryBean cxf = FortifyClient.initCxf("http://localhost:8081/ssc", "admin", "<passwd>");
 
     WSS4JOutInterceptor wss = (WSS4JOutInterceptor) cxf.getOutInterceptors().get(0);
@@ -115,7 +124,7 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void get_project_versions() throws Exception {
+  public void should_get_project_versions() throws Exception {
     Services services = mockValidServices();
     List<ProjectVersionLite> versions = new FortifyClient(new Settings(), services).getProjectVersions();
 
@@ -124,7 +133,7 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void fail_to_get_project_versions() throws Exception {
+  public void should_fail_to_get_project_versions() throws Exception {
     thrown.expect(RuntimeException.class);
 
     Services services = mock(Services.class);
@@ -134,7 +143,7 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void get_issues() throws Exception {
+  public void should_get_issues() throws Exception {
     Services services = mockValidServices();
     Collection<IssueWrapper> issues = new FortifyClient(new Settings(), services).getIssues(123L);
 
@@ -145,7 +154,7 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void fail_quietly_to_close_issues_session() throws Exception {
+  public void should_fail_quietly_to_close_issues_session() throws Exception {
     Services services = mockValidServices();
     when(services.invalidateAuditSession(any(InvalidateAuditSessionRequest.class))).thenThrow(new IllegalStateException());
 
