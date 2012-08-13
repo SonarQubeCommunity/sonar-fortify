@@ -60,7 +60,7 @@ public class FortifyClient implements BatchExtension {
 
   public void start() {
     String url = settings.getString(FortifyConstants.PROPERTY_URL);
-    if (!settings.getBoolean(FortifyConstants.PROPERTY_SKIP) && !Strings.isNullOrEmpty(url)) {
+    if (settings.getBoolean(FortifyConstants.PROPERTY_ENABLE) && !Strings.isNullOrEmpty(url)) {
       String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
       String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
       JaxWsProxyFactoryBean factory = initCxf(url, login, password);

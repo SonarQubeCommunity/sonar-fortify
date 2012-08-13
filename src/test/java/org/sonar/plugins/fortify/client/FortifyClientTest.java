@@ -66,7 +66,9 @@ public class FortifyClientTest {
 
   @Test
   public void should_be_disabled_if_no_url() {
-    FortifyClient client = new FortifyClient(new Settings());
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.PROPERTY_ENABLE, "true");
+    FortifyClient client = new FortifyClient(settings);
     client.start();
 
     assertThat(client.isEnabled()).isFalse();
@@ -74,22 +76,10 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void should_be_enabled_if_url_is_set() {
+  public void should_be_disabled() {
     Settings settings = new Settings();
     settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
-
-    FortifyClient client = new FortifyClient(settings);
-    client.start();
-
-    assertThat(client.isEnabled()).isTrue();
-    assertThat(client.getServices()).isNotNull();
-  }
-
-  @Test
-  public void should_be_disabled_if_explicitly_skipped() {
-    Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
-    settings.setProperty(FortifyConstants.PROPERTY_SKIP, "true");
+    settings.setProperty(FortifyConstants.PROPERTY_ENABLE, "false");
 
     FortifyClient client = new FortifyClient(settings);
     client.start();
