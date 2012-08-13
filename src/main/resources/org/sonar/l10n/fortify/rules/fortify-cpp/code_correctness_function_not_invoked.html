@@ -1,0 +1,13 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Because it is missing trailing parentheses, this expression refers to the value of the function pointer rather than the return value of the function.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  This expression will always be non-null because it references a function pointer rather than the return value of the function.<br><br><b>Example:</b> The following conditional will never fire. The predicate <code>getChunk == NULL</code> will always be false because <code>getChunk</code> is the name of a function defined in the program. <br><br><pre><br>  if (getChunk == NULL)<br>    return ERR;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3050 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																														

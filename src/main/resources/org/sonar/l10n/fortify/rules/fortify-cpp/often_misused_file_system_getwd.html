@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Calling <code>getwd()</code> with a buffer that is too small can result in a buffer overflow.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The function <code>getwd()</code> retrieves the absolute path of the current working directory. The function is a wrapper that calls <code>getcwd(buf, PATH_MAX)</code>, thereby assuming that <code>buf</code> can hold at least <code>PATH_MAX</code> bytes. If <code>buf</code> is not large enough, an attacker can overflow the buffer by creating a directory with a very long name.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3590.1 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 249, CWE ID 560</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																														

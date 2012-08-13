@@ -1,0 +1,20 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Impersonating user credentials could allow an attacker to gain unauthorized access to protected resources.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Microsoft ASP.NET applications can impersonate the security context of the current user or the process that invoked them in order to execute privileged operations. Although impersonation contexts serve a variety of useful purposes, such as reducing the overall number of authentication attempts that must be made, a program that retains elevated privileges unnecessarily poses a risk to the overall security of the system. If an attacker exploits another vulnerability in the program while it is running in another security context, any unauthorized operations the attacker performs will be executed with the corresponding privileges.<br><br><b>Example 1:</b> The following code example represents a typical use pattern for impersonating credentials using the <code>WindowsIdentity.Impersonate()</code> method.<br><br><pre><br>using System.Security.Principal;<br>...<br>	<br>//Get the identity of the current user<br>IIdentity contextId = HttpContext.Current.User.Identity;<br>WindowsIdentity userId = (WindowsIdentity)contextId;<br><br>//Temporarily impersonate<br>WindowsImpersonationContext imp = userId.Impersonate();<br><br>//Perform tasks using the caller's security context<br>DoSecuritySensitiveTasks();<br><br>//Clean up and restore our old security context<br>impersonate.Undo();<br></pre><br><br>The code in Example 1 impersonates the current user's security context and uses it to perform a privileged operation. After calling <code>DoSecuritySensitiveTasks()</code>, the code attempts to restore the original security context, but if <code>DoSecuritySensitiveTasks()</code> throws an exception, the <code>Undo()</code> method will never be called and the program will continue to use the impersonated security context.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 520</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.3</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[9]  <em>Security Practices: ASP.NET 2.0 Security Practices at a Glance</em> Microsoft Corporation<br></p>
+																														

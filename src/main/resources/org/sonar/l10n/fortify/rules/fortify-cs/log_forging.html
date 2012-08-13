@@ -1,0 +1,22 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Writing unvalidated user input to log files can allow an attacker to forge log entries or inject malicious content into the logs.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Log forging vulnerabilities occur when:<br><br>1.Data enters an application from an untrusted source. <br><br>2.The data is written to an application or system log file. <br><br>Applications typically use log files to store a history of events or transactions for later review, statistics gathering, or debugging. Depending on the nature of the application, the task of reviewing log files may be performed manually on an as-needed basis or automated with a tool that automatically culls logs for important events or trending information.<br><br>Interpretation of the log files may be hindered or misdirected if an attacker can supply data to the application that is subsequently logged verbatim. In the most benign case, an attacker may be able to insert false entries into the log file by providing the application with input that includes appropriate characters. If the log file is processed automatically, the attacker can render the file unusable by corrupting the format of the file or injecting unexpected characters. A more subtle attack might involve skewing the log file statistics. Forged or otherwise, corrupted log files can be used to cover an attacker's tracks or even to implicate another party in the commission of a malicious act [1]. In the worst case, an attacker may inject code or other commands into the log file and take advantage of a vulnerability in the log processing utility [2].<br><br><b>Example:</b> The following web application code attempts to read an integer value from a request object. If the value fails to parse as an integer, then the input is logged with an error message indicating what happened. <br><br><pre><br>...<br>string val = (string)Session["val"];<br>try {<br>int value = Int32.Parse(val);<br>}<br>catch (FormatException fe) {<br>log.Info("Failed to parse val= " + val);<br>}<br>...<br></pre><br><br>If a user submits the string "<code>twenty-one</code>" for <code>val</code>, the following entry is logged:<br><br><pre><br>INFO: Failed to parse val=twenty-one<br></pre><br><br>However, if an attacker submits the string "<code>twenty-one%0a%0aINFO:+User+logged+out%3dbadguy</code>", the following entry is logged:<br><br><pre><br>INFO: Failed to parse val=twenty-one<br><br>INFO: User logged out=badguy<br></pre><br><br>Clearly, attackers can use this same mechanism to insert arbitrary log entries.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>AU, SI</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 117</em> <br></p>
+																									   <p>[7] G. Hoglund, G. McGraw <em>Exploiting Software</em> Addison-Wesley<br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2, Requirement 10.5.2</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1, Requirement 10.5.2</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1, Requirement 10.5.2</em> <br></p>
+																									   <p>[11] A. Muffet <em>The night the log was forged.</em> <br></p>
+																														

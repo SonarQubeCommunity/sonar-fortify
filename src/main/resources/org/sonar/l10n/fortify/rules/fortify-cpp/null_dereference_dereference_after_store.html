@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can potentially dereference a null pointer, thereby causing a segmentation fault.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Null pointer exceptions usually occur when one or more of the programmer's assumptions is violated. A dereference-after-store error occurs when a program explicitly sets a pointer to null and dereferences it later. This error is often the result of a programmer initializing a variable to null when it is declared.<br><br><br>Most null pointer issues result in general software reliability problems, but if an attacker can intentionally trigger a null pointer dereference, the attacker might be able to use the resulting exception to bypass security logic or to cause the application to reveal debugging information that will be valuable in planning subsequent attacks.<br> <br><b>Example:</b> In the following code, the programmer explicitly sets the variable <code>ptr</code> to <code>NULL</code>. Later, the programmer dereferences <code>ptr</code> before checking the object for a null value.<br><br><pre><br>*ptr = NULL;<br>...<br>ptr-&gt;field = val;<br>...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 476</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

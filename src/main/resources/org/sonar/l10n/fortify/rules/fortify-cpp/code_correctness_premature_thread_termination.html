@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  If a parent process finishes execution normally before the threads it has spawned, the threads can be terminated prematurely.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Threads spawned by calling <code>pthread_create()</code> from the <code>main()</code> function of the parent process will be terminated prematurely if the parent process finishes execution before any the threads it has spawned without calling <code>pthread_exit()</code>. Calling <code>pthread_exit()</code> guarantees that the parent process will be kept alive until all of its threads have finished execution. Alternatively, the parent process can call <code>pthread_join</code> on all of the child threads and ensure they will complete before the process concludes.<br><br><b>Example 1:</b> The following code uses <code>pthread_create()</code> to create a thread and then exits normally. If the child thread has not completed its execution by the time the <code>main()</code> function returns, then it will be terminated prematurely. <br><br><pre><br>void *Simple(void *threadid)<br>{<br>   ...<br>   pthread_exit(NULL);<br>}<br><br>int main(int argc, char *argv[]) {<br>   int rc;<br>   pthread_t pt; <br>   rc = pthread_create(&amp;pt, NULL, Simple, (void *)t);<br>   if (rc){<br>     exit(-1);<br>   }<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

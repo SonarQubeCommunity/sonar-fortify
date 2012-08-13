@@ -1,0 +1,83 @@
+<rules>
+        <!-- see names and descriptions in org/sonar/l10n/ -->
+    
+          <rule>
+            <key>system_information_leak</key><priority>MAJOR</priority><configKey>System Information Leak</configKey>
+          </rule>
+        
+          <rule>
+            <key>poor_condition_handling_ignored_condition</key><priority>MAJOR</priority><configKey>Poor Condition Handling: Ignored Condition</configKey>
+          </rule>
+        
+          <rule>
+            <key>cross_site_scripting_persistent</key><priority>MAJOR</priority><configKey>Cross-Site Scripting: Persistent</configKey>
+          </rule>
+        
+          <rule>
+            <key>cross_site_scripting_reflected</key><priority>MAJOR</priority><configKey>Cross-Site Scripting: Reflected</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>log_forging</key><priority>MAJOR</priority><configKey>Log Forging</configKey>
+          </rule>
+        
+          <rule>
+            <key>path_manipulation</key><priority>MAJOR</priority><configKey>Path Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>process_control</key><priority>MAJOR</priority><configKey>Process Control</configKey>
+          </rule>
+        
+          <rule>
+            <key>resource_injection</key><priority>MAJOR</priority><configKey>Resource Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>sql_injection</key><priority>MAJOR</priority><configKey>SQL Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>setting_manipulation</key><priority>MAJOR</priority><configKey>Setting Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>SF</key><priority>MAJOR</priority><configKey>Security Features</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_dli</key><priority>MAJOR</priority><configKey>Access Control: DLI</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_database</key><priority>MAJOR</priority><configKey>Access Control: Database</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_mq</key><priority>MAJOR</priority><configKey>Access Control: MQ</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management</key><priority>MAJOR</priority><configKey>Password Management</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_hardcoded_password</key><priority>MAJOR</priority><configKey>Password Management: Hardcoded Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_password_in_comment</key><priority>MAJOR</priority><configKey>Password Management: Password in Comment</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_weak_cryptography</key><priority>MAJOR</priority><configKey>Password Management: Weak Cryptography</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation</key><priority>MAJOR</priority><configKey>Privacy Violation</configKey>
+          </rule>
+        </rules>

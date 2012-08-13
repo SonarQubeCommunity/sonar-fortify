@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  <code>Equals()</code> is called on an object that does not implement <code>Equals()</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  When comparing objects, developers developers usually want to compare properties of objects. However, calling <code>Equals()</code> on a class (or any super class/interface) that does not explicitly implement <code>Equals()</code> results in a call to the <code>Equals()</code> method inherited from <code>System.Object</code>. Instead of comparing object member fields or other properties, <code>Object.Equals()</code> compares two object instances to see if they are the same. Although there are legitimate uses of <code>Object.Equals()</code>, it is often an indication of buggy code.<br><br><b>Example 1:</b><br><pre><br>public class AccountGroup<br>{<br>    private int gid;<br><br>    public int Gid<br>    {<br>        get { return gid; }<br>        set { gid = value; }<br>    }<br>}<br>...<br>public class CompareGroup<br>{<br>    public bool compareGroups(AccountGroup group1, AccountGroup group2)<br>    {<br>        return group1.Equals(group2);   //Equals() is not implemented in AccountGroup<br>    }<br>}<br></pre><br><br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																														

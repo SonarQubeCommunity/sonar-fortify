@@ -1,0 +1,22 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Executing commands without specifying an absolute path could allow an attacker to execute a malicious binary by changing <code>$PATH</code> or other aspects of the program's execution environment.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Command injection vulnerabilities take two forms:<br><br>- An attacker can change the command that the program executes: the attacker explicitly controls what the command is.<br><br>- An attacker can change the environment in which the command executes: the attacker implicitly controls what the command means.<br><br>In this case we are primarily concerned with the second scenario, in which an attacker can change the meaning of the command by changing an environment variable or by inserting a malicious executable early on the search path. Command injection vulnerabilities of this type occur when:<br><br>1. An attacker modifies an application's environment. <br><br>2. The application executes a command without specifying an absolute path or verifying the binary being executed. <br><br><br><br>3. By executing the command, the application gives an attacker a privilege or capability that the attacker would not otherwise have. <br><br><b>Example 1:</b> This example demonstrates what can happen when the attacker can change how a command is interpreted. The code is from a web-based CGI utility that allows users to change their passwords. The password update process under NIS includes running <code>make</code> in the <code>/var/yp</code> directory. Note that since the program updates password records, it has been installed <code>setuid root</code>.<br><br>The program invokes <code>make</code> as follows:<br><br><pre><br>system("cd /var/yp &amp;&amp; make &amp;&gt; /dev/null");<br></pre><br><br>The command in this example is hard-coded, so an attacker cannot control the argument passed to <code>system()</code>. However, since the program does not specify an absolute path for <code>make</code> and does not scrub its environment variables prior to invoking the command, the attacker can modify their <code>$PATH</code> variable to point to a malicious binary named <code>make</code> and execute the CGI script from a shell prompt. And since the program has been installed <code>setuid root</code>, the attacker's version of <code>make</code> now runs with <code>root</code> privileges. <br><br>The environment plays a powerful role in the execution of system commands within programs. Functions like <code>system()</code> and <code>exec()</code> use the environment of the program that calls them, and therefore attackers have a potential opportunity to influence the behavior of these calls.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 77, CWE ID 78</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 078</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>OS Commanding</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																														

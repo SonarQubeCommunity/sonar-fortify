@@ -1,0 +1,21 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Disabling the view state message authentication check (MAC) can allow attackers to modify the View State.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  In ASP.NET, the view state is a mechanism to persist state in web forms across postbacks. Data stored in the view state is not trustworthy because there is no mechanism for preventing replay attacks. Trusting the view state is particularly dangerous when the view state message authentication check is disabled. Disabling this check allows attackers to make arbitrary changes to the data stored in the view state and can open the door for attacks against code that trusts the view state. Attackers might use this kind of error to defeat authentication checks or alter item pricing.<br><br>          
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Michal Zalewski <em>ASP.NET __VIEWSTATE crypto validation prone to replay attacks</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 353</em> <br></p>
+																									   <p>[6] Scott on Writing <em>Don't Trust ViewState</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[10]  <em>Understanding ASP.NET View State</em> Microsoft<br></p>
+																														

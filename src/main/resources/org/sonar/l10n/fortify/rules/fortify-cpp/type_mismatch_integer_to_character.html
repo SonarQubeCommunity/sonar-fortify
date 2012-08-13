@@ -1,0 +1,14 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The function returns an <code>unsigned char</code> cast to an <code>int</code>, but the return value is assigned to a <code>char</code> type.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  When an unsigned character cast to an integer is assign to a signed character, its value might be indistinguishable from <code>EOF</code>.<br>		<br><b>Example 1:</b> The code below reads a character and compares it to <code>EOF</code>. <br><br><pre><br>char c;<br><br>while ( (c = getchar()) != '\n' &amp;&amp; c != EOF ) {<br>  ...<br>}<br></pre><br><br>In this case, the return value from <code>getchar()</code> is cast to a <code>char</code> and compared to <code>EOF</code> (an <code>int</code>). Assuming <code>c</code> is a signed 8-bit value and <code>EOF</code> is a 32-bit signed value, then if <code>getchar()</code> returns a character represented by 0xFF, the value of <code>c</code> will be sign extended to 0xFFFFFFFF in the comparison to <code>EOF</code>. Since <code>EOF</code> is typically defined as -1 (0xFFFFFFFF), the loop will terminate erroneously.<br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3550 CAT I</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[3]  <em>FIO34-C. Use int to capture the return value of character IO functions</em> CERT<br></p>
+																														

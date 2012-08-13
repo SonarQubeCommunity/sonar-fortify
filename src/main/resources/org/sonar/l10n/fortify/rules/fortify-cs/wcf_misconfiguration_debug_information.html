@@ -1,0 +1,22 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Debugging information helps attackers learn about the system and plan a form of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Windows Communication Framework (WCF) services can be configured to expose debugging information. Debug information should not be used in production environments. The <code>&lt;serviceDebug&gt;</code> tag defines whether the debug information feature is enabled for a WCF service.<br><br><br><br>If the attribute <code>includeExceptionDetailInFaults</code> is set to <code>true</code>, exception information from the application will be returned to clients. Attackers can leverage the additional information they gain from debugging output to mount attacks targeted on the framework, database, or other resources used by the application.<br><br>Example: The following configuration file includes the <code>&lt;serviceDebug&gt;</code> tag:<br><pre><br>&lt;configuration&gt;<br>  &lt;system.serviceModel&gt;<br>    &lt;behaviors&gt;<br>      &lt;serviceBehaviors&gt;<br>        &lt;behavior name=&quot;MyServiceBehavior&quot;&gt;<br>          &lt;serviceDebug includeExceptionDetailInFaults=&quot;True&quot; httpHelpPageEnabled=&quot;True&quot;/&gt;<br>...       <br></pre><br><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em><serviceDebug></em> Microsoft<br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[7] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 215</em> <br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																														

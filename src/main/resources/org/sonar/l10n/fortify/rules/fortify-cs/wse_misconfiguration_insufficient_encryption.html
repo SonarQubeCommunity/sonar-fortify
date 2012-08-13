@@ -1,0 +1,23 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Failing to encrypt a signature increases the chance of a successful brute-force attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>MessageProtectionOrder</code> attribute allows you to specify the order in which signatures and encryption are applied (and whether or not the signatures should be encrypted). Setting the <code>MessageProtectionOrder</code> attribute to anything other than <code>SignBeforeEncryptAndEncryptSignature</code> constitutes a potential security problem.<br><br>Below is a list of possible alternative to <code>SignBeforeEncryptAndEncryptSignature</code> and associated problems.<br>SignBeforeEncrypt - The signature is applied to the unencrypted message, but the signature itself is not encrypted.<br>EncryptBeforeSign - Message contents are encrypted then signed. <br><br>Messages signed with a low entropy keys, such as passwords, are more vulnerable to brute force attacks.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 311</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[8]  <em>MessageProtectionOrder Enumeration</em> Microsoft<br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 311</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.3, Requirement 6.5.8</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.3</em> <br></p>
+																														

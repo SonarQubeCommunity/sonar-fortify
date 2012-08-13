@@ -1,0 +1,21 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Without proper access control, executing an EXEC DLI command that contains a user-controlled primary key can allow an attacker to view unauthorized records.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  DLI access control errors occur when:<br><br>1.	Data enters a program from an untrusted source.<br><br><br>2.	The data is used to specify the value of a primary key in an EXEC DLI command. <br><br><b>Example 1:</b> The following code uses a parameterized statement, which escapes metacharacters and prevents injection vulnerabilities, to construct and execute an EXEC DLI command that retrieves an invoice matching the specified identifier. The identifier is selected from a list of all invoices associated with the current authenticated user.  <br><br><pre><br>...<br>ACCEPT ID.<br>EXEC DLI<br>  GU<br>  SEGMENT(INVOICES) <br>  WHERE (INVOICEID = ID)<br>END-EXEC.<br>...<br></pre><br><br>The problem is that the developer has failed to consider all of the possible values of <code>ID</code>. Although the interface generates a list of invoice identifiers that belong to the current user, an attacker can bypass this interface to request any desired invoice. Because the code in this example does not check to ensure that the user has permission to access the requested invoice, it will display any invoice, even if it does not belong to the current user.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 639</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																														

@@ -1,0 +1,13 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  This statement will never be executed.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The surrounding code makes it impossible for this statement to ever be executed.<br><br><b>Example:</b> The condition for the second <code>if</code> statement is impossible to satisfy. It requires that the variable <code>s</code> be non-null, while on the only path where <code>s</code> can be assigned a non-null value there is a <code>return</code> statement. <br><br><pre><br>String s = null;<br><br>if (b) {<br>   s = "Yes";<br>   return;<br>}<br><br>if (s != null) {<br>   Dead();<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3050 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 561</em> <br></p>
+																														

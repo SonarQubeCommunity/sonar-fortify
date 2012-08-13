@@ -1,0 +1,16 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Memory is allocated but never freed.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Memory leaks have two common and sometimes overlapping causes:<br><br>- Error conditions and other exceptional circumstances.<br><br>- Confusion over which part of the program is responsible for freeing the memory.<br><br>Most memory leaks result in general software reliability problems, but if an attacker can intentionally trigger a memory leak, the attacker might be able to launch a denial of service attack (by crashing the program) or take advantage of other unexpected program behavior resulting from a low memory condition [1].<br><br><b>Example 1:</b> The following C function leaks a block of allocated memory if the call to <code>read()</code> fails to return the expected number of bytes:<br><br><pre><br>  char* getBlock(int fd) {<br>  char* buf = (char*) malloc(BLOCK_SIZE);<br>  if (!buf) {<br>    return NULL;<br>  }<br>  if (read(fd, buf, BLOCK_SIZE) != BLOCK_SIZE) {<br>    return NULL;<br>  }<br>  return buf;<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 401</em> <br></p>
+																									   <p>[4] J. Whittaker and H. Thompson <em>How to Break Software Security</em> Addison Wesley<br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

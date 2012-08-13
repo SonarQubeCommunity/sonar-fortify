@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can potentially dereference a null pointer, thereby causing a segmentation fault.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Null pointer exceptions usually occur when one or more of the programmer's assumptions is violated. Specifically, dereference-after-check errors occur when a program makes an explicit check for null, but proceeds to dereference the pointer when it is known to be null. Errors of this type are often the result of a typo or programmer oversight.<br><br>Most null pointer issues result in general software reliability problems, but if an attacker can intentionally trigger a null pointer dereference, the attacker might be able to use the resulting exception to mount a denial of service attack or to cause the application to reveal debugging information that will be valuable in planning subsequent attacks.<br> <br><b>Example 1:</b> In the following code, the programmer confirms that the variable <code>ptr</code> is <code>NULL</code> and subsequently dereferences it erroneously. If <code>ptr</code> is <code>NULL</code> when it is checked in the <code>if</code> statement, then a null dereference will occur, thereby causing a segmentation fault. <br><br><pre><br>if (ptr == null) {<br>	ptr-&gt;field = val;<br>	...<br>}<br></pre><br><br><b>Example 2:</b> In the following code, the programmer forgets that the string '\0' actually 0 or <code>NULL</code>, thereby dereferencing a null pointer and causing a segmentation fault.<br><br><pre><br>if (ptr == '\0') {<br>	*ptr = val;<br>	...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 476</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

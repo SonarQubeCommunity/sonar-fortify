@@ -1,0 +1,23 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Because the program fails to enable certificate revocation checking, it will accept certificates that are either known or are suspected to be compromised.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The certificate revocation list (CRL) is an optional component of a public key infrastructure (PKI) deployment that is created and signed by a certification authority and contains a list of certificates that it has issued and later revoked. Certificates can be revoked by a certification authority administrator, for example, if an issued certificate is known or suspected to be compromised. <br>	<br><b>Example 1:</b> In the following example, a service behavior is configured to perform no revocation checking when authenticating a certificate.<br><br><pre><br>&lt;behavior name="DefaultBehavior" returnUnknownExceptionsAsFaults="false"&gt;<br>  &lt;serviceCredentials&gt;<br>    &lt;serviceCertificate<br>      x509FindType="FindBySubjectName"<br>      findValue="MyCertificate"<br>      storeLocation="LocalMachine"<br>      storeName="My"/&gt;<br>    &lt;clientCertificate&gt;<br>      &lt;authentication certificateValidationMode="ChainTrust" revocationMode="None"/&gt;<br>    &lt;/clientCertificate&gt;<br>  &lt;/serviceCredentials&gt;<br>  &lt;metadataPublishing enableGetWsdl="true" enableMetadataExchange="true" enableHelpPage="true"/&gt;<br>&lt;/behavior&gt;<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A9 Insecure Communications</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A9 Insufficient Transport Layer Protection</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>CM, SC</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 254</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[8]  <em>Microsoft Developer Network (MSDN)</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 311</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 4.1, Requirement 6.3.1.4, Requirement 6.5.9</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 4.1, Requirement 6.5.10</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 4.1, Requirement 6.5.4</em> <br></p>
+																														

@@ -1,0 +1,18 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program creates a cookie, but fails to set the <code>HttpOnly</code> flag to <code>true</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Microsoft Internet Explorer supports the <code>HttpOnly</code> cookie property that prevents client-side scripts from accessing the cookie. Cross-Site Scripting attacks often access cookies in an attempt to steal session identifiers or authentication tokens. When <code>HttpOnly</code> is not enabled, attackers can more easily access user cookies.<br>  <br><br><b>Example 1:</b> The code in the example below creates a cookie without setting the <code>HttpOnly</code> property.<br><pre><br>    HttpCookie cookie = new HttpCookie("emailCookie", email);<br>    Response.AppendCookie(cookie);<br></pre><br>      <br>      
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[4]  <em>HttpCookie.HttpOnly Property</em> Microsoft<br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7] Amit Klein <em>Round-up: Ways to bypass HttpOnly (and HTTP Basic auth)</em> <br></p>
+																														

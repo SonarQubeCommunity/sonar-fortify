@@ -1,0 +1,25 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The application uses a WCF endpoint that relies upon transport mode transfer security. Transport mode is the least secure option and should be avoided.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Transport security specifies that confidentiality, integrity, and authentication are provided by transport-layer mechanisms (such as HTTPS). When using a transport like HTTPS, this mode has the advantage of being efficient in its performance and well understood because of its prevalence on the Internet. The disadvantage is that this kind of security is applied separately on each hop in the communication path, making the communication susceptible to a "man in the middle" attack.<br><br>WCF offers two other transfer security modes, both of which are preferable: message and transport with message credential. Message security uses the WS-Security specification to ensure confidentiality, integrity and authentication at the message level. This provides end-to-end security and flexibility in transport methods. However, it reduces performance. <br><br>The final method, transport with message credential, is a hybrid of transport and method. Message security is used to authenticate the client and transport security is used to authenticate the server and provide confidentiality and integrity. It is nearly as efficient as pure transport security.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A3 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A3 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A7 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3480.2 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 285</em> <br></p>
+																									   <p>[6] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[7] J.D. Meier, Carlos Farre, Jason Taylor, Prashant Bansode, Steve Gregersen, Madhu Sundararajan, Rob Boucher <em>Improving Patterns and Practices: Improving Web Services Security Guide</em> Microsoft<br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[9]  <em>Microsoft Delivery Network (MSDN)</em> Microsoft<br></p>
+																									   <p>[10] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 285</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 285</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.3, Requirement 7.2</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7, Requirement 7.2</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8, Requirement 7.2</em> <br></p>
+																														

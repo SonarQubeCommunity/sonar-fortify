@@ -1,0 +1,22 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Attackers can spoof DNS entries. Do not rely on DNS names for security.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Many DNS servers are susceptible to spoofing attacks, so you should assume that your software will someday run in an environment with a compromised DNS server. If attackers are allowed to make DNS updates (sometimes called DNS cache poisoning), they can route your network traffic through their machines or make it appear as if their IP addresses are part of your domain. Do not base the security of your system on DNS names.<br><br><br><b>Example:</b> The following code sample uses a DNS lookup in order to decide whether or not an inbound request is from a trusted host. If an attacker can poison the DNS cache, they can gain trusted status.<br><br><pre><br> IPAddress hostIPAddress = IPAddress.Parse(RemoteIpAddress);<br> IPHostEntry hostInfo = Dns.GetHostByAddress(hostIPAddress);<br> if (hostInfo.HostName.EndsWith("trustme.com")) {<br>   trusted = true;<br> }<br></pre><br><br>IP addresses are more reliable than DNS names, but they can also be spoofed. Attackers can easily forge the source IP address of the packets they send, but response packets will return to the forged IP address. To see the response packets, the attacker has to sniff the traffic between the victim machine and the forged IP address. In order to accomplish the required sniffing, attackers typically attempt to locate themselves on the same subnet as the victim machine. Attackers may be able to circumvent this requirement by using source routing, but source routing is disabled across much of the Internet today. In summary, IP address verification can be a useful part of an authentication scheme, but it should not be the single factor required for authentication.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A3 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A3 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A7 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3460 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 247, CWE ID 292, CWE ID 558, CWE ID 807</em> <br></p>
+																									   <p>[6] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[8] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 807</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.3</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																														

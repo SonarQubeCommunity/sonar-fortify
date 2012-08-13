@@ -1,0 +1,13 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Functions that cannot be used safely should never be used.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  <code>DBMS_UTILITY.EXEC_DDL_STATEMENT</code> will only execute statements classified as part of the Data Definition Language. Other statements not supported by embedded SQL will be silently ignored. This behavior makes it difficult to detect errors when using the procedure.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 242</em> <br></p>
+																									   <p>[2]  <em>How to write SQL injection proof PL/SQL</em> <br></p>
+																														

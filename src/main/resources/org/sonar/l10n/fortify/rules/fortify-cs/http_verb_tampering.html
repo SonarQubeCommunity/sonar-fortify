@@ -1,0 +1,18 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Security constraints that specify HTTP verbs often allow more access than intended.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  An application's authentication and authorization mechanisms can be bypassed with HTTP verb tampering when:<br>1) It uses a security control that lists HTTP verbs.<br>2) The security control fails to block verbs that are not listed.<br>3) The application updates its state based on GET requests or other arbitrary HTTP verbs.<br><br><br><br>The following configuration is vulnerable to HTTP Verb Tampering:<br><pre><br>    &lt;authorization&gt;<br>        &lt;allow verbs="GET,POST" users="admin"/&gt;<br>        &lt;deny verbs="GET,POST"users="*" /&gt;<br>    &lt;/authorization&gt;<br></pre><br>By default, the .NET framework allows all HTTP verbs, so even though this configuration denies GETs and POSTs to all users, it does not prevent HEAD requests. It might be possible for an attacker to exercise administrative functionality by substituting GET or POST requests with HEAD requests. In other words, this code satisfies conditions 1 and 2 above. All that remains for HEAD requests to exercise administrative functionality is for the application to carry out commands based on requests that use verbs other than POST.<br><br>At its core, this vulnerability is the result of an attempt to create a blacklist--a policy that specifies what users are not allowed to do. Blacklists rarely achieve their intended effect.<br>          
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Arshan Dabirsiaghi - Aspect Security <em>Bypassing Web Authentication and Authorization with HTTP Verb Tampering</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 288</em> <br></p>
+																									   <p>[6] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																														

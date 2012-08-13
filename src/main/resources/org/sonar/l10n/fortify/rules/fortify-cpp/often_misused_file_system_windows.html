@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Passing an inadequately-sized output buffer to a path manipulation function can result in a buffer overflow. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Windows provides a large number of utility functions that manipulate buffers containing filenames. In most cases, the result is returned in a buffer that is passed in as input. (Usually the filename is modified in place.) Most functions require the buffer to be at least <code>MAX_PATH</code> bytes in length, but you should check the documentation for each function individually. If the buffer is not large enough to store the result of the manipulation, a buffer overflow can occur.<br><br><b>Example:</b><br><br><pre><br>char *createOutputDirectory(char *name) {<br>	char outputDirectoryName[128];<br>	if (getCurrentDirectory(128, outputDirectoryName) == 0) {<br>		return null;<br>	}<br>	if (!PathAppend(outputDirectoryName, "output")) {<br>		return null;<br>	}<br>	if (!PathAppend(outputDirectoryName, name)) {<br>		return null;<br>	}<br>	if (SHCreateDirectoryEx(NULL, outputDirectoryName, NULL) <br>        != ERROR_SUCCESS) {<br>		return null;<br>	}<br>	return StrDup(outputDirectoryName);<br>}<br></pre><br><br>In this example the function creates a directory named "<code>output\&lt;name&gt;</code>" in the current directory and returns a heap-allocated copy of its name. For most values of the current directory and the name parameter, this function will work properly. However, if the <code>name</code> parameter is particularly long, then the second call to <code>PathAppend()</code> could overflow the <code>outputDirectoryName</code> buffer, which is smaller than <code>MAX_PATH</code> bytes.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3590.1 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 249, CWE ID 560</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																														

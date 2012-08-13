@@ -1,0 +1,395 @@
+<rules>
+        <!-- see names and descriptions in org/sonar/l10n/ -->
+    
+          <rule>
+            <key>dangerous_function_master</key><priority>MAJOR</priority><configKey>Dangerous Function</configKey>
+          </rule>
+        
+          <rule>
+            <key>directory_restriction</key><priority>MAJOR</priority><configKey>Directory Restriction</configKey>
+          </rule>
+        
+          <rule>
+            <key>heap_inspection</key><priority>MAJOR</priority><configKey>Heap Inspection</configKey>
+          </rule>
+        
+          <rule>
+            <key>heap_inspection_swappable_memory</key><priority>MAJOR</priority><configKey>Heap Inspection: Swappable Memory</configKey>
+          </rule>
+        
+          <rule>
+            <key>missing_check_against_null</key><priority>MAJOR</priority><configKey>Missing Check against Null</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_authentication_gethostby</key><priority>MAJOR</priority><configKey>Often Misused: Authentication(gethostby)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_authentication_getlogin</key><priority>MAJOR</priority><configKey>Often Misused: Authentication(getlogin)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_exception_handling__alloca</key><priority>MAJOR</priority><configKey>Often Misused: Exception Handling(_alloca)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_exception_handling_criticalsection</key><priority>MAJOR</priority><configKey>Often Misused: Exception Handling(criticalsection)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_file_system_getwd</key><priority>MAJOR</priority><configKey>Often Misused: File System(getwd)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_file_system_readlink</key><priority>MAJOR</priority><configKey>Often Misused: File System(readlink)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_file_system_realpath</key><priority>MAJOR</priority><configKey>Often Misused: File System(realpath)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_file_system_umask</key><priority>MAJOR</priority><configKey>Often Misused: File System(umask)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_file_system_windows</key><priority>MAJOR</priority><configKey>Often Misused: File System(windows)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_privilege_management</key><priority>MAJOR</priority><configKey>Often Misused: Privilege Management</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_privilege_management_setuid</key><priority>MAJOR</priority><configKey>Often Misused: Privilege Management(setuid)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_strings__mbs</key><priority>MAJOR</priority><configKey>Often Misused: Strings(_mbs)</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_strings_multibytewidechar</key><priority>MAJOR</priority><configKey>Often Misused: Strings(multibytewidechar)</configKey>
+          </rule>
+        
+          <rule>
+            <key>unchecked_return_value</key><priority>MAJOR</priority><configKey>Unchecked Return Value</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_arithmetic_operation_on_boolean</key><priority>MAJOR</priority><configKey>Code Correctness: Arithmetic Operation on Boolean</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_function_not_invoked</key><priority>MAJOR</priority><configKey>Code Correctness: Function Not Invoked</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_function_returns_stack_address</key><priority>MAJOR</priority><configKey>Code Correctness: Function Returns Stack Address</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_macro_misuse</key><priority>MAJOR</priority><configKey>Code Correctness: Macro Misuse</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_memory_free_on_stack_variable</key><priority>MAJOR</priority><configKey>Code Correctness: Memory Free on Stack Variable</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_premature_thread_termination</key><priority>MAJOR</priority><configKey>Code Correctness: Premature Thread Termination</configKey>
+          </rule>
+        
+          <rule>
+            <key>dead_code</key><priority>MAJOR</priority><configKey>Dead Code</configKey>
+          </rule>
+        
+          <rule>
+            <key>double_free</key><priority>MAJOR</priority><configKey>Double Free</configKey>
+          </rule>
+        
+          <rule>
+            <key>format_string_argument_number_mismatch</key><priority>MAJOR</priority><configKey>Format String: Argument Number Mismatch</configKey>
+          </rule>
+        
+          <rule>
+            <key>format_string_argument_type_mismatch</key><priority>MAJOR</priority><configKey>Format String: Argument Type Mismatch</configKey>
+          </rule>
+        
+          <rule>
+            <key>memory_leak</key><priority>MAJOR</priority><configKey>Memory Leak</configKey>
+          </rule>
+        
+          <rule>
+            <key>memory_leak_reallocation</key><priority>MAJOR</priority><configKey>Memory Leak: Reallocation</configKey>
+          </rule>
+        
+          <rule>
+            <key>null_dereference_dereference_after_store</key><priority>MAJOR</priority><configKey>Null Dereference</configKey>
+          </rule>
+        
+          <rule>
+            <key>obsolete</key><priority>MAJOR</priority><configKey>Obsolete</configKey>
+          </rule>
+        
+          <rule>
+            <key>obsolete_inadequate_pointer_validation</key><priority>MAJOR</priority><configKey>Obsolete: Inadequate Pointer Validation</configKey>
+          </rule>
+        
+          <rule>
+            <key>poor_style_redundant_initialization</key><priority>MAJOR</priority><configKey>Poor Style: Redundant Initialization</configKey>
+          </rule>
+        
+          <rule>
+            <key>poor_style_value_never_read</key><priority>MAJOR</priority><configKey>Poor Style: Value Never Read</configKey>
+          </rule>
+        
+          <rule>
+            <key>poor_style_variable_never_used</key><priority>MAJOR</priority><configKey>Poor Style: Variable Never Used</configKey>
+          </rule>
+        
+          <rule>
+            <key>portability_flaw</key><priority>MAJOR</priority><configKey>Portability Flaw</configKey>
+          </rule>
+        
+          <rule>
+            <key>null_dereference_dereference_after_check</key><priority>MAJOR</priority><configKey>Redundant Null Check</configKey>
+          </rule>
+        
+          <rule>
+            <key>type_mismatch_integer_to_character</key><priority>MAJOR</priority><configKey>Type Mismatch: Integer to Character</configKey>
+          </rule>
+        
+          <rule>
+            <key>type_mismatch_negative_to_unsigned</key><priority>MAJOR</priority><configKey>Type Mismatch: Negative to Unsigned</configKey>
+          </rule>
+        
+          <rule>
+            <key>type_mismatch_signed_to_unsigned</key><priority>MAJOR</priority><configKey>Type Mismatch: Signed to Unsigned</configKey>
+          </rule>
+        
+          <rule>
+            <key>undefined_behavior</key><priority>MAJOR</priority><configKey>Undefined Behavior</configKey>
+          </rule>
+        
+          <rule>
+            <key>redundant_delete</key><priority>MAJOR</priority><configKey>Undefined Behavior: Redundant Delete</configKey>
+          </rule>
+        
+          <rule>
+            <key>uninitialized_variable</key><priority>MAJOR</priority><configKey>Uninitialized Variable</configKey>
+          </rule>
+        
+          <rule>
+            <key>unreleased_resource</key><priority>MAJOR</priority><configKey>Unreleased Resource</configKey>
+          </rule>
+        
+          <rule>
+            <key>unreleased_resource_synchronization</key><priority>MAJOR</priority><configKey>Unreleased Resource: Synchronization</configKey>
+          </rule>
+        
+          <rule>
+            <key>use_after_free</key><priority>MAJOR</priority><configKey>Use After Free</configKey>
+          </rule>
+        
+          <rule>
+            <key>system_information_leak</key><priority>MAJOR</priority><configKey>System Information Leak</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_compiler_optimization</key><priority>MAJOR</priority><configKey>Insecure Compiler Optimization</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_compiler_optimization_pointer_arithmetic</key><priority>MAJOR</priority><configKey>Insecure Compiler Optimization: Pointer Arithmetic</configKey>
+          </rule>
+        
+          <rule>
+            <key>buffer_overflow</key><priority>MAJOR</priority><configKey>Buffer Overflow</configKey>
+          </rule>
+        
+          <rule>
+            <key>buffer_overflow_format_string</key><priority>MAJOR</priority><configKey>Buffer Overflow: Format String</configKey>
+          </rule>
+        
+          <rule>
+            <key>buffer_overflow_format_string__percentf__percentF</key><priority>MAJOR</priority><configKey>Buffer Overflow: Format String (%f/%F)</configKey>
+          </rule>
+        
+          <rule>
+            <key>buffer_overflow_off_by_one</key><priority>MAJOR</priority><configKey>Buffer Overflow: Off-by-One</configKey>
+          </rule>
+        
+          <rule>
+            <key>buffer_overflow_signed_comparison</key><priority>MAJOR</priority><configKey>Buffer Overflow: Signed Comparison</configKey>
+          </rule>
+        
+          <rule>
+            <key>command_injection</key><priority>MAJOR</priority><configKey>Command Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>denial_of_service</key><priority>MAJOR</priority><configKey>Denial of Service</configKey>
+          </rule>
+        
+          <rule>
+            <key>format_string</key><priority>MAJOR</priority><configKey>Format String</configKey>
+          </rule>
+        
+          <rule>
+            <key>illegal_pointer_value_master</key><priority>MAJOR</priority><configKey>Illegal Pointer Value</configKey>
+          </rule>
+        
+          <rule>
+            <key>integer_overflow</key><priority>MAJOR</priority><configKey>Integer Overflow</configKey>
+          </rule>
+        
+          <rule>
+            <key>ldap_injection</key><priority>MAJOR</priority><configKey>LDAP Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>ldap_manipulation</key><priority>MAJOR</priority><configKey>LDAP Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>log_forging</key><priority>MAJOR</priority><configKey>Log Forging</configKey>
+          </rule>
+        
+          <rule>
+            <key>out_of_bounds_read</key><priority>MAJOR</priority><configKey>Out-of-Bounds Read</configKey>
+          </rule>
+        
+          <rule>
+            <key>out_of_bounds_read_off_by_one</key><priority>MAJOR</priority><configKey>Out-of-Bounds Read: Off-by-One</configKey>
+          </rule>
+        
+          <rule>
+            <key>out_of_bounds_read_signed_comparison</key><priority>MAJOR</priority><configKey>Out-of-Bounds Read: Signed Comparison</configKey>
+          </rule>
+        
+          <rule>
+            <key>path_manipulation</key><priority>MAJOR</priority><configKey>Path Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>process_control</key><priority>MAJOR</priority><configKey>Process Control</configKey>
+          </rule>
+        
+          <rule>
+            <key>resource_injection</key><priority>MAJOR</priority><configKey>Resource Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>sql_injection</key><priority>MAJOR</priority><configKey>SQL Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>setting_manipulation</key><priority>MAJOR</priority><configKey>Setting Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>string_termination_error_master</key><priority>MAJOR</priority><configKey>String Termination Error</configKey>
+          </rule>
+        
+          <rule>
+            <key>string_termination_error_truncate</key><priority>MAJOR</priority><configKey>String Termination Error(truncate)</configKey>
+          </rule>
+        
+          <rule>
+            <key>unsafe_reflection</key><priority>MAJOR</priority><configKey>Unsafe Reflection</configKey>
+          </rule>
+        
+          <rule>
+            <key>SF</key><priority>MAJOR</priority><configKey>Security Features</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_anonymous_ldap_bind</key><priority>MAJOR</priority><configKey>Access Control: Anonymous LDAP Bind</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_database</key><priority>MAJOR</priority><configKey>Access Control: Database</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_ldap</key><priority>MAJOR</priority><configKey>Access Control: LDAP</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_randomness</key><priority>MAJOR</priority><configKey>Insecure Randomness</configKey>
+          </rule>
+        
+          <rule>
+            <key>hardcoded_encryption_key</key><priority>MAJOR</priority><configKey>Key Management: Hardcoded Encryption Key</configKey>
+          </rule>
+        
+          <rule>
+            <key>least_privilege_violation</key><priority>MAJOR</priority><configKey>Least Privilege Violation</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management</key><priority>MAJOR</priority><configKey>Password Management</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_empty_password</key><priority>MAJOR</priority><configKey>Password Management: Empty Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_hardcoded_password</key><priority>MAJOR</priority><configKey>Password Management: Hardcoded Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_null_password</key><priority>MAJOR</priority><configKey>Password Management: Null Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_password_in_comment</key><priority>MAJOR</priority><configKey>Password Management: Password in Comment</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_weak_cryptography</key><priority>MAJOR</priority><configKey>Password Management: Weak Cryptography</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation</key><priority>MAJOR</priority><configKey>Privacy Violation</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_cryptographic_hash</key><priority>MAJOR</priority><configKey>Weak Cryptographic Hash</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_cryptographic_hash_hardcoded_salt</key><priority>MAJOR</priority><configKey>Weak Cryptographic Hash: Hardcoded Salt</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_encryption</key><priority>MAJOR</priority><configKey>Weak Encryption</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_encryption_inadequate_rsa_padding</key><priority>MAJOR</priority><configKey>Weak Encryption: Inadequate RSA Padding</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_encryption_insufficient_key_size</key><priority>MAJOR</priority><configKey>Weak Encryption: Insufficient Key Size</configKey>
+          </rule>
+        
+          <rule>
+            <key>code_correctness_erroneous_synchronization</key><priority>MAJOR</priority><configKey>Code Correctness: Erroneous Synchronization</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_temporary_file</key><priority>MAJOR</priority><configKey>Insecure Temporary File</configKey>
+          </rule>
+        
+          <rule>
+            <key>file_access_race_condition</key><priority>MAJOR</priority><configKey>Race Condition: File System Access</configKey>
+          </rule>
+        
+          <rule>
+            <key>race_condition_signal_handling</key><priority>MAJOR</priority><configKey>Race Condition: Signal Handling</configKey>
+          </rule>
+        </rules>

@@ -1,0 +1,91 @@
+<rules>
+        <!-- see names and descriptions in org/sonar/l10n/ -->
+    
+          <rule>
+            <key>obsolete</key><priority>MAJOR</priority><configKey>Obsolete</configKey>
+          </rule>
+        
+          <rule>
+            <key>system_information_leak</key><priority>MAJOR</priority><configKey>System Information Leak</configKey>
+          </rule>
+        
+          <rule>
+            <key>command_injection</key><priority>MAJOR</priority><configKey>Command Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>cross_site_scripting_persistent</key><priority>MAJOR</priority><configKey>Cross-Site Scripting: Persistent</configKey>
+          </rule>
+        
+          <rule>
+            <key>cross_site_scripting_poor_validation</key><priority>MAJOR</priority><configKey>Cross-Site Scripting: Poor Validation</configKey>
+          </rule>
+        
+          <rule>
+            <key>cross_site_scripting_reflected</key><priority>MAJOR</priority><configKey>Cross-Site Scripting: Reflected</configKey>
+          </rule>
+        
+          <rule>
+            <key>denial_of_service</key><priority>MAJOR</priority><configKey>Denial of Service</configKey>
+          </rule>
+        
+          <rule>
+            <key>dynamic_code_evaluation_code_injection</key><priority>MAJOR</priority><configKey>Dynamic Code Evaluation: Code Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
+          </rule>
+        
+          <rule>
+            <key>log_forging</key><priority>MAJOR</priority><configKey>Log Forging</configKey>
+          </rule>
+        
+          <rule>
+            <key>open_redirect</key><priority>MAJOR</priority><configKey>Open Redirect</configKey>
+          </rule>
+        
+          <rule>
+            <key>path_manipulation</key><priority>MAJOR</priority><configKey>Path Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>process_control</key><priority>MAJOR</priority><configKey>Process Control</configKey>
+          </rule>
+        
+          <rule>
+            <key>resource_injection</key><priority>MAJOR</priority><configKey>Resource Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>sql_injection</key><priority>MAJOR</priority><configKey>SQL Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>SF</key><priority>MAJOR</priority><configKey>Security Features</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_database</key><priority>MAJOR</priority><configKey>Access Control: Database</configKey>
+          </rule>
+        
+          <rule>
+            <key>access_control_missing_authorization_check</key><priority>MAJOR</priority><configKey>Access Control: Missing Authorization Check</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_empty_password</key><priority>MAJOR</priority><configKey>Password Management: Empty Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_hardcoded_password</key><priority>MAJOR</priority><configKey>Password Management: Hardcoded Password</configKey>
+          </rule>
+        
+          <rule>
+            <key>password_management_password_in_comment</key><priority>MAJOR</priority><configKey>Password Management: Password in Comment</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation</key><priority>MAJOR</priority><configKey>Privacy Violation</configKey>
+          </rule>
+        </rules>

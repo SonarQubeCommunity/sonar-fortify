@@ -1,0 +1,19 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  A cookie with an overly broad path can be accessed through other applications on the same domain.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Developers often set cookies to be the root context path "<code>/</code>", however, doing so exposes the cookie to all web applications on the same domain name. Since cookies often carry sensitive information such as session identifiers, sharing cookies across applications can lead a vulnerability in one application to cause a compromise in another.<br><br><b>Example:</b><br>Imagine you have a forum application deployed at <code>http://communitypages.example.com/MyForum</code> and the application sets a session ID cookie with path "<code>/</code>" when users log in to the forum.<br><br>For example:<br><pre><br>  HttpCookie cookie = new HttpCookie("sessionID", sessionID);<br>  cookie.Path = "/";<br></pre><br><br>Suppose an attacker creates another application at <code>http://communitypages.example.com/EvilSite</code> and posts a link to this site on the forum. When a user of the forum clicks on the link, his browser will send the cookie set by <code>/MyForum</code> to the application running at <code>/EvilSite</code>. By stealing the session ID, the attacker is able to compromise the account of any forum user that browsed to <code>/EvilSite</code>.<br><br>In addition to reading a cookie, it might be possible for attackers to perform a Cookie Poisoning attack by using <code>/EvilSite</code> to create its own overly broad cookie that overwrites the cookie from <code>/MyForum</code>.<br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																														

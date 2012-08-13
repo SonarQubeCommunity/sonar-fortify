@@ -1,0 +1,13 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The <code>ICloneable</code> interface specifies a weak contract for its <code>Clone</code> method and should be avoided.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>ICloneable</code> interface does not guarantee deep cloning, classes that implement it may not behave as expected when they are cloned. Classes that implement <code>ICloneable</code> and perform only shallow-cloning (copies only the object, which includes existing references to other objects) may result in unexpected behavior. Because deep-cloning (copies the object and all referenced objects) is typically the assumed behavior of a clone method, the use of the <code>ICloneable</code> interface is error prone and should be avoided.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[2] Krzysztof Cwalina, Brad Abrams <em>Framework Design Guidelines: Conventions, Idioms, and Patterns for Reusable .NET Libraries. Chapter 8: Usage Guidelines</em> Addison-Wesley<br></p>
+																														

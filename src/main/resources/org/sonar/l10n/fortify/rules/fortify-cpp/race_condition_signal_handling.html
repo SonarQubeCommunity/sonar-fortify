@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Installing the same signal handler for multiple signals can lead to a race condition when different signals are caught in short succession.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Signal handling race conditions can occur whenever a function installed as a signal handler is non-reentrant, which means it maintains some internal state or calls another function that does so. Such race conditions are even more likely when the same function is installed to handle multiple signals. <br><br>Signal handling race conditions are more likely to occur when:<br><br>1.	The program installs a single signal handler for more than one signal. <br><br>2.	Two different signals for which the handler is installed arrive in short succession, causing a race condition in the signal handler. <br><br><b>Example:</b> The following code installs the same simple, non-reentrant signal handler for two different signals. If an attacker causes signals to be sent at the right moments, the signal handler will experience a double free vulnerability. Calling <code>free()</code> twice on the same value can lead to a buffer overflow. When a program calls <code>free()</code> twice with the same argument, the program's memory management data structures become corrupted. This corruption can cause the program to crash or, in some circumstances, cause two later calls to <code>malloc()</code> to return the same pointer. If <code>malloc()</code> returns the same value twice and the program later gives the attacker control over the data that is written into this doubly-allocated memory, the program becomes vulnerable to a buffer overflow attack.<br><br><pre><br>void sh(int dummy) {  <br>  ...<br>  free(global2);  <br>  free(global1);  <br>  ...<br>}<br><br>int main(int argc,char* argv[]) {<br>  ...<br>  signal(SIGHUP,sh);  <br>  signal(SIGTERM,sh); <br>  ...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3630.1 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 362, CWE ID 364</em> <br></p>
+																									   <p>[3] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 362</em> <br></p>
+																									   <p>[4] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 362</em> <br></p>
+																														

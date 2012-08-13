@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can potentially dereference a null pointer, thereby raising a <code>NullException</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Null pointer errors are usually the result of one or more programmer assumptions being violated. <br><br>Most null pointer issues result in general software reliability problems, but if an attacker can intentionally trigger a null pointer dereference, the attacker might be able to use the resulting exception to bypass security logic or to cause the application to reveal debugging information that will be valuable in planning subsequent attacks.<br> <br><b>Example 1:</b> In the following code, the programmer assumes that the system always has a property named "<code>cmd</code>" defined. If an attacker can control the program's environment so that "<code>cmd</code>" is not defined, the program throws a null pointer exception when it attempts to call the <code>Trim()</code> method.<br><br><pre><br>string cmd = null;<br>...<br>cmd = Environment.GetEnvironmentVariable("cmd");<br>cmd = cmd.Trim();<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 476</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

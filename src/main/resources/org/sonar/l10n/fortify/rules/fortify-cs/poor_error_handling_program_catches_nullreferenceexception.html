@@ -1,0 +1,18 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  It is generally a bad practice to catch <code>NullReferenceException</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Programmers typically catch <code>NullReferenceException</code> under three circumstances: <br><br>1. The program contains a null pointer dereference. Catching the resulting exception was easier than fixing the underlying problem.<br><br>2. The program explicitly throws a <code>NullReferenceException</code> to signal an error condition.<br><br>3. The code is part of a test harness that supplies unexpected input to the classes under test.<br><br>Of these three circumstances, only the last is acceptable. <br><br><b>Example:</b> The following code mistakenly catches a <code>NullReferenceException</code>.<br><pre><br>  try {<br>    MysteryMethod();<br>  }<br>  catch (NullReferenceException npe) {<br>  }<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A7 Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 395</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.2, Requirement 6.5.6</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.7</em> <br></p>
+																														

@@ -1,0 +1,16 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can dereference a null pointer because it does not check the return value of a function that might return null.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Just about every serious attack on a software system begins with the violation of a programmer's assumptions. After the attack, the programmer's assumptions seem flimsy and poorly founded, but before an attack many programmers would defend their assumptions well past the end of their lunch break.<br><br>Two dubious assumptions that are easy to spot in code are "this function call can never fail" and "it doesn't matter if this function call fails". When a programmer ignores the return value from a function, they implicitly state that they are operating under one of these assumptions.<br><br><b>Example 1:</b>  The following code does not check to see if memory allocation succeeded before attempting to use the pointer returned by <code>malloc()</code>.<br><br><pre><br>    buf = (char*) malloc(req_size);<br>    strncpy(buf, xfer, req_size);<br></pre><br><br>The traditional defense of this coding error is: <br><br>"If my program runs out of memory, it will fail. It doesn't matter whether I handle the error or simply allow the program to die with a segmentation fault when it tries to dereference the null pointer."<br><br>This argument ignores three important considerations:<br><br>- Depending upon the type and size of the application, it may be possible to free memory that is being used elsewhere so that execution can continue. <br><br>- It is impossible for the program to perform a graceful exit if required. If the program is performing an atomic operation, it can leave the system in an inconsistent state.<br><br>- The programmer has lost the opportunity to record diagnostic information. Did the call to <code>malloc()</code> fail because <code>req_size</code> was too large or because there were too many requests being handled at the same time? Or was it caused by a memory leak that has built up over time? Without handling the error, there is no way to know.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II, APP6080 CAT II</em> <br></p>
+																									   <p>[3] J. Viega, G. McGraw <em>Building Secure Software</em> Addison-Wesley<br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 253, CWE ID 690</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

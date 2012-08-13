@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Calling <code>free()</code> twice on the same memory address can lead to a buffer overflow.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Double free errors occur when <code>free()</code> is called more than once with the same memory address as an argument.<br><br><br><br>Calling <code>free()</code> twice on the same value can lead to a buffer overflow. When a program calls <code>free()</code> twice with the same argument, the program's memory management data structures become corrupted. This corruption can cause the program to crash or, in some circumstances, cause two later calls to <code>malloc()</code> to return the same pointer. If <code>malloc()</code> returns the same value twice and the program later gives the attacker control over the data that is written into this doubly-allocated memory, the program becomes vulnerable to a buffer overflow attack.<br><br><b>Example 1:</b> The following code shows a simple example of a double free vulnerability.<br><br><pre><br>	char* ptr = (char*)malloc (SIZE);<br>	...<br>	if (abrt) {<br>	  free(ptr);<br>	}<br>	...<br>	free(ptr);<br></pre><br><br>Double free vulnerabilities have two common (and sometimes overlapping) causes:<br><br>- Error conditions and other exceptional circumstances.<br><br>- Confusion over which part of the program is responsible for freeing the memory.<br><br>Although some double free vulnerabilities are not much more complicated than the previous example, most are spread out across hundreds of lines of code or even different files. Programmers seem particularly susceptible to freeing global variables more than once.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3590.1 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 415</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[6] J. Koziol et al. <em>The Shellcoder's Handbook: Discovering and Exploiting Security Holes</em> John Wiley & Sons<br></p>
+																														

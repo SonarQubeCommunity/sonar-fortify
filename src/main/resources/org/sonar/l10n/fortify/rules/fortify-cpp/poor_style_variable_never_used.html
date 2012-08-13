@@ -1,0 +1,13 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  This variable is never used.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  This variable is never used. It is likely that the variable is simply vestigial, but it is also possible that the unused variable points out a bug.<br><br><b>Example:</b> In the following code, a copy-and-paste error has lead to the same loop iterator (<code>i</code>) being used twice. The variable <code>j</code> is never used.<br><br><pre><br>  int i,j;<br><br>  for (i=0; i &lt; outer; i++) {<br>    for (i=0; i &lt; inner; i++) {<br>      ...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3050 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 563</em> <br></p>
+																														

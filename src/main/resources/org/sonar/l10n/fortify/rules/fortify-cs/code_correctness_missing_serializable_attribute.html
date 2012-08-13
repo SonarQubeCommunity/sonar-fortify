@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Classes that implement the <code>ISerializable</code> interface but do not declare the <code>[Serializable]</code> attribute will not be serialized.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The .NET runtime will permit the serialization of any object that declares the <code>[Serializable]</code> attribute. If the class can be serialized using the default serialization methods defined by the .NET framework, this is both necessary and sufficient for the object to be correctly serialized. If the class requires custom serialization methods, it must also implement the <code>ISerializable</code> interface. However, the class must still declare the <code>[Serializable]</code> attribute.<br><br><b>Example 1:</b> The <code>CustomStorage</code> class implements the <code>ISerializable</code> interface. However, because it fails to declare the <code>[Serializable]</code> attribute, it will not be serialized.<br><br><pre><br>public class CustomStorage: ISerializable {<br>	...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
+																									   <p>[4]  <em>Mark ISerializable types with Serializable</em> Microsoft Corporation<br></p>
+																									   <p>[5] Piet Obermeyer and Jonathan Hawkins <em>MSDN Library: Object Serialization in the .NET Framework</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

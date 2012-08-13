@@ -1,0 +1,24 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Allowing an attacker to control a function's format string can result in a buffer overflow.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Format string vulnerabilities occur when an attacker is allowed to control the format string argument to a function like <code>sprintf()</code>, <code>FormatMessageW()</code>, or <code>syslog()</code>.<br><br><br><br><b>Example 1:</b> The following code copies a command line argument into a buffer using <code>snprintf()</code>. <br><br><pre><br>int main(int argc, char **argv){<br>	char buf[128];<br>	...<br>	snprintf(buf,128,argv[1]);<br>}<br></pre> <br><br>This code allows an attacker to view the contents of the stack and write to the stack using a command line argument containing a sequence of formatting directives. The attacker can read from the stack by providing more formatting directives, such as <code>%x</code>, than the function takes as arguments to be formatted. (In this example, the function takes no arguments to be formatted.) By using the <code>%n</code> formatting directive, the attacker can write to the stack, causing <code>snprintf()</code> to write the number of bytes output thus far to the specified argument (rather than reading a value from the argument, which is the intended behavior). A sophisticated version of this attack will use four staggered writes to completely control the value of a pointer on the stack.<br><br><b>Example 2:</b> Certain implementations make more advanced attacks even easier by providing format directives that control the location in memory to read from or write to. An example of these directives is shown in the following code, written for glibc:<br><br><pre><br>	printf("%d %d %1$d %1$d\n", 5, 9);<br></pre><br><br>This code produces the following output:<br><br><pre><br>5 9 5 5<br></pre><br><br>It is also possible to use half-writes (%hn) to accurately control arbitrary DWORDS in memory, which greatly reduces the complexity needed to execute an attack that would otherwise require four staggered writes, such as the one mentioned in Example 1.  <br><br><b>Example 3:</b> Simple format string vulnerabilities often result from seemingly innocuous shortcuts. The use of some such shortcuts is so ingrained that programmers might not even realize that the function they are using expects a format string argument. <br><br>For example, the <code>syslog()</code> function is sometimes used as follows:<br><br><pre><br>	...<br>syslog(LOG_ERR, cmdBuf);<br>	...<br></pre><br><br>Because the second parameter to <code>syslog()</code> is a format string, any formatting directives included in <code>cmdBuf</code> are interpreted as described in Example 1. <br><br>The following code shows a correct usage of <code>syslog()</code>:<br><br><pre><br>	...<br> 	syslog(LOG_ERR, "%s", cmdBuf);<br>...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3560 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3590.1 CAT I</em> <br></p>
+																									   <p>[4] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Buffer Overflow</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 134</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 787, CWE ID 120, CWE ID 129, CWE ID 131</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Format String Attack</em> <br></p>
+																									   <p>[8] T. Newsham <em>Format String Attacks</em> Guardent, Inc.<br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 119</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 120, Risky Resource Management - CWE ID 129, Risky Resource Management - CWE ID 131</em> <br></p>
+																														

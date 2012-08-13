@@ -1,0 +1,14 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Improper use of the <code>chroot()</code> system call could allow attackers to escape a chroot jail.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>chroot()</code> system call allows a process to change its perception of the root directory of the file system. After properly invoking <code>chroot()</code>, a process cannot access any files outside the directory tree defined by the new root directory. Such an environment is called a chroot jail and is commonly used to prevent the possibility that a processes could be subverted and used to access unauthorized files. For instance, many FTP servers run in chroot jails to prevent an attacker who discovers a new vulnerability in the server from being able to download the password file or other sensitive files on the system.<br><br>Improper use of <code>chroot()</code> may allow attackers to escape from the chroot jail. The <code>chroot()</code> function call does not change the process's current working directory, so relative paths may still refer to file system resources outside of the chroot jail after <code>chroot()</code> has been called. <br><br><b>Example 1:</b> Consider the following source code from a (hypothetical) FTP server:<br><br><pre><br>chroot("/var/ftproot");<br>...<br>fgets(filename, sizeof(filename), network);<br>localfile = fopen(filename, "r");<br>while ((len = fread(buf, 1, sizeof(buf), localfile)) != EOF) {<br>  fwrite(buf, 1, sizeof(buf), network);<br>}<br>fclose(localfile);<br></pre><br><br>This code is responsible for reading a filename from the network, opening the corresponding file on the local machine, and sending the contents over the network. This code could be used to implement the FTP <code>GET</code> command. The FTP server calls <code>chroot()</code> in its initialization routines in an attempt to prevent access to files outside of <code>/var/ftproot</code>. But because the server fails to change the current working directory by calling <code>chdir("/")</code>, an attacker could request the file <code>"../../../../../etc/passwd</code>" and obtain a copy of the system password file.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] J. Viega, G. McGraw <em>Building Secure Software</em> Addison-Wesley<br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 243</em> <br></p>
+																									   <p>[3] A. Chuvakin <em>Using Chroot Securely</em> <br></p>
+																														

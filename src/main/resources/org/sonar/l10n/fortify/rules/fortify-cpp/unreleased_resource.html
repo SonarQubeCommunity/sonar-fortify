@@ -1,0 +1,16 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can potentially fail to release a system resource.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The program can potentially fail to release a system resource. <br><br>Resource leaks have at least two common causes:<br><br>- Error conditions and other exceptional circumstances.<br><br>- Confusion over which part of the program is responsible for releasing the resource.<br><br>Most unreleased resource issues result in general software reliability problems, but if an attacker can intentionally trigger a resource leak, the attacker might be able to launch a denial of service by depleting the resource pool.<br><br><b>Example:</b> The following function does not close the file handle it opens if an error occurs. If the process is long-lived, the process can run out of file handles.<br><br><pre><br>int decodeFile(char* fName)<br>{<br>    char buf[BUF_SZ];<br>    FILE* f = fopen(fName, "r");<br>    <br>    if (!f) {<br>        printf("cannot open %s\n", fName);<br>        return DECODE_FAIL;<br>    } else {<br>        while (fgets(buf, BUF_SZ, f)) {<br>            if (!checkChecksum(buf)) {<br>              return DECODE_FAIL;<br>            } else {<br>              decodeBlock(buf);<br>            }<br>        }<br>    }<br>    fclose(f);<br>    return DECODE_SUCCESS;<br>}<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 404</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[5] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 404</em> <br></p>
+																														

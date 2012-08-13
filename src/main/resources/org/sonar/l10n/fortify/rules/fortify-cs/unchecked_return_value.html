@@ -1,0 +1,19 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Ignoring a method's return value can cause the program to overlook unexpected states and conditions.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is not uncommon for programmers to misunderstand <code>Read()</code> and related methods that are part of many <code>System.IO</code> classes. Most errors and unusual events in .NET result in an exception being thrown. (This is one of the advantages that .NET has over languages like C: Exceptions make it easier for programmers to think about what can go wrong.)  But the stream and reader classes do not consider it to be unusual or exceptional if only a small amount of data becomes available. These classes simply add the small amount of data to the return buffer, and set the return value to the number of bytes or characters read. There is no guarantee that the amount of data returned is equal to the amount of data requested.<br><br>This behavior makes it important for programmers to examine the return value from <code>Read()</code> and other IO methods and ensure that they receive the amount of data they expect.<br><br><b>Example:</b> The following code loops through a set of users, reading a private data file for each user. The programmer assumes that the files are always 1 kilobyte in size and therefore ignores the return value from <code>Read()</code>. If an attacker can create a smaller file, the program will recycle the remainder of the data from the previous user and handle it as though it belongs to the attacker.<br><br><pre><br>char[] byteArray = new char[1024];<br>for (IEnumerator i=users.GetEnumerator(); i.MoveNext() ;i.Current()) {<br>    string userName = (string) i.Current();<br>    string pFileName = PFILE_ROOT + "/" + userName;<br>    StreamReader sr = new StreamReader(pFileName);   <br>    sr.Read(byteArray,0,1024);//the file is always 1k bytes<br>    sr.Close();<br>    processPFile(userName, byteArray);<br>}<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A7 Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 252, CWE ID 754</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.2, Requirement 6.5.6</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[8] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 754</em> <br></p>
+																														

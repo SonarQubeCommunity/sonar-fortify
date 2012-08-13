@@ -1,0 +1,16 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program defines an overly permissive Cross-Origin Resource Sharing (CORS) policy.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Prior to HTML5, Web browsers enforced the Same Origin Policy which ensures that in order for JavaScript to access the contents of a Web page, both the JavaScript and the Web page must originate from the same domain. Without the Same Origin Policy, a malicious website could serve up JavaScript that loads sensitive information from other websites using a client's credentials, culls through it, and communicates it back to the attacker. HTML5 makes it possible for JavaScript to access data across domains if a new HTTP header called <code>Access-Control-Allow-Origin</code> is defined. With this header, a Web server defines which other domains are allowed to access its domain using cross-origin requests. However, caution should be taken when defining the header because an overly permissive CORS policy will allow a malicious application to communicate with the victim application in an inappropriate way, leading to spoofing, data theft, relay and other attacks.<br><br><b>Example 1:</b> Below is an example of using a wildcard to programmatically specify which domains the application is allowed to communicate with.<br><br><pre><br>  Response.AddHeader "Access-Control-Allow-Origin", "*"<br></pre><br><br>Using the <code>*</code> as the value of the <code>Access-Control-Allow-Origin</code> header indicates that the appliction's data is accessible to JavaScript running on any domain.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Philippe De Ryck, Lieven Desmet, Pieter Philippaerts, and Frank Piessens <em>A Security Analysis of Next Generation Web Standards</em> <br></p>
+																									   <p>[2] W3C <em>Cross-Origin Resource Sharing</em> <br></p>
+																									   <p>[3]  <em>Enable Cross-Origin Resource Sharing</em> <br></p>
+																									   <p>[4] Michael Schmidt <em>HTML5 Web Security</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																														

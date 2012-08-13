@@ -1,0 +1,20 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Ignoring a method's return value can cause the program to overlook unexpected states and conditions.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Just about every serious attack on a software system begins with the violation of a programmer's assumptions. After the attack, the programmer's assumptions seem flimsy and poorly founded, but before an attack many programmers would defend their assumptions well past the end of their lunch break.<br><br>Two dubious assumptions that are easy to spot in code are "this function call can never fail" and "it doesn't matter if this function call fails". When a programmer ignores the return value from a function, they implicitly state that they are operating under one of these assumptions.<br><br><b>Example:</b> Consider the following code:<br><br><pre><br>char buf[10], cp_buf[10];<br>fgets(buf, 10, stdin);<br>strcpy(cp_buf, buf);<br></pre><br><br>The programmer expects that when <code>fgets()</code> returns, <code>buf</code> will contain a null-terminated string of length 9 or less. But if an I/O error occurs, <code>fgets()</code> will not null-terminate <code>buf</code>. Furthermore, if the end of the file is reached before any characters are read, <code>fgets()</code> returns without writing anything to <code>buf</code>. In both of these situations, <code>fgets()</code> signals that something unusual has happened by returning <code>NULL</code>, but in this code, the warning will not be noticed. The lack of a null terminator in <code>buf</code> can result in a buffer overflow in the subsequent call to <code>strcpy()</code>.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A7 Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II</em> <br></p>
+																									   <p>[4] J. Viega, G. McGraw <em>Building Secure Software</em> Addison-Wesley<br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 252, CWE ID 754</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.2, Requirement 6.5.6</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 754</em> <br></p>
+																														

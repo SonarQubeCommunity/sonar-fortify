@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The use of hardcoded file separators causes portability problems.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Different operating systems use different characters as file separators. For example, Microsoft Windows systems use "\", while UNIX systems use "/". When applications have to run on different platforms, the use of hardcoded file separators can lead to incorrect execution of application logic and potentially a denial of service.<br><br><br><br><b>Example 1:</b> The following code uses a hardcoded file separator to open a file:<br><br><pre><br>...<br>FileStream f = File.Create(directoryName + "\\" + fileName);<br>...<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 474</em> <br></p>
+																														

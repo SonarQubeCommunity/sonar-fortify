@@ -1,21 +1,14 @@
-<!-- desc.config.java.adf_bad_practices_default_url_invoke_disallowed_setting -->
-<h1>
-  ADF Bad Practices: Default url-invoke-disallowed Setting
-</h1>
-<h2>ABSTRACT</h2>
-<p>
-  Relying on an implicit default <code>url-invoke-disallowed</code> setting lacks clarity and can lead to unwanted behavior if the default changes unexpectedly.
-</p>
-<h2>EXPLANATION</h2>
-<p>
-  By default, task flows in a Fusion application are not directly accessible from a GET request: whenever a URL attempts to invoke the task flow, it receives an <code>HTTP
-  403</code> status code. However, relying on an implicit setting always lacks clarity and can potentially lead to unwanted behavior if the default setting changes
-  underneath.<br><br><b>Example 1:</b> The following snippet from a task flow definition file shows an example of a task flow configured with the implicit default <code>url-invoke-disallowed</code>
-  setting.<br><br>
-<pre><br>...<br>    &lt;task-flow-definition id="password"&gt;<br>        &lt;default-activity&gt;PasswordPrompt&lt;/default-activity&gt;<br>        &lt;view id="PasswordPrompt"&gt;<br>            &lt;page&gt;/PasswordPrompt.jsff&lt;/page&gt;<br>        &lt;/view&gt;<br>        &lt;use-page-fragments/&gt;<br>    &lt;/task-flow-definition&gt;<br>...<br></pre>
-</p>
-<h2>REFERENCES</h2>
-<p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
-<p>[2] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
-<p>[3] <em>Oracle(R) Fusion Middleware Fusion Developer's Guide for Oracle Application Development Framework, 15.6.4.How to Call a Bounded Task Flow Using a URL</em> <br></p>
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Relying on an implicit default <code>url-invoke-disallowed</code> setting lacks clarity and can lead to unwanted behavior if the default changes unexpectedly.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By default, task flows in a Fusion application are not directly accessible from a GET request: whenever a URL attempts to invoke the task flow, it receives an <code>HTTP 403</code> status code. However, relying on an implicit setting always lacks clarity and can potentially lead to unwanted behavior if the default setting changes underneath.<br><br><b>Example 1:</b> The following snippet from a task flow definition file shows an example of a task flow configured with the implicit default <code>url-invoke-disallowed</code> setting.<br><br><pre><br>...<br>    &lt;task-flow-definition id="password"&gt;<br>        &lt;default-activity&gt;PasswordPrompt&lt;/default-activity&gt;<br>        &lt;view id="PasswordPrompt"&gt;<br>            &lt;page&gt;/PasswordPrompt.jsff&lt;/page&gt;<br>        &lt;/view&gt;<br>        &lt;use-page-fragments/&gt;<br>    &lt;/task-flow-definition&gt;<br>...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[3]  <em>Oracle(R) Fusion Middleware Fusion Developer's Guide for Oracle Application Development Framework, 15.6.4.How to Call a Bounded Task Flow Using a URL</em> <br></p>
 																														

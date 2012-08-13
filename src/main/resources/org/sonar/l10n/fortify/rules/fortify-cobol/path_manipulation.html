@@ -1,0 +1,24 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Allowing user input to control paths used in filesystem operations could enable an attacker to access or modify otherwise protected system resources.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Path manipulation errors occur when the following two conditions are met:<br><br>1. An attacker can specify a path used in an operation on the filesystem. <br><br>2. By specifying the resource, the attacker gains a capability that would not otherwise be permitted.<br><br>For example, the program may give the attacker the ability to overwrite the specified file or run with a configuration controlled by the attacker. <br><br><b>Example:</b> The following code uses input from an HTML form to update or possibly delete a record from a file.<br><br><pre><br>...<br>EXEC CICS<br>  WEB READ<br>  FORMFIELD(FILE)<br>  VALUE(FILENAME)<br>  ...<br>END-EXEC.<br><br>EXEC CICS<br>  READ<br>  FILE(FILENAME)<br>  INTO(RECORD)<br>  RIDFLD(ACCTNO)<br>  UPDATE<br>  ...<br>END-EXEC.<br>...<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 22, CWE ID 73</em> <br></p>
+																									   <p>[6] G. Hoglund, G. McGraw <em>Exploiting Software</em> Addison-Wesley<br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Path Traversal</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 022</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 426</em> <br></p>
+																									   <p>[13] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

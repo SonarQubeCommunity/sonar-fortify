@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Array bounds check could be mistakenly optimized out.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  <br>If an array bounds check involves computing an illegal pointer and then determining that the pointer is out of bounds, some compilers will optimize the check away, assuming that the programmer would never intentionally create an illegal pointer.<br><br><b>Example:</b><br><pre><br>  char *buf;<br>  int len;<br>  ...<br>  len = 1&lt;&lt;30;<br><br>  if (buf+len &lt; buf)  //wrap check<br>    [handle overflow]<br></pre><br><br>The operation <code>buf + len</code> is larger than <code>2^32</code>, so the resulting value is smaller than <code>buf</code>.  But since an arithmetic overflow on a pointer is undefined behvaior, some compilers will assume <code>buf + len &gt;= buf</code> and optimize away the wrap check. As a result of this optimization, code following this block could be vulnerable to buffer overflow.<br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3590.1 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 733</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[6]  <em>Vulnerability Note VU#162289</em> CERT<br></p>
+																														

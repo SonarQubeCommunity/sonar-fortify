@@ -1,0 +1,18 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Executing an LDAP statement that contains a user-controlled value outside the filter string can allow an attacker to alter the statement's meaning or execute arbitrary LDAP commands.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  LDAP manipulation errors occur when:<br><br>1.	Data enters a program from an untrusted source.<br><br>2.	The data is used outside the filter string in a dynamic LDAP statement. <br><br><b>Example 1:</b> The following code reads a <code>dn</code> string from a socket and uses it to perform an LDAP query. <br><br><pre><br>...<br>rc = ldap_simple_bind_s( ld, NULL, NULL );<br>  if ( rc != LDAP_SUCCESS ) {<br>    ...<br>  }<br>...<br><br>fgets(dn, sizeof(dn), socket);<br><br>if ( ( rc = ldap_search_ext_s( ld, dn, LDAP_SCOPE_BASE,<br>                               filter, NULL, 0, NULL, NULL, LDAP_NO_LIMIT,<br>                               LDAP_NO_LIMIT, &amp;result ) ) != LDAP_SUCCESS ) {<br>...<br></pre><br><br>Because base DN originates from user input and the query is performed under an anonymous bind, an attacker could alter the results of the query by specifying an unexpected <code>dn</code> string. The problem is that the developer failed to leverage the appropriate access control mechanisms necessary to restrict subsequent queries to access only employee records the current user is permitted to read.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 90</em> <br></p>
+																									   <p>[4] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[7] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

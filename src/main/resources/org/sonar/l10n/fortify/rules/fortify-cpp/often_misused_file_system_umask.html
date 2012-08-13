@@ -1,0 +1,17 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The mask specified by the argument <code>umask()</code> is often confused with the argument to <code>chmod()</code>. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>umask()</code> man page begins with the false statement:<br><br>"umask sets the umask to mask &amp; 0777"<br><br>Although this behavior would better align with the usage of <code>chmod()</code>, where the user provided argument specifies the bits to enable on the specified file, the behavior of <code>umask()</code> is in fact opposite: <code>umask()</code> sets the umask to <code>~mask &amp; 0777</code>. <br><br>The <code>umask()</code> man page goes on to describe the correct usage of <code>umask()</code>:<br><br>"The umask is used by <code>open()</code> to set initial file permissions on a newly-created file. Specifically, permissions in the umask are turned off from the mode argument to <code>open(2)</code> (so, for example, the common umask default value of 022 results in new files being created with permissions 0666 &amp; ~022 = 0644 = rw-r--r-- in the usual case where the mode is specified as 0666)."<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A5 Buffer Overflow</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3590.1 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 249, CWE ID 560</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.5</em> <br></p>
+																														

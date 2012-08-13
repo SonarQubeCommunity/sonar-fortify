@@ -1,0 +1,10 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program accesses a variable in an ambiguous way, which can leave it open to attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>HttpRequest</code> class provides programatic access to variables from the <code>QueryString</code>, <code>Form</code>, <code>Cookies</code> or <code>ServerVariables</code> collections in the form of an array access (e.g. <code>Request["myParam"]</code>). When more than one variable exists with the same name, the .NET framwork returns the value of the variable that appears first when the collections are searched in the following order: <code>QueryString</code>, <code>Form</code>, <code>Cookies</code> then <code>ServerVariables</code>. Because <code>QueryString</code> comes first in the search order, it is possible for <code>QueryString</code> parameters to supersede values from forms, cookies and server variables. Similarly, form values can supersede variables in the <code>Cookies</code> and <code>ServerVariables</code> collections and variables from the <code>Cookies</code> collection can supersede those from <code>ServerVariables</code>. <br><br><br><b>Example 1:</b> Imagine a banking application temporarily stores a user's e-mail address in a cookie and reads this value when it wants to contact the user. The following code reads the cookie value and sends an account balance to the specified e-mail address.<br><pre><br>...<br>    String toAddress = Request["email"];        //Expects cookie value<br>    Double balance = GetBalance(userID);<br>    SendAccountBalance(toAddress, balance);<br>...<br></pre><br>Assume the code above is executed when visiting <code>http://www.example.com/GetBalance.aspx</code>. If an attacker can cause an authenticated user to click a link that requests <code>http://www.example.com/GetBalance.aspx?email=evil%40evil.com</code>, an e-mail with the user's account balance will be sent to <code>evil@evil.com</code>.<br>        
+							</p>
+							 						
