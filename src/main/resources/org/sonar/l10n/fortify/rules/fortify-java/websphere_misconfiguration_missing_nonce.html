@@ -1,0 +1,23 @@
+
+							<!-- desc.config.java.websphere_misconfiguration_missing_nonce -->						
+							<h1>
+							   WebSphere Misconfiguration: Missing Nonce
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  A SOAP message with a timestamp that does not expire is vulnerable to replay attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A nonce is a cryptographic random value that is sent with a message to prevent replay attacks. When a nonce is combined with timestamp (or expiration), each message is unique and is only valid for a certain amount of time, thus thwarting any attempt to retransmit an old message.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 254</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7]  <em>Web Services Handbook for WebSphere Application Server 6.1</em> IBM Redbooks<br></p>
+																									   <p>[8]  <em>Web Services Security Username Token Profile 1.0</em> OASIS<br></p>
+																														

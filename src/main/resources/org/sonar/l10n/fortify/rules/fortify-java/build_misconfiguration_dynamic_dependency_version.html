@@ -1,0 +1,14 @@
+
+							<!-- desc.config.java.build_misconfiguration_dynamic_dependency_version -->						
+							<h1>
+							   Build Misconfiguration: Dynamic Dependency Version Usage
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Retrieving build dependencies using a dynamic version can leave the build system vulnerable to malicious binaries or cause the system to experience unexpected behavior. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Apache Ivy automated dependency management system allows users to specify a version status, known as a dynamic revision, for a dependency instead of listing the specific. If an attacker is able to compromise the dependency repository or trick the build system into downloading dependencies from a repository under the attacker's control, then a dynamic revision specifier may be all that's needed for the build system to silently download and run the compromised dependency. Beyond the security risks, dynamic revisions also introduce an element of risk on the code quality front: Dynamic revisions place the security and stability of your software under the control of the third-parties who develop and release the dependencies your software uses. <br><br>At build time, Ivy connects to the repository and attempts to retrieve a dependency that matches the status listed. <br><br>Ivy accepts the following dynamic revision specifiers: <br><br>-	<code>latest.integration</code>: Selects the latest revision of the dependency module. <br>-	<code>latest.[any status]</code>: Selects the latest revision of the dependency module with at minimum the specified status. For example, <code>latest.milestone</code> will select the latest version that is either a milestone or a release, and <code>latest.release</code> will only select the latest release. <br>-	Any revision that ends in <code>+</code>: Selects the latest sub-revision of the dependency module. For example, if the dependency exists in revisions 1.0.3, 1.0.7 and 1.1.2, a revision specified as <code>1.0.+</code> will select revision 1.0.7.<br>-	Version ranges: Mathematical notation for ranges, such as &lt; and &gt;, can be used to match a range of versions.<br><br><b>Example 1:</b> The following configuration entry instructs Ivy to retrieve the latest release version of the clover component: <br>	<br><pre><br>&lt;dependencies&gt;<br>        &lt;dependency org="clover" name="clover" <br>                    rev="latest.release" conf="build-&gt;*"/&gt;<br>	...<br></pre><br><br>If the repository is compromised, an attacker could simply upload a version that meets the dynamic criteria to cause Ivy to download a malicious version of the dependency.<br>
+							</p>
+							 						

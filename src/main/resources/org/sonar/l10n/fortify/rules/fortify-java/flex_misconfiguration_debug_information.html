@@ -1,0 +1,25 @@
+
+							<!-- desc.config.java.flex_misconfiguration_debug_information -->						
+							<h1>
+							   Flex Misconfiguration: Debug Information
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Debugging information helps attackers learn about the system and plan a form of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  If you are using Blaze DS to perform logging of any unexpcted events, the <code>services-config.xml</code> descriptor file specifies a "Logging" XML element to describe various aspects of logging. It looks something like this:<br><br><b>Example:</b><br><pre><br>&lt;logging&gt;<br>    &lt;target class="flex.messaging.log.ConsoleTarget" level="Debug"&gt;<br>        &lt;properties&gt;<br>            &lt;prefix&gt;[BlazeDS]&lt;/prefix&gt;<br>            &lt;includeDate&gt;false&lt;/includeDate&gt;<br>            &lt;includeTime&gt;false&lt;/includeTime&gt;<br>            &lt;includeLevel&gt;false&lt;/includeLevel&gt;<br>            &lt;includeCategory&gt;false&lt;/includeCategory&gt;<br>        &lt;/properties&gt;<br>        &lt;filters&gt;<br>            &lt;pattern&gt;Endpoint.*&lt;/pattern&gt;<br>            &lt;pattern&gt;Service.*&lt;/pattern&gt;<br>            &lt;pattern&gt;Configuration&lt;/pattern&gt;<br>        &lt;/filters&gt;<br>    &lt;/target&gt;<br>&lt;/logging&gt;<br></pre><br><br>This <code>target</code> tag takes an optional attribute called <code>level</code>, which indicates the log level. If the debug level is set to too detailed a level, your application may write sensitive data to the log file.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II, APP3620 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 11</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																														

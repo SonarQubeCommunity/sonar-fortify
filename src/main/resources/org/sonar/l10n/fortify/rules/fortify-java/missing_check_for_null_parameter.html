@@ -1,0 +1,16 @@
+
+							<!-- desc.controlflow.java.missing_check_for_null_parameter -->						
+							<h1>
+							   Missing Check for Null Parameter
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This function violates the contract that it must compare its parameter with null.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Java standard requires that implementations of <code>Object.equals()</code>, <code>Comparable.compareTo()</code>, and <code>Comparator.compare()</code> must return a specified value if their parameters are null. Failing to follow this contract may result in unexpected behavior.<br><br><b>Example 1:</b> The following implementation of the <code>equals()</code> method does not compare its parameter with null. <br><br><pre><br>public boolean equals(Object object)<br>{<br>   return (toString().equals(object.toString()));<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																														

@@ -1,0 +1,25 @@
+
+							<!-- desc.semantic.java.process_control -->						
+							<h1>
+							   Process Control
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Loading libraries without specifying an absolute path can cause the program to load malicious libraries supplied by an attacker. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Process control vulnerabilities take two forms:<br><br>- An attacker can change the name of the library that the program loads: the attacker explicitly controls what the name of the library is.<br><br>- An attacker can change the environment in which the library is loaded: the attacker implicitly controls what the library name means.<br><br>In this case we are primarily concerned with the second scenario, the possibility that an attacker may be able to control the environment in such a way that the program loads a malicious version of the named library.<br><br>1. An attacker provides a malicious library to an application. <br><br>2. The application loads the malicious library because it fails to specify an absolute path or verify the file being loaded. <br><br>3. By executing code from the library, the application gives the attacker a privilege or capability that the attacker would not otherwise have. <br><br><b>Example:</b> The following code uses <code>System.loadLibrary()</code> to load code from a native library named <code>library.dll</code>, which is normally found in a standard system directory. <br><br><pre><br>...<br>System.loadLibrary("library.dll");<br>...<br></pre><br><br>The problem here is that <code>System.loadLibrary()</code> accepts a library name, not a path, for the library to be loaded. From the Java 1.4.2 API documentation this function behaves as follows [1]:<br><br>A file containing native code is loaded from the local file system from a place where library files are conventionally obtained. The details of this process are implementation-dependent. The mapping from a library name to a specific filename is done in a system-specific manner.<br><br>If an attacker is able to place a malicious copy of <code>library.dll</code> higher in the search order than file the application intends to load, then the application will load the malicious copy instead of the intended file. Because of the nature of the application, it runs with elevated privileges, which means the contents of the attacker's <code>library.dll</code> will now be run with elevated privileges, possibly giving the attacker complete control of the system. <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 114</em> <br></p>
+																									   <p>[6]  <em>Java 1.4.2 API Documentation</em> Sun Microsystems<br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[10] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

@@ -1,0 +1,17 @@
+
+							<!-- desc.config.java.j2ee_misconfiguration_excessive_servlet_mappings -->						
+							<h1>
+							   J2EE Misconfiguration: Excessive Servlet Mappings
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Multiple URL patterns map to a single Servlet, which often indicates poor a architecture or a lack of standardization.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Multiple URL patterns that map to a single Servlet could be a sign that the Servlet performs too many functions.<br><br><br><br><b>Example 1:</b> The following example maps five URL patterns to a single Servlet.<br><pre><br>&lt;servlet&gt;<br>    &lt;servlet-class&gt;com.class.MyServlet&lt;/servlet-class&gt;<br>    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;<br>&lt;/servlet&gt;<br><br>&lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/myservlet&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br><br>&lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/helloworld*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br><br>&lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/servlet*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br><br>&lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/mservlet*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br><br>&lt;servlet-mapping&gt;<br>    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;<br>    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;<br>&lt;/servlet-mapping&gt;<br></pre><br>            
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[2] Sun Microsystems, Inc. <em>Java Servlet Specification 2.4</em> <br></p>
+																														

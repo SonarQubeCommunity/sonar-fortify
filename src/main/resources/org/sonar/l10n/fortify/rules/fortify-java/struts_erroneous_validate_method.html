@@ -1,0 +1,22 @@
+
+							<!-- desc.structural.java.struts_erroneous_validate_method -->						
+							<h1>
+							   Struts: Erroneous validate() Method
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The validator form defines a <code>validate()</code> method that fails to call <code>super.validate()</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Struts Validator uses a form's <code>validate()</code> method to check the contents of the form properties against the constraints specified in the associated validation form. That means the following classes have a <code>validate()</code> method that is part of the validation framework:<br><br><pre><br>    ValidatorForm<br>    ValidatorActionForm<br>    DynaValidatorForm<br>    DynaValidatorActionForm<br></pre><br><br>If you create a class that extends one of these classes and if your class implements custom validation logic by overriding the <code>validate()</code> method, you must call <code>super.validate()</code> in your <code>validate()</code> implementation. If you do not, the Validation Framework cannot check the contents of the form against a validation form. In other words, the validation framework will be disabled for the given form.<br><br>Disabling the validation framework for a form exposes the application to numerous types of attacks. Unchecked input is the root cause of vulnerabilities like cross-site scripting, process control, and SQL injection. Although J2EE applications are not generally susceptible to memory corruption attacks, if a J2EE application interfaces with native code that does not perform array bounds checking, an attacker may be able to use an input validation mistake in the J2EE application to launch a buffer overflow attack.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 103</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[6] T. Husted et al. <em>Struts in Action: Building Web Applications with the Leading Java Framework</em> Manning Publications<br></p>
+																									   <p>[7]  <em>The Struts project</em> The Apache Foundation<br></p>
+																														

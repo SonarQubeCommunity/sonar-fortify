@@ -1,0 +1,19 @@
+
+							<!-- desc.dataflow.java.denial_of_service_regex_evaluation -->						
+							<h1>
+							   Code Correctness: Regular Expressions Denial of Service
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Untrusted data is passed to the application and used as a regular expression.  This can cause the thread to over-consume CPU resources.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  There is a vulnerability in implementations of regular expression evaluators and related methods that can cause the thread to hang when evaluating repeating and alternating overlappting of nested and repeated regex groups. This defect can be used to execute a DOS (Denial of Service) attack.<br>		<b>Example:</b><br>		<pre><br>		(e+)+<br>		([a-zA-Z]+)*<br>		(e|ee)+<br>		</pre><br>		There are no known regular expression implementation which are immune to this vulnerability.  All platforms and languages are vulnerable to this attack.<br>	
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 185</em> <br></p>
+																									   <p>[3] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 020</em> <br></p>
+																									   <p>[4] Bryan Sullivan <em>Regular Expression Denial of Service Attacks and Defenses</em> <br></p>
+																														

@@ -1,0 +1,26 @@
+
+							<!-- desc.semantic.java.ldap_injection -->						
+							<h1>
+							   LDAP Injection
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Constructing a dynamic LDAP filter with user input could allow an attacker to modify the statement's meaning.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  LDAP injection errors occur when:<br><br>1.	Data enters a program from an untrusted source.<br><br>In this case HP Fortify Static Code Analyzer could not determine that the source of the data is trusted.<br><br>2.	The data is used to dynamically construct a LDAP filter. <br><br><b>Example 1:</b> The following code dynamically constructs and executes an LDAP query that retrieves records for all the employees who report to a given manager. The manager's name is read from an HTTP request, and is therefore untrusted. <br><br><pre><br>...<br>DirContext ctx = new InitialDirContext(env);<br><br>String managerName = request.getParameter("managerName");<br><br>//retrieve all of the employees who report to a manager<br><br>String filter = "(manager=" + managerName + ")";<br><br>NamingEnumeration employees = ctx.search("ou=People,dc=example,dc=com",<br>        			                 filter);<br>... <br></pre><br><br>Under normal conditions, such as searching for employees who report to the manager John Smith, the filter that this code executes will look like the following:<br><br><pre><br>(manager=Smith, John)<br></pre><br><br>However, because the filter is constructed dynamically by concatenating a constant base query string and a user input string, the query only behaves correctly if <code>managerName</code> does not contain any LDAP meta characters. If an attacker enters the string <code>Hacker, Wiley)(|(objectclass=*)</code> for <code>managerName</code>, then the query becomes the following:<br><br><pre><br>(manager=Hacker, Wiley)(|(objectclass=*))<br></pre><br><br>Based on the permissions with which the query is executed, the addition of the <code>|(objectclass=*)</code> condition causes the filter to match against all entries in the directory, and allows the attacker to retrieve information about the entire pool of users. Depending on the permissions with which the LDAP query is performed, the breadth of this attack may be limited, but if the attacker can control the command structure of the query, such an attack can at least affect all records that the user the LDAP query is executed as can access.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 90</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>LDAP Injection</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

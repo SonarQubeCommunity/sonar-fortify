@@ -1,0 +1,21 @@
+
+							<!-- desc.structural.java.unreleased_resource_android_camera -->						
+							<h1>
+							   Unreleased Resource: Android Camera
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  An Android activity fails to release the <code>Camera</code> instance in its <code>onPause()</code>, <code>onStop()</code>, or <code>onDestroy()</code> event handlers.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Android activity allocates a <code>Camera</code> instance that is not released in <code>onPause()</code>, <code>onStop()</code>, or <code>onDestroy()</code> callback. The Android OS invokes these callbacks whenever it needs to send the current activity to the background, or when it needs to temporarily destroy the activity when system resources are low. By failing to release the <code>Camera</code> object properly, the activity prevents other applications (or even future instances of the same application) from accessing the camera. Furthermore, maintaining possession of the <code>Camera</code> instance while the activity is paused can negatively impact the user's experience by unnecessarily draining the battery.<br><br><b>Example:</b> The following code describes an Android activity that does not override the base <code>onPause()</code> method, which should be used to release the <code>Camera</code> object, nor does it properly release it during its shutdown sequence.<br><br><pre><br>public class UnreleasedCameraActivity extends Activity {<br>  private Camera cam;<br><br>  @Override<br>  public void onCreate(Bundle state) {<br>      ...<br>  }<br><br>  @Override<br>  public void onRestart() {<br>      ...<br>  }<br><br>  @Override<br>  public void onStop() {<br>      cam.stopPreview();<br>  }<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3]  <em>Camera, Android Developers</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 404, CWE ID 619</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 404</em> <br></p>
+																														

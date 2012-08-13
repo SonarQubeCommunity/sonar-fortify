@@ -1,0 +1,21 @@
+
+							<!-- desc.semantic.java.castor_bad_practices_unspecified_query_mode -->						
+							<h1>
+							   Castor Bad Practices: Unspecified Query Mode
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The Castor query does not explicitly define a query mode.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By default Castor executes queries in shared mode. Since shared mode allows both read and write access, it is unclear what kind of operation the query is intended for. If the object is going to be used in a read-only context, shared access adds unnecessary performance overhead.<br><br><b>Example 1:</b> The following example does not specify a query mode.<br><pre><br>results = query.execute();    //missing query mode<br></pre><br><br>    
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3500 CAT II</em> <br></p>
+																									   <p>[2] ExoLab Group <em>Castor JDO - Best practice</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
+																									   <p>[4] ExoLab Group, Intalio Inc., and Contributors <em>Database (Castor JavaDoc)</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 7.1.1</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 7.1.1</em> <br></p>
+																														

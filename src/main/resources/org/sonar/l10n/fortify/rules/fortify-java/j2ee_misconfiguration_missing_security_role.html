@@ -1,0 +1,21 @@
+
+							<!-- desc.config.java.j2ee_misconfiguration_missing_security_role -->						
+							<h1>
+							   J2EE Misconfiguration: Missing Security Role
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  A security constraint that references a non-existent <code>role-name</code> prevents legitimate access to all resources it protects.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A missing <code>security-role</code> for a <code>role-name</code> defined in an <code>auth-constraint</code> could indicate an out-of-date configuration. <br><br><br><br><b>Example 1:</b> The following example specifies a <code>role-name</code>, but does not define it in a <code>security-role</code>.<br><pre><br>&lt;security-constraint&gt;<br>    &lt;web-resource-collection&gt;<br>         &lt;web-resource-name&gt;AdminPage&lt;/web-resource-name&gt;<br>         &lt;description&gt;Admin only pages&lt;/description&gt;<br>         &lt;url-pattern&gt;/auth/noaccess/*&lt;/url-pattern&gt;<br>    &lt;/web-resource-collection&gt;<br><br>    &lt;auth-constraint&gt;<br>        &lt;description&gt;Administrators only&lt;/description&gt;<br>        &lt;role-name&gt;admin&lt;/role-name&gt;<br>    &lt;/auth-constraint&gt;<br><br>    &lt;user-data-constraint&gt;<br>        &lt;transport-guarantee&gt;INTEGRAL&lt;/transport-guarantee&gt;<br>    &lt;/user-data-constraint&gt;<br>&lt;/security-constraint&gt;<br></pre><br>            
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
+																									   <p>[5] Sun Microsystems, Inc. <em>Java Servlet Specification 2.4</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

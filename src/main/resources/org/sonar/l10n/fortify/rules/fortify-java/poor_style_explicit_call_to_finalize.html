@@ -1,0 +1,16 @@
+
+							<!-- desc.structural.java.poor_style_explicit_call_to_finalize -->						
+							<h1>
+							   Poor Style: Explicit Call to finalize()
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The <code>finalize()</code> method should only be called by the JVM after the object has been garbage collected.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  While the Java Language Specification allows an object's <code>finalize()</code> method to be called from outside the finalizer, doing so is usually a bad idea. For example, calling <code>finalize()</code> explicitly means that <code>finalize()</code> will be called more than once: the first time will be the explicit call and the last time will be the call that is made after the object is garbage collected.<br><br><b>Example 1:</b>  The following code fragment calls <code>finalize()</code> explicitly:<br><br><pre><br>// time to clean up<br>widget.finalize();<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 586</em> <br></p>
+																														

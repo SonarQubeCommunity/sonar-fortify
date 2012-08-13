@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.poor_logging_practice_logger_is_not_declared_static_final -->						
+							<h1>
+							   Poor Logging Practice: Logger Not Declared Static Final
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Declare loggers to be static and final.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is good programming practice to share a single logger object between all of the instances of a particular class and to use the same logger for the duration of the program.<br><br><b>Example 1:</b> The following statement errantly declares a non-static logger.<br><br><pre><br>private final Logger logger =     <br>            Logger.getLogger(MyClass.class);<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																														

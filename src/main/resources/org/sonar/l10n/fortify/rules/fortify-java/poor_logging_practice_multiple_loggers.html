@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.poor_logging_practice_multiple_loggers -->						
+							<h1>
+							   Poor Logging Practice: Multiple Loggers
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Use logging levels rather than multiple loggers in a single class.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Good logging practice dictates the use of a single logger for each class.<br><br><b>Example 1:</b> The following code errantly declares multiple loggers.<br><br><pre><br>public class MyClass {<br>  private final static Logger good =     <br>            Logger.getLogger(MyClass.class);<br>  private final static Logger bad =     <br>            Logger.getLogger(MyClass.class);<br>  private final static Logger ugly =     <br>            Logger.getLogger(MyClass.class);<br>  ...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																														

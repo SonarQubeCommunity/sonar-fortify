@@ -1,0 +1,17 @@
+
+							<!-- desc.controlflow.java.code_correctness_multiple_stream_commits -->						
+							<h1>
+							   Code Correctness: Multiple Stream Commits
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  After a servlet's output stream has already been committed, it is erroneous to reset the stream buffer or perform any other action that recommits to the stream. Likewise, it is erroneous to call <code>getWriter()</code> after calling <code>getOutputStream</code> or vice versa.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Forwarding an <code>HttpServletRequest</code>, redirecting an <code>HttpServletResponse</code>, or flushing the servlet's output stream buffer causes the associated stream to commit. Any subsequent buffer resets or stream commits, such as additional flushes or redirects, will result in <code>IllegalStateException</code>s.<br><br>Furthermore, Java servlets allow data to be written to the response stream using either <code>ServletOutputStream</code> or <code>PrintWriter</code>, but not both. Calling <code>getWriter()</code> after having called <code>getOutputStream()</code>, or vice versa, will also cause an <code>IllegalStateException</code>.<br><br><br><br>At runtime, an <code>IllegalStateException</code> prevents the response handler from running to completion, effectively dropping the response. This can cause server instability, which is a sign of an improperly implemented servlet.<br><br><b>Example 1:</b> The following code redirects the servlet response after its output stream buffer has been flushed.<br><pre><br>public class RedirectServlet extends HttpServlet {<br>    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {<br>        ...<br>        OutputStream out = res.getOutputStream();<br>        ...<br>        // flushes, and thereby commits, the output stream<br>        out.flush();<br>        out.close();        // redirecting the response causes an IllegalStateException<br>        res.sendRedirect("http://www.acme.com");<br>    }<br>}<br></pre><br><br><b>Example 2:</b> Conversely, the following code attempts to write to and flush the <code>PrintWriter</code>'s buffer after the request has been forwarded.<br><pre><br>public class FlushServlet extends HttpServlet {<br>    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {<br>        ...<br>        // forwards the request, implicitly committing the stream<br>        getServletConfig().getServletContext().getRequestDispatcher("/jsp/boom.jsp").forward(req, res);<br>        ...<br><br>        // IllegalStateException; cannot redirect after forwarding<br>        res.sendRedirect("http://www.acme.com/jsp/boomboom.jsp");<br><br>        PrintWriter out = res.getWriter();<br><br>        // writing to an already-committed stream will not cause an exception,<br>        // but will not apply these changes to the final output, either<br>        out.print("Writing here does nothing");<br><br>        // IllegalStateException; cannot flush a response's buffer after forwarding the request<br>        out.flush();<br>        out.close();<br>    }<br>}<br></pre><br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[2]  <em>IllegalStateException in a Servlet - when &amp; why do we get?</em> <br></p>
+																														

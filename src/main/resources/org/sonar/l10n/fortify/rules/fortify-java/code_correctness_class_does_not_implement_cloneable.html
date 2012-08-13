@@ -1,0 +1,19 @@
+
+							<!-- desc.structural.java.code_correctness_class_does_not_implement_cloneable -->						
+							<h1>
+							   Code Correctness: Class Does Not Implement Cloneable
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This class implements a <code>clone()</code> method but does not implement the <code>Cloneable</code> interface.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It appears that the programmer intended for this class to implement the <code>Cloneable</code> interface because it implements a method named <code>clone()</code>. However, the class does not implement the <code>Cloneable</code> interface and the <code>clone()</code> method will not behave correctly. <br><br><b>Example 1:</b> Calling <code>clone()</code> for this class will result in a <code>CloneNotSupportedException.</code><br><br><pre><br>public class Kibitzer {<br>  public Object clone() throws CloneNotSupportedException {<br>    ... <br>  }<br>}<br><br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 498</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

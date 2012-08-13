@@ -1,0 +1,23 @@
+
+							<!-- desc.config.java.axis2_service_requester_misconfiguration_unsigned_outbound_timestamp -->						
+							<h1>
+							   Axis 2 Service Requester Misconfiguration: Unsigned Outbound Timestamp
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  An unsigned timestamp can leave a SOAP message open to tampering and replay attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A Security timestamp indicates a message's freshness. If an attacker intercepts a message retransmits it at a later time, the receiver can reject the replay attack because the timestamp will indicate that the message is stale. Optionally, timestamps can include an expiration attribute which places a hard limit on how long security semantics are valid.<br><br>To prevent attackers from tampering with timestamps, timestamps should be signed. Without a signed timestamp, an attacker can intercept a SOAP message, modify the timestamp, and send the message on without the receiver's knowledge. Under these circumstances, an attacker can potentially trick a recipient into accepting a malicious message.<br><br>The following client configuration tells Axis 2 to send unsigned timestamps:<br><pre><br>&lt;axisconfig name=&quot;AxisJava2.0&quot;&gt;<br>...<br>	&lt;parameter name=&quot;OutflowSecurity&quot;&gt;<br>		&lt;action&gt;<br>			&lt;items&gt;Timestamp Encrypt&lt;/items&gt;<br>			...<br>		&lt;/action&gt;<br>	&lt;/parameter&gt;<br>&lt;/axisconfig&gt;<br></pre><br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 345</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7]  <em>Securing SOAP Messages with Rampart</em> Apache Software Foundation<br></p>
+																									   <p>[8]  <em>Web Sericces Security: SOAP Message Security 1.1</em> OASIS<br></p>
+																														

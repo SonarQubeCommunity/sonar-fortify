@@ -1,0 +1,16 @@
+
+							<!-- desc.structural.java.poor_style_empty_synchronized_block -->						
+							<h1>
+							   Poor Style: Empty Synchronized Block
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This synchronized block contains no statements; it is unlikely the synchronization achieves the intended effect.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Synchronization in Java can be tricky. An empty synchronized block is often a sign that a programmer is wrestling with synchronization but has not yet achieved the result they intend.<br><br><b>Example:</b> <br><br><pre><br>synchronized(this) { }<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 585</em> <br></p>
+																														

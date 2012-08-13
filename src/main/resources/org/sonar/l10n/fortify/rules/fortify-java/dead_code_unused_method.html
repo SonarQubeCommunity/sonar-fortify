@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.dead_code_unused_method -->						
+							<h1>
+							   Dead Code: Unused Method
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This method is not reachable from any method outside the class.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  This method is never called or is only called from other dead code.<br><br><b>Example 1:</b> In the following class, the method <code>doWork()</code> can never be called.<br><br><pre><br>public class Dead {<br>  private void doWork() {<br>    System.out.println("doing work");<br>  }<br>  public static void main(String[] args) {<br>    System.out.println("running Dead");<br>  }<br>}<br></pre><br><br><b>Example 2:</b> In the following class, two private methods call each other, but since neither one is ever invoked from anywhere else, they are both dead code.<br><br><pre><br>public class DoubleDead {<br>  private void doTweedledee() {<br>    doTweedledumb();<br>  }<br>  private void doTweedledumb() {<br>    doTweedledee();<br>  }<br>  public static void main(String[] args) {<br>    System.out.println("running DoubleDead");<br>  }<br>}<br></pre><br><br>(In this case it is a good thing that the methods are dead: invoking either one would cause an infinite loop.)
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3050 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 561</em> <br></p>
+																														

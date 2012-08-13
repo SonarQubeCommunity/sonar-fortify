@@ -1,0 +1,24 @@
+
+							<!-- desc.dataflow.java.xml_injection -->						
+							<h1>
+							   XML Injection
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Writing unvalidated data into an XML document can allow an attacker to change the structure and contents of the XML.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  XML injection occurs when:<br><br>1. Data enters a program from an untrusted source.<br><br>2. The data is written to an XML document. <br><br>Applications typically use XML to store data or send messages. When used to store data, XML documents are often treated like databases and can potentially contain sensitive information. XML messages are often used in web services and can also be used to transmit sensitive information. XML message can even be used to send authentication credentials.<br><br>The semantics of XML documents and messages can be altered if an attacker has the ability to write raw XML. In the most benign case, an attacker might be able to insert extraneous tags and cause an XML parser to throw an exception. In more nefarious cases of XML injection, an attacker might be able to add XML elements that change authentication credentials or modify prices in an XML e-commerce database. In some cases, XML injection can lead to Cross-Site Scripting or Dynamic Code Evaluation.<br><br><b>Example 1:</b> <br><br>Assume an attacker is able to control <code>shoes</code> in following XML.<br><pre><br>&lt;order&gt;<br>   &lt;price&gt;100.00&lt;/price&gt;<br>   &lt;item&gt;shoes&lt;/item&gt;<br>&lt;/order&gt;<br></pre><br><br>Now imagine this XML is included in a back end web service request to place an order for a pair of shoes. Suppose the attacker modifies his request and replaces <code>shoes</code> with <code>shoes&lt;/item&gt;&lt;price&gt;1.00&lt;/price&gt;&lt;item&gt;shoes</code>. The new XML would look like:<pre><br>&lt;order&gt;   &lt;price&gt;100.00&lt;/price&gt;   &lt;item&gt;shoes&lt;/item&gt;&lt;price&gt;1.00&lt;/price&gt;&lt;item&gt;shoes&lt;/item&gt;&lt;/order&gt;<br></pre><br><br>When using SAX parsers, the value from the second <code>&lt;price&gt;</code> overrides the value from the first <code>&lt;price&gt;</code> tag. This allows the attacker to purchase a pair of $100 shoes for $1.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3810 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 91</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[9] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

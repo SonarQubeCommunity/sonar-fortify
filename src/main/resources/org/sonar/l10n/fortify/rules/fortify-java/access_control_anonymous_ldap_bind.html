@@ -1,0 +1,27 @@
+
+							<!-- desc.dataflow.java.access_control_anonymous_ldap_bind -->						
+							<h1>
+							   Access Control: Anonymous LDAP Bind
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Without proper access control, executing an LDAP statement that contains a user-controlled value can allow an attacker to access unauthorized records.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Executing LDAP queries under an anonymous bind, effectively without authentication, can allow an attacker to abuse a poorly configured LDAP environment. <br><br><b>Example 1:</b> The following code creates the <code>DirContext ctx</code> using an anonymous bind. <br><br><pre><br>...<br>env.put(Context.SECURITY_AUTHENTICATION, "none");<br>DirContext ctx = new InitialDirContext(env);<br>...<br></pre><br><br>All LDAP queries executed against <code>ctx</code> will be performed without authentication and access control. An attacker might be able to manipulate one of these queries in an unexpected way to gain access to records that would otherwise be protected by the directory's access control mechanism.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A10 Failure to Restrict URL Access</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A8 Failure to Restrict URL Access</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3480.1 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 285</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
+																									   <p>[8] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 285</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 285</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.10, Requirement 7.2</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.2, Requirement 7.2</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8, Requirement 7.2</em> <br></p>
+																														

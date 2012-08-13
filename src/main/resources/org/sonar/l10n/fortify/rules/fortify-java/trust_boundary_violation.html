@@ -1,0 +1,22 @@
+
+							<!-- desc.dataflow.java.trust_boundary_violation -->						
+							<h1>
+							   Trust Boundary Violation
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Commingling trusted and untrusted data in the same data structure encourages programmers to mistakenly trust unvalidated data.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A trust boundary can be thought of as line drawn through a program. On one side of the line, data is untrusted. On the other side of the line, data is assumed to be trustworthy. The purpose of validation logic is to allow data to safely cross the trust boundary--to move from untrusted to trusted.<br><br>A trust boundary violation occurs when a program blurs the line between what is trusted and what is untrusted. The most common way to make this mistake is to allow trusted and untrusted data to commingle in the same data structure. <br><br><br><br><b>Example:</b> The following Java code accepts an HTTP request and stores the <code>usrname</code> parameter in the HTTP session object before checking to ensure that the user has been authenticated.<br><br><pre><br>usrname = request.getParameter("usrname");<br>if (session.getAttribute(ATTR_USR) == null) {<br>    session.setAttribute(ATTR_USR, usrname);<br>} <br></pre><br><br>Without well-established and maintained trust boundaries, programmers will inevitably lose track of which pieces of data have been validated and which have not. This confusion will eventually allow some data to be used without first being validated.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 501</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[6] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[7] M. Howard, D. LeBlanc <em>Writing Secure Code, Second Edition</em> Microsoft Press<br></p>
+																														

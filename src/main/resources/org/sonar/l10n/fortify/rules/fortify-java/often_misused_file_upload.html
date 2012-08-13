@@ -1,0 +1,26 @@
+
+							<!-- desc.structural.java.often_misused_file_upload -->						
+							<h1>
+							   Often Misused: File Upload
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Permitting users to upload files can allow attackers to inject dangerous content or malicious code to run on the server.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Regardless of the language a program is written in, the most devastating attacks often involve remote code execution, whereby an attacker succeeds in executing malicious code in the program's context. If attackers are allowed to upload files to a directory that is accessible from the Web and cause these files to be passed to a code interpreter (e.g. JSP/ASPX/PHP), then they can cause malicious code contained in these files to execute on the server.<br><br><b>Example:</b> The following Struts 2 action class implements a setter than can be used to handle uploaded files.<br><pre><br>public class Struts2Upload extends ActionSupport<br>{<br>    ...<br>    private File uploadFile;<br>    public void setUploadFile(File file)<br>    {<br>        uploadFile = file;<br>    }<br>    ...<br>}<br></pre><br><br>Even if a program stores uploaded files under a directory that isn't accessible from the Web, attackers might still be able to leverage the ability to introduce malicious content into the server environment to mount other attacks. If the program is susceptible to path manipulation, command injection, or dangerous file inclusion vulnerabilities, then an attacker might upload a file with malicious content and cause the program to read or execute it by exploiting another vulnerability.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A3 Malicious File Execution</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 434</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 434</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.3</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[10] Alla Bezroutchko <em>Secure file upload in PHP web applications</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

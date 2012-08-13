@@ -1,0 +1,23 @@
+
+							<!-- desc.structural.java.singleton_member_field_race_condition -->						
+							<h1>
+							   Race Condition: Singleton Member Field
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Servlet member fields might allow one user to see another user's data.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Many Servlet developers do not understand that a Servlet is a singleton. There is only one instance of the Servlet, and that single instance is used and re-used to handle multiple requests that are processed simultaneously by different threads. <br><br>A common result of this misunderstanding is that developers use Servlet member fields in such a way that one user may inadvertently see another user's data. In other words, storing user data in Servlet member fields introduces a data access race condition.<br><br><b>Example 1:</b> The following Servlet stores the value of a request parameter in a member field and then later echoes the parameter value to the response output stream.<br><br><pre><br>public class GuestBook extends HttpServlet {<br><br>   String name;<br><br>   protected void doPost (HttpServletRequest req,<br>                       HttpServletResponse res) {<br>     name = req.getParameter("name");<br>     ...<br>     out.println(name + ", thanks for visiting!");<br>   }<br>}<br></pre><br><br>While this code will work perfectly in a single-user environment, if two users access the Servlet at approximately the same time, it is possible for the two request handler threads to interleave in the following way:<br><br>	Thread 1:	assign "<code>Dick</code>" to <code>name</code><br>	Thread 2:	assign "<code>Jane</code>" to <code>name</code><br>	Thread 1:	print "<code>Jane, thanks for visiting!</code>"<br>	Thread 2:	print "<code>Jane, thanks for visiting!</code>"<br><br> Thereby showing the first user the second user's name.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3630.1 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 362, CWE ID 488</em> <br></p>
+																									   <p>[4] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 362</em> <br></p>
+																									   <p>[5] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 362</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[8]  <em>The Java Servlet Specification</em> Sun Microsystems<br></p>
+																														

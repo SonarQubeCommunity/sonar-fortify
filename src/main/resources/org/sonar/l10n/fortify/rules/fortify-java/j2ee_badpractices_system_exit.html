@@ -1,0 +1,19 @@
+
+							<!-- desc.semantic.java.j2ee_badpractices_system_exit -->						
+							<h1>
+							   J2EE Bad Practices: System.exit
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  A web application should not attempt to shut down its container.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is never a good idea for a web application to attempt to shut down the application container. A call to <code>System.exit()</code> is probably part of leftover debug code or code imported from a non-J2EE application.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 382</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

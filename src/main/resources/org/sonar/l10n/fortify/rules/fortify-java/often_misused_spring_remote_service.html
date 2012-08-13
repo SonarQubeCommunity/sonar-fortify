@@ -1,0 +1,20 @@
+
+							<!-- desc.configuration.java.often_misused_spring_remote_service -->						
+							<h1>
+							   Often Misused: Spring Remote Service
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Remote services are configured in the Spring application.  By default, these remote services do not require authentication and information transferred to or from this service is in clear text.   This could allow an attacker to access privileged operations or expose sensitive data.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  <br>Spring provides an easy mechanism to turn any Spring managed bean into an object that is exposed externally via RMI, HTTP, Burlap, Hessian, and JMX protocols.  Any public method of the remoted Spring bean can be called externally and the data being passed between the client and the remoted objects are in clear text.  The major problem with these services is that they are open by default and provide no guarantees of confidentiality or integrity out of the box.    <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Anirvan Chakraborty , Jessica Ditt , Aleksa Vukotic , Jan Machacek <em>ProSpring 2.5</em> <br></p>
+																									   <p>[2] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1, Requirement 6.5.10</em> <br></p>
+																									   <p>[3] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.4, Requirement 6.5.8</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4, Requirement 6.5.9</em> <br></p>
+																									   <p>[5] Gary Mak , Daniel Rubio , Josh Long <em>Spring Recipes</em> <br></p>
+																														

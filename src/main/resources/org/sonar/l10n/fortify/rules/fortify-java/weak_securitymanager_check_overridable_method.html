@@ -1,0 +1,18 @@
+
+							<!-- desc.structural.java.weak_securitymanager_check_overridable_method -->						
+							<h1>
+							   Weak SecurityManager Check: Overridable Method
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Non-final methods that perform security checks can be overridden in ways that bypass security checks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  If a method is overriden by a child class, the child class can bypass security checks in the parent class. <br><b>Example 1:</b> In the following code, <code>doSecurityCheck()</code> performs a security check and can be overriden by a child class.<br><pre><br>public class BadSecurityCheck {<br>private int id;<br><br>public BadSecurityCheck() {<br>    doSecurityCheck();    <br>    id = 1;<br>}<br>protected void doSecurityCheck() {<br>    SecurityManager sm = System.getSecurityManager();<br>    if (sm != null) {<br>        sm.checkPermission(new SomePermission("SomeAction"));<br>    }<br>}<br>}<br></pre><br><br>        
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 358</em> <br></p>
+																									   <p>[2]  <em>M. S. Ware, "Writing secure Java code: taxonomy of heuristics and an evaluation of static analysis tools," M.S. Thesis, James Madison University, 2008.</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
+																														

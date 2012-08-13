@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.poor_style_non-final_public_static_field -->						
+							<h1>
+							   Poor Style: Non-final Public Static Field
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Non-final public static fields can be changed by external classes.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Typically, you do not want to provide external classes direct access to your object's member fields since a public field can be changed by any external class. Good object oriented designed uses encapsulation to prevent implementation details, such as member fields, from being exposed to other classes. Further, if the system assumes that this field cannot be changed, then malicious code might be able to adversly change the behavior of the system.<br>'<br><b>Example 1:</b> In the following code, the field <code>ERROR_CODE</code> is declared as public and static, but not final:<br><br><pre><br>public class MyClass<br>{<br>public static int ERROR_CODE = 100;<br>//...<br>}</pre><br><br>In this case, malicious code might be able to change this error code and cause the program to behave in an unexpected manner.<br>                <br><br>            
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 493</em> <br></p>
+																									   <p>[2] Sun Microsystems, Inc. <em>Secure Coding Guidelines for the Java Programming Language, version 2.0</em> <br></p>
+																														

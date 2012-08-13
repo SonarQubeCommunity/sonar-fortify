@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.code_correctness_erroneous_finalize_method -->						
+							<h1>
+							   Code Correctness: Erroneous finalize() Method
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This <code>finalize()</code> method should call <code>super.finalize()</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Java Language Specification states that it is a good practice for a <code>finalize()</code> method to call <code>super.finalize()</code> [1].<br><br><b>Example 1:</b>  The following method omits the call to <code>super.finalize()</code>.<br><br><pre><br>protected void finalize() {<br>  discardNative();<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 568</em> <br></p>
+																									   <p>[2] J. Gosling, B. Joy, G. Steele, G. Bracha <em>The Java Language Specification, Second Edition</em> Addison-Wesley<br></p>
+																														

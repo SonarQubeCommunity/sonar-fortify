@@ -1,0 +1,24 @@
+
+							<!-- desc.structural.java.poor_error_handling_throw_inside_finally -->						
+							<h1>
+							   Poor Error Handling: Throw Inside Finally
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Using a <code>throw</code> statement inside a <code>finally</code> block breaks the logical progression through the <code>try-catch-finally</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  In Java, <code>finally</code> blocks are always executed after their corresponding <code>try-catch</code> blocks and are often used to free allocated resources, such as file handles or database cursors. Throwing an exception in a <code>finally</code> block can bypass critical cleanup code since normal program execution will be disrupted. <br>            <br><b>Example 1:</b> In the following code, the call to <code>stmt.close()</code> is bypassed when the <code>FileNotFoundException</code> is thrown.<br><pre><br>public void processTransaction(Connection conn) throws FileNotFoundException<br>{<br>FileInputStream fis = null;<br>Statement stmt = null;<br>try<br>{<br>    stmt = conn.createStatement();<br>    fis = new FileInputStream("badFile.txt");<br>    ...<br>}<br>catch (FileNotFoundException fe)<br>{<br>    log("File not found.");<br>}<br>catch (SQLException se)<br>{<br>    //handle error<br>}<br>finally<br>{<br>    if (fis == null)<br>    {<br>        throw new FileNotFoundException();<br>    }<br><br>    if (stmt != null)<br>    {<br>        try<br>        {<br>            stmt.close();<br>        }<br>        catch (SQLException e)<br>        {<br>            log(e);<br>        }<br>    }<br>}<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A7 Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[6] Sun Microsystems, Inc. <em>Java Sun Tutorial</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.2, Requirement 6.5.6</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.7</em> <br></p>
+																														

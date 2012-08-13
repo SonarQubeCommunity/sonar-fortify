@@ -1,0 +1,21 @@
+
+							<!-- desc.structural.java.unreleased_resource_android_sqlite_database -->						
+							<h1>
+							   Unreleased Resource: Android SQLite Database
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  An Android activity fails to release the Android database handler in its <code>onPause()</code>, <code>onStop()</code>, or <code>onDestroy()</code> event handlers.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Android activity maintains an Android SQLite database handler that is not closed in <code>onPause()</code>, <code>onStop()</code>, or <code>onDestroy()</code> callback. The Android OS invokes these callbacks whenever it needs to send the current activity to the background, or when it needs to temporarily destroy the activity when system resources are low. By failing to close the database properly, the activity can potentially exhaust the device of available cursors if the activity is constantly restarted. In addition, depending on the implementation, the Android operating system can also throws <code>DatabaseObjectNotClosedException</code>, which crashes the application if the exception is not caught.<br>        <br><b>Example:</b> The following code describes an Android activity that caches user data and writes the data to disk when the activity is stopped. Note that does not override the base <code>onPause()</code>, which should be used to release the database object, nor does it properly release it during its shutdown sequence.<br><br><pre><br>public class MyDBHelper extends SQLiteOpenHelper {<br>  ...<br>}<br><br>public class UnreleasedDBActivity extends Activity {<br>  private myDBHelper dbHelper;<br>  private SQLiteDatabase db;<br><br>  @Override<br>  public void onCreate(Bundle state) {<br>      ...<br>      db = dbHelper.getWritableDatabase();<br>      ...<br>  }<br><br>  @Override<br>  public void onRestart() {<br>      ...<br>  }<br><br>  @Override<br>  public void onStop() {<br>      db.insert(cached_data);     // flush cached data<br>  }<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 404, CWE ID 619</em> <br></p>
+																									   <p>[4]  <em>Data Storage, Android Developers</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 404</em> <br></p>
+																														

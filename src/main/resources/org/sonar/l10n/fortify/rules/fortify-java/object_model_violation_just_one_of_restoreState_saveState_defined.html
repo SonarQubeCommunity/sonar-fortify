@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.object_model_violation_just_one_of_restoreState_saveState_defined -->						
+							<h1>
+							   Object Model Violation: Just one of restoreState() and saveState() Defined
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  This class overrides only one of <code>saveState()</code> and <code>restoreState()</code>.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							   <br>Any class that inherits the StateHolder interface must implement both <code>saveState(javax.faces.context.FacesContext)</code> and <code>restoreState(javax.faces.context.FacesContext, java.lang.Object)</code> or implement neither of them. Because these two methods have a tightly coupled relationship, it is not permissible to to have the <code>saveState(javax.faces.context.FacesContext)</code> and <code>restoreState(javax.faces.context.FacesContext, java.lang.Object)</code> methods reside at different levels of the inheritance hierarchy.<br><br>The following class defines <code>saveState()</code> and not <code>restoreState()</code>, so it is always in error no matter what any class that extends<br>it might do.<br><pre><br>public class KibitzState implements StateHolder {<br>  public Object saveState(FacesContext fc) {<br>    ...<br>  }<br>}<br></pre><br>  
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 398</em> <br></p>
+																									   <p>[2] Sun Microsystems <em>JavaDoc for StateHolder Interface</em> <br></p>
+																														

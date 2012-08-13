@@ -1,0 +1,19 @@
+
+							<!-- desc.controlflow.java.missing_check_against_null -->						
+							<h1>
+							   Missing Check against Null
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can dereference a null pointer because it does not check the return value of a function that might return null.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Just about every serious attack on a software system begins with the violation of a programmer's assumptions. After the attack, the programmer's assumptions seem flimsy and poorly founded, but before an attack many programmers would defend their assumptions well past the end of their lunch break.<br><br>Two dubious assumptions that are easy to spot in code are "this function call can never fail" and "it doesn't matter if this function call fails". When a programmer ignores the return value from a function, they implicitly state that they are operating under one of these assumptions.<br><br><br><br><b>Example 1:</b>  The following code does not check to see if the string returned by <code>getParameter()</code> is null before calling the member function <code>compareTo()</code>, potentially causing a null dereference. <br><br><pre><br>String itemName = request.getParameter(ITEM_NAME);<br>	if (itemName.compareTo(IMPORTANT_ITEM)) {<br>		...<br>	}<br>	...<br></pre><br><br><b>Example 2:</b>. The following code shows a system property that is set to null and later dereferenced by a programmer who mistakenly assumes it will always be defined. <br><br><pre><br>System.clearProperty("os.name");<br>...<br>String os = System.getProperty("os.name");<br>if (os.equalsIgnoreCase("Windows 95") )<br>	System.out.println("Not supported");<br></pre><br><br>The traditional defense of this coding error is: <br><br>"I know the requested value will always exist because.... If it does not exist, the program cannot perform the desired behavior so it doesn't matter whether I handle the error or simply allow the program to die dereferencing a null value." <br><br>But attackers are skilled at finding unexpected paths through programs, particularly when exceptions are involved. <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II, APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 253, CWE ID 690</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

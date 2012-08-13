@@ -1,0 +1,28 @@
+
+							<!-- desc.config.java.axis2_service_requester_misconfiguration_missing_inbound_encryption -->						
+							<h1>
+							   Axis 2 Service Requester Misconfiguration: Missing Inbound Encryption
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Unencrypted messages fail to protect confidentiality.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Encryption at the SOAP message level ensures true end-to-end confidentiality. SOAP messages can be sent over a number transport protocols such as HTTPS, HTTP, TCP, SMTP, UDP, etc. Message-level encryption ensures the confidentiality of the message regardless of the transport protocol. A common scenario among web services is to relay SOAP messages between services, so message-level encryption means message senders and receivers do not need to worry about all transport security between any relay points.<br> <br>The following Apache Axis 2 Rampart client configuration does not require inbound messages to be encrypted since the <code>&lt;items&gt;</code> tag does not contain an <code>Encrypt</code> directive:<br><pre><br>&lt;service&gt;<br>...<br>	&lt;parameter name=&quot;InflowSecurity&quot;&gt;<br>		&lt;action&gt;<br>			&lt;items&gt;Timestamp Signature&lt;/items&gt;<br>			...<br>		&lt;/action&gt;<br>	&lt;/parameter&gt;<br>&lt;/service&gt;<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A9 Insecure Communications</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A9 Insufficient Transport Layer Protection</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 311</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 319</em> <br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 311</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 4.1, Requirement 6.3.1.4, Requirement 6.5.9</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 4.1, Requirement 6.5.10</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 4.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[13]  <em>Securing SOAP Messages with Rampart</em> Apache Software Foundation<br></p>
+																														

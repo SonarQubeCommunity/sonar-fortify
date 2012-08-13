@@ -1,0 +1,18 @@
+
+							<!-- desc.structural.java.immutable_public_mutable_fields -->						
+							<h1>
+							   Immutable Classes: Public Mutable Fields
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  <Paragraph>The class <Replace key="EnclosingClass.name"/> is annotated as immutable, but field <Replace key="$f.name$"/> is <code>public</code> and mutable.</Paragraph>
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  This class has been annotated with the annotation Immutable, from the JCIP annotations package. A public field of a mutable type allows code external to the class to modify the contents and violate the immutability of the class.<br><br><b>Example 1:</b> The following code for an immutable final class mistakenly declares a Set <code>public</code> and <code>final</code>.<br><br><pre><br>@Immutable<br>public final class ThreeStooges {<br>public final Set stooges = new HashSet();<br>...<br>}<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 471</em> <br></p>
+																									   <p>[2] B. Goetz <em>Java Concurrency in Practice. Chapter 3: Sharing Objects Guidelines</em> <br></p>
+																									   <p>[3]  <em>Package net.jcip.annotations Specification</em> <br></p>
+																														

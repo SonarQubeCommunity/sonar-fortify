@@ -1,0 +1,23 @@
+
+							<!-- desc.structural.java.poor_error_handling_return_inside_finally -->						
+							<h1>
+							   Poor Error Handling: Return Inside Finally
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Returning from inside a finally block will cause exceptions to be lost.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A return statement inside a finally block will cause any exception that might be thrown in the try block to be discarded.<br><br><b>Example 1:</b> In the following code excerpt, the <code>MagicException</code> thrown by the second call to <code>doMagic</code> with <code>true</code> passed to it will never be delivered to the caller. The return statement inside the finally block will cause the exception to be discarded.<br><br><pre><br>public class MagicTrick {<br><br>public static class MagicException extends Exception { }<br><br>public static void main(String[] args) {<br><br>  System.out.println("Watch as this magical code makes an " +<br>                     "exception disappear before your very eyes!");<br><br>  System.out.println("First, the kind of exception handling " +<br>                     "you're used to:");<br>  try {<br>    doMagic(false);<br>  } catch (MagicException e) {<br>    // An exception will be caught here<br>    e.printStackTrace();<br>  }<br> <br>  System.out.println("Now, the magic:");<br>  try {<br>    doMagic(true);<br>  } catch (MagicException e) {<br>    // No exception caught here, the finally block ate it<br>    e.printStackTrace(); <br>  }<br>  System.out.println("tada!");<br>}<br><br>public static void doMagic(boolean returnFromFinally)<br>throws MagicException {<br><br>  try {<br>    throw new MagicException();<br>  }<br>  finally {<br>    if (returnFromFinally) {<br>      return;<br>    }<br>  }<br>}<br><br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A7 Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3120 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 584</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.2, Requirement 6.5.6</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.7</em> <br></p>
+																														

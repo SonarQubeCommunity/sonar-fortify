@@ -1,0 +1,16 @@
+
+							<!-- desc.structural.java.adf_faces_bad_practices_unsecure_attribute -->						
+							<h1>
+							   ADF Faces Bad Practices: unsecure Attribute
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The <code>unsecure</code> attribute specifies a list of attributes whose values can be set on the client.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The values of attributes for Oracle ADF Faces components can ordinarily be set only on the server. However, a number of components allow the developer to define a list of attributes that can be set on the client. <code>unsecure</code> attribute of these components can specify such a list.<br><br>Currently, the only attribute that can appear inside the <code>unsecure</code> attribute is <code>disabled</code>, and it allows the client to define which components are enabled and which ones are not. It is never a good idea to let the client control the values of attributes that should only be settable on the server.<br><br><b>Example:</b> The following code demonstrates an <code>inputText</code> component that collects password information from the user and uses the <code>unsecure</code> attribute.<br><br><pre><br>...<br>    &lt;af:inputText id="pwdBox"<br>                  label="#{resources.PWD}"<br>                  value=""#{userBean.password}<br>                  unsecure="disabled"<br>                  secret="true"<br>                  required="true"/&gt;<br>...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em>Oracle ADF Faces Tag Reference</em> <br></p>
+																														

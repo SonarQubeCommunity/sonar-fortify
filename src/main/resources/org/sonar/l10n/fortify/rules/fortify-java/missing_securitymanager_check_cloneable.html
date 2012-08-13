@@ -1,0 +1,18 @@
+
+							<!-- desc.structural.java.missing_securitymanager_check_cloneable -->						
+							<h1>
+							   Missing SecurityManager Check: Cloneable
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  A cloneable class that performs this check in its constructor needs to perform the same check in its <code>clone()</code> method.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  When a class's <code>clone()</code> method is invoked, the constructor for the class being cloned is not invoked. Thus, if a SecurityManager or AccessController check is present in the constructor of a cloneable class, the same check must also be present in the clone method of the class. Otherwise, the security check will be bypassed when the class is cloned.<br><br><b>Example 1:</b> The following code contains a <code>SecurityManager</code> check in the constructor but not in the <code>clone()</code> method.<br><pre><br>public class BadSecurityCheck implements Cloneable {<br><br>private int id;<br><br>public BadSecurityCheck() {<br>    SecurityManager sm = System.getSecurityManager();<br>    if (sm != null) {<br>        sm.checkPermission(new BadPermission("BadSecurityCheck"));<br>    }<br>    id = 1;<br>}<br><br>public Object clone() throws CloneNotSupportedException {<br>    BadSecurityCheck bsm = (BadSecurityCheck)super.clone();<br>    return null;<br>}<br>}<br></pre><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em>"Secure Coding Guidelines for the Java Programming Language, version 2.0" Sun Microsystems, Inc. [Online]. [Accessed: Aug. 30, 2007].</em> Sun Microsystems, Inc.<br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 358</em> <br></p>
+																									   <p>[3] C. Lai <em>Java Insecurity: Accounting for Subtleties That Can Compromise Code</em> <br></p>
+																														

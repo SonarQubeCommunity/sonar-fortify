@@ -1,0 +1,24 @@
+
+							<!-- desc.dataflow.java.file_disclosure_struts -->						
+							<h1>
+							   File Disclosure: Struts
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Constructing a server-side redirect path with user input could allow an attacker to download application binaries (including application classes or jar files) or view arbitrary files within protected directories.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A file disclosure occur when:<br>1. Data enters a program from an untrusted source.<br><br><br>2. The data is used to dynamically construct a path. <br><br><br><br><b>Example 1:</b> The following code takes untrusted data and uses it to build a path which is used in a server side forward. <br><br><pre><br>...<br>	String returnURL = request.getParameter("returnURL");<br>	return new ActionForward(returnURL); <br>	...<br></pre><br><br>If an attacker provided a URL with the request parameter matching a sensitive file location, they would be able to view that file. For example, &quot;http://www.yourcorp.com/webApp/logic?returnURL=WEB-INF/applicationContext.xml&quot; would allow them to view the applicationContext.xml of the application. <br>Once the attacker had the applicationContext.xml, they could locate and download other configuration files referenced in the applicationContext.xml or even class or jar files. This would allow attackers to gain sensitive infomation about an application and target it for other types of attack.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 552</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[8] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 073</em> <br></p>
+																									   <p>[9] Ryan Berg and Dinis Cruz <em>Two Security Vulnerabilities in the Spring Framework's MVC</em> <br></p>
+																														

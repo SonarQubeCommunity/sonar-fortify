@@ -1,0 +1,20 @@
+
+							<!-- desc.dataflow.java.privilege_management_amazon_web_services_unchecked_permissions -->						
+							<h1>
+							   Privilege Management: Amazon Web Services Unchecked Permissions
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Unchecked arguments to methods that control permissions or access control lists can allow attackers to access sensitive data.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Attackers can exploit vulnerabilities in unchecked permissions in the following way:<br><br>1. Data enters the application from an untrusted source.<br><br>2. The data is used to represent the user or group identifier, list of permissions, or the resource to which the permission is applied, without undergoing any prior sanity checks. The application then uses this non-sanitized data to edit permission settings.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
+																									   <p>[5] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Improper Access Control - CWE ID 285</em> <br></p>
+																														

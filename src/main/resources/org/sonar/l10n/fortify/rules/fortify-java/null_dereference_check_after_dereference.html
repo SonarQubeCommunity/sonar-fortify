@@ -1,0 +1,19 @@
+
+							<!-- desc.internal.java.null_dereference_check_after_dereference -->						
+							<h1>
+							   Redundant Null Check
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program can potentially dereference a null pointer, thereby causing a null pointer exception.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Null pointer exceptions usually occur when one or more of the programmer's assumptions is violated. A check-after-dereference error occurs when a program dereferences an object that can be null before checking if the object is null.<br><br>Most null pointer issues result in general software reliability problems, but if attackers can intentionally trigger a null pointer dereference, they can use the resulting exception to bypass security logic or to cause the application to reveal debugging information that will be valuable in planning subsequent attacks.<br><br><b>Example:</b> In the following code, the programmer assumes that the variable <code>foo</code> is not <code>null</code> and confirms this assumption by dereferencing the object. However, the programmer later contradicts the assumption by checking <code>foo</code> against <code>null</code>. If <code>foo</code> can be <code>null</code> when it is checked in the <code>if</code> statement then it can also be <code>null</code> when it is dereferenced and might cause a null pointer exception. Either the dereference is unsafe or the subsequent check is unnecessary. <br><br><pre><br>foo.setBar(val);<br>...<br>if (foo != null) {<br>	...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 476</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.ejb_bad_practices_use_of_sockets -->						
+							<h1>
+							   EJB Bad Practices: Use of Sockets
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The program violates the Enterprise JavaBeans specification by using sockets.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Enterprise JavaBeans specification requires that every bean provider follow a set of programming guidelines designed to ensure that the bean will be portable and behave consistently in any EJB container [1]. <br><br>In this case, the program violates the following EJB guideline:<br><br>"An enterprise bean must not attempt to listen on a socket, accept connections on a socket, or use a socket for multicast."<br><br>A requirement that the specification justifies in the following way: <br><br>"The EJB architecture allows an enterprise bean instance to be a network socket client, but it does not allow it to be a network server. Allowing the instance to become a network server would conflict with the basic function of the enterprise bean-- to serve the EJB clients."
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 577</em> <br></p>
+																									   <p>[2]  <em>The Enterprise JavaBeans 2.1 Specification</em> Sun Microsystems<br></p>
+																														

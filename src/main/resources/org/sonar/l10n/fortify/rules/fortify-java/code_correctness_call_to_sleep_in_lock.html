@@ -1,0 +1,19 @@
+
+							<!-- desc.controlflow.java.code_correctness_call_to_sleep_in_lock -->						
+							<h1>
+							   Code Correctness: Call to sleep() in Lock
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Calling <code>sleep()</code> while holding a lock can cause a loss of performance and might cause a deadlock.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  If multiple threads are trying to obtain a lock on a resource, calling <code>sleep()</code> while holding a lock can cause all of the other threads to wait for the resource to be released, which can result in degraded performance and deadlock. <br><br><b>Example 1:</b> The following code calls <code>sleep()</code> while holding a lock.<br><pre><br>ReentrantLock rl = new ReentrantLock();<br>...<br>rl.lock();<br>Thread.sleep(500);<br>...<br>rl.unlock();<br></pre>		<br>                
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 557</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

@@ -1,0 +1,22 @@
+
+							<!-- desc.config.java.j2ee_misconfiguration_missing_authentication_method -->						
+							<h1>
+							   J2EE Misconfiguration: Missing Authentication Method
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Security and authorization constraints will fail without a login configuration.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>&lt;login-config&gt;</code> element is used to configure how users authenticate to an application. A missing authentication method means the application does not know how to apply authorization constraints since no one can log in. The authentication method is specified using the <code>&lt;auth-method&gt;</code> tag, which is a child of <code>&lt;login-config&gt;</code>.<br><br>There are four authentication methods: <code>BASIC</code>, <code>FORM</code>, <code>DIGEST</code>, and <code>CLIENT_CERT</code>.<br><br><code>BASIC</code> denotes HTTP Basic authentication.<br><code>FORM</code> denotes Form-based authentication.<br><code>DIGEST</code> is like BASIC authentication; however, in DIGEST the password is encrypted.<br><code>CLIENT_CERT</code> requires that clients have Public Key Certificates and use SSL/TLS.<br><br><br><br><b>Example 1:</b> The following configuration does not specifiy a login configuration.<br><pre><br>&lt;web-app&gt;<br><br>    &lt;!-- servlet declarations --&gt;<br>    &lt;servlet&gt;...&lt;/servlet&gt;<br><br>    &lt;!-- servlet mappings--&gt;<br>    &lt;servlet-mapping&gt;...&lt;/servlet-mapping&gt;<br><br>    &lt;!-- security-constraints--&gt;<br>    &lt;security-constraint&gt;...&lt;/security-constraint&gt;<br><br>    &lt;!-- login-config goes here --&gt;<br><br>    &lt;!-- security-roles --&gt;<br>    &lt;security-role&gt;...&lt;/security-role&gt;<br><br>&lt;/web-app&gt;<br></pre><br>            
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[5] Sun Microsystems, Inc. <em>Java Servlet Specification 2.4</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[7] Sun Microsystems, Inc. <em>Specifying an Authentication Mechanism</em> <br></p>
+																														

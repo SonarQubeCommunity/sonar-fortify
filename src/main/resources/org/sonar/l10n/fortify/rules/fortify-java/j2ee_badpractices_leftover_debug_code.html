@@ -1,0 +1,20 @@
+
+							<!-- desc.structural.java.j2ee_badpractices_leftover_debug_code -->						
+							<h1>
+							   J2EE Bad Practices: Leftover Debug Code
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Debug code can create unintended entry points in a deployed web application.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A common development practice is to add "back door" code specifically designed for debugging or testing purposes that is not intended to be shipped or deployed with the application. When this sort of debug code is accidentally left in the application, the application is open to unintended modes of interaction. These back door entry points create security risks because they are not considered during design or testing and fall outside of the expected operating conditions of the application.<br><br>The most common example of forgotten debug code is a <code>main()</code> method appearing in a web application. Although this is an acceptable practice during product development, classes that are part of a production J2EE application should not define a <code>main()</code>.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 489</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																														

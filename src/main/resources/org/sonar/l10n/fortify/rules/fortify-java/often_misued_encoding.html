@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.often_misued_encoding -->						
+							<h1>
+							   Often Misused: Encoding
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  <br>It is easy to believe that this encoding method will protect against injection attacks, but if the method is not used in exactly the right context, it can offer much less protection than it advertises.<br><br>    <b>Example 1:</b> The following encoding call allows an attacker quite a bit of latitude for insering malicious JavaScript:<br><pre><br>    out.println("x = " + encoder.encodeForJavaScript(input) + ";");<br></pre><br><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 176</em> <br></p>
+																									   <p>[2] OWASP <em>ESAPI Secure Coding Guideline</em> <br></p>
+																														

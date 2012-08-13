@@ -1,0 +1,17 @@
+
+							<!-- desc.structural.java.code_correctness_double_checked_locking -->						
+							<h1>
+							   Code Correctness: Double-Checked Locking
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Double-checked locking is an incorrect idiom that does not achieve the intended effect.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Many talented individuals have spent a great deal of time pondering ways to make double-checked locking work in order to improve performance. None have succeeded. <br><br><b>Example 1:</b> At first blush it may seem that the following bit of code achieves thread safety while avoiding unnecessary synchronization.<br><br><pre><br>if (fitz == null) {<br>  synchronized (this) {<br>    if (fitz == null) {<br>      fitz = new Fitzer();<br>    }<br>  }<br>}<br>return fitz;<br></pre><br><br>The programmer wants to guarantee that only one <code>Fitzer()</code> object is ever allocated, but does not want to pay the cost of synchronization every time this code is called. This idiom is known as double-checked locking.<br><br>Unfortunately, it does not work, and multiple <code>Fitzer()</code> objects can be allocated. See The "Double-Checked Locking is Broken" Declaration for more details [1].
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 609</em> <br></p>
+																									   <p>[2] D. Bacon et al. <em>The "Double-Checked Locking is Broken" Declaration</em> <br></p>
+																														

@@ -1,0 +1,21 @@
+
+							<!-- desc.structural.java.system_information_leak_html_comment_in_jsp -->						
+							<h1>
+							   System Information Leak: HTML Comment in JSP
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Any information revealed in an HTML comment might help an adversary learn about the system and form a plan of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  HTML comments provide an attacker with an easy source of information about a dynamically generated web page.<br><br><b>Example 1:</b><br><br><pre><br>&lt;!-- TBD: this needs a security audit --&gt;<br>&lt;form method="POST" action="recalcOrbit"&gt;<br>...<br></pre><br><br>Even comments that seem innocuous may be useful to someone trying to understand the way the system is built.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 615</em> <br></p>
+																									   <p>[4] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																														

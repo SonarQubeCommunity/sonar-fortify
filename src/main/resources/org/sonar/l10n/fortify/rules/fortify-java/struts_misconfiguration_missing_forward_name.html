@@ -1,0 +1,16 @@
+
+							<!-- desc.config.java.struts_misconfiguration_missing_forward_name -->						
+							<h1>
+							   Struts Misconfiguration: Missing Forward Name
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  A <code>&lt;forward&gt;</code> tag with a missing <code>name</code> attribute often indicates leftover debug code or a typographical error.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A <code>&lt;forward&gt;</code> tag must have <code>name</code> and <code>path</code> attributes. Without a name, the <code>forward</code> will never be used.<br>                    <br><b>Example 1:</b> The following <code>&lt;forward&gt;</code> tag has an empty <code>name</code> attribute. <br><pre><br>    &lt;forward name="" path="/results.jsp"/&gt;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em>Apache Struts 1.3 Specification</em> <br></p>
+																														

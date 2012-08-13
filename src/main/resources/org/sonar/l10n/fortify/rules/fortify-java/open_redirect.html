@@ -1,0 +1,24 @@
+
+							<!-- desc.dataflow.java.open_redirect -->						
+							<h1>
+							   Open Redirect
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Redirects allow web applications to direct users to different pages within the same application or to external sites. Applications utilize redirects to aid in site navigation and, in some cases, to track how users exit the site. Open redirect vulnerabilities occur when a web application redirects clients to any arbitrary URL that can be controlled by an attacker. <br><br>Attackers can utilize open redirects to trick users into visiting a URL to a trusted site and redirecting them to a malicious site. By encoding the URL, an attacker can make it more difficult for end-users to notice the malicious destination of the redirect, even when it is passed as a URL parameter to the trusted site. Open redirects are often abused as part of phishing scams to harvest sensitive end-user data.<br><br><br><br><br><b>Example 1:</b> The following JSP code instructs the user's browser to open a URL parsed from the <code>dest</code> request parameter when a user clicks the link. <br><br><pre><br>    &lt;%<br>        ...<br>        String strDest = request.getParameter("dest");<br>        pageContext.forward(strDest);<br>        ...<br>    %&gt;<br></pre><br><br>If a victim received an email instructing the user to follow a link to &quot;http://trusted.example.com/ecommerce/redirect.asp?dest=www.wilyhacker.com&quot;, the user would likely click on the link believing they would be transferred to the trusted site. However, when the user clicks the link, the code above will redirect the browser to &quot;http://www.wilyhacker.com&quot;. <br><br>Many users have been educated to always inspect URLs they receive in emails to make sure the link specifies a trusted site they know. However, if the attacker Hex encoded the destination url as follows:<br> &quot;http://trusted.example.com/ecommerce/redirect.asp?dest=%77%69%6C%79%68%61%63%6B%65%72%2E%63%6F%6D&quot;<br><br>then even a savvy end-user may be fooled into following the link.      <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A10 Unvalidated Redirects and Forwards</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Content Spoofing</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 601</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 601</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																														

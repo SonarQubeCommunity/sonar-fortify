@@ -1,0 +1,20 @@
+
+							<!-- desc.controlflow.java.android_bad_practices_use_of_released_sqlite_resource -->						
+							<h1>
+							   Android Bad Practices: Use of Released SQLite Resource
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The code references the Android database handler after it has already been released.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The code attempts to use the Android SQLite database handler after the it has already been closed. Any further references to the handler without re-establishing the database connection will throw an exception, and can cause the application to crash if the exception is not caught.<br><br><b>Example:</b> The following code might be from a program that caches user values temporarily in memory, but can call <code>flushUpdates()</code> to commit the changes to disk. The method properly closes the database handler after writing updates to the database. However, when <code>flushUpdates()</code> is called again, the database object is referenced again before reinitializing it.<br><br><pre><br>public class ReuseDBActivity extends Activity {<br>  private myDBHelper dbHelper;<br>  private SQLiteDatabase db;<br><br>  @Override<br>  public void onCreate(Bundle state) {<br>      ...<br>      db = dbHelper.getWritableDatabase();<br>      ...<br>  }<br>  ...<br><br>  private void flushUpdates() {<br>      db.insert(cached_data);     // flush cached data<br>      dbHelper.close();<br>  }<br>  ...<br>}<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 416</em> <br></p>
+																									   <p>[4]  <em>Data Storage, Android Developers</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																														

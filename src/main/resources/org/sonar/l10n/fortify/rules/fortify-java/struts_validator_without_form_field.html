@@ -1,0 +1,23 @@
+
+							<!-- desc.config.java.struts_validator_without_form_field -->						
+							<h1>
+							   Struts: Validator Without Form Field
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Validation fields that do not appear in forms they are associated with indicate that the validation logic is out of date.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is easy for developers to forget to update validation logic when they make changes to an <code>ActionForm</code> class. One indication that validation logic is not being properly maintained is inconsistencies between the action form and the validation form. <br><br><b>Example 1.a:</b> An action form with two fields.<br><br><pre><br>    public class DateRangeForm extends ValidatorForm {<br>    String startDate, endDate;<br>    public void setStartDate(String startDate) {<br>        this.startDate = startDate;<br>    }<br>    public void setEndDate(String endDate) {<br>        this.endDate = endDate;<br>    }<br>}<br></pre><br><br>Example 1.a shows an action form that has two fields, <code>startDate</code> and <code>endDate</code>. <br><br><b>Example 1.b:</b> A validation form with a third field.<br><br><pre><br>&lt;form name="DateRangeForm"&gt;<br>    &lt;field property="startDate" depends="date"&gt;<br>        &lt;arg0 key="start.date"/&gt;<br>    &lt;/field&gt;<br>    &lt;field property="endDate" depends="date"&gt;<br>         &lt;arg0 key="end.date"/&gt;<br>    &lt;/field&gt;<br>    &lt;field property="scale" depends="integer"&gt;<br>         &lt;arg0 key="range.scale"/&gt;<br>    &lt;/field&gt;<br>&lt;/form&gt;<br></pre><br><br>Example 1.b lists a validation form for the action form. The validation form lists a third field: <code>scale</code>. The presence of the third field suggests that <code>DateRangeForm</code> was modified without taking validation into account.<br><br>It is critically important that validation logic be maintained and kept in sync with the rest of the application. Unchecked input is the root cause of some of today's worst and most common software security problems. Cross-site scripting, SQL injection, and process control vulnerabilities all stem from incomplete or absent input validation. Although J2EE applications are not generally susceptible to memory corruption attacks, if a J2EE application interfaces with native code that does not perform array bounds checking, an attacker may be able to use an input validation mistake in the J2EE application to launch a buffer overflow attack. <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 110</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7] T. Husted et al. <em>Struts in Action: Building Web Applications with the Leading Java Framework</em> Manning Publications<br></p>
+																									   <p>[8]  <em>The Struts project</em> The Apache Foundation<br></p>
+																														
