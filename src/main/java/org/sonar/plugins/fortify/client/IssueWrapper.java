@@ -19,6 +19,8 @@
  */
 package org.sonar.plugins.fortify.client;
 
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Strings;
 import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
 
 public class IssueWrapper {
@@ -81,6 +83,19 @@ public class IssueWrapper {
   public IssueWrapper setClassName(String s) {
     this.className = s;
     return this;
+  }
+
+  public String getTextAbstract() {
+    return sanitizeHtml(htmlAbstract);
+  }
+
+  @VisibleForTesting
+  static String sanitizeHtml(String html) {
+    if (!Strings.isNullOrEmpty(html)) {
+      return html.replaceAll("\\<font[^>]*>","").replaceAll("\\</font[^>]*>","");
+
+    }
+    return html;
   }
 
   static IssueWrapper create(IssueInstance fortifyIssue) {

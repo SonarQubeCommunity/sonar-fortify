@@ -72,7 +72,7 @@ public class IssueSensor implements Sensor {
         }
         Violation violation = Violation.create(activeRule, resource);
         violation.setLineId(issue.getLine());
-        violation.setMessage(issue.getHtmlAbstract());
+        violation.setMessage(issue.getTextAbstract());
         sensorContext.saveViolation(violation);
       }
     }

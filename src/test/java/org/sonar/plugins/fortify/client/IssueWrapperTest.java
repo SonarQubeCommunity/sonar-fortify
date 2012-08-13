@@ -43,10 +43,41 @@ public class IssueWrapperTest {
 
     IssueWrapper issue = IssueWrapper.create(fortifyIssue);
     assertThat(issue.getHtmlAbstract()).isNull();
+    assertThat(issue.getTextAbstract()).isNull();
     assertThat(issue.getLine()).isEqualTo(3);
     assertThat(issue.getRuleConfigKey()).isEqualTo("SQL Injection");
     assertThat(issue.getFilePath()).isEqualTo("src/main/java/foo/Callee.java");
     assertThat(issue.getPackageName()).isEqualTo("foo");
     assertThat(issue.getClassName()).isEqualTo("Callee");
+  }
+
+  @Test
+  public void test_abstract() {
+    IssueInstance fortifyIssue = new IssueInstance();
+    InstanceInfo instanceInfo = new InstanceInfo();
+    IssueLocation location = new IssueLocation();
+    location.setLineNumber(3);
+    location.setSourceFilePath("src/main/java/foo/Caller.java");
+    location.setFilePath("src/main/java/foo/Callee.java");
+    instanceInfo.setIssueLocation(location);
+    fortifyIssue.setInstanceInfo(instanceInfo);
+    IssueWrapper issue = IssueWrapper.create(fortifyIssue);
+
+    issue.setHtmlAbstract("this is the html abstract");
+    assertThat(issue.getHtmlAbstract()).isEqualTo("this is the html abstract");
+    assertThat(issue.getTextAbstract()).isEqualTo(issue.getHtmlAbstract());
+
+    issue.setHtmlAbstract("this is the <font color='#ddd'>html</font> abstract");
+    assertThat(issue.getHtmlAbstract()).isEqualTo("this is the <font color='#ddd'>html</font> abstract");
+    assertThat(issue.getTextAbstract()).isEqualTo("this is the html abstract");
+  }
+
+  @Test
+  public void should_sanitize_html_abstract() {
+    assertThat(IssueWrapper.sanitizeHtml(null)).isEqualTo(null);
+    assertThat(IssueWrapper.sanitizeHtml("")).isEqualTo("");
+    assertThat(IssueWrapper.sanitizeHtml("foo")).isEqualTo("foo");
+    assertThat(IssueWrapper.sanitizeHtml("The method <font color='#669FD5'>_jspService()</font> in <font color='#669FD5'>test.jsp</font> sends unvalidated data to a web browser"))
+      .isEqualTo("The method _jspService() in test.jsp sends unvalidated data to a web browser");
   }
 }
