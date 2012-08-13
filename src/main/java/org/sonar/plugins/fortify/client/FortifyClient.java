@@ -31,6 +31,7 @@ import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
 import org.apache.ws.security.WSConstants;
 import org.apache.ws.security.handler.WSHandlerConstants;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
@@ -45,6 +46,7 @@ import java.util.Map;
 
 public class FortifyClient implements BatchExtension {
 
+  private static final Logger LOG = LoggerFactory.getLogger(FortifyClient.class);
   private final Settings settings;
   private Services services;
 
@@ -59,12 +61,19 @@ public class FortifyClient implements BatchExtension {
   }
 
   public void start() {
-    String url = settings.getString(FortifyConstants.PROPERTY_URL);
-    if (settings.getBoolean(FortifyConstants.PROPERTY_ENABLE) && !Strings.isNullOrEmpty(url)) {
-      String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
-      String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
-      JaxWsProxyFactoryBean factory = initCxf(url, login, password);
-      services = factory.create(Services.class);
+    if (!settings.getBoolean(FortifyConstants.PROPERTY_ENABLE)) {
+      LOG.info("Import of Fortify report is disabled (see " + FortifyConstants.PROPERTY_ENABLE + ")");
+    } else {
+      String url = settings.getString(FortifyConstants.PROPERTY_URL);
+      if (Strings.isNullOrEmpty(url)) {
+        LOG.info("Fortify SSC Server URL is missing. Please check the property " + FortifyConstants.PROPERTY_URL);
+      } else {
+        LOG.info("Import of Fortify report is enabled. SSC Server is: " + url);
+        String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
+        String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
+        JaxWsProxyFactoryBean factory = initCxf(url, login, password);
+        services = factory.create(Services.class);
+      }
     }
   }
 
