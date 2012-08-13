@@ -74,17 +74,28 @@ public class FortifyClientTest {
   }
 
   @Test
-  public void should_be_enabled_if_no_url() {
+  public void should_be_enabled_if_url_is_set() {
     Settings settings = new Settings();
     settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
-    settings.setProperty(FortifyConstants.PROPERTY_LOGIN, "admin");
-    settings.setProperty(FortifyConstants.PROPERTY_PASSWORD, "<password>");
 
     FortifyClient client = new FortifyClient(settings);
     client.start();
 
     assertThat(client.isEnabled()).isTrue();
     assertThat(client.getServices()).isNotNull();
+  }
+
+  @Test
+  public void should_be_disabled_if_explicitly_skipped() {
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
+    settings.setProperty(FortifyConstants.PROPERTY_SKIP, "true");
+
+    FortifyClient client = new FortifyClient(settings);
+    client.start();
+
+    assertThat(client.isEnabled()).isFalse();
+    assertThat(client.getServices()).isNull();
   }
 
   @Test
@@ -235,5 +246,4 @@ public class FortifyClientTest {
       assertThat(measure.getSnapshot().getDate().getYear()).isEqualTo(2012);
     }
   }
-
 }

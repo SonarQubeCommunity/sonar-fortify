@@ -23,6 +23,7 @@ public interface FortifyConstants {
   String PROPERTY_URL = "sonar.fortify.sscUrl";
   String PROPERTY_LOGIN = "sonar.fortify.sscLogin.secured";
   String PROPERTY_PASSWORD = "sonar.fortify.sscPassword.secured";
+  String PROPERTY_SKIP = "sonar.fortify.skip";
 
   String PROPERTY_PROJECT_NAME = "sonar.fortify.projectName";
   String PROPERTY_PROJECT_VERSION = "sonar.fortify.projectVersion";

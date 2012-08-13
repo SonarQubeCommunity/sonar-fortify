@@ -41,6 +41,7 @@ import java.util.List;
   @Property(key = FortifyConstants.PROPERTY_URL, name = "SSC URL"),
   @Property(key = FortifyConstants.PROPERTY_LOGIN, name = "SSC Login"),
   @Property(key = FortifyConstants.PROPERTY_PASSWORD, name = "SSC Password", type = PropertyType.PASSWORD),
+  @Property(key = FortifyConstants.PROPERTY_SKIP, name = "Skip Fortify Import", type = PropertyType.BOOLEAN, defaultValue = "false"),
 
   // optional project properties
   @Property(key = FortifyConstants.PROPERTY_PROJECT_NAME, name = "Fortify Project Name", global = false, project = true),
