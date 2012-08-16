@@ -93,11 +93,6 @@ public class FortifyClient implements BatchExtension {
     Map<String, Object> inProps = Maps.newHashMap();
     inProps.put(WSHandlerConstants.ACTION, "Timestamp");
     factory.getInInterceptors().add(new WSS4JInInterceptor(inProps));
-
-    if (LoggerFactory.getLogger(FortifyClient.class).isDebugEnabled()) {
-      factory.getInInterceptors().add(new LoggingInInterceptor());
-      factory.getOutInterceptors().add(new LoggingOutInterceptor());
-    }
     return factory;
   }
 
