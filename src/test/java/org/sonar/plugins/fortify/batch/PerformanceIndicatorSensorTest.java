@@ -34,7 +34,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyList;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 public class PerformanceIndicatorSensorTest {
 
@@ -60,6 +65,21 @@ public class PerformanceIndicatorSensorTest {
     PerformanceIndicatorSensor sensor = new PerformanceIndicatorSensor(client, fortifyProject);
 
     assertThat(sensor.shouldExecuteOnProject(sonarProject)).isFalse();
+  }
+
+  @Test
+  public void should_not_import_indicators_on_modules() {
+    FortifyClient client = mock(FortifyClient.class);
+    FortifyProject fortifyProject = mock(FortifyProject.class);
+    when(fortifyProject.exists()).thenReturn(true);
+
+    PerformanceIndicatorSensor sensor = new PerformanceIndicatorSensor(client, fortifyProject);
+
+    Project parent = new Project("parent");
+    Project module = new Project("module");
+    module.setParent(parent);
+
+    assertThat(sensor.shouldExecuteOnProject(module)).isFalse();
   }
 
   @Test

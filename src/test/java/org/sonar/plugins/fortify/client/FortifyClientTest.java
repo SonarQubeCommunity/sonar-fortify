@@ -19,7 +19,14 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.schema.fws.*;
+import com.fortify.schema.fws.CreateAuditSessionRequest;
+import com.fortify.schema.fws.InvalidateAuditSessionRequest;
+import com.fortify.schema.fws.IssueListRequest;
+import com.fortify.schema.fws.MeasurementHistoryListRequest;
+import com.fortify.schema.fws.MeasurementHistoryListResponse;
+import com.fortify.schema.fws.Services;
+import com.fortify.schema.fws.VariableHistoryListRequest;
+import com.fortify.schema.fws.VariableHistoryListResponse;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
 import org.apache.ws.security.handler.WSHandlerConstants;
@@ -37,12 +44,17 @@ import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.argThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class FortifyClientTest {
 
