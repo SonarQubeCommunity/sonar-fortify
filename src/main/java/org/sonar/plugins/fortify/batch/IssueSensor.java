@@ -24,7 +24,12 @@ import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.resources.*;
+import org.sonar.api.resources.File;
+import org.sonar.api.resources.Java;
+import org.sonar.api.resources.JavaFile;
+import org.sonar.api.resources.Project;
+import org.sonar.api.resources.ProjectFileSystem;
+import org.sonar.api.resources.Resource;
 import org.sonar.api.rules.ActiveRule;
 import org.sonar.api.rules.Violation;
 import org.sonar.plugins.fortify.base.FortifyRuleRepository;
@@ -61,19 +66,19 @@ public class IssueSensor implements Sensor {
     String repositoryKey = FortifyRuleRepository.fortifyRepositoryKey(project.getLanguageKey());
 
     // TODO optimization : load only the issues on enabled rules -> that would prevent from requesting details on issues to be ignored.
+    // But that's not possible through Fortify SOAP services
     Collection<IssueWrapper> issues = client.getIssues(fortifyProject.getVersionId());
     LoggerFactory.getLogger(IssueSensor.class).info("Loading " + issues.size() + " Fortify issues");
     for (IssueWrapper issue : issues) {
       ActiveRule activeRule = profile.getActiveRuleByConfigKey(repositoryKey, issue.getRuleConfigKey());
       if (activeRule != null) {
         Resource resource = resourceMatcher.resourceOf(issue, project.getFileSystem());
-        if (!sensorContext.isIndexed(resource, true)) {
-          resource = null;
+        if (sensorContext.isIndexed(resource, false)) {
+          Violation violation = Violation.create(activeRule, resource);
+          violation.setLineId(issue.getLine());
+          violation.setMessage(issue.getTextAbstract());
+          sensorContext.saveViolation(violation);
         }
-        Violation violation = Violation.create(activeRule, resource);
-        violation.setLineId(issue.getLine());
-        violation.setMessage(issue.getTextAbstract());
-        sensorContext.saveViolation(violation);
       }
     }
 

@@ -25,6 +25,8 @@ import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Project;
+import org.sonar.api.resources.ProjectUtils;
+import org.sonar.api.resources.ResourceUtils;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
@@ -44,7 +46,7 @@ public class PerformanceIndicatorSensor implements Sensor {
   }
 
   public boolean shouldExecuteOnProject(Project project) {
-    return fortifyProject.exists();
+    return ResourceUtils.isRootProject(project) && fortifyProject.exists();
   }
 
   public void analyse(Project project, SensorContext sensorContext) {

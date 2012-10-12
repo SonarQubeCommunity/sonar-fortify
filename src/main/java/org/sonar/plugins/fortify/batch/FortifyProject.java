@@ -54,7 +54,7 @@ public class FortifyProject implements BatchExtension {
   }
 
   public void start() {
-    if (Qualifiers.PROJECT.equals(sonarProject.getQualifier()) && client.isEnabled()) {
+    if (client.isEnabled()) {
       name = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
       version = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
       versionId = initProjectVersionId(client, name, version);

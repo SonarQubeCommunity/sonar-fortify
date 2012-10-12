@@ -78,7 +78,7 @@ public class FortifyProjectTest {
   }
 
   @Test
-  public void should_not_match_modules() {
+  public void should_match_modules() {
     org.sonar.api.resources.Project sonarProject = new org.sonar.api.resources.Project("org.codehaus.sonar:sonar-parent");
     sonarProject.setName("Sonar Parent");
     sonarProject.setAnalysisVersion("3.3");
@@ -91,8 +91,8 @@ public class FortifyProjectTest {
     FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarModule, new Settings());
     fortifyProject.start();
 
-    assertThat(fortifyProject.exists()).isFalse();
-    assertThat(fortifyProject.getVersionId()).isNull();
+    assertThat(fortifyProject.exists()).isTrue();
+    assertThat(fortifyProject.getVersionId()).isEqualTo(20002L);
   }
 
   @Test
