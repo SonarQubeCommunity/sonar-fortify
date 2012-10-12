@@ -61,7 +61,7 @@ import java.util.Map;
 public class FortifyClient implements BatchExtension {
 
   private static final Logger LOG = LoggerFactory.getLogger(FortifyClient.class);
-  private static final int HTTP_TIMEOUT = 60 * 60 * 1000;
+  private static final int HTTP_TIMEOUT_MILLISEC = 60 * 60 * 1000;
 
   private final Settings settings;
   private Services services;
@@ -100,8 +100,8 @@ public class FortifyClient implements BatchExtension {
     if (client != null) {
       HTTPConduit conduit = (HTTPConduit) client.getConduit();
       HTTPClientPolicy policy = new HTTPClientPolicy();
-      policy.setConnectionTimeout(HTTP_TIMEOUT);
-      policy.setReceiveTimeout(HTTP_TIMEOUT);
+      policy.setConnectionTimeout(HTTP_TIMEOUT_MILLISEC);
+      policy.setReceiveTimeout(HTTP_TIMEOUT_MILLISEC);
       conduit.setClient(policy);
     }
   }
