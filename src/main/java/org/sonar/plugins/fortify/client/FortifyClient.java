@@ -19,12 +19,23 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.schema.fws.*;
+import com.fortify.schema.fws.CreateAuditSessionRequest;
+import com.fortify.schema.fws.DescriptionAndRecommendationRequest;
+import com.fortify.schema.fws.DescriptionAndRecommendationResponse;
+import com.fortify.schema.fws.InvalidateAuditSessionRequest;
+import com.fortify.schema.fws.IssueListRequest;
+import com.fortify.schema.fws.MeasurementHistoryListRequest;
+import com.fortify.schema.fws.Services;
+import com.fortify.schema.fws.VariableHistoryListRequest;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.apache.cxf.endpoint.Client;
+import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.apache.cxf.transport.http.HTTPConduit;
+import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
 import org.apache.ws.security.WSConstants;
@@ -36,15 +47,22 @@ import org.sonar.api.config.Settings;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
 import xmlns.www_fortify_com.schema.issuemanagement.IssueListDescription;
-import xmlns.www_fortifysoftware_com.schema.wstypes.*;
+import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
+import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
+import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectIdentifier;
+import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
+import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
 
 import javax.annotation.Nullable;
+
 import java.util.List;
 import java.util.Map;
 
 public class FortifyClient implements BatchExtension {
 
   private static final Logger LOG = LoggerFactory.getLogger(FortifyClient.class);
+  private static final int HTTP_TIMEOUT = 60 * 60 * 1000;
+
   private final Settings settings;
   private Services services;
 
@@ -69,9 +87,22 @@ public class FortifyClient implements BatchExtension {
         LOG.info("Import of Fortify report is enabled. SSC Server is: " + url);
         String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
         String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
-        JaxWsProxyFactoryBean factory = initCxf(url, login, password);
-        services = factory.create(Services.class);
+        initServices(url, login, password);
       }
+    }
+  }
+
+  private void initServices(String url, String login, String password) {
+    JaxWsProxyFactoryBean factory = initCxf(url, login, password);
+    services = factory.create(Services.class);
+
+    Client client = ClientProxy.getClient(services);
+    if (client != null) {
+      HTTPConduit conduit = (HTTPConduit) client.getConduit();
+      HTTPClientPolicy policy = new HTTPClientPolicy();
+      policy.setConnectionTimeout(HTTP_TIMEOUT);
+      policy.setReceiveTimeout(HTTP_TIMEOUT);
+      conduit.setClient(policy);
     }
   }
 
