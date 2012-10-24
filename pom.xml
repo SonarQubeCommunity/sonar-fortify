@@ -11,6 +11,7 @@
   <packaging>sonar-plugin</packaging>
   <name>Sonar Fortify Plugin</name>
   <description>Integrate Fortify SCC Reports into Sonar</description>
+  <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2012</inceptionYear>
 
   <properties>
