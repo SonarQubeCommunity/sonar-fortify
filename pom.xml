@@ -10,7 +10,7 @@
   <version>1.1-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
   <name>Sonar Fortify Plugin</name>
-  <description>Integrate Fortify SCA Reports into Sonar</description>
+  <description>Integrate Fortify SCC Reports into Sonar</description>
   <inceptionYear>2012</inceptionYear>
 
   <properties>
