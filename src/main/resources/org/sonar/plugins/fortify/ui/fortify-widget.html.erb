@@ -1,7 +1,7 @@
 <%
    audit_context = measure('fortify-audit-context')
    security_rating = measure('fortify-security-rating')
-   if audit_context
+   if audit_context && security_rating
 %>
   <style>
     .fortify-inner {
