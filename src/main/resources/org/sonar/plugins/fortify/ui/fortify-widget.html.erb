@@ -26,15 +26,17 @@
             <%= dashboard_configuration.selected_period? ? format_variation(security_rating) : trend_icon(security_rating) -%>
           </p>
 
+          <%
+            if widget_properties['enableReportLink']
+              context_hash=Hash[*(audit_context.data.split(';').map { |elt| elt.split('=') }.flatten)]
+              ssc_url = controller.java_facade.getConfigurationValue('sonar.fortify.sscUrl')
+              fortify_name=context_hash['name']
+              fortify_version=context_hash['version']
+          %>
           <p>
-            <%
-               context_hash=Hash[*(audit_context.data.split(';').map { |elt| elt.split('=') }.flatten)]
-               ssc_url = controller.java_facade.getConfigurationValue('sonar.fortify.sscUrl')
-               fortify_name=context_hash['name']
-               fortify_version=context_hash['version']
-            %>
             <a href="<%= ssc_url -%>/flex/index.jsp?projectName=<%= u fortify_name -%>&projectVersionName=<%= u fortify_version -%>" class="action"><%= message('fortify.widget.openReport') -%></a>
           </p>
+          <% end %>
         </div>
       </td>
       <td width="10"></td>
