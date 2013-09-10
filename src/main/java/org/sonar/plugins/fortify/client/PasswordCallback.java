@@ -25,8 +25,6 @@ import org.apache.ws.security.WSPasswordCallback;
 import javax.annotation.Nullable;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import java.io.IOException;
 
 public final class PasswordCallback implements CallbackHandler {
 

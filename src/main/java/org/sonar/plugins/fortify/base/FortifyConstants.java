@@ -20,6 +20,10 @@
 package org.sonar.plugins.fortify.base;
 
 public final class FortifyConstants {
+  private FortifyConstants() {
+    // only constants
+  }
+
   public static final String PROPERTY_URL = "sonar.fortify.sscUrl";
   public static final String PROPERTY_LOGIN = "sonar.fortify.sscLogin.secured";
   public static final String PROPERTY_PASSWORD = "sonar.fortify.sscPassword.secured";
