@@ -4,13 +4,13 @@
   <parent>
     <groupId>org.codehaus.sonar-plugins</groupId>
     <artifactId>parent</artifactId>
-    <version>15</version>
+    <version>17</version>
   </parent>
   <artifactId>sonar-fortify-plugin</artifactId>
   <version>1.1-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
-  <name>Sonar Fortify Plugin</name>
-  <description>Integrate Fortify SCC Reports.</description>
+  <name>SonarQube Fortify Plugin</name>
+  <description>Integrate Fortify SCC Reports</description>
   <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2012</inceptionYear>
 
@@ -112,7 +112,7 @@
       </exclusions>
     </dependency>
 
-    <!-- compatibility with Java 5 -->
+    <!-- Compatibility with Java 5 -> could be dropped but lack of integration tests -->
     <dependency>
       <groupId>javax.xml</groupId>
       <artifactId>jaxb-api</artifactId>
@@ -134,7 +134,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -146,7 +146,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>1.9.0</version>
+      <version>1.9.5</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

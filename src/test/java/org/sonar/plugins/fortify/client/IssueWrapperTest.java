@@ -1,5 +1,5 @@
 /*
- * Sonar Fortify Plugin
+ * SonarQube Fortify Plugin
  * Copyright (C) 2012 SonarSource
  * dev@sonar.codehaus.org
  *
