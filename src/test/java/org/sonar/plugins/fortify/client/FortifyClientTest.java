@@ -37,7 +37,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.sonar.api.config.Settings;
-import org.sonar.plugins.fortify.base.FortifyConstants;
 import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
 import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
@@ -79,7 +78,7 @@ public class FortifyClientTest {
   @Test
   public void should_be_disabled_if_no_url() {
     Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.PROPERTY_ENABLE, "true");
+    settings.setProperty(FortifyClient.PROPERTY_ENABLE, "true");
     FortifyClient client = new FortifyClient(settings);
     client.start();
 
@@ -90,8 +89,8 @@ public class FortifyClientTest {
   @Test
   public void should_be_disabled() {
     Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.PROPERTY_URL, "http://localhost:8081/ssc");
-    settings.setProperty(FortifyConstants.PROPERTY_ENABLE, "false");
+    settings.setProperty(FortifyClient.PROPERTY_URL, "http://localhost:8081/ssc");
+    settings.setProperty(FortifyClient.PROPERTY_ENABLE, "false");
 
     FortifyClient client = new FortifyClient(settings);
     client.start();

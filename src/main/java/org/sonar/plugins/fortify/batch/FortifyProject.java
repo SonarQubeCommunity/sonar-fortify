@@ -26,16 +26,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
-import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
 import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
 
 public class FortifyProject implements BatchExtension {
+
+  public static final String PROPERTY_PROJECT_NAME = "sonar.fortify.projectName";
+  public static final String PROPERTY_PROJECT_VERSION = "sonar.fortify.projectVersion";
 
   private static final Logger LOG = LoggerFactory.getLogger(FortifyProject.class);
 
@@ -55,8 +56,8 @@ public class FortifyProject implements BatchExtension {
 
   public void start() {
     if (client.isEnabled()) {
-      name = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_NAME), sonarProject.getName());
-      version = StringUtils.defaultIfBlank(settings.getString(FortifyConstants.PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
+      name = StringUtils.defaultIfBlank(settings.getString(PROPERTY_PROJECT_NAME), sonarProject.getName());
+      version = StringUtils.defaultIfBlank(settings.getString(PROPERTY_PROJECT_VERSION), sonarProject.getAnalysisVersion());
       versionId = initProjectVersionId(client, name, version);
     }
   }

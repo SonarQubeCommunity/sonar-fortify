@@ -24,7 +24,6 @@ import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.sonar.api.config.Settings;
-import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.client.FortifyClient;
 import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
 import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
@@ -103,8 +102,8 @@ public class FortifyProjectTest {
 
 
     Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.PROPERTY_PROJECT_NAME, "Sonar");
-    settings.setProperty(FortifyConstants.PROPERTY_PROJECT_VERSION, "3.3");
+    settings.setProperty(FortifyProject.PROPERTY_PROJECT_NAME, "Sonar");
+    settings.setProperty(FortifyProject.PROPERTY_PROJECT_VERSION, "3.3");
 
     FortifyProject fortifyProject = new FortifyProject(mockClient(), sonarProject, settings);
     fortifyProject.start();

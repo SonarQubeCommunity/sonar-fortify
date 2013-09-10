@@ -19,14 +19,7 @@
  */
 package org.sonar.plugins.fortify.client;
 
-import com.fortify.schema.fws.CreateAuditSessionRequest;
-import com.fortify.schema.fws.DescriptionAndRecommendationRequest;
-import com.fortify.schema.fws.DescriptionAndRecommendationResponse;
-import com.fortify.schema.fws.InvalidateAuditSessionRequest;
-import com.fortify.schema.fws.IssueListRequest;
-import com.fortify.schema.fws.MeasurementHistoryListRequest;
-import com.fortify.schema.fws.Services;
-import com.fortify.schema.fws.VariableHistoryListRequest;
+import com.fortify.schema.fws.*;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -44,21 +37,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
-import org.sonar.plugins.fortify.base.FortifyConstants;
 import xmlns.www_fortify_com.schema.issuemanagement.IssueInstance;
 import xmlns.www_fortify_com.schema.issuemanagement.IssueListDescription;
-import xmlns.www_fortifysoftware_com.schema.wstypes.MeasurementHistory;
-import xmlns.www_fortifysoftware_com.schema.wstypes.Project;
-import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectIdentifier;
-import xmlns.www_fortifysoftware_com.schema.wstypes.ProjectVersionLite;
-import xmlns.www_fortifysoftware_com.schema.wstypes.VariableHistory;
+import xmlns.www_fortifysoftware_com.schema.wstypes.*;
 
 import javax.annotation.Nullable;
-
 import java.util.List;
 import java.util.Map;
 
 public class FortifyClient implements BatchExtension {
+
+  public static final String PROPERTY_ENABLE = "sonar.fortify.enable";
+  public static final String PROPERTY_LOGIN = "sonar.fortify.sscLogin.secured";
+  public static final String PROPERTY_PASSWORD = "sonar.fortify.sscPassword.secured";
+  public static final String PROPERTY_URL = "sonar.fortify.sscUrl";
 
   private static final Logger LOG = LoggerFactory.getLogger(FortifyClient.class);
   private static final int HTTP_TIMEOUT_MILLISEC = 60 * 60 * 1000;
@@ -77,16 +69,16 @@ public class FortifyClient implements BatchExtension {
   }
 
   public void start() {
-    if (!settings.getBoolean(FortifyConstants.PROPERTY_ENABLE)) {
-      LOG.info("Import of Fortify report is disabled (see " + FortifyConstants.PROPERTY_ENABLE + ")");
+    if (!settings.getBoolean(PROPERTY_ENABLE)) {
+      LOG.info("Import of Fortify report is disabled (see " + PROPERTY_ENABLE + ")");
     } else {
-      String url = settings.getString(FortifyConstants.PROPERTY_URL);
+      String url = settings.getString(PROPERTY_URL);
       if (Strings.isNullOrEmpty(url)) {
-        LOG.info("Fortify SSC Server URL is missing. Please check the property " + FortifyConstants.PROPERTY_URL);
+        LOG.info("Fortify SSC Server URL is missing. Please check the property " + PROPERTY_URL);
       } else {
         LOG.info("Import of Fortify report is enabled. SSC Server is: " + url);
-        String login = settings.getString(FortifyConstants.PROPERTY_LOGIN);
-        String password = settings.getString(FortifyConstants.PROPERTY_PASSWORD);
+        String login = settings.getString(PROPERTY_LOGIN);
+        String password = settings.getString(PROPERTY_PASSWORD);
         initServices(url, login, password);
       }
     }
