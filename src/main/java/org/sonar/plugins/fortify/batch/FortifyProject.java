@@ -99,7 +99,7 @@ public class FortifyProject implements BatchExtension {
       versionId = pv.getId();
       LOG.info("Fortify SSC Project: " + fortifyName + ", version: " + fortifyVersion);
     } else {
-      LoggerFactory.getLogger(FortifyProject.class).info("Fortify SSC Project does not exist");
+      LoggerFactory.getLogger(FortifyProject.class).info("Fortify SSC Project does not exist: name={}, version={}", fortifyName, fortifyVersion);
     }
     return versionId;
   }
