@@ -41,7 +41,7 @@ public final class PasswordCallback implements CallbackHandler {
     return password;
   }
 
-  public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
+  public void handle(Callback[] callbacks) {
     WSPasswordCallback pc = (WSPasswordCallback) callbacks[0];
     pc.setPassword(password);
   }
