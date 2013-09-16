@@ -7,7 +7,7 @@
     <version>17</version>
   </parent>
   <artifactId>sonar-fortify-plugin</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <packaging>sonar-plugin</packaging>
   <name>SonarQube Fortify Plugin</name>
   <description>Integrate Fortify SCC Reports</description>
@@ -44,7 +44,7 @@
     <connection>scm:git:https://github.com/SonarCommunity/sonar-fortify</connection>
     <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-fortify</developerConnection>
     <url>https://github.com/SonarCommunity/sonar-fortify</url>
-    <tag>HEAD</tag>
+    <tag>1.1</tag>
   </scm>
 
   <issueManagement>
