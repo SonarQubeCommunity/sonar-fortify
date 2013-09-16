@@ -10,7 +10,7 @@
   <version>1.2-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
   <name>SonarQube Fortify Plugin</name>
-  <description>Integrate Fortify SCC Reports</description>
+  <description>Integrate Fortify SSC Reports</description>
   <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2012</inceptionYear>
 
