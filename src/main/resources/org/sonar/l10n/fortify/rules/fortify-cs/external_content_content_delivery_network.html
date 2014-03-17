@@ -5,20 +5,22 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  Using a CDN to serve an application's dependent JavaScript offers many advantages over serving JavaScript from the application's own server.  These benefits include increased performance and less code maintenance for the application owner.  However, the application assumes that the CDN will deliver safe content to the browser.  If an attacker compromises a CDN, the CDN will deliver malicious code to the user's browser.  The user's browser is now executing code that the application cannot control or detect as melicious.<br><br><b>Example 1:</b> The following ASPX code includes Microsoft's jQuery code by referencing the Microsoft CDN:<br><br><pre><br>...<br>&lt;script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript"&gt;&lt;/script&gt;<br>...<br></pre><br><br><b>Example 2:</b> The following ASPX code enables the automatic redirect of all ASP.NET framework script requests to the Microsoft Ajax CDN:<br><br><pre><br>...<br>&lt;asp:ScriptManager<br>   ID="ScriptManager1"<br>   EnableCdn="true"<br>   Runat="Server" /&gt;<br>...<br></pre><br><br>In the above example, the ScriptManager control configures its ASPX page to automatically redirect any script requests to the appropriate CDN.<br>
+							  Using a CDN to serve an application's dependent JavaScript offers many advantages over serving JavaScript from the application's own server.  These benefits include increased performance and less code maintenance for the application owner.  However, the application assumes that the CDN will deliver safe content to the browser.  If an attacker compromises a CDN, the CDN will deliver malicious code to the user's browser.  The user's browser is now executing code that the application cannot control or detect as malicious.<br><br><b>Example 1:</b> The following ASPX code includes Microsoft's jQuery code by referencing the Microsoft CDN:<br><br><pre><br>...<br>&lt;script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript"&gt;&lt;/script&gt;<br>...<br></pre><br><br><b>Example 2:</b> The following ASPX code enables the automatic redirect of all ASP.NET framework script requests to the Microsoft Ajax CDN:<br><br><pre><br>...<br>&lt;asp:ScriptManager<br>   ID="ScriptManager1"<br>   EnableCdn="true"<br>   Runat="Server" /&gt;<br>...<br></pre><br><br>In the above example, the ScriptManager control configures its ASPX page to automatically redirect any script requests to the appropriate CDN.
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
 																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
 																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A3 Malicious File Execution</em> <br></p>
 																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
-																									   <p>[5]  <em>Content Deliver Network and its Regulation</em> The Journal of China Universities of Posts and Telecommunications<br></p>
-																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 94, CWE ID 98</em> <br></p>
-																									   <p>[7]  <em>Managed Content Security Delivery</em> radware<br></p>
-																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.3</em> <br></p>
-																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
-																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
-																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 094</em> <br></p>
-																									   <p>[12] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 098</em> <br></p>
-																									   <p>[13] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[6]  <em>Content Deliver Network and its Regulation</em> The Journal of China Universities of Posts and Telecommunications<br></p>
+																									   <p>[7] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 94, CWE ID 98</em> <br></p>
+																									   <p>[8]  <em>Managed Content Security Delivery</em> radware<br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.3</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 094</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 098</em> <br></p>
+																									   <p>[14] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code</em> <br></p>
+																									   <p>[15] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
 																														

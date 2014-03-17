@@ -5,17 +5,19 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  If an attacker can supply values that the application then uses to determine what kinds of authorization checks to perform on opening an MQ object, the potential exists for an attacker to pass all the access control checks when attempting to open otherwise inaccessible object.<br><br><br><br><b>Example:</b> The following COBOL code snippet reads values from the terminal and uses them to control <code>MQOD-ALTERNATEUSERID</code> and <code>MQOD-ALTERNATESECURITYID</code> fields of the MQ object descriptor.<br><br><pre><br>...<br>10 MQOD.<br>**    Alternate user identifier<br>   15 MQOD-ALTERNATEUSERID     PIC X(12).<br>**    Alternate security identifier<br>   15 MQOD-ALTERNATESECURITYID PIC X(40).<br>   ...<br>...<br>ACCEPT MQOD-ALTERNATEUSERID.<br>ACCEPT MQOD-ALTERNATESECURITYID.<br>CALL 'MQOPEN' USING HCONN, MQOD, OPTS, HOBJ, COMPOCODE REASON.<br>... <br></pre><br><br>In this example, an attacker could supply values that allow them to pass access control checks on the MQ object eing opened.<br><br>In general, do not allow user-provided or otherwise untrusted data to control sensitive values.<br>
+							  If an attacker can supply values that the application then uses to determine what kinds of authorization checks to perform on opening an MQ object, the potential exists for an attacker to pass all the access control checks when attempting to open otherwise inaccessible object.<br><br><br><br><b>Example:</b> The following COBOL code snippet reads values from the terminal and uses them to control <code>MQOD-ALTERNATEUSERID</code> and <code>MQOD-ALTERNATESECURITYID</code> fields of the MQ object descriptor.<br><br><pre><br>...<br>10 MQOD.<br>**    Alternate user identifier<br>   15 MQOD-ALTERNATEUSERID     PIC X(12).<br>**    Alternate security identifier<br>   15 MQOD-ALTERNATESECURITYID PIC X(40).<br>   ...<br>...<br>ACCEPT MQOD-ALTERNATEUSERID.<br>ACCEPT MQOD-ALTERNATESECURITYID.<br>CALL 'MQOPEN' USING HCONN, MQOD, OPTS, HOBJ, COMPOCODE REASON.<br>... <br></pre><br><br>In this example, an attacker could supply values that allow them to pass access control checks on the MQ object eing opened.<br><br>In general, do not allow user-provided or otherwise untrusted data to control sensitive values.
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
 																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
 																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
 																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
-																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
-																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 639</em> <br></p>
-																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
-																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.2</em> <br></p>
-																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4</em> <br></p>
-																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[5] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 639</em> <br></p>
+																									   <p>[9] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
 																														

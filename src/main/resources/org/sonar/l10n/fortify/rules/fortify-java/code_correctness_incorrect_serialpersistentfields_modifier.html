@@ -5,7 +5,7 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  The Java Object Serialization Specification allows developers to manually define Serializable fields for a class by specifying them in the <code>serialPersistentFields</code> array. This feature will only work if <code>serialPersistentFields</code> is declared as <code>private</code>, <code>static</code>, and <code>final</code>.<br><br><b>Example 1: </b> The following declaration of <code>serialPersistentFields</code> will not be used to define <code>Serializable</code> fields because it is not <code>private</code>, <code>static</code>, and <code>final</code>.<br><pre><br>class List implements Serializable {<br>public ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("myField", List.class) };<br>...   <br>}<br></pre><br>
+							  The Java Object Serialization Specification allows developers to manually define Serializable fields for a class by specifying them in the <code>serialPersistentFields</code> array. This feature will only work if <code>serialPersistentFields</code> is declared as <code>private</code>, <code>static</code>, and <code>final</code>.<br><br><b>Example 1: </b> The following declaration of <code>serialPersistentFields</code> will not be used to define <code>Serializable</code> fields because it is not <code>private</code>, <code>static</code>, and <code>final</code>.<br><pre><br>class List implements Serializable {<br>public ObjectStreamField[] serialPersistentFields = { new ObjectStreamField("myField", List.class) };<br>...   <br>}<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 485</em> <br></p>

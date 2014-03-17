@@ -5,16 +5,17 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  SQL queries should not be logged in production systems. SQL queries often contain sensitive information, such as credit card details or social security numbers, and logging this information in plain text can compromise its confidentiality.<br><br><b>Example 1:</b> The following entries from <code>log4j.properties</code> file causes all queries to be logged at the <code>info</code> level. <br><pre><br>...<br>log4j.logger.net.sf.hibernate.type=info<br>log4j.logger.net.sf.hibernate.tool.hbm2ddl=info<br>...<br></pre><br>
+							  SQL queries should not be logged in production systems. SQL queries often contain sensitive information, such as credit card details or social security numbers, and logging this information in plain text can compromise its confidentiality.<br><br><b>Example 1:</b> The following entries from <code>log4j.properties</code> file causes all queries to be logged at the <code>info</code> level. <br><pre><br>...<br>log4j.logger.net.sf.hibernate.type=info<br>log4j.logger.net.sf.hibernate.tool.hbm2ddl=info<br>...<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
 																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
-																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
-																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 497</em> <br></p>
-																									   <p>[5] Red Hat Middleware, LLC <em>Hibernate Reference Documentation</em> <br></p>
-																									   <p>[6] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
-																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4</em> <br></p>
-																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.5</em> <br></p>
-																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.5.6</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>AU</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 497</em> <br></p>
+																									   <p>[6] Red Hat Middleware, LLC <em>Hibernate Reference Documentation</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.5</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.5.6</em> <br></p>
 																														

@@ -2,6 +2,10 @@
         <!-- see names and descriptions in org/sonar/l10n/ -->
     
           <rule>
+            <key>dotnet_mvc_bad_practices_request_parameters_bound_into_persisted_objects</key><priority>MAJOR</priority><configKey>ASP.NET MVC Bad Practices: Request Parameters Bound into Persisted Objects</configKey>
+          </rule>
+        
+          <rule>
             <key>code_correctness_call_to_gc_collect</key><priority>MAJOR</priority><configKey>Code Correctness: Call to GC.Collect()</configKey>
           </rule>
         
@@ -10,7 +14,7 @@
           </rule>
         
           <rule>
-            <key>code_correctness_tostring_on_array</key><priority>MAJOR</priority><configKey>Code Correctness: toString on Array</configKey>
+            <key>code_correctness_tostring_on_array</key><priority>MAJOR</priority><configKey>Code Correctness: ToString on Array</configKey>
           </rule>
         
           <rule>
@@ -78,7 +82,7 @@
           </rule>
         
           <rule>
-            <key>unreleased_resource</key><priority>MAJOR</priority><configKey>Unreleased Resource: Streams</configKey>
+            <key>unreleased_resource</key><priority>MAJOR</priority><configKey>Unreleased Resource: Database</configKey>
           </rule>
         
           <rule>
@@ -91,6 +95,10 @@
         
           <rule>
             <key>asp_dotnet_bad_practices_leftover_debug_code</key><priority>MAJOR</priority><configKey>ASP.NET Bad Practices: Leftover Debug Code</configKey>
+          </rule>
+        
+          <rule>
+            <key>csrf</key><priority>MAJOR</priority><configKey>Cross-Site Request Forgery</configKey>
           </rule>
         
           <rule>
@@ -130,6 +138,10 @@
           </rule>
         
           <rule>
+            <key>asp_dotnet_misconfiguration_excessive_session_timeout</key><priority>MAJOR</priority><configKey>ASP.NET Misconfiguration: Excessive Session Timeout</configKey>
+          </rule>
+        
+          <rule>
             <key>asp_dotnet_misconfiguration_incomplete_cookie_protection</key><priority>MAJOR</priority><configKey>ASP.NET Misconfiguration: Incomplete Cookie Protection</configKey>
           </rule>
         
@@ -143,6 +155,10 @@
         
           <rule>
             <key>asp_dotnet_misconfiguration_request_validation_disabled</key><priority>MAJOR</priority><configKey>ASP.NET Misconfiguration: Request Validation Disabled</configKey>
+          </rule>
+        
+          <rule>
+            <key>asp_dotnet_misconfiguration_request_validation_disabled</key><priority>MAJOR</priority><configKey>ASP.NET Misconfiguration: Request Validation Disabled(request_validation_disabled)</configKey>
           </rule>
         
           <rule>
@@ -167,6 +183,10 @@
         
           <rule>
             <key>cookie_security_httponly_not_set_on_session_cookie</key><priority>MAJOR</priority><configKey>Cookie Security: HTTPOnly not Set on Application Cookie</configKey>
+          </rule>
+        
+          <rule>
+            <key>cookie_security_session_cookie_not_sent_over_ssl</key><priority>MAJOR</priority><configKey>Cookie Security: Session Cookie not Sent Over SSL</configKey>
           </rule>
         
           <rule>
@@ -274,6 +294,10 @@
           </rule>
         
           <rule>
+            <key>asp_dotnet_bad_practices_unvalidated_web_api_model</key><priority>MAJOR</priority><configKey>ASP.NET Bad Practices: Unvalidated Web API Model</configKey>
+          </rule>
+        
+          <rule>
             <key>command_injection</key><priority>MAJOR</priority><configKey>Command Injection</configKey>
           </rule>
         
@@ -298,7 +322,15 @@
           </rule>
         
           <rule>
+            <key>dynamic_code_evaluation_script_injection</key><priority>MAJOR</priority><configKey>Dynamic Code Evaluation: Script Injection</configKey>
+          </rule>
+        
+          <rule>
             <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation_cookies</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
           </rule>
         
           <rule>
@@ -362,6 +394,10 @@
           </rule>
         
           <rule>
+            <key>unsafe_native_invoke</key><priority>MAJOR</priority><configKey>Unsafe Native Invoke</configKey>
+          </rule>
+        
+          <rule>
             <key>unsafe_reflection</key><priority>MAJOR</priority><configKey>Unsafe Reflection</configKey>
           </rule>
         
@@ -371,6 +407,14 @@
         
           <rule>
             <key>value_shadowing_server_variable</key><priority>MAJOR</priority><configKey>Value Shadowing: Server Variable</configKey>
+          </rule>
+        
+          <rule>
+            <key>xee_injection</key><priority>MAJOR</priority><configKey>XML Entity Expansion Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>xxe_injection</key><priority>MAJOR</priority><configKey>XML External Entity Injection</configKey>
           </rule>
         
           <rule>
@@ -442,7 +486,7 @@
           </rule>
         
           <rule>
-            <key>header_checking_disabled</key><priority>MAJOR</priority><configKey>Header Checking Disabled</configKey>
+            <key>asp_dotnet_misconfiguration_unsafe_header_parsing</key><priority>MAJOR</priority><configKey>Header Checking Disabled</configKey>
           </rule>
         
           <rule>
@@ -462,10 +506,6 @@
           </rule>
         
           <rule>
-            <key>password_management_heap_inspection</key><priority>MAJOR</priority><configKey>Password Management: Heap Inspection</configKey>
-          </rule>
-        
-          <rule>
             <key>password_management_null_password</key><priority>MAJOR</priority><configKey>Password Management: Null Password</configKey>
           </rule>
         
@@ -479,6 +519,10 @@
         
           <rule>
             <key>privacy_violation</key><priority>MAJOR</priority><configKey>Privacy Violation</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation_heap_inspection_master</key><priority>MAJOR</priority><configKey>Privacy Violation: Heap Inspection</configKey>
           </rule>
         
           <rule>
@@ -503,5 +547,9 @@
         
           <rule>
             <key>weak_encryption_insufficient_key_size</key><priority>MAJOR</priority><configKey>Weak Encryption: Insufficient Key Size</configKey>
+          </rule>
+        
+          <rule>
+            <key>asp_dotnet_bad_practices_non_serializable_object_stored_in_session</key><priority>MAJOR</priority><configKey>ASP.NET Bad Practices: Non-Serializable Object Stored in Session</configKey>
           </rule>
         </rules>

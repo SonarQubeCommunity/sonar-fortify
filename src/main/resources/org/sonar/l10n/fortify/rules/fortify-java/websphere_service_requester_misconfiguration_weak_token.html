@@ -5,20 +5,23 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  Sending clear text passwords over an unencrypted channel can expose the credential to attackers who can sniff the SOAP message.<br><br>The following WebSphere client configuration uses the UsernameToken:<br><pre><br>&lt;com.ibm.etools.webservice.wscext:WsClientExtension xmi:version=&quot;2.0&quot; xmlns:xmi=&quot;http://www.omg.org/XMI&quot; xmlns:com.ibm.etools.webservice.wscext=&quot;http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscext.xmi&quot; xmi:id=&quot;WsClientExtension_1151349988084&quot;&gt;<br>...<br>        &lt;securityRequestGeneratorServiceConfig xmi:id=&quot;SecurityRequestGeneratorServiceConfig_1154318832968&quot;&gt;<br>          &lt;securityToken xmi:id=&quot;SecurityToken_1211395747219&quot; name=&quot;basicauth&quot; uri=&quot;&quot; localName=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#UsernameToken&quot;/&gt;<br>...<br>&lt;/com.ibm.etools.webservice.wscext:WsClientExtension&gt;<br></pre><br>
+							  Sending clear text passwords over an unencrypted channel can expose the credential to attackers who can sniff the SOAP message.<br><br>The following WebSphere client configuration uses the UsernameToken:<br><pre><br>&lt;com.ibm.etools.webservice.wscext:WsClientExtension xmi:version=&quot;2.0&quot; xmlns:xmi=&quot;http://www.omg.org/XMI&quot; xmlns:com.ibm.etools.webservice.wscext=&quot;http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscext.xmi&quot; xmi:id=&quot;WsClientExtension_1151349988084&quot;&gt;<br>...<br>        &lt;securityRequestGeneratorServiceConfig xmi:id=&quot;SecurityRequestGeneratorServiceConfig_1154318832968&quot;&gt;<br>          &lt;securityToken xmi:id=&quot;SecurityToken_1211395747219&quot; name=&quot;basicauth&quot; uri=&quot;&quot; localName=&quot;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#UsernameToken&quot;/&gt;<br>...<br>&lt;/com.ibm.etools.webservice.wscext:WsClientExtension&gt;<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
 																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
 																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
 																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
-																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 254</em> <br></p>
-																									   <p>[6] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
-																									   <p>[7] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
-																									   <p>[8] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 311</em> <br></p>
-																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 4.1, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
-																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 4.1, Requirement 6.5.3, Requirement 8.4</em> <br></p>
-																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 4.1, Requirement 6.5.8, Requirement 8.4</em> <br></p>
-																									   <p>[12]  <em>Web Sericces Security: SOAP Message Security 1.1</em> OASIS<br></p>
-																									   <p>[13]  <em>Web Services Security Username Token Profile 1.0</em> OASIS<br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 254</em> <br></p>
+																									   <p>[7] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authentication</em> <br></p>
+																									   <p>[8] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 311</em> <br></p>
+																									   <p>[10] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 311</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 4.1, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 4.1, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 4.1, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[14] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-8 Transmission Confidentiality and Integrity</em> <br></p>
+																									   <p>[15]  <em>Web Services Security Username Token Profile 1.0</em> OASIS<br></p>
+																									   <p>[16]  <em>Web Services Security: SOAP Message Security 1.1</em> OASIS<br></p>
 																														

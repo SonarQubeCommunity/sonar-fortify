@@ -10,6 +10,10 @@
           </rule>
         
           <rule>
+            <key>system_information_leak</key><priority>MAJOR</priority><configKey>System Information Leak</configKey>
+          </rule>
+        
+          <rule>
             <key>command_injection</key><priority>MAJOR</priority><configKey>Command Injection</configKey>
           </rule>
         
@@ -27,6 +31,10 @@
         
           <rule>
             <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>log_forging</key><priority>MAJOR</priority><configKey>Log Forging</configKey>
           </rule>
         
           <rule>
@@ -55,5 +63,9 @@
         
           <rule>
             <key>password_management_password_in_comment</key><priority>MAJOR</priority><configKey>Password Management: Password in Comment</configKey>
+          </rule>
+        
+          <rule>
+            <key>weak_cryptographic_hash</key><priority>MAJOR</priority><configKey>Weak Cryptographic Hash</configKey>
           </rule>
         </rules>

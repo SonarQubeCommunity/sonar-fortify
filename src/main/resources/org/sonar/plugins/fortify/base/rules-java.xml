@@ -30,6 +30,10 @@
           </rule>
         
           <rule>
+            <key>api_abuse_code_correctness_negative_content_length</key><priority>MAJOR</priority><configKey>Code Correctness: Negative Content-Length</configKey>
+          </rule>
+        
+          <rule>
             <key>code_correctness_tostring_on_array</key><priority>MAJOR</priority><configKey>Code Correctness: toString on Array</configKey>
           </rule>
         
@@ -43,10 +47,6 @@
         
           <rule>
             <key>dangerous_class_function</key><priority>MAJOR</priority><configKey>Dangerous Type</configKey>
-          </rule>
-        
-          <rule>
-            <key>ejb_bad_practices_use_of_awt_swing</key><priority>MAJOR</priority><configKey>EJB Bad Practices: Use of AWT/Swing</configKey>
           </rule>
         
           <rule>
@@ -130,6 +130,10 @@
           </rule>
         
           <rule>
+            <key>often_misused_boolean_getboolean</key><priority>MAJOR</priority><configKey>Often Misused: Boolean.getBoolean()</configKey>
+          </rule>
+        
+          <rule>
             <key>often_misued_encoding</key><priority>MAJOR</priority><configKey>Often Misused: Encoding</configKey>
           </rule>
         
@@ -151,6 +155,10 @@
         
           <rule>
             <key>spring_mvc_bad_practices_request_parameters_bound_into_persisted_objects</key><priority>MAJOR</priority><configKey>Spring MVC Bad Practices: Request Parameters Bound into Persisted Objects</configKey>
+          </rule>
+        
+          <rule>
+            <key>struts2_bad_practice_runtime_data_tampering</key><priority>MAJOR</priority><configKey>Struts 2 Bad Practices: Request Map Tampering</configKey>
           </rule>
         
           <rule>
@@ -322,7 +330,19 @@
           </rule>
         
           <rule>
+            <key>insecure_storage_android_backup_storage</key><priority>MAJOR</priority><configKey>Insecure Storage: Android Backup Storage</configKey>
+          </rule>
+        
+          <rule>
             <key>insecure_storage_android_external_storage</key><priority>MAJOR</priority><configKey>Insecure Storage: Android External Storage</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_storage_android_world_readable_or_writeable</key><priority>MAJOR</priority><configKey>Insecure Storage: Android World Readable or Writeable</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_transport</key><priority>MAJOR</priority><configKey>Insecure Transport</configKey>
           </rule>
         
           <rule>
@@ -330,11 +350,11 @@
           </rule>
         
           <rule>
-            <key>javascript_hijacking_ad_hoc_ajax</key><priority>MAJOR</priority><configKey>Script Hijacking: Ad Hoc Ajax</configKey>
+            <key>javascript_hijacking_ad_hoc_ajax</key><priority>MAJOR</priority><configKey>JavaScript Hijacking: Ad Hoc Ajax</configKey>
           </rule>
         
           <rule>
-            <key>javascript_hijacking_vulnerable_framework</key><priority>MAJOR</priority><configKey>Script Hijacking: Vulnerable Framework</configKey>
+            <key>javascript_hijacking_vulnerable_framework</key><priority>MAJOR</priority><configKey>JavaScript Hijacking: Vulnerable Framework</configKey>
           </rule>
         
           <rule>
@@ -403,6 +423,10 @@
         
           <rule>
             <key>unsafe_mobile_code_unsafe_public_field</key><priority>MAJOR</priority><configKey>Unsafe Mobile Code: Unsafe Public Field</configKey>
+          </rule>
+        
+          <rule>
+            <key>android_misconfiguration_debug_information</key><priority>MAJOR</priority><configKey>Android Misconfiguration: Debug Information</configKey>
           </rule>
         
           <rule>
@@ -890,7 +914,19 @@
           </rule>
         
           <rule>
+            <key>hadoop_cluster_manipulation</key><priority>MAJOR</priority><configKey>Hadoop Cluster Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>hadoop_job_manipulation</key><priority>MAJOR</priority><configKey>Hadoop Job Manipulation</configKey>
+          </rule>
+        
+          <rule>
             <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation_cookies</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
           </rule>
         
           <rule>
@@ -1046,6 +1082,14 @@
           </rule>
         
           <rule>
+            <key>xee_injection</key><priority>MAJOR</priority><configKey>XML Entity Expansion Injection</configKey>
+          </rule>
+        
+          <rule>
+            <key>xxe_injection</key><priority>MAJOR</priority><configKey>XML External Entity Injection</configKey>
+          </rule>
+        
+          <rule>
             <key>xml_injection</key><priority>MAJOR</priority><configKey>XML Injection</configKey>
           </rule>
         
@@ -1074,6 +1118,10 @@
           </rule>
         
           <rule>
+            <key>access_control_securitymanager_bypass</key><priority>MAJOR</priority><configKey>Access Control: SecurityManager Bypass</configKey>
+          </rule>
+        
+          <rule>
             <key>access_control_weak_security_constraint</key><priority>MAJOR</priority><configKey>Access Control: Weak Security Constraint</configKey>
           </rule>
         
@@ -1083,6 +1131,10 @@
         
           <rule>
             <key>acegi_misconfiguration_run_as_authentication_replacement</key><priority>MAJOR</priority><configKey>Acegi Misconfiguration: Run-As Authentication Replacement</configKey>
+          </rule>
+        
+          <rule>
+            <key>android_bad_practices_application_permission_defined</key><priority>MAJOR</priority><configKey>Android Bad Practices: Application Permission Defined</configKey>
           </rule>
         
           <rule>
@@ -1098,11 +1150,11 @@
           </rule>
         
           <rule>
-            <key>android_bad_practices_missing_receiver_permission</key><priority>MAJOR</priority><configKey>Android Bad Practices: Missing Receiver Permission</configKey>
+            <key>android_bad_practices_missing_exported_flag_or_component_permission</key><priority>MAJOR</priority><configKey>Android Bad Practices: Missing Exported Flag or Component Permission</configKey>
           </rule>
         
           <rule>
-            <key>android_bad_practices_missing_exported_attribute</key><priority>MAJOR</priority><configKey>Android Bad Practices: Missing exported Attribute</configKey>
+            <key>android_bad_practices_missing_receiver_permission</key><priority>MAJOR</priority><configKey>Android Bad Practices: Missing Receiver Permission</configKey>
           </rule>
         
           <rule>
@@ -1111,6 +1163,10 @@
         
           <rule>
             <key>android_bad_practices_sticky_broadcast</key><priority>MAJOR</priority><configKey>Android Bad Practices: Sticky Broadcast</configKey>
+          </rule>
+        
+          <rule>
+            <key>android_bad_practices_weak_authentication</key><priority>MAJOR</priority><configKey>Android Bad Practices: Weak Authentication</configKey>
           </rule>
         
           <rule>
@@ -1142,11 +1198,31 @@
           </rule>
         
           <rule>
+            <key>insecure_randomness_poor_seed</key><priority>MAJOR</priority><configKey>Insecure Randomness: Poor Seeding</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_ssl_android_customized_implementation</key><priority>MAJOR</priority><configKey>Insecure SSL: Android Customized Implementation</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_ssl_android_hostname_verification_disabled</key><priority>MAJOR</priority><configKey>Insecure SSL: Android Hostname Verification Disabled</configKey>
+          </rule>
+        
+          <rule>
+            <key>insecure_ssl_android_socket</key><priority>MAJOR</priority><configKey>Insecure SSL: Android Socket</configKey>
+          </rule>
+        
+          <rule>
             <key>missing_securitymanager_check_cloneable</key><priority>MAJOR</priority><configKey>Missing SecurityManager Check: Cloneable</configKey>
           </rule>
         
           <rule>
             <key>missing_securitymanager_check_serializable</key><priority>MAJOR</priority><configKey>Missing SecurityManager Check: Serializable</configKey>
+          </rule>
+        
+          <rule>
+            <key>often_misused_android_permission_check</key><priority>MAJOR</priority><configKey>Often Misused: Android Permission Check</configKey>
           </rule>
         
           <rule>
@@ -1159,10 +1235,6 @@
         
           <rule>
             <key>password_management_hardcoded_password</key><priority>MAJOR</priority><configKey>Password Management: Hardcoded Password</configKey>
-          </rule>
-        
-          <rule>
-            <key>password_management_heap_inspection</key><priority>MAJOR</priority><configKey>Password Management: Heap Inspection</configKey>
           </rule>
         
           <rule>
@@ -1183,6 +1255,14 @@
         
           <rule>
             <key>privacy_violation</key><priority>MAJOR</priority><configKey>Privacy Violation</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation_android_internal_storage</key><priority>MAJOR</priority><configKey>Privacy Violation: Android Internal Storage</configKey>
+          </rule>
+        
+          <rule>
+            <key>privacy_violation_heap_inspection</key><priority>MAJOR</priority><configKey>Privacy Violation: Heap Inspection</configKey>
           </rule>
         
           <rule>
