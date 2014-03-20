@@ -5,10 +5,11 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  This class has been annotated with the annotation Immutable, from the JCIP annotations package. However, one of the mutable fields of the class had a mutating method called on it outside of the constructor and destructor.<br><br><b>Example 1:</b> The following code for an immutable final class mistakenly declares a Set <code>public</code> and <code>final</code>.<br><br><pre><br>@Immutable<br>public final class ThreeStooges {<br>private final Set stooges = new HashSet>();<br>...<br><br>public void addStooge(String name) {<br>stooges.add(name);<br>}<br><br>}<br></pre><br>
+							  This class has been annotated with the annotation Immutable, from the JCIP annotations package. However, one of the mutable fields of the class had a mutating method called on it outside of the constructor and destructor.<br><br><b>Example 1:</b> The following code for an immutable final class mistakenly declares a Set <code>public</code> and <code>final</code>.<br><br><pre><br>@Immutable<br>public final class ThreeStooges {<br>private final Set stooges = new HashSet>();<br>...<br><br>public void addStooge(String name) {<br>stooges.add(name);<br>}<br><br>}<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
-																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 471</em> <br></p>
-																									   <p>[2] B. Goetz <em>Java Concurrency in Practice. Chapter 3: Sharing Objects Guidelines</em> <br></p>
-																									   <p>[3]  <em>Package net.jcip.annotations Specification</em> <br></p>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 471</em> <br></p>
+																									   <p>[3] B. Goetz <em>Java Concurrency in Practice. Chapter 3: Sharing Objects Guidelines</em> <br></p>
+																									   <p>[4]  <em>Package net.jcip.annotations Specification</em> <br></p>
 																														

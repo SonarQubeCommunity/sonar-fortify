@@ -2,6 +2,14 @@
         <!-- see names and descriptions in org/sonar/l10n/ -->
     
           <rule>
+            <key>sql_bad_practices_direct_update</key><priority>MAJOR</priority><configKey>SQL Bad Practices: Direct Update</configKey>
+          </rule>
+        
+          <rule>
+            <key>system_field_overwrite</key><priority>MAJOR</priority><configKey>System Field Overwrite</configKey>
+          </rule>
+        
+          <rule>
             <key>obsolete</key><priority>MAJOR</priority><configKey>Obsolete</configKey>
           </rule>
         
@@ -34,7 +42,11 @@
           </rule>
         
           <rule>
-            <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
+            <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation_cookies</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
           </rule>
         
           <rule>

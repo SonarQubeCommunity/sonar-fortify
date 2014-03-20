@@ -5,18 +5,19 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  While it is a good idea to define separate read and write permissions for content providers, defining only the <code>writePermission</code> could be misleading. Due to the nature of SQL, generating true write-only queries is generally impossible: even when the user does not have direct access to the data, an attacker can reconstruct the stored data by manipulating the <code>where</code> clause.<br><br><b>Example:</b> Below is an example of a content provider declared with only the <code>writePermission</code>.<br><br><pre> &lt;provider android:name=".ContentProvider" android:writePermission="content.permission.WRITE_CONTENT"/&gt; </pre><br>
+							  While it is a good idea to define separate read and write permissions for content providers, defining only the <code>writePermission</code> could be misleading. Due to the nature of SQL, generating true write-only queries is generally impossible: even when the user does not have direct access to the data, an attacker can reconstruct the stored data by manipulating the <code>where</code> clause.<br><br><b>Example:</b> Below is an example of a content provider declared with only the <code>writePermission</code>.<br><br><pre> &lt;provider android:name=".ContentProvider" android:writePermission="content.permission.WRITE_CONTENT"/&gt; </pre>
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
 																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
 																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
-																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
-																									   <p>[5] Jesse Burns <em>Developing Secure Mobile Applications for Android</em> <br></p>
-																									   <p>[6] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Improper Access Control - CWE ID 285</em> <br></p>
-																									   <p>[7]  <em>Path Permission Element</em> <br></p>
-																									   <p>[8]  <em>Provider Element</em> <br></p>
-																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
-																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 7.1.1</em> <br></p>
-																									   <p>[11]  <em>Using Permissions</em> <br></p>
+																									   <p>[4] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
+																									   <p>[6] Jesse Burns <em>Developing Secure Mobile Applications for Android</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Improper Access Control - CWE ID 285</em> <br></p>
+																									   <p>[8]  <em>Path Permission Element</em> <br></p>
+																									   <p>[9]  <em>Provider Element</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 7.1.1</em> <br></p>
+																									   <p>[12]  <em>Using Permissions</em> <br></p>
 																														

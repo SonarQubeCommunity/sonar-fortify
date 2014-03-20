@@ -8,9 +8,12 @@
 							  Secure coding principles advocate making access specifiers as restrictive as possible. A method with a <code>public</code> access specifier means that any external code is allowed to call it. Public methods that perform privileged actions can be dangerous when code is shared in libraries or in environments where code can dynamically enter the system (e.g. Code Injection, Dangerous File Inclusion, File Upload, etc).<br><br><br><br><b>Example 1:</b> In the following code, <code>doPrivilegedOpenFile()</code> is declared <code>public</code> and performs a privileged operation.<br><pre><br>public static void doPrivilegedOpenFile(final String filePath) {<br>final BadFileNamePrivilegedAction pa = new BadFileNamePrivilegedAction(filePath);<br><br>FileInputStream fis = null;<br>...<br>fis = (FileInputStream)AccessController.doPrivileged(pa);<br>...<br>}<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
-																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
-																									   <p>[2] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7, Requirement 7.2</em> <br></p>
-																									   <p>[3] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
-																									   <p>[4]  <em>Secure Coding Guidelines for the Java Programming Language, version 2.0</em> Sun Microsystems, Inc.<br></p>
-																									   <p>[5] M. S. Ware <em>Writing secure Java code: taxonomy of heuristics and an evaluation of static analysis tools</em> <br></p>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-6 Least Privilege</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3500 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3500 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 265</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.7, Requirement 7.2</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[7]  <em>Secure Coding Guidelines for the Java Programming Language, version 2.0</em> Sun Microsystems, Inc.<br></p>
+																									   <p>[8] M. S. Ware <em>Writing secure Java code: taxonomy of heuristics and an evaluation of static analysis tools</em> <br></p>
 																														

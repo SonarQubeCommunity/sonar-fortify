@@ -5,14 +5,16 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  There is a vulnerability in implementations of<code>java.lang.Double.parseDouble()</code> and related methods that can cause the thread to hang when parsing any number in the range <code>[2^(-1022) - 2^(-1075) : 2^(-1022) - 2^(-1076)]</code>. This defect can be used to execute a DOS (Denial of Service) attack.<br><b>Example:</b> Even if the program does not directly use doubles, it may still be vulnerable.<br><pre><br>protected void processLocale(HttpServletRequest request, HttpServletResponse response)<br>{<br>        Locale locale = request.getLocale();<br>        if (locale != null)<br>        {<br>                session.setAttribute(Globals.LOCALE_KEY, locale);<br>        }<br>}<br></pre><br>The Apache Tomcat implementation of <code>HttpServletRequest</code> uses <code>parseDouble</code> to validate the locale from the Accept-Language header, which makes any call to <code>getLocale()</code> dangerous.<br>This is not an issue when using java version 6 Update 24 or later.<br>
+							  There is a vulnerability in implementations of<code>java.lang.Double.parseDouble()</code> and related methods that can cause the thread to hang when parsing any number in the range <code>[2^(-1022) - 2^(-1075) : 2^(-1022) - 2^(-1076)]</code>. This defect can be used to execute a DOS (Denial of Service) attack.<br><br><b>Example 1:</b> The following code uses a vulnerable method.<br><pre><br>Double d = Double.parseDouble(request.getParameter("d"));<br></pre><br><br>An attacker could send requests where the parameter <code>d</code> is a value in the range, such as <code>"0.0222507385850720119e-00306"</code>, to cause the program to hang while processing the request.  <br>This is not an issue when using java version 6 Update 24 or later.
 							</p>
 							 								<h2>REFERENCES</h2>
 																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
 																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
-																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
-																									   <p>[4] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Denial of Service</em> <br></p>
-																									   <p>[5] Rick Regan <em>Java Hangs When Converting 2.2250738585072012e-308</em> <br></p>
-																									   <p>[6]  <em>Oracle Security Alert for CVE-2010-4476</em> <br></p>
-																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 730</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Denial of Service</em> <br></p>
+																									   <p>[6] Rick Regan <em>Java Hangs When Converting 2.2250738585072012e-308</em> <br></p>
+																									   <p>[7]  <em>Oracle Security Alert for CVE-2010-4476</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[9] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-5 Denial of Service Protection</em> <br></p>
 																														

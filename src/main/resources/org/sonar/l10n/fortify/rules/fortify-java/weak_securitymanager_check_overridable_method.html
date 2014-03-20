@@ -5,10 +5,11 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  If a method is overriden by a child class, the child class can bypass security checks in the parent class. <br><b>Example 1:</b> In the following code, <code>doSecurityCheck()</code> performs a security check and can be overriden by a child class.<br><pre><br>public class BadSecurityCheck {<br>private int id;<br><br>public BadSecurityCheck() {<br>    doSecurityCheck();    <br>    id = 1;<br>}<br>protected void doSecurityCheck() {<br>    SecurityManager sm = System.getSecurityManager();<br>    if (sm != null) {<br>        sm.checkPermission(new SomePermission("SomeAction"));<br>    }<br>}<br>}<br></pre><br><br>        
+							  If a method is overridden by a child class, the child class can bypass security checks in the parent class. <br><b>Example 1:</b> In the following code, <code>doSecurityCheck()</code> performs a security check and can be overridden by a child class.<br><pre><br>public class BadSecurityCheck {<br>private int id;<br><br>public BadSecurityCheck() {<br>    doSecurityCheck();    <br>    id = 1;<br>}<br>protected void doSecurityCheck() {<br>    SecurityManager sm = System.getSecurityManager();<br>    if (sm != null) {<br>        sm.checkPermission(new SomePermission("SomeAction"));<br>    }<br>}<br>}<br></pre>
 							</p>
 							 								<h2>REFERENCES</h2>
-																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 358</em> <br></p>
-																									   <p>[2]  <em>M. S. Ware, "Writing secure Java code: taxonomy of heuristics and an evaluation of static analysis tools," M.S. Thesis, James Madison University, 2008.</em> <br></p>
-																									   <p>[3] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 358</em> <br></p>
+																									   <p>[3]  <em>M. S. Ware, "Writing secure Java code: taxonomy of heuristics and an evaluation of static analysis tools," M.S. Thesis, James Madison University, 2008.</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
 																														

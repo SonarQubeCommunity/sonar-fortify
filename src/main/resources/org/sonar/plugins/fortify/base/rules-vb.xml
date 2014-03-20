@@ -38,6 +38,10 @@
           </rule>
         
           <rule>
+            <key>header_manipulation_cookies</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
+          </rule>
+        
+          <rule>
             <key>log_forging</key><priority>MAJOR</priority><configKey>Log Forging</configKey>
           </rule>
         

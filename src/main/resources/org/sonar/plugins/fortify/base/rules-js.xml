@@ -2,6 +2,10 @@
         <!-- see names and descriptions in org/sonar/l10n/ -->
     
           <rule>
+            <key>api_abuse_code_correctness_negative_content_length</key><priority>MAJOR</priority><configKey>Code Correctness: Negative Content-Length</configKey>
+          </rule>
+        
+          <rule>
             <key>cross_session_contamination</key><priority>MAJOR</priority><configKey>Cross-Session Contamination</configKey>
           </rule>
         
@@ -35,6 +39,10 @@
         
           <rule>
             <key>header_manipulation</key><priority>MAJOR</priority><configKey>Header Manipulation</configKey>
+          </rule>
+        
+          <rule>
+            <key>header_manipulation_cookies</key><priority>MAJOR</priority><configKey>Header Manipulation: Cookies</configKey>
           </rule>
         
           <rule>

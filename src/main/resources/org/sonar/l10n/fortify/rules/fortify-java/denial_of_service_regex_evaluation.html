@@ -5,11 +5,15 @@
 							</p>
 							<h2>EXPLANATION</h2>
 							<p>
-							  There is a vulnerability in implementations of regular expression evaluators and related methods that can cause the thread to hang when evaluating repeating and alternating overlappting of nested and repeated regex groups. This defect can be used to execute a DOS (Denial of Service) attack.<br>		<b>Example:</b><br>		<pre><br>		(e+)+<br>		([a-zA-Z]+)*<br>		(e|ee)+<br>		</pre><br>		There are no known regular expression implementation which are immune to this vulnerability.  All platforms and languages are vulnerable to this attack.<br>	
+							  There is a vulnerability in implementations of regular expression evaluators and related methods that can cause the thread to hang when evaluating repeating and alternating overlapping of nested and repeated regex groups. This defect can be used to execute a DOS (Denial of Service) attack.<br><b>Example:</b><br>    <pre><br>        (e+)+<br>        ([a-zA-Z]+)*<br>        </pre><br>        There are no known regular expression implementation which are immune to this vulnerability.  All platforms and languages are vulnerable to this attack.
 							</p>
 							 								<h2>REFERENCES</h2>
-																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
-																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 185</em> <br></p>
-																									   <p>[3] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 020</em> <br></p>
-																									   <p>[4] Bryan Sullivan <em>Regular Expression Denial of Service Attacks and Defenses</em> <br></p>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 185, CWE ID 730</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Denial of Service</em> <br></p>
+																									   <p>[6] Bryan Sullivan <em>Regular Expression Denial of Service Attacks and Defenses</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[8] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-5 Denial of Service Protection</em> <br></p>
 																														
