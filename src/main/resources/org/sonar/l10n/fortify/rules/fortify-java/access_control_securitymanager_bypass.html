@@ -1,0 +1,15 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Invoking this function on untrusted code can allow attackers access to restricted packages and the ability to execute arbitrary code.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Java APIs that perform tasks using the immediate caller's class loader instance should be used with caution. These APIs bypass the SecurityManager check that ensures all callers in the execution chain have been granted the requisite security permission. These APIs should not be invoked on behalf of untrusted code, as they can compromise system security.<br><br>  1.	Data enters a program from an untrusted source.<br>  <br><br>  2.	Sensitive APIs that performs tasks using the immediate caller's class loader instance are invoked on behalf of untrusted code. <br>  <br><br>The untrusted code is now able to override its own class loader permissions and access restricted resources using the immediate caller's permissions.  <br><br> 
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement</em> <br></p>
+																									   <p>[2]  <em>CVE 2012-1682</em> <br></p>
+																									   <p>[3]  <em>CVE 2012-4681</em> <br></p>
+																									   <p>[4]  <em>Secure Coding Guidelines for the Java Programming Language, Version 4.0</em> <br></p>
+																														

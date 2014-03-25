@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The call to <Replace key="PrimaryCall.name"/> on line <Replace key="PrimaryLocation.line"/> allows an attacker to control core components of the Hadoop cluster on which the client application runs.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Hadoop cluster control errors occur when:<br><br>- Data enters a program from an untrusted source.<br><br>- The data is consumed by Hadoop cluster core components such as <code>NameNode</code>, <code>DataNode</code>, <code>JobTraker</code> to change the state of the cluster.<br><br>Hadoop clusters are a hostile environment. When security configurations from protecting unauthorized access to cluster nodes are not set properly, an attack may be able to take control the infrastructure. This leads to the possiblity that any data that is provided by the Hadoop cluster to be tampered.<br><br><b>Example 1:</b> The following code shows a <code>Job</code> submission in a typical client application which takes inputs from command line on Hadoop cluster master machine:<br><br><pre><br>  public static void run(String args[]) throws IOException {<br><br>    String path = "/path/to/a/file";<br>    DFSclient client = new DFSClient(arg[1], new Configuration());<br>    ClientProtocol nNode = client.getNameNode();<br>    <br>    /* This sets the ownership of a file pointed by the path to a user identified<br>     * by command line arguments.<br>     */  <br>    nNode.setOwner(path, args[2], args[3]);<br>    ...<br>  }<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation</em> <br></p>
+																														

@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Overwriting system fields can destabilize the normal running of the system.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is never a good idea to overwrite system fields even though these are accessible as variables. These fields are used by the runtime environment to communicate the state of the system to the ABAP program.  Overwriting these variables can cause the loss of vital information necessary for the normal operation of the ABAP system.<br><br><br>Even though ABAP system fields are variables, only a limited few of these are meant to be changed by the ABAP program or user.  Changing values of system fields that communicate runtime specific information to the ABAP program could cause service disruption or the ABAP program to behave in unexpected ways. <br><br>    
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em>ABAP System Fields</em> SAP<br></p>
+																														

@@ -1,0 +1,26 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  Hostname verification is disabled when making SSL connections.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Use of <code>AllowAllHostnameVerifier()</code> or <code>SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER</code> essentially turns off hostname verification when using SSL connections. This is equivalent to trusting all certificates. <br><br><b>Example 1:</b>The application sets the hostname verifier as below.<br><br><pre><br>... <br>SSLSocketFactory sf = new CustomSSLSocketFactory(trustStore);<br>sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);<br>...<br></pre><br><br>This application when trying to connect to https://safesecureserver.banking.com would readily accept a certificate issued to https://hackedserver.banking.com.The application would now potentially leak sensitive user information on a broken SSL connection to the hacked server.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A3 Broken Authentication and Session Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A9 Insecure Communications</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A9 Insufficient Transport Layer Protection</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - FIPS200 - (FISMA) <em>CM, SC</em> <br></p>
+																									   <p>[7] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 297</em> <br></p>
+																									   <p>[8]  <em>Designing for Security</em> Android<br></p>
+																									   <p>[9] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[10]  <em>OWASP Top 10 Mobile Risks</em> OWASP<br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 4.1, Requirement 6.3.1.4, Requirement 6.5.9</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 4.1, Requirement 6.5.10</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 4.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[14] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-8 Transmission Confidentiality and Integrity</em> <br></p>
+																									   <p>[15] S. Fahl, M. Harbach, T. Muders, M. Smith, L. Baumgartner, B. Friesleben <em>Why Eve and Mallory Love Android:An Analysis of Android SSL (In)Security</em> <br></p>
+																														

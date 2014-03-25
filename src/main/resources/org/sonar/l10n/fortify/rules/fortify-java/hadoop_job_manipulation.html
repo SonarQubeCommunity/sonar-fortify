@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The <code>Job</code> submitted to a Hadoop cluster can be tampered in a hostile environment.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Hadoop job manipulation errors occur when:<br><br>- Data enters a program from an untrusted source.<br><br>- The data is used to specify a value of the <code>JobConf</code> that controls a client job.<br><br>Hadoop clusters are a hostile environment. When security configurations from protecting unauthorized access to HDFS on cluster machines are not set properly, an attack may be able to take control. This leads to the possibility that any data that is provided by the Hadoop cluster is tampered.<br><br><b>Example 1:</b> The following code shows a <code>Job</code> submission in a typical client application which takes inputs from command line on Hadoop cluster master machine:<br><br><pre><br>  public void run(String args[]) throws IOException {<br><br>    String inputDir = args[0];<br>    String outputDir = args[1];<br><br>    // Untrusted command line argument<br>    int numOfReducers = Integer.parseInt(args[3]);<br>    Class mapper = getClassByName(args[4]);<br>    Class reducer = getClassByName(args[5]);<br><br>    Configuration defaults = new Configuration();<br>    JobConf job = new JobConf(defaults, OptimizedDataJoinJob.class);<br>    job.setNumMapTasks(1);<br>    // An attacker may set random values that exceed the range of acceptable number of reducers<br>    job.setNumReduceTasks(numOfReducers);<br><br>    return job;<br>  }<br></pre><br><br><b>Example 2:</b> The following code shows a case where an attacker controlls the running job to be killed through command line arguments:<br><br><pre><br>  public static void main(String[] args) throws Exception {<br><br>    JobID id = JobID.forName(args[0]);<br>    JobConf conf = new JobConf(WordCount.class);<br>    // configure this JobConf instance<br>    ...<br>    JobClient.runJob(conf);<br>    RunningJob job = JobClient.getJob(id);<br>    job.killJob();<br><br>  }<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation</em> <br></p>
+																														

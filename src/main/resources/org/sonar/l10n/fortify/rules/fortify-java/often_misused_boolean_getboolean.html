@@ -1,0 +1,12 @@
+
+							<h2>ABSTRACT</h2>
+							<p>
+							  The method <code>Boolean.getBoolean()</code> is often confused with <code>Boolean.valueOf()</code> or <code>Boolean.parseBoolean()</code> method calls.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  In most cases, a call to <code>Boolean.getBoolean()</code> is often misused as it is assumed to return the boolean value represented by the specified string argument.  However, as stated in the Javadoc <code>Boolean.getBoolean(String)</code> method "Returns true if and only if the system property named by the argument exists and is equal to the string 'true'."  <br><br>Most often what the developer intended to use was a call to <code>Boolean.valueOf(String)</code> or <code>Boolean.parseBoolean(String)</code> method.<br><b>Example 1:</b> The following code will not behave as expected. It will print "FALSE" as <code>Boolean.getBoolean(String)</code> does not translate a String primitive. It only translates system property. <br><pre><br> ...<br> String isValid = "true";<br> if ( Boolean.getBoolean(isValid) ) {<br>     System.out.println("TRUE");<br> }<br> else {<br>     System.out.println("FALSE");<br> }<br> ...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1]  <em>Class Boolean</em> Oracle<br></p>
+																														
