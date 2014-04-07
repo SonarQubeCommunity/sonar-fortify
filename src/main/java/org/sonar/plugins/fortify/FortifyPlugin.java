@@ -19,40 +19,18 @@
  */
 package org.sonar.plugins.fortify;
 
-import org.sonar.api.Properties;
-import org.sonar.api.Property;
-import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
-import org.sonar.plugins.fortify.batch.AuditContextSensor;
-import org.sonar.plugins.fortify.batch.FortifyProject;
-import org.sonar.plugins.fortify.batch.IssueSensor;
-import org.sonar.plugins.fortify.batch.PerformanceIndicatorSensor;
-import org.sonar.plugins.fortify.client.FortifyClient;
 import org.sonar.plugins.fortify.ui.FortifyWidget;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Properties({
-  // connection properties
-  @Property(key = FortifyClient.PROPERTY_URL, name = "SSC URL"),
-  @Property(key = FortifyClient.PROPERTY_LOGIN, name = "SSC Login"),
-  @Property(key = FortifyClient.PROPERTY_PASSWORD, name = "SSC Password", type = PropertyType.PASSWORD),
-  @Property(key = FortifyClient.PROPERTY_ENABLE, name = "Enable Fortify", type = PropertyType.BOOLEAN, defaultValue = "false",
-    description = "Enable import of Fortify audit report", global = true, project = true),
-
-  // optional project properties
-  @Property(key = FortifyProject.PROPERTY_PROJECT_NAME, name = "Fortify Project Name", global = false, project = true),
-  @Property(key = FortifyProject.PROPERTY_PROJECT_VERSION, name = "Fortify Project Version", global = false, project = true)
-})
 public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
-    return Arrays.asList(FortifyMetrics.class, FortifyRuleRepositories.class, FortifyClient.class,
-      FortifyProject.class, AuditContextSensor.class, PerformanceIndicatorSensor.class, IssueSensor.class,
-      FortifyWidget.class);
+    return Arrays.<Class>asList(FortifyMetrics.class, FortifyRuleRepositories.class, FortifyWidget.class);
   }
 
 }
