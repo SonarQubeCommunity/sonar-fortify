@@ -58,12 +58,12 @@ public class IssueSensor implements Sensor {
   }
 
   public boolean shouldExecuteOnProject(Project project) {
-    List<ActiveRule> activeRules = profile.getActiveRulesByRepository(FortifyRuleRepository.fortifyRepositoryKey(project.getLanguageKey()));
+    List<ActiveRule> activeRules = profile.getActiveRulesByRepository(FortifyRuleRepository.fortifyRepositoryKey(project.getLanguage().getKey()));
     return fortifyProject.exists() && !activeRules.isEmpty();
   }
 
   public void analyse(Project project, SensorContext sensorContext) {
-    String repositoryKey = FortifyRuleRepository.fortifyRepositoryKey(project.getLanguageKey());
+    String repositoryKey = FortifyRuleRepository.fortifyRepositoryKey(project.getLanguage().getKey());
 
     // TODO optimization : load only the issues on enabled rules -> that would prevent from requesting details on issues to be ignored.
     // But that's not possible through Fortify SOAP services

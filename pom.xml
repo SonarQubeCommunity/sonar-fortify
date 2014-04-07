@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.codehaus.sonar-plugins</groupId>
     <artifactId>parent</artifactId>
-    <version>17</version>
+    <version>18</version>
   </parent>
   <artifactId>sonar-fortify-plugin</artifactId>
   <version>1.2-SNAPSHOT</version>
@@ -15,7 +15,7 @@
   <inceptionYear>2012</inceptionYear>
 
   <properties>
-    <sonar.version>3.0</sonar.version>
+    <sonar.version>3.7.1</sonar.version>
     <cxf.version>2.6.1</cxf.version>
   </properties>
 
@@ -44,7 +44,6 @@
     <connection>scm:git:https://github.com/SonarCommunity/sonar-fortify</connection>
     <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-fortify</developerConnection>
     <url>https://github.com/SonarCommunity/sonar-fortify</url>
-    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>

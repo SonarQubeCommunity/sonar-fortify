@@ -26,6 +26,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.resources.Java;
 import org.sonar.api.resources.JavaFile;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.ProjectFileSystem;
@@ -86,7 +87,7 @@ public class IssueSensorTest {
   }
 
   private Project newJavaProject() {
-    return new Project("foo").setLanguageKey("java");
+    return new Project("foo").setLanguage(Java.INSTANCE);
   }
 
   @Test
