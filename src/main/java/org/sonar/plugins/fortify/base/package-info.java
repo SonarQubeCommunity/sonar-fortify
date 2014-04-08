@@ -1,6 +1,6 @@
 /*
  * SonarQube Fortify Plugin
- * Copyright (C) 2012 SonarSource
+ * Copyright (C) 2014 Vivien HENRIET and SonarSource
  * dev@sonar.codehaus.org
  *
  * This program is free software; you can redistribute it and/or

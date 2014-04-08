@@ -1,6 +1,6 @@
 /*
  * SonarQube Fortify Plugin
- * Copyright (C) 2012 SonarSource
+ * Copyright (C) 2014 Vivien HENRIET and SonarSource
  * dev@sonar.codehaus.org
  *
  * This program is free software; you can redistribute it and/or
@@ -26,14 +26,16 @@ import org.sonar.api.web.WidgetProperty;
 import org.sonar.api.web.WidgetPropertyType;
 
 @WidgetProperties({
-    @WidgetProperty(key="enableReportLink", type= WidgetPropertyType.BOOLEAN, defaultValue = "true")
+  @WidgetProperty(key = "enableReportLink", type = WidgetPropertyType.BOOLEAN, defaultValue = "true")
 })
 public class FortifyWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
+  @Override
   public String getId() {
     return "fortify";
   }
 
+  @Override
   public String getTitle() {
     return "Fortify";
   }

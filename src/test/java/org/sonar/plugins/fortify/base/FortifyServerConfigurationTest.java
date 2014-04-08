@@ -17,23 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify.ui;
+package org.sonar.plugins.fortify.base;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.sonar.api.config.Settings;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class FortifyWidgetTest {
-  @Test
-  public void test_location_of_widget() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(getClass().getResource(widget.getTemplatePath())).isNotNull();
+public class FortifyServerConfigurationTest {
+  private Settings settings;
+  private FortifyServerConfiguration fortifyServerConfiguration;
+
+  @Before
+  public void init() {
+    this.settings = mock(Settings.class);
+    this.fortifyServerConfiguration = new FortifyServerConfiguration(this.settings);
   }
 
   @Test
-  public void test_metadata() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(widget.getId()).isNotEmpty();
-    assertThat(widget.getTitle()).isNotEmpty();
+  public void getRulePackLocationsTest() {
+    when(this.settings.getStringArray(FortifyConstants.RULEPACK_LOCATION_PROPERTY)).thenReturn(new String[] {"location"});
+    assertThat(this.fortifyServerConfiguration.getRulePackLocations().size()).isEqualTo(1);
   }
+
 }
