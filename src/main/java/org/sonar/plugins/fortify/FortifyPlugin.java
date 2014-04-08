@@ -21,7 +21,6 @@ package org.sonar.plugins.fortify;
 
 import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
-import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
 import org.sonar.plugins.fortify.ui.FortifyWidget;
 
 import java.util.Arrays;
@@ -30,7 +29,7 @@ import java.util.List;
 public final class FortifyPlugin extends SonarPlugin {
 
   public List getExtensions() {
-    return Arrays.<Class>asList(FortifyMetrics.class, FortifyRuleRepositories.class, FortifyWidget.class);
+    return Arrays.<Class>asList(FortifyMetrics.class, FortifyWidget.class);
   }
 
 }
