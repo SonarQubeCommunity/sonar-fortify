@@ -17,23 +17,16 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify.ui;
+package org.sonar.plugins.fortify.base;
 
-import org.junit.Test;
+public class FortifyParseException extends Exception {
+  private static final long serialVersionUID = -8356362209710070021L;
 
-import static org.fest.assertions.Assertions.assertThat;
-
-public class FortifyWidgetTest {
-  @Test
-  public void test_location_of_widget() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(getClass().getResource(widget.getTemplatePath())).isNotNull();
+  public FortifyParseException(Exception e) {
+    super(e);
   }
 
-  @Test
-  public void test_metadata() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(widget.getId()).isNotEmpty();
-    assertThat(widget.getTitle()).isNotEmpty();
+  public FortifyParseException(String message) {
+    super(message);
   }
 }

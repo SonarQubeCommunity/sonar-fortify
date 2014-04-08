@@ -17,23 +17,24 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.plugins.fortify.ui;
+package org.sonar.plugins.fortify.base;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
-public class FortifyWidgetTest {
-  @Test
-  public void test_location_of_widget() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(getClass().getResource(widget.getTemplatePath())).isNotNull();
-  }
+public class FortifyRuleRepositoriesTest {
 
   @Test
-  public void test_metadata() {
-    FortifyWidget widget = new FortifyWidget();
-    assertThat(widget.getId()).isNotEmpty();
-    assertThat(widget.getTitle()).isNotEmpty();
+  public void provide_rule_repositories_for_supported_languages() {
+    FortifyRuleRepositories provider = new FortifyRuleRepositories(mock(FortifyServerConfiguration.class));
+
+    List<FortifyRuleRepository> repositories = provider.provide();
+    assertThat(repositories).isNotEmpty();
+    assertThat(repositories).onProperty("language").containsExactly(FortifyRuleRepositories.SUPPORTED_LANGUAGES.toArray());
   }
+
 }

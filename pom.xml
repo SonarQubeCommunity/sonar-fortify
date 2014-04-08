@@ -8,15 +8,16 @@
     <version>18</version>
   </parent>
   <artifactId>sonar-fortify-plugin</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
   <name>SonarQube Fortify Plugin</name>
   <description>Imports Fortify SCA reports</description>
   <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
-  <inceptionYear>2012</inceptionYear>
+  <inceptionYear>2014</inceptionYear>
 
   <properties>
     <sonar.version>3.7.1</sonar.version>
+    <license.owner>Vivien HENRIET and SonarSource</license.owner>
   </properties>
 
   <organization>
@@ -36,6 +37,13 @@
     <developer>
       <id>simon.brandhof</id>
       <name>Simon Brandhof</name>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>vivien.henriet</id>
+      <name>Vivien HENRIET</name>
+      <email>bubuabu@bubuabu.org</email>
+      <url>https://github.com/bubuabu</url>
       <timezone>+1</timezone>
     </developer>
   </developers>
