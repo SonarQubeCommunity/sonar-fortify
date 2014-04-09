@@ -26,6 +26,8 @@ import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.fortify.base.FortifyConstants;
 import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
+import org.sonar.plugins.fortify.base.FortifySensor;
+import org.sonar.plugins.fortify.base.FortifySensorConfiguration;
 import org.sonar.plugins.fortify.base.FortifyServerConfiguration;
 import org.sonar.plugins.fortify.ui.FortifyWidget;
 
@@ -33,7 +35,22 @@ import java.util.Arrays;
 import java.util.List;
 
 @Properties({
-  @Property(key = FortifyConstants.RULEPACK_LOCATION_PROPERTY, type = PropertyType.STRING, name = "Fortify rulespack locations",
+  @Property(
+    key = FortifyConstants.ENABLE_PROPERTY,
+    type = PropertyType.BOOLEAN,
+    defaultValue = "true",
+    name = "Active Fortify analisys",
+    description = "Active Fortify analisys.",
+    project = true, module = true, global = true),
+  @Property(
+    key = FortifyConstants.REPORT_PATH_PROPERTY,
+    name = "Report path",
+    description = "Absolute or relative path to FPR report file.",
+    project = true, global = true),
+  @Property(
+    key = FortifyConstants.RULEPACK_LOCATION_PROPERTY,
+    type = PropertyType.STRING,
+    name = "Fortify rulespack locations",
     description = "Fortify rulespack locations.",
     project = false, module = false, global = true, multiValues = true),
 
@@ -43,7 +60,6 @@ public final class FortifyPlugin extends SonarPlugin {
   @Override
   public List getExtensions() {
     return Arrays.<Class>asList(FortifyMetrics.class, FortifyWidget.class, FortifyRuleRepositories.class,
-      FortifyServerConfiguration.class);
+      FortifyServerConfiguration.class, FortifySensor.class, FortifySensorConfiguration.class);
   }
-
 }

@@ -19,19 +19,25 @@
  */
 package org.sonar.plugins.fortify.base;
 
-import org.apache.commons.lang.StringUtils;
+import org.sonar.api.BatchExtension;
+import org.sonar.api.config.Settings;
+import org.sonar.api.profiles.RulesProfile;
 
-public class FortifyConstants {
-  /* sonar.junit.reportsPath=[baseDir]/myReports/myExecutionReports */
-  public static final String AUDIT_FVDL_FILE = "audit.fvdl";
-  public static final String REPORT_PATH_PROPERTY = "fortify.reportPath";
-  public static final String ENABLE_PROPERTY = "fortify.enable";
-  public static final String RULEPACK_LOCATION_PROPERTY = "fortify.rulepack.location";
+public class FortifySensorConfiguration implements BatchExtension {
+  private final RulesProfile profile;
+  private final Settings settings;
 
-  private FortifyConstants() {
+  public FortifySensorConfiguration(RulesProfile profile, Settings settings) {
+    this.profile = profile;
+    this.settings = settings;
   }
 
-  public static String fortifyRepositoryKey(String language) {
-    return "fortify-" + StringUtils.lowerCase(language);
+  public boolean isActive() {
+    return this.settings.getBoolean(FortifyConstants.ENABLE_PROPERTY)
+      && !this.profile.getActiveRules().isEmpty();
+  }
+
+  public String getReportPath() {
+    return this.settings.getString(FortifyConstants.REPORT_PATH_PROPERTY);
   }
 }
