@@ -64,7 +64,7 @@ public class FortifySensor implements Sensor {
 
   @Override
   public boolean shouldExecuteOnProject(Project project) {
-    return this.configuration.isActive() && reportExists(getReportFromProperty());
+    return this.configuration.isActive(this.fileSystem.languages()) && reportExists(getReportFromProperty());
   }
 
   private void addIssue(Resource resource, FortifyVulnerability vulnerability, ActiveRule activeRule) {
@@ -78,6 +78,21 @@ public class FortifySensor implements Sensor {
         .message(vulnerability.getMessage())
         .build();
       issuable.addIssue(issue);
+    }
+  }
+
+  private void addIssues(Project project, Collection<FortifyVulnerability> vulnerabilities) {
+    for (FortifyVulnerability vulnerability : vulnerabilities) {
+      Resource resource = resourceOf(vulnerability, project);
+      if (resource != null) {
+        ActiveRule activeRule = getRule(vulnerability);
+        if (activeRule == null) {
+          FortifySensor.LOG.warn(
+            "Fortify rule '{}' is not active in Sonar.", vulnerability.getClassID());
+        } else {
+          addIssue(resource, vulnerability, activeRule);
+        }
+      }
     }
   }
 
@@ -99,20 +114,7 @@ public class FortifySensor implements Sensor {
   public void analyse(Project project, SensorContext context) {
     TimeProfiler profiler = new TimeProfiler().start("Execute Fortify");
     try {
-      Collection<FortifyVulnerability> vulnerabilities = parseReport(getReportFromProperty());
-
-      for (FortifyVulnerability vulnerability : vulnerabilities) {
-        Resource resource = resourceOf(vulnerability, project);
-        if (resource != null) {
-          ActiveRule activeRule = getRule(vulnerability);
-          if (activeRule == null) {
-            FortifySensor.LOG.warn(
-              "Fortify rule '{}' is not active in Sonar.", vulnerability.getClassID());
-          } else {
-            addIssue(resource, vulnerability, activeRule);
-          }
-        }
-      }
+      addIssues(project, parseReport(getReportFromProperty()));
     } catch (IOException e) {
       throw new SonarException("Can not execute Fortify", e);
     } catch (FortifyParseException e) {

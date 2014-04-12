@@ -23,6 +23,8 @@ import org.sonar.api.BatchExtension;
 import org.sonar.api.config.Settings;
 import org.sonar.api.profiles.RulesProfile;
 
+import java.util.Collection;
+
 public class FortifySensorConfiguration implements BatchExtension {
   private final RulesProfile profile;
   private final Settings settings;
@@ -32,9 +34,13 @@ public class FortifySensorConfiguration implements BatchExtension {
     this.settings = settings;
   }
 
-  public boolean isActive() {
+  public boolean isActive(Collection<String> languages) {
+    int activeRuleCount = 0;
+    for (String language : languages) {
+      activeRuleCount += this.profile.getActiveRulesByRepository(FortifyConstants.fortifyRepositoryKey(language)).size();
+    }
     return this.settings.getBoolean(FortifyConstants.ENABLE_PROPERTY)
-      && !this.profile.getActiveRules().isEmpty();
+      && activeRuleCount > 0;
   }
 
   public String getReportPath() {

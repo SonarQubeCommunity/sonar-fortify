@@ -26,6 +26,7 @@ import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -47,7 +48,10 @@ public class FortifySensorTest {
 
   @Test
   public void shouldExecuteOnProjectTest() {
-    when(this.configuration.isActive()).thenReturn(true);
+    when(this.configuration.isActive(anyListOf(String.class))).thenReturn(false);
+    assertThat(this.sensor.shouldExecuteOnProject(null)).isFalse();
+
+    when(this.configuration.isActive(anyListOf(String.class))).thenReturn(true);
     assertThat(this.sensor.shouldExecuteOnProject(null)).isFalse();
   }
 

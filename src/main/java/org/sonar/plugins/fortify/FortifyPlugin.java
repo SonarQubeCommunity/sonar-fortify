@@ -58,8 +58,8 @@ import java.util.List;
 public final class FortifyPlugin extends SonarPlugin {
 
   @Override
-  public List getExtensions() {
-    return Arrays.<Class>asList(FortifyMetrics.class, FortifyWidget.class, FortifyRuleRepositories.class,
+  public List<?> getExtensions() {
+    return Arrays.<Class<?>>asList(FortifyMetrics.class, FortifyWidget.class, FortifyRuleRepositories.class,
       FortifyServerConfiguration.class, FortifySensor.class, FortifySensorConfiguration.class);
   }
 }
