@@ -45,8 +45,8 @@ import static org.sonar.plugins.fortify.base.FortifyParserUtils.getAtLeastOneEle
 import static org.sonar.plugins.fortify.base.FortifyParserUtils.getAtMostOneElementByTagName;
 import static org.sonar.plugins.fortify.base.FortifyParserUtils.getSingleElementByTagName;
 
-public class FortifyFprParser {
-  private static final Logger LOG = LoggerFactory.getLogger(FortifyFprParser.class);
+public class FortifyFVDLParser {
+  private static final Logger LOG = LoggerFactory.getLogger(FortifyFVDLParser.class);
 
   @CheckForNull
   private String sourceBasePath = null;
@@ -60,13 +60,13 @@ public class FortifyFprParser {
       String htmlDescription = abstractElement.getTextContent();
       this.descriptions.put(classID, htmlDescription);
     } catch (FortifyParseException e) {
-      FortifyFprParser.LOG.error("Cannot parse description! ({}), description={}",
+      FortifyFVDLParser.LOG.error("Cannot parse description! ({}), description={}",
         e.getMessage(), description);
     }
   }
 
   private void handleDescriptions(NodeList descriptions) throws FortifyParseException {
-    FortifyFprParser.LOG.info("Got {} descriptions", descriptions.getLength());
+    FortifyFVDLParser.LOG.info("Got {} descriptions", descriptions.getLength());
     for (int i = 0; i < descriptions.getLength(); i++) {
       handleDescription((Element) descriptions.item(i));
     }
@@ -134,7 +134,7 @@ public class FortifyFprParser {
       String description = this.descriptions.get(classID);
       String message = "No message found";
       if (description == null) {
-        FortifyFprParser.LOG.warn("Message not found for classID={}", classID);
+        FortifyFVDLParser.LOG.warn("Message not found for classID={}", classID);
       } else {
         message = description;
         for (ReplacementDefinition replacementDefinition : replacementDefinitions) {
@@ -154,13 +154,13 @@ public class FortifyFprParser {
 
       this.vulnerabilities.add(vulnerability);
     } catch (FortifyParseException e) {
-      FortifyFprParser.LOG.error("Cannot parse vulnerability! ({})", e.getMessage());
+      FortifyFVDLParser.LOG.error("Cannot parse vulnerability! ({})", e.getMessage());
     }
   }
 
   private void handleVulnerabilities(Element element) {
     NodeList vulnerabilitieNodes = element.getElementsByTagName("Vulnerability");
-    FortifyFprParser.LOG.info("Got {} vulnerabilities.", vulnerabilitieNodes.getLength());
+    FortifyFVDLParser.LOG.info("Got {} vulnerabilities.", vulnerabilitieNodes.getLength());
     for (int i = 0; i < vulnerabilitieNodes.getLength(); i++) {
       handleVulnerability((Element) vulnerabilitieNodes.item(i));
     }

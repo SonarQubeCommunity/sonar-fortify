@@ -41,7 +41,6 @@ import javax.annotation.CheckForNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
-import java.util.zip.ZipFile;
 
 public class FortifySensor implements Sensor {
   private static final Logger LOG = LoggerFactory.getLogger(FortifySensor.class);
@@ -50,6 +49,7 @@ public class FortifySensor implements Sensor {
   private final ResourcePerspectives resourcePerspectives;
   private final FileSystem fileSystem;
   private final ActiveRules activeRules;
+  private final FortifyReportFile report;
 
   public FortifySensor(
     FortifySensorConfiguration configuration,
@@ -60,11 +60,12 @@ public class FortifySensor implements Sensor {
     this.resourcePerspectives = resourcePerspectives;
     this.fileSystem = fileSystem;
     this.activeRules = activeRules;
+    this.report = new FortifyReportFile(configuration, fileSystem);
   }
 
   @Override
   public boolean shouldExecuteOnProject(Project project) {
-    return this.configuration.isActive(this.fileSystem.languages()) && reportExists(getReportFromProperty());
+    return this.configuration.isActive(this.fileSystem.languages()) && this.report.exist();
   }
 
   private void addIssue(Resource resource, FortifyVulnerability vulnerability, ActiveRule activeRule) {
@@ -96,25 +97,16 @@ public class FortifySensor implements Sensor {
     }
   }
 
-  private Collection<FortifyVulnerability> parseReport(java.io.File report) throws IOException, FortifyParseException {
-    ZipFile fprFile = new ZipFile(report);
-    try {
-      InputStream inputStream = fprFile.getInputStream(fprFile.getEntry(FortifyConstants.AUDIT_FVDL_FILE));
-      try {
-        return new FortifyFprParser().parse(inputStream);
-      } finally {
-        inputStream.close();
-      }
-    } finally {
-      fprFile.close();
-    }
-  }
-
   @Override
   public void analyse(Project project, SensorContext context) {
     TimeProfiler profiler = new TimeProfiler().start("Execute Fortify");
     try {
-      addIssues(project, parseReport(getReportFromProperty()));
+      InputStream stream = this.report.getInputStream();
+      try {
+        addIssues(project, new FortifyFVDLParser().parse(stream));
+      } finally {
+        stream.close();
+      }
     } catch (IOException e) {
       throw new SonarException("Can not execute Fortify", e);
     } catch (FortifyParseException e) {
@@ -145,23 +137,6 @@ public class FortifySensor implements Sensor {
       FortifySensor.LOG.warn("The file \"{}\" is not under module base dir.", file);
     }
     return resource;
-  }
-
-  @CheckForNull
-  private java.io.File getReportFromProperty() {
-    String path = this.configuration.getReportPath();
-    if (path != null && path.length() > 0) {
-      java.io.File report = new java.io.File(this.fileSystem.baseDir(), path);
-      if (!reportExists(report)) {
-        report = new java.io.File(path);
-      }
-      return report;
-    }
-    return null;
-  }
-
-  private boolean reportExists(java.io.File report) {
-    return report != null && report.exists() && report.isFile();
   }
 
   @Override

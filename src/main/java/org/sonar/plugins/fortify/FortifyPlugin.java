@@ -45,7 +45,7 @@ import java.util.List;
   @Property(
     key = FortifyConstants.REPORT_PATH_PROPERTY,
     name = "Report path",
-    description = "Absolute or relative path to FPR report file.",
+    description = "Absolute or relative path to FPR or FVDL report file.",
     project = true, global = true),
   @Property(
     key = FortifyConstants.RULEPACK_LOCATION_PROPERTY,
@@ -58,7 +58,7 @@ import java.util.List;
 public final class FortifyPlugin extends SonarPlugin {
 
   @Override
-  public List<?> getExtensions() {
+  public List getExtensions() {
     return Arrays.<Class<?>>asList(FortifyMetrics.class, FortifyWidget.class, FortifyRuleRepositories.class,
       FortifyServerConfiguration.class, FortifySensor.class, FortifySensorConfiguration.class);
   }

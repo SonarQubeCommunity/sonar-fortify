@@ -30,10 +30,10 @@ import java.util.Collection;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class FortifyFprParserTest {
+public class FortifyFVDLParserTest {
   @Test
   public void parseTest() throws IOException, ParserConfigurationException, SAXException, FortifyParseException {
-    FortifyFprParser parser = new FortifyFprParser();
+    FortifyFVDLParser parser = new FortifyFVDLParser();
     InputStream inputStream = getClass().getClassLoader()
       .getResourceAsStream("report/dummy-report.xml");
     Collection<FortifyVulnerability> vulnerabilities = parser.parse(inputStream);
