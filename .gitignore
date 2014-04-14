@@ -1,8 +1,28 @@
-*.iml
-.DS_Store
-.classpath
-.project
-.idea/
-.settings/
+# Build
 target/
 bin/
+
+# IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea/
+
+# Eclipse
+.classpath
+.project
+.settings
+.externalToolBuilders
+
+# Mac OS
+.DS_Store
+Icon?
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# MSWindows
+Thumbs.db
+Desktop.ini
