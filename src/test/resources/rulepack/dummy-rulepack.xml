@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RulePack xmlns="xmlns://www.fortifysoftware.com/schema/rules"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RulePack">
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RulePack">
   <Name><![CDATA[Dummy Rulepack]]></Name>
   <Rules version="3.2">
     <RuleDefinitions>
@@ -46,18 +46,18 @@
         <RuleID>4</RuleID>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>4.0</DefaultSeverity>
-        <Description ref="ref.desc" />
+        <Description ref="ref.desc"/>
       </SemanticRule>
       <SemanticRule>
         <RuleID>5</RuleID>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>0.5</DefaultSeverity>
-        <Description />
+        <Description/>
       </SemanticRule>
       <DummyRule formatVersion="3.3" language="java">
       </DummyRule>
       <DataflowSourceRule formatVersion="3.3"
-        language="java">
+                          language="java">
       </DataflowSourceRule>
     </RuleDefinitions>
   </Rules>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FVDL xmlns="xmlns://www.fortifysoftware.com/schema/fvdl"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.11"
-  xsi:type="FVDL">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.11"
+      xsi:type="FVDL">
   <Build>
     <SourceBasePath>/a/dummy/path</SourceBasePath>
     <Vulnerabilities>
@@ -13,20 +13,20 @@
           <InstanceID>1</InstanceID>
         </InstanceInfo>
         <AnalysisInfo>
-            <Unified>
-              <Trace>
-                <Primary>
-                  <Entry>
-                    <Node isDefault="true">
-                      <SourceLocation path="dummy.file" line="1"/>
-                    </Node>
-                    </Entry>
-                </Primary>
-              </Trace>
-              <ReplacementDefinitions>
-                <Def key="key" value="value" />
-              </ReplacementDefinitions>
-            </Unified>
+          <Unified>
+            <Trace>
+              <Primary>
+                <Entry>
+                  <Node isDefault="true">
+                    <SourceLocation path="dummy.file" line="1"/>
+                  </Node>
+                </Entry>
+              </Primary>
+            </Trace>
+            <ReplacementDefinitions>
+              <Def key="key" value="value"/>
+            </ReplacementDefinitions>
+          </Unified>
         </AnalysisInfo>
       </Vulnerability>
       <Vulnerability>
@@ -37,15 +37,15 @@
           <InstanceID>2</InstanceID>
         </InstanceInfo>
         <AnalysisInfo>
-            <Unified>
-              <Trace>
-                <Primary>
-                  <Entry>
-                    <Node isDefault="false" />
-                  </Entry>
-                </Primary>
-              </Trace>
-            </Unified>
+          <Unified>
+            <Trace>
+              <Primary>
+                <Entry>
+                  <Node isDefault="false"/>
+                </Entry>
+              </Primary>
+            </Trace>
+          </Unified>
         </AnalysisInfo>
       </Vulnerability>
       <Vulnerability>
@@ -56,20 +56,20 @@
           <InstanceID>3</InstanceID>
         </InstanceInfo>
         <AnalysisInfo>
-            <Unified>
-              <Trace>
-                <Primary>
-                  <Entry>
-                  </Entry>
-                </Primary>
-              </Trace>
-            </Unified>
+          <Unified>
+            <Trace>
+              <Primary>
+                <Entry>
+                </Entry>
+              </Primary>
+            </Trace>
+          </Unified>
         </AnalysisInfo>
       </Vulnerability>
-      </Vulnerabilities>
+    </Vulnerabilities>
   </Build>
   <Description classID="1">
     <Abstract>Dummy</Abstract>
   </Description>
-  <Description classID="2" />
+  <Description classID="2"/>
 </FVDL>

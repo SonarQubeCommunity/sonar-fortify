@@ -106,7 +106,7 @@
         <artifactId>sonar-packaging-maven-plugin</artifactId>
         <configuration>
           <pluginName>Fortify</pluginName>
-          <pluginClass>org.sonar.plugins.fortify.FortifyPlugin</pluginClass>
+          <pluginClass>org.sonar.fortify.FortifyPlugin</pluginClass>
         </configuration>
       </plugin>
     </plugins>
