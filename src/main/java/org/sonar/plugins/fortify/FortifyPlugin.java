@@ -24,12 +24,10 @@ import org.sonar.api.Property;
 import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
 import org.sonar.plugins.fortify.base.FortifyConstants;
-import org.sonar.plugins.fortify.base.FortifyMetrics;
 import org.sonar.plugins.fortify.base.FortifyRuleRepositories;
 import org.sonar.plugins.fortify.base.FortifySensor;
 import org.sonar.plugins.fortify.base.FortifySensorConfiguration;
 import org.sonar.plugins.fortify.base.FortifyServerConfiguration;
-import org.sonar.plugins.fortify.ui.FortifyWidget;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +57,7 @@ public final class FortifyPlugin extends SonarPlugin {
 
   @Override
   public List getExtensions() {
-    return Arrays.<Class<?>>asList(FortifyMetrics.class, FortifyWidget.class, FortifyRuleRepositories.class,
+    return Arrays.<Class<?>>asList(FortifyRuleRepositories.class,
       FortifyServerConfiguration.class, FortifySensor.class, FortifySensorConfiguration.class);
   }
 }
