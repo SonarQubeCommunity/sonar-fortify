@@ -46,6 +46,9 @@ import java.util.Map;
 import static org.sonar.fortify.base.DomUtils.getAtMostOneElementByTagName;
 import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
 
+/**
+ *  Rule packs schema is defined in Fortify documentation: Docs/HP_Fortify_SCA_Custom_Rules_Guide_3.90.zip/rulesXMLschema/index.html
+ */
 class RulePackParser {
   private static final Logger LOG = LoggerFactory.getLogger(RulePackParser.class);
 
@@ -57,14 +60,15 @@ class RulePackParser {
   private final Map<String, String> descriptions = new HashMap<String, String>();
 
   private static final Collection<String> INTERNAL_RULE_NAMES = Sets.newHashSet(
-    "DataflowSourceRule", "DataflowEntryPointRule", "DataflowPassthroughRule", "DataflowCleanseRule",
-    "NonReturningRule", "MapRule", "DeprecationRule", "CharacterizationRule", "ControlflowActionPrototype",
-    "ResultFilterRule", "GlobalFieldRule", "GlobalClassRule", "ScriptedCallGraphRule", "ControlflowTransition",
-    "BufferCopyRule", "AllocationRule", "StringLengthRule");
+    "AliasRule", "AllocationRule", "BufferCopyRule", "CharacterizationRule", "ControlflowActionPrototype",
+    "ControlflowTransition", "CustomDescriptionRule", "GlobalClassRule", "MapRule", "NonReturningRule",
+    "ResultFilterRule", "ScriptedCallGraphRule", "StringLengthRule", "SuppressionRule", "DataflowCleanseRule",
+    "DataflowEntryPointRule", "DataflowPassthroughRule", "DataflowSourceRule", "DeprecationRule", "GlobalFieldRule",
+    "StatisticalRule", "InputSetRule");
 
   private static final Collection<String> REAL_RULE_NAMES = Sets.newHashSet(
-    "DataflowSinkRule", "SemanticRule", "ControlflowRule", "StructuralRule", "InternalRule", "ConfigurationRule",
-    "ContentRule");
+    "ConfigurationRule", "ContentRule", "ControlflowRule", "DataflowSinkRule", "SemanticRule", "StructuralRule",
+    "InternalRule");
 
   private Rule createRule(String language, String ruleID, String vulnCategory, String vulnSubcategory, String defaultSeverity, String description) {
     String name = vulnCategory;
