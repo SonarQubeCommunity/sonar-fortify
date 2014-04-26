@@ -62,8 +62,7 @@ class FvdlParser {
       String htmlDescription = abstractElement.getTextContent();
       this.descriptions.put(classID, htmlDescription);
     } catch (FortifyParseException e) {
-      FvdlParser.LOG.error("Cannot parse description! ({}), description={}",
-        e.getMessage(), description);
+      FvdlParser.LOG.error("Cannot parse description!, description=" + description, e);
     }
   }
 
@@ -158,7 +157,7 @@ class FvdlParser {
 
       this.vulnerabilities.add(vulnerability);
     } catch (FortifyParseException e) {
-      FvdlParser.LOG.error("Cannot parse vulnerability! ({})", e.getMessage());
+      FvdlParser.LOG.error("Cannot parse vulnerability!", e);
     }
   }
 
