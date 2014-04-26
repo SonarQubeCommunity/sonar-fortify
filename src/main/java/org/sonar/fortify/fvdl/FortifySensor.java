@@ -37,8 +37,10 @@ import org.sonar.api.utils.SonarException;
 import org.sonar.api.utils.TimeProfiler;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
+import org.sonar.fortify.base.FortifyUtils;
 
 import javax.annotation.CheckForNull;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -74,10 +76,17 @@ public class FortifySensor implements Sensor {
     if (issuable == null) {
       FortifySensor.LOG.warn("Resource {} is not issuable.", resource);
     } else {
+      String severity;
+      if (vulnerability.getSeverity() == null) {
+        severity = activeRule.severity();
+      } else {
+        severity = FortifyUtils.getRulePriorityFromFortifySeverity(vulnerability.getSeverity());
+      }
       Issue issue = issuable.newIssueBuilder()
         .ruleKey(activeRule.ruleKey())
         .line(vulnerability.getLine())
         .message(vulnerability.getMessage())
+        .severity(severity)
         .build();
       issuable.addIssue(issue);
     }

@@ -22,21 +22,21 @@ package org.sonar.fortify.rule;
 import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.Rule;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
+import org.sonar.fortify.base.FortifyUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -74,21 +74,7 @@ class RulePackParser {
     Rule rule = Rule.create(FortifyConstants.fortifyRepositoryKey(language), ruleID, name);
     rule.setDescription(description);
     rule.setLanguage(language);
-
-    String severity;
-    Double level = Double.valueOf(defaultSeverity);
-    if (level >= 4.0) {
-      severity = Severity.BLOCKER;
-    } else if (level >= 3.0) {
-      severity = Severity.CRITICAL;
-    } else if (level >= 2.0) {
-      severity = Severity.MAJOR;
-    } else if (level >= 1.0) {
-      severity = Severity.MINOR;
-    } else {
-      severity = Severity.INFO;
-    }
-    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(severity));
+    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(FortifyUtils.getRulePriorityFromFortifySeverity(defaultSeverity)));
 
     return rule;
   }

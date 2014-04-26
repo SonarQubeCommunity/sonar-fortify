@@ -40,7 +40,7 @@ public final class FortifyRuleRepositories extends ExtensionProvider implements 
   public List<FortifyRuleRepository> provide() {
     List<FortifyRuleRepository> repositories = Lists.newArrayList();
     for (String language : FortifyRuleRepositories.SUPPORTED_LANGUAGES) {
-      repositories.add(new FortifyRuleRepository(settings, language));
+      repositories.add(new FortifyRuleRepository(this.settings, language));
     }
     return repositories;
   }

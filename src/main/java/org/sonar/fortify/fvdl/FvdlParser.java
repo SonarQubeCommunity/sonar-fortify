@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -120,12 +121,14 @@ class FvdlParser {
     try {
       String classID;
       String instanceInfo;
+      String severity;
 
       Element classInfoElement = getSingleElementByTagName(vulnerabilityElement, "ClassInfo");
       classID = getSingleElementByTagName(classInfoElement, "ClassID").getTextContent();
 
       Element instanceInfoElement = getSingleElementByTagName(vulnerabilityElement, "InstanceInfo");
       instanceInfo = getSingleElementByTagName(instanceInfoElement, "InstanceID").getTextContent();
+      severity = getSingleElementByTagName(instanceInfoElement, "InstanceSeverity").getTextContent();
 
       Element analysisInfo = getSingleElementByTagName(vulnerabilityElement, "AnalysisInfo");
       Element unified = getSingleElementByTagName(analysisInfo, "Unified");
@@ -151,7 +154,7 @@ class FvdlParser {
       Element trace = getAtLeastOneElementByTagName(unified, "Trace");
       Element primary = getSingleElementByTagName(trace, "Primary");
       Location location = handleVulnerabilityEntries(primary.getElementsByTagName("Entry"));
-      Vulnerability vulnerability = new Vulnerability(location.getFile(), location.getLine(), classID, instanceInfo, message);
+      Vulnerability vulnerability = new Vulnerability(location.getFile(), location.getLine(), classID, instanceInfo, severity, message);
 
       this.vulnerabilities.add(vulnerability);
     } catch (FortifyParseException e) {

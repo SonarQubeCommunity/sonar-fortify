@@ -54,7 +54,7 @@ public final class FortifyRuleRepository extends RuleRepository {
   public List<Rule> createRules() {
     List<File> files = new ArrayList<File>();
     XMLFileFilter xmlFileFilter = new XMLFileFilter();
-    for (String location : settings.getStringArray(FortifyConstants.RULEPACK_LOCATION_PROPERTY)) {
+    for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_LOCATION_PROPERTY)) {
       File file = new File(location);
       if (file.isDirectory()) {
         for (String rulePack : file.list(xmlFileFilter)) {
