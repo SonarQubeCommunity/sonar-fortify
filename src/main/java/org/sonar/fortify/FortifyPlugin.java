@@ -19,11 +19,7 @@
  */
 package org.sonar.fortify;
 
-import org.sonar.api.Properties;
-import org.sonar.api.Property;
-import org.sonar.api.PropertyType;
 import org.sonar.api.SonarPlugin;
-import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.fvdl.FortifySensor;
 import org.sonar.fortify.fvdl.FortifySensorConfiguration;
 import org.sonar.fortify.rule.FortifyRuleRepositories;
@@ -31,19 +27,6 @@ import org.sonar.fortify.rule.FortifyRuleRepositories;
 import java.util.Arrays;
 import java.util.List;
 
-@Properties({
-  @Property(
-    key = FortifyConstants.REPORT_PATH_PROPERTY,
-    name = "Report path",
-    description = "Absolute or relative path to FPR or FVDL report file.",
-    project = true, global = true),
-  @Property(
-    key = FortifyConstants.RULEPACK_LOCATION_PROPERTY,
-    type = PropertyType.STRING,
-    name = "Fortify rulespack locations",
-    description = "Fortify rulespack locations.",
-    project = false, module = false, global = true, multiValues = true)
-})
 public final class FortifyPlugin extends SonarPlugin {
 
   @Override
