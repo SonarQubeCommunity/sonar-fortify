@@ -24,9 +24,8 @@ import org.apache.commons.lang.StringUtils;
 public class FortifyConstants {
   /* sonar.junit.reportsPath=[baseDir]/myReports/myExecutionReports */
   public static final String AUDIT_FVDL_FILE = "audit.fvdl";
-  public static final String REPORT_PATH_PROPERTY = "fortify.reportPath";
-  public static final String ENABLE_PROPERTY = "fortify.enable";
-  public static final String RULEPACK_LOCATION_PROPERTY = "fortify.rulepack.location";
+  public static final String REPORT_PATH_PROPERTY = "sonar.fortify.reportPath";
+  public static final String RULEPACK_LOCATION_PROPERTY = "sonar.fortify.rulepack.location";
 
   private FortifyConstants() {
   }
