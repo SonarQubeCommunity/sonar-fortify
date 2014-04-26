@@ -33,13 +33,6 @@ import java.util.List;
 
 @Properties({
   @Property(
-    key = FortifyConstants.ENABLE_PROPERTY,
-    type = PropertyType.BOOLEAN,
-    defaultValue = "true",
-    name = "Active Fortify analysis",
-    description = "Active Fortify analysis",
-    project = true, module = true, global = true),
-  @Property(
     key = FortifyConstants.REPORT_PATH_PROPERTY,
     name = "Report path",
     description = "Absolute or relative path to FPR or FVDL report file.",

@@ -29,7 +29,6 @@ import org.sonar.fortify.base.FortifyConstants;
 import java.util.Collections;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -48,10 +47,6 @@ public class FortifySensorConfigurationTest {
 
   @Test
   public void testIsActive() {
-    when(this.settings.getBoolean(FortifyConstants.ENABLE_PROPERTY)).thenReturn(false);
-    assertThat(this.fortifySensorConfiguration.isActive(anyListOf(String.class))).isFalse();
-
-    when(this.settings.getBoolean(FortifyConstants.ENABLE_PROPERTY)).thenReturn(true);
     when(this.profile.getActiveRulesByRepository(anyString())).thenReturn(Collections.<ActiveRule>emptyList());
     assertThat(this.fortifySensorConfiguration.isActive(Collections.singletonList("java"))).isFalse();
 

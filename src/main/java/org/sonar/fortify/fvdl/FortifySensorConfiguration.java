@@ -40,8 +40,7 @@ public class FortifySensorConfiguration implements BatchExtension {
     for (String language : languages) {
       activeRuleCount += this.profile.getActiveRulesByRepository(FortifyConstants.fortifyRepositoryKey(language)).size();
     }
-    return this.settings.getBoolean(FortifyConstants.ENABLE_PROPERTY)
-      && activeRuleCount > 0;
+    return activeRuleCount > 0;
   }
 
   public String getReportPath() {
