@@ -20,6 +20,7 @@
 package org.sonar.fortify.rule;
 
 import com.google.common.io.Closeables;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
@@ -30,14 +31,13 @@ import org.sonar.fortify.base.FortifyParseException;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public final class FortifyRuleRepository extends RuleRepository {
+public class FortifyRuleRepository extends RuleRepository {
   private static final Logger LOG = LoggerFactory.getLogger(FortifyRuleRepository.class);
 
   private final Settings settings;
@@ -53,23 +53,20 @@ public final class FortifyRuleRepository extends RuleRepository {
   @Override
   public List<Rule> createRules() {
     List<File> files = new ArrayList<File>();
-    XMLFileFilter xmlFileFilter = new XMLFileFilter();
     for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_LOCATION_PROPERTY)) {
       File file = new File(location);
       if (file.isDirectory()) {
-        for (String rulePack : file.list(xmlFileFilter)) {
-          files.add(new File(file, rulePack));
-        }
+        files.addAll(FileUtils.listFiles(file, new String[]{"xml"}, false));
       } else if (file.exists()) {
         files.add(file);
       } else {
         FortifyRuleRepository.LOG.warn("Ignore rulepack location: \"{}\", file is not found.", file);
       }
     }
-    return parseRulePack(files);
+    return parseRulePacks(files);
   }
 
-  private List<Rule> parseRulePack(Collection<File> files) {
+  private List<Rule> parseRulePacks(Collection<File> files) {
     List<Rule> rules = new ArrayList<Rule>();
     for (File file : files) {
       InputStream stream = null;
@@ -85,12 +82,5 @@ public final class FortifyRuleRepository extends RuleRepository {
       }
     }
     return rules;
-  }
-
-  private static final class XMLFileFilter implements FilenameFilter {
-    @Override
-    public boolean accept(File dir, String name) {
-      return name.endsWith(".xml");
-    }
   }
 }
