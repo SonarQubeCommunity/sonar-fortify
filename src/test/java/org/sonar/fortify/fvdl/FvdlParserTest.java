@@ -28,7 +28,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class FvdlParserTest {
   @Test
-  public void parseTest() throws Exception {
+  public void parse_dummy_report() throws Exception {
     FvdlParser parser = new FvdlParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/dummy-report.xml");
     Collection<Vulnerability> vulnerabilities = parser.parse(inputStream);
@@ -39,7 +39,21 @@ public class FvdlParserTest {
     assertThat(vulnerability.getInstanceID()).isEqualTo("1");
     assertThat(vulnerability.getLine()).isEqualTo(1);
     assertThat(vulnerability.getMessage()).isEqualTo("Dummy");
+  }
 
+  @Test
+  public void parse_full_report() throws Exception {
+    FvdlParser parser = new FvdlParser();
+    InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/audit.fvdl");
+    Collection<Vulnerability> vulnerabilities = parser.parse(inputStream);
+    assertThat(vulnerabilities.size()).isEqualTo(1048);
+    for (Vulnerability vulnerability : vulnerabilities) {
+      assertThat(vulnerability.getClassID()).isNotNull();
+      assertThat(vulnerability.getFile()).isNotNull();
+      assertThat(vulnerability.getInstanceID()).isNotNull();
+      assertThat(vulnerability.getLine()).isNotNull();
+      assertThat(vulnerability.getMessage()).isNotNull();
+    }
   }
 
 }
