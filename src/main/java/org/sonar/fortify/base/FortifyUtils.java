@@ -26,7 +26,7 @@ public final class FortifyUtils {
     // only static stuff
   }
 
-  public static String getRulePriorityFromFortifySeverity(String fortifySeverity) {
+  public static String fortifyToSonarQubeSeverity(String fortifySeverity) {
     String severity;
     Double level = Double.valueOf(fortifySeverity);
     if (level >= 4.0) {

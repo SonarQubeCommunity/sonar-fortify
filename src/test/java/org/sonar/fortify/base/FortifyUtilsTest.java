@@ -52,7 +52,7 @@ public class FortifyUtilsTest {
   }
 
   @Test
-  public void testGetRulePriorityFromFortifySeverity() {
-    assertThat(FortifyUtils.getRulePriorityFromFortifySeverity(this.fortifySeverity)).isEqualTo(this.expectedSeverity);
+  public void testFortifyToSonarQubeSeverity() {
+    assertThat(FortifyUtils.fortifyToSonarQubeSeverity(this.fortifySeverity)).isEqualTo(this.expectedSeverity);
   }
 }

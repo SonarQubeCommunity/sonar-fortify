@@ -11,7 +11,7 @@
   <version>2.0-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
   <name>SonarQube Fortify Plugin</name>
-  <description>Imports Fortify SCA reports</description>
+  <description>Integrates Fortify SCA reports</description>
   <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2014</inceptionYear>
 

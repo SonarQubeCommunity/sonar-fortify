@@ -80,7 +80,7 @@ public class FortifySensor implements Sensor {
       if (vulnerability.getSeverity() == null) {
         severity = activeRule.severity();
       } else {
-        severity = FortifyUtils.getRulePriorityFromFortifySeverity(vulnerability.getSeverity());
+        severity = FortifyUtils.fortifyToSonarQubeSeverity(vulnerability.getSeverity());
       }
       Issue issue = issuable.newIssueBuilder()
         .ruleKey(activeRule.ruleKey())

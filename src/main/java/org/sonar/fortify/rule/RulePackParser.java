@@ -78,7 +78,7 @@ class RulePackParser {
     Rule rule = Rule.create(FortifyConstants.fortifyRepositoryKey(language), ruleID, name);
     rule.setDescription(description);
     rule.setLanguage(language);
-    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(FortifyUtils.getRulePriorityFromFortifySeverity(defaultSeverity)));
+    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(FortifyUtils.fortifyToSonarQubeSeverity(defaultSeverity)));
 
     return rule;
   }
