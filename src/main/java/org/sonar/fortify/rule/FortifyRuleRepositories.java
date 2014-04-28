@@ -29,7 +29,10 @@ import java.util.List;
 
 public final class FortifyRuleRepositories extends ExtensionProvider implements ServerExtension {
 
-  public static final List<String> SUPPORTED_LANGUAGES = ImmutableList.of("abap", "cobol", "cpp", "cs", "java", "js", "py", "sql", "vb");
+  // List of supported languages as declared at http://www.hpenterprisesecurity.com/vulncat/en/vulncat/index.html
+  public static final List<String> SUPPORTED_LANGUAGES = ImmutableList.of(
+      "abap", "c", "cobol", "cpp", "cs", "flex", "java", "js", "php", "plsql", "py", "sql", "vb", "vbnet", "xml");
+
   private final Settings settings;
 
   public FortifyRuleRepositories(Settings settings) {
