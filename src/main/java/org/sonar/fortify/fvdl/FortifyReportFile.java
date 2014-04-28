@@ -20,7 +20,9 @@
 package org.sonar.fortify.fvdl;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.utils.MessageException;
 import org.sonar.fortify.base.FortifyConstants;
 
 import javax.annotation.CheckForNull;
@@ -40,21 +42,25 @@ class FortifyReportFile {
     this.fileSystem = fileSystem;
   }
 
+  /**
+   * Report file, null if the property is not set.
+   * @throws org.sonar.api.utils.MessageException if the property relates to a directory or a non-existing file.
+   */
   @CheckForNull
   private File getReportFromProperty() {
     String path = this.configuration.getReportPath();
-    if (path != null && path.length() > 0) {
-      File report = new File(this.fileSystem.baseDir(), path);
-      if (!reportExists(report)) {
-        report = new File(path);
+    if (StringUtils.isNotBlank(path)) {
+      File report = new File(path);
+      if (!report.isAbsolute()) {
+        report = new File(this.fileSystem.baseDir(), path);
       }
-      return report;
+      if (report.exists() && report.isFile()) {
+        return report;
+      }
+      throw MessageException.of("Fortify report does not exist. Please check property " +
+          FortifyConstants.REPORT_PATH_PROPERTY + ": " + path);
     }
     return null;
-  }
-
-  private boolean reportExists(File report) {
-    return report != null && report.exists() && report.isFile();
   }
 
   private InputStream getInputStreamFromFprFile(File file) throws IOException {
@@ -101,6 +107,6 @@ class FortifyReportFile {
 
   boolean exist() {
     File report = getReportFromProperty();
-    return report != null && report.exists() && report.isFile();
+    return report != null;
   }
 }
