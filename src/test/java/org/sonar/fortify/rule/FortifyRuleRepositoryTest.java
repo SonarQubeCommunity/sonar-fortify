@@ -32,7 +32,7 @@ public class FortifyRuleRepositoryTest {
   @Test
   public void create_rules() {
     Settings settings = new Settings();
-    settings.setProperty(FortifyConstants.RULEPACK_LOCATION_PROPERTY, "src/test/resources/rulepack,src/test/resources/rulepack/other-rulepack.xml");
+    settings.setProperty(FortifyConstants.RULEPACK_PATHS_PROPERTY, "src/test/resources/rulepack,src/test/resources/rulepack/other-rulepack.xml");
     List<Rule> rules = new FortifyRuleRepository(settings, "java").createRules();
     // TODO replace by isNotEmpty()
     assertThat(rules).isNotNull();

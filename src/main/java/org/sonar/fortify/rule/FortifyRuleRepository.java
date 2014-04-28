@@ -53,7 +53,7 @@ public class FortifyRuleRepository extends RuleRepository {
   @Override
   public List<Rule> createRules() {
     List<File> files = new ArrayList<File>();
-    for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_LOCATION_PROPERTY)) {
+    for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_PATHS_PROPERTY)) {
       File file = new File(location);
       if (file.isDirectory()) {
         files.addAll(FileUtils.listFiles(file, new String[]{"xml"}, false));
