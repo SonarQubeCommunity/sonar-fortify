@@ -10,12 +10,12 @@ SonarQube server loads rule definitions from Fortify rulepacks. Rulepacks are :
 * XML files implemented by end-users to define custom rules.
 * BIN files provided by HP. They are encrypted XML files.  
 
-The SonarQube plugin is able to load the XML files, so BIN files must be beforehand manually decrypted (to be documented). Paths to the XML files (or to their parent directory) must be set in the property "sonar.fortify.rulepack.location" of conf/sonar.properties. Value is a comma-separated list of absolute paths.
+The SonarQube plugin is able to load the XML files, so BIN files must be beforehand manually decrypted (to be documented). Paths to the XML files (or to their parent directory) must be set in the property "sonar.fortify.rulepackPaths" of conf/sonar.properties. Value is a comma-separated list of absolute paths.
 As a consequence SonarQube server must be restarted each time a rulepack is updated in Fortify.
 
 Example
 ```
-sonar.fortify.rulepack.location=/path/to/fortify/rulepacks,/path/to/fortify/custom.xml
+sonar.fortify.rulepackPaths=/path/to/fortify/rulepacks,/path/to/fortify/custom.xml
 ```
 
 When server is restarted, the Fortify rules are listed in the "Quality Profiles" page.

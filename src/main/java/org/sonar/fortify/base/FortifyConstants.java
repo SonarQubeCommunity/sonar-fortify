@@ -26,7 +26,7 @@ public class FortifyConstants {
   public static final String AUDIT_FVDL_FILE = "audit.fvdl";
 
   public static final String REPORT_PATH_PROPERTY = "sonar.fortify.reportPath";
-  public static final String RULEPACK_PATHS_PROPERTY = "sonar.fortify.rulepack.location";
+  public static final String RULEPACK_PATHS_PROPERTY = "sonar.fortify.rulepackPaths";
 
   private FortifyConstants() {
     // only static stuff
