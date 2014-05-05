@@ -144,7 +144,7 @@ public class FortifySensor implements Sensor {
     java.io.File file = new java.io.File(vulnerability.getFile());
     Resource resource = File.fromIOFile(file, project);
     if (resource == null) {
-      FortifySensor.LOG.warn("The file \"{}\" is not under module base dir.", file);
+      FortifySensor.LOG.debug("The file \"{}\" is not under module base dir.", file);
     }
     return resource;
   }
