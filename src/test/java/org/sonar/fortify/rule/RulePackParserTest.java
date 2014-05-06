@@ -21,62 +21,108 @@ package org.sonar.fortify.rule;
 
 import com.google.common.io.Closeables;
 import org.junit.Test;
-import org.sonar.api.rules.Rule;
-import org.sonar.api.rules.RulePriority;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.sonar.api.server.rule.RulesDefinition.Context;
+import org.sonar.api.server.rule.RulesDefinition.NewRepository;
+import org.sonar.api.server.rule.RulesDefinition.NewRule;
+import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class RulePackParserTest {
   @Test
   public void test() {
-    Collection<Rule> rules = parse("rulepack/dummy-rulepack.xml");
-    assertThat(rules.size()).isEqualTo(4);
-    for (Rule rule : rules) {
-      String key = rule.getKey();
-      if ("1".equals(key)) {
-        assertRule(rule, "Dummy cat: Dummy subcat", RulePriority.MAJOR, "");
-      } else if ("3".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.CRITICAL,
-          "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>[1] Dummy reference 1</p><p>[2] Dummy reference 2 - Dummy author</p>");
-      } else if ("4".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.BLOCKER, "");
-      } else if ("5".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.INFO, "");
-      } else {
-        fail("Rule " + key + " is not expected");
-      }
+    Collection<NewRule> newRules = new ArrayList<NewRule>();
+    Context context = mock(Context.class);
+    NewRepository newRepository = mock(NewRepository.class);
+    when(context.createRepository(FortifyConstants.fortifyRepositoryKey("java"), "java")).thenReturn(newRepository);
+
+    newRules.add(mockNewRule(newRepository, "1", "Dummy cat: Dummy subcat", "MINOR", ""));
+    newRules.add(mockNewRule(newRepository, "2", "Dummy cat: Dummy subcat", "MAJOR", ""));
+    newRules
+      .add(mockNewRule(newRepository, "3", "Dummy cat", "CRITICAL",
+        "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>[1] Dummy reference 1</p><p>[2] Dummy reference 2 - Dummy author</p>"));
+    newRules.add(mockNewRule(newRepository, "4", "Dummy cat", "BLOCKER", ""));
+    newRules.add(mockNewRule(newRepository, "5", "Dummy cat", "INFO", ""));
+
+    parse(context, "rulepack/dummy-rulepack.xml");
+
+    for (NewRule newRule : newRules) {
+      verify(newRule, times(1)).setName(anyString());
     }
   }
 
-  public void assertRule(Rule rule, String name, RulePriority priority, String description) {
-    assertThat(rule.getName()).isEqualTo(name);
-    assertThat(rule.getRepositoryKey()).isEqualTo("fortify-java");
-    assertThat(rule.getLanguage()).isEqualTo("java");
-    assertThat(rule.getSeverity()).isEqualTo(priority);
-    assertThat(rule.getDescription()).isEqualTo(description);
+  private NewRule mockNewRule(NewRepository newRepository, final String key, String name, String severity, String description) {
+    NewRule newRule = mock(NewRule.class, new Answer<Object>() {
+
+      @Override
+      public Object answer(InvocationOnMock invocation) throws Throwable {
+        String method = invocation.getMethod().getName() + "(";
+        for (Object object : invocation.getArguments()) {
+          method += object + ", ";
+        }
+        method += ")";
+        fail("Invocation of method " + method + " is not expected (rule=" + key + ")");
+        return null;
+      }
+
+    });
+
+    when(newRepository.createRule(key)).thenReturn(newRule);
+    doReturn(newRule).when(newRule).setName(name);
+    doReturn(newRule).when(newRule).setHtmlDescription(description);
+    doReturn(newRule).when(newRule).setSeverity(severity);
+
+    return newRule;
   }
 
   @Test
   public void testLanguage() {
-    parse("rulepack/dummy2-rulepack.xml");
-    assertThat(parse("rulepack/dummy2-rulepack.xml").size()).isEqualTo(1);
+    Context context = mock(Context.class);
+    NewRepository newRepository = mock(NewRepository.class);
+    NewRule newRule = mock(NewRule.class);
+    when(context.createRepository(anyString(), anyString())).thenReturn(newRepository);
+    when(newRepository.createRule(anyString())).thenReturn(newRule);
+    when(newRule.setName(anyString())).thenReturn(newRule);
+    when(newRule.setHtmlDescription(anyString())).thenReturn(newRule);
+    when(newRule.setSeverity(anyString())).thenReturn(newRule);
+
+    parse(context, "rulepack/dummy2-rulepack.xml");
+    verify(context, times(1)).createRepository(FortifyConstants.fortifyRepositoryKey("java"), "java");
   }
 
   @Test
-  public void testOtherLanguage() {
-    assertThat(parse("rulepack/other-rulepack.xml").size()).isEqualTo(0);
+  public void testNoLanguage() {
+    Context context = mock(Context.class);
+    NewRepository newRepository = mock(NewRepository.class, Mockito.RETURNS_MOCKS);
+    when(context.createRepository(anyString(), anyString())).thenReturn(newRepository);
+
+    parse(context, "rulepack/dummy3-rulepack.xml");
+    verify(context, never()).createRepository(anyString(), anyString());
   }
 
-  private Collection<Rule> parse(String rulePack) {
-    RulePackParser parser = new RulePackParser();
+  private void parse(Context context, String rulePack) {
+    Map<String, NewRepository> newRepositories = new HashMap<String, NewRepository>();
+    RulePackParser parser = new RulePackParser(context, newRepositories);
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rulePack);
     try {
-      return parser.parse(inputStream, "java");
+      parser.parse(inputStream);
     } catch (FortifyParseException e) {
       throw new RuntimeException(e);
     } finally {

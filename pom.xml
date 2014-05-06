@@ -16,7 +16,7 @@
   <inceptionYear>2014</inceptionYear>
 
   <properties>
-    <sonar.version>4.2</sonar.version>
+    <sonar.version>4.3</sonar.version>
     <license.owner>Vivien HENRIET and SonarSource</license.owner>
   </properties>
 
@@ -71,7 +71,13 @@
       <version>${sonar.version}</version>
       <scope>provided</scope>
     </dependency>
-
+    <!--dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-deprecated</artifactId>
+      <version>${sonar.version}</version>
+      <scope>provided</scope>
+    </dependency-->
+    
     <!-- unit tests -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
