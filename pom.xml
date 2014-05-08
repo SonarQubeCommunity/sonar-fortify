@@ -7,16 +7,15 @@
     <artifactId>parent</artifactId>
     <version>18</version>
   </parent>
-  <artifactId>sonar-fortify-plugin</artifactId>
+  <artifactId>sonar-fortify</artifactId>
   <version>2.0-SNAPSHOT</version>
-  <packaging>sonar-plugin</packaging>
-  <name>SonarQube Fortify Plugin</name>
-  <description>Integrates Fortify SCA reports</description>
+  <packaging>pom</packaging>
+  <name>Fortify for SonarQube</name>
+  <description>Integrates Fortify SCA reports into SonarQube</description>
   <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2014</inceptionYear>
 
   <properties>
-    <sonar.version>4.3</sonar.version>
     <license.owner>Vivien HENRIET and SonarSource</license.owner>
   </properties>
 
@@ -64,57 +63,8 @@
     <url>https://sonarplugins.ci.cloudbees.com/job/fortify/</url>
   </ciManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.codehaus.sonar</groupId>
-      <artifactId>sonar-plugin-api</artifactId>
-      <version>${sonar.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <!--dependency>
-      <groupId>org.codehaus.sonar</groupId>
-      <artifactId>sonar-deprecated</artifactId>
-      <version>${sonar.version}</version>
-      <scope>provided</scope>
-    </dependency-->
-    
-    <!-- unit tests -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.0.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-assert</artifactId>
-      <version>1.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.sonar</groupId>
-        <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <configuration>
-          <pluginName>Fortify</pluginName>
-          <pluginClass>org.sonar.fortify.FortifyPlugin</pluginClass>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+  <modules>
+    <module>rulepack-extractor</module>
+    <module>sonar-fortify-plugin</module>
+  </modules>
 </project>
