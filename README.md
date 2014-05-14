@@ -20,12 +20,12 @@ sonar.fortify.rulepackPaths=/path/to/fortify/rulepacks,/path/to/rulepack.xml
 
 When server is restarted, the Fortify rules are listed in the "Quality Profiles" page.
 
-### Uncompress Rulepacks
+#### Uncompress Rulepacks
 
 The following command extracts XML files from BIN files : 
 
 ```
-java -cp rulepack-uncompress-2.0.jar:/path/to/Fortify/Core/lib/fortify-crypto-1.0.jar org.sonar.fortify.uncompress.CLI /path/to/rulepacks
+java -cp rulepack-uncompress-2.0.jar:/path/to/Fortify/Core/lib/fortify-crypto-1.0.jar org.sonar.fortify.uncompress.CLI /path/to/rulepacks/dir
 ```
 
 Note that the parameter is the path to the directory containing BIN files. Related XML files are extracted in the same directory by default. The output directory can be customized by setting a second parameter on the command-line : 
