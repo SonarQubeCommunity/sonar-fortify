@@ -37,15 +37,30 @@ public class CLITest {
   @Test
   public void fail_if_missing_arguments() throws Exception {
     try {
-      new CLI().execute(new FortifyLib(), new String[]{"foo"});
+      new CLI().execute(new FortifyLib(), new String[0]);
       fail();
     } catch (MessageException e) {
-      assertThat(e).hasMessage("Missing parameters. Please set paths to input and output directories.");
+      assertThat(e).hasMessage("Missing parameters. Please set the path to the directory containing bin files.");
     }
   }
 
   @Test
   public void uncompress() throws Exception {
+    File dir = temp.newFolder();
+    FileUtils.write(new File(dir, "rulepack1.bin"), "compressed content");
+    FileUtils.write(new File(dir, "rulepack2.bin"), "compressed content");
+    FileUtils.write(new File(dir, "various.txt"), "something else");
+
+    FortifyLib lib = new FortifyLib(FakeCryptoUtil.class.getName());
+    new CLI().execute(lib, new String[]{dir.getAbsolutePath()});
+
+    assertThat(FileUtils.listFiles(dir, new String[]{"xml"}, false)).hasSize(2);
+    assertThat(new File(dir, "rulepack1.xml")).isFile().exists();
+    assertThat(new File(dir, "rulepack2.xml")).isFile().exists();
+  }
+
+  @Test
+  public void uncompress_in_another_directory() throws Exception {
     File inputDir = temp.newFolder();
     File outputDir = temp.newFolder();
     FileUtils.write(new File(inputDir, "rulepack1.bin"), "compressed content");
@@ -55,6 +70,7 @@ public class CLITest {
     FortifyLib lib = new FortifyLib(FakeCryptoUtil.class.getName());
     new CLI().execute(lib, new String[]{inputDir.getAbsolutePath(), outputDir.getAbsolutePath()});
 
+    assertThat(FileUtils.listFiles(inputDir, new String[]{"xml"}, false)).isEmpty();
     assertThat(FileUtils.listFiles(outputDir, new String[]{"xml"}, false)).hasSize(2);
     assertThat(new File(outputDir, "rulepack1.xml")).isFile().exists();
     assertThat(new File(outputDir, "rulepack2.xml")).isFile().exists();

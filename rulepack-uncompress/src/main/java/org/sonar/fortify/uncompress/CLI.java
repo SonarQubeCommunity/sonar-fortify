@@ -28,10 +28,12 @@ public class CLI {
   }
 
   void execute(FortifyLib fortifyLib, String[] args) {
-    if (args.length != 2) {
-      throw new MessageException("Missing parameters. Please set paths to input and output directories.");
+    if (args.length == 0) {
+      throw new MessageException("Missing parameters. Please set the path to the directory containing bin files.");
     }
-    Config config = new Config(new File(args[0]), new File(args[1]));
+    File inputDir = new File(args[0]);
+    File outputDir = (args.length >= 2 ? new File(args[1]) : inputDir);
+    Config config = new Config(inputDir, outputDir);
     System.out.println("Input dir: " + config.inputDir().getAbsolutePath());
     System.out.println("Output dir: " + config.outputDir().getAbsolutePath());
 
