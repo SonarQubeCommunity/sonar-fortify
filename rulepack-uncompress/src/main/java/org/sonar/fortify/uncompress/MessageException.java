@@ -17,20 +17,22 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.rulepackuncompress;
 
-import org.apache.commons.io.IOUtils;
+package org.sonar.fortify.uncompress;
 
-import java.io.InputStream;
+class MessageException extends RuntimeException {
 
-class FakeCryptoUtil {
-  public static InputStream decryptCompressed(InputStream input, String key) {
-    if (input == null) {
-      throw new IllegalArgumentException("Expecting non-null input stream");
-    }
-    if (key != null) {
-      throw new IllegalArgumentException("Expecting null key");
-    }
-    return IOUtils.toInputStream("uncompressed content");
+  MessageException(String message) {
+    super(message);
+  }
+
+  /**
+   * Does not fill in the stack trace
+   *
+   * @see java.lang.Throwable#fillInStackTrace()
+   */
+  @Override
+  public synchronized Throwable fillInStackTrace() {
+    return this;
   }
 }

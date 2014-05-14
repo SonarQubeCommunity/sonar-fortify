@@ -17,28 +17,12 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.rulepackuncompress;
+package org.sonar.fortify.uncompress;
 
-import java.io.File;
+import java.io.InputStream;
 
-public class CLI {
-
-  public static void main(String[] args) {
-    new CLI().execute(new FortifyLib(), args);
-  }
-
-  void execute(FortifyLib fortifyLib, String[] args) {
-    if (args.length != 2) {
-      throw new MessageException("Missing parameters. Please set paths to input and output directories.");
-    }
-    Config config = new Config(new File(args[0]), new File(args[1]));
-    System.out.println("Input dir: " + config.inputDir().getAbsolutePath());
-    System.out.println("Output dir: " + config.outputDir().getAbsolutePath());
-
-    for (File binFile : config.inputBinFiles()) {
-      File xmlFile = config.outputXmlFile(binFile);
-      System.out.println("Uncompress " + binFile.getName() + " to " + xmlFile.getName());
-      fortifyLib.uncompress(binFile, xmlFile);
-    }
+class FailingCryptoUtil {
+  public static InputStream decryptCompressed(InputStream input, String key) {
+    throw new IllegalStateException("Unexpected error");
   }
 }

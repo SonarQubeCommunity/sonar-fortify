@@ -17,12 +17,20 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.rulepackuncompress;
+package org.sonar.fortify.uncompress;
+
+import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
 
-class FailingCryptoUtil {
+class FakeCryptoUtil {
   public static InputStream decryptCompressed(InputStream input, String key) {
-    throw new IllegalStateException("Unexpected error");
+    if (input == null) {
+      throw new IllegalArgumentException("Expecting non-null input stream");
+    }
+    if (key != null) {
+      throw new IllegalArgumentException("Expecting null key");
+    }
+    return IOUtils.toInputStream("uncompressed content");
   }
 }
