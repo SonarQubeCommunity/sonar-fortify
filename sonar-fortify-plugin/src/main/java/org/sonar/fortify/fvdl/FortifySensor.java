@@ -40,7 +40,6 @@ import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.base.FortifyUtils;
 
 import javax.annotation.CheckForNull;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -73,9 +72,7 @@ public class FortifySensor implements Sensor {
 
   private void addIssue(Resource resource, Vulnerability vulnerability, ActiveRule activeRule) {
     Issuable issuable = this.resourcePerspectives.as(Issuable.class, resource);
-    if (issuable == null) {
-      FortifySensor.LOG.warn("Resource {} is not issuable.", resource);
-    } else {
+    if (issuable != null) {
       String severity;
       if (vulnerability.getSeverity() == null) {
         severity = activeRule.severity();
