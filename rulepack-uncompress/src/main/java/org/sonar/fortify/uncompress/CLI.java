@@ -32,7 +32,7 @@ public class CLI {
       throw new MessageException("Missing parameters. Please set the path to the directory containing bin files.");
     }
     File inputDir = new File(args[0]);
-    File outputDir = (args.length >= 2 ? new File(args[1]) : inputDir);
+    File outputDir = args.length >= 2 ? new File(args[1]) : inputDir;
     Config config = new Config(inputDir, outputDir);
     System.out.println("Input dir: " + config.inputDir().getAbsolutePath());
     System.out.println("Output dir: " + config.outputDir().getAbsolutePath());
