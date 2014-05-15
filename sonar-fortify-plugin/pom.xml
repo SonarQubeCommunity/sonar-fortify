@@ -13,7 +13,7 @@
   <name>Fortify Plugin for SonarQube</name>
 
   <properties>
-    <sonar.version>4.3</sonar.version>
+    <sonar.version>4.2</sonar.version>
   </properties>
 
   <dependencies>

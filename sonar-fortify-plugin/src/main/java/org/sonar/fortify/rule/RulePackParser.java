@@ -20,11 +20,9 @@
 package org.sonar.fortify.rule;
 
 import com.google.common.collect.Sets;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.server.rule.RulesDefinition.Context;
-import org.sonar.api.server.rule.RulesDefinition.NewRepository;
+import org.sonar.api.rules.Rule;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.base.FortifyUtils;
@@ -54,13 +52,11 @@ import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
 class RulePackParser {
   private static final Logger LOG = LoggerFactory.getLogger(RulePackParser.class);
 
-  private final Context context;
-  private final Map<String, NewRepository> newRepositories;
-
   @Nullable
   private String rulePackName = null;
   @Nullable
   private String rulePackLanguage = null;
+  private final Map<String, Rule> rules = new HashMap<String, Rule>();
   private final Map<String, String> descriptions = new HashMap<String, String>();
 
   private static final Collection<String> INTERNAL_RULE_NAMES = Sets.newHashSet(
@@ -74,48 +70,24 @@ class RulePackParser {
     "ConfigurationRule", "ContentRule", "ControlflowRule", "DataflowSinkRule", "SemanticRule", "StructuralRule",
     "InternalRule");
 
-  RulePackParser(Context context, Map<String, NewRepository> newRepositories) {
-    this.context = context;
-    this.newRepositories = newRepositories;
-  }
-
-  private NewRepository getNewRepository(String language) {
-    NewRepository newRepository = this.newRepositories.get(language);
-    if (newRepository == null) {
-      newRepository = this.context.createRepository(FortifyConstants.fortifyRepositoryKey(language), language);
-      newRepository.setName("Fortify");
-      this.newRepositories.put(language, newRepository);
-    }
-    return newRepository;
-  }
-
-  private void createRule(String language, String ruleID, String vulnCategory, String vulnSubcategory, String defaultSeverity, String description) {
+  private Rule createRule(String language, String ruleID, String vulnCategory, String vulnSubcategory, String defaultSeverity, String description) {
     String name = vulnCategory;
     if (vulnSubcategory != null) {
       name += ": " + vulnSubcategory;
     }
+    Rule rule = Rule.create(FortifyConstants.fortifyRepositoryKey(language), ruleID, name);
+    rule.setDescription(description);
+    rule.setLanguage(language);
+    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(FortifyUtils.fortifyToSonarQubeSeverity(defaultSeverity)));
 
-    NewRepository newRepository = getNewRepository(language);
-    newRepository.createRule(ruleID)
-      .setName(name)
-      .setHtmlDescription(description)
-      // .setTags(vulnKingdom)
-      .setSeverity(FortifyUtils.fortifyToSonarQubeSeverity(defaultSeverity));
+    return rule;
   }
 
-  private void handleRule(Element element)
+  private void handleRule(String language, Element element)
     throws FortifyParseException {
     String ruleLanguage = element.getAttribute("language");
     String ruleID = getSingleElementByTagName(element, "RuleID").getTextContent();
-    String language = null;
-    if (StringUtils.isNotBlank(ruleLanguage)) {
-      language = ruleLanguage;
-    } else if (StringUtils.isNotBlank(this.rulePackLanguage)) {
-      language = this.rulePackLanguage;
-    } else {
-      RulePackParser.LOG.info("Ignore rule {} as language is nor defined in rule definition neither in rulePack.", ruleID);
-    }
-    if (language != null) {
+    if (ruleLanguage.length() == 0 || ruleLanguage.equals(language)) {
       String vulnCategory = getSingleElementByTagName(element, "VulnCategory").getTextContent();
       Element vulnSubcategoryElement = getAtMostOneElementByTagName(element, "VulnSubcategory");
       String vulnSubcategory = null;
@@ -131,38 +103,42 @@ class RulePackParser {
       } else {
         ruleDescription = this.descriptions.get(descriptionKey);
       }
-      createRule(language, ruleID, vulnCategory, vulnSubcategory, defaultSeverity, ruleDescription);
+      if (this.rules.put(ruleID, createRule(language, ruleID, vulnCategory, vulnSubcategory, defaultSeverity, ruleDescription)) != null) {
+        RulePackParser.LOG.warn("The rule {} was already added, ignoring previous one.", ruleID, ruleLanguage);
+      }
+    } else {
+      RulePackParser.LOG.info("Ignore rule {} as it is for {} language.", ruleID, ruleLanguage);
     }
   }
 
-  private void handleRuleDefinition(Element element)
+  private void handleRuleDefinition(String language, Element element)
     throws FortifyParseException {
     String name = element.getNodeName();
 
     if (RulePackParser.INTERNAL_RULE_NAMES.contains(name)) {
       // Flow analysis rules: ignore
     } else if (RulePackParser.REAL_RULE_NAMES.contains(name)) {
-      handleRule(element);
+      handleRule(language, element);
     } else {
       RulePackParser.LOG.error("Rule of type: {} is unknown!", name);
     }
 
   }
 
-  private void handleRuleDefinitions(Element element)
+  private void handleRuleDefinitions(String language, Element element)
     throws FortifyParseException {
     NodeList ruleDefinitions = element.getChildNodes();
     for (int i = 0; i < ruleDefinitions.getLength(); i++) {
       Node node = ruleDefinitions.item(i);
       if (node.getNodeType() == Node.ELEMENT_NODE) {
-        handleRuleDefinition((Element) node);
+        handleRuleDefinition(language, (Element) node);
       }
     }
   }
 
-  private void handleRules(Element element)
+  private void handleRules(String language, Element element)
     throws FortifyParseException {
-    handleRuleDefinitions(getSingleElementByTagName(element, "RuleDefinitions"));
+    handleRuleDefinitions(language, getSingleElementByTagName(element, "RuleDefinitions"));
   }
 
   private void handleDescriptionReferences(FortifyRuleDescription description, Element references)
@@ -227,25 +203,27 @@ class RulePackParser {
   private void handleRulePack(Element element) throws FortifyParseException {
     this.rulePackName = getSingleElementByTagName(element, "Name").getTextContent();
     Element languageElement = getAtMostOneElementByTagName(element, "Language");
-    if (languageElement == null) {
-      this.rulePackLanguage = null;
-    } else {
+    if (languageElement != null) {
       this.rulePackLanguage = languageElement.getTextContent();
     }
   }
 
-  void parse(InputStream inputStream) throws FortifyParseException {
+  Collection<Rule> parse(InputStream inputStream, String language) throws FortifyParseException {
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder documentBuilder = factory.newDocumentBuilder();
       Document document = documentBuilder.parse(inputStream);
 
       handleRulePack(getSingleElementByTagName(document, "RulePack"));
-      Element descriptionsElement = getAtMostOneElementByTagName(document, "Descriptions");
-      if (descriptionsElement != null) {
-        handleDescriptions(descriptionsElement);
+      if (this.rulePackLanguage == null || this.rulePackLanguage.equals(language)) {
+        Element descriptionsElement = getAtMostOneElementByTagName(document, "Descriptions");
+        if (descriptionsElement != null) {
+          handleDescriptions(descriptionsElement);
+        }
+        handleRules(language, getSingleElementByTagName(document, "Rules"));
+      } else {
+        RulePackParser.LOG.info("Ignore rulepack {} as it is for {} language.", this.rulePackName, this.rulePackLanguage);
       }
-      handleRules(getSingleElementByTagName(document, "Rules"));
     } catch (ParserConfigurationException e) {
       throw new FortifyParseException(e);
     } catch (SAXException e) {
@@ -253,5 +231,6 @@ class RulePackParser {
     } catch (IOException e) {
       throw new FortifyParseException(e);
     }
+    return this.rules.values();
   }
 }

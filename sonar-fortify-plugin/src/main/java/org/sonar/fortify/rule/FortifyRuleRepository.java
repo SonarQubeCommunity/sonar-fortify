@@ -24,7 +24,8 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.rules.Rule;
+import org.sonar.api.rules.RuleRepository;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
 
@@ -34,53 +35,52 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class FortifyRulesDefinition implements RulesDefinition {
-  private static final Logger LOG = LoggerFactory.getLogger(FortifyRulesDefinition.class);
+public class FortifyRuleRepository extends RuleRepository {
+  private static final Logger LOG = LoggerFactory.getLogger(FortifyRuleRepository.class);
 
   private final Settings settings;
+  private final String language;
 
-  public FortifyRulesDefinition(Settings settings) {
+  FortifyRuleRepository(Settings settings, String language) {
+    super(FortifyConstants.fortifyRepositoryKey(language), language);
+    setName("Fortify");
     this.settings = settings;
+    this.language = language;
   }
 
   @Override
-  public void define(Context context) {
+  public List<Rule> createRules() {
     List<File> files = new ArrayList<File>();
     for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_PATHS_PROPERTY)) {
       File file = new File(location);
       if (file.isDirectory()) {
-        files.addAll(FileUtils.listFiles(file, new String[] {"xml"}, false));
+        files.addAll(FileUtils.listFiles(file, new String[]{"xml"}, false));
       } else if (file.exists()) {
         files.add(file);
       } else {
-        FortifyRulesDefinition.LOG.warn("Ignore rulepack location: \"{}\", file is not found.", file);
+        FortifyRuleRepository.LOG.warn("Ignore rulepack location: \"{}\", file is not found.", file);
       }
     }
-    for (NewRepository newRepository : parseRulePacks(context, files)) {
-      newRepository.done();
-    }
+    return parseRulePacks(files);
   }
 
-  private Collection<NewRepository> parseRulePacks(Context context, Collection<File> files) {
-    Map<String, NewRepository> newRepositories = new HashMap<String, NewRepository>();
-    RulePackParser rulePackParser = new RulePackParser(context, newRepositories);
+  private List<Rule> parseRulePacks(Collection<File> files) {
+    List<Rule> rules = new ArrayList<Rule>();
     for (File file : files) {
       InputStream stream = null;
       try {
         stream = new FileInputStream(file);
-        rulePackParser.parse(stream);
+        rules.addAll(new RulePackParser().parse(stream, this.language));
       } catch (IOException e) {
-        FortifyRulesDefinition.LOG.error("Unexpected error during the parse of " + file + ".", e);
+        FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
       } catch (FortifyParseException e) {
-        FortifyRulesDefinition.LOG.error("Unexpected error during the parse of " + file + ".", e);
+        FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
       } finally {
         Closeables.closeQuietly(stream);
       }
     }
-    return newRepositories.values();
+    return rules;
   }
 }

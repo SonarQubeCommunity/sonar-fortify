@@ -22,7 +22,7 @@ package org.sonar.fortify;
 import org.sonar.api.SonarPlugin;
 import org.sonar.fortify.fvdl.FortifySensor;
 import org.sonar.fortify.fvdl.FortifySensorConfiguration;
-import org.sonar.fortify.rule.FortifyRulesDefinition;
+import org.sonar.fortify.rule.FortifyRuleRepositories;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +31,6 @@ public final class FortifyPlugin extends SonarPlugin {
 
   @Override
   public List getExtensions() {
-    return Arrays.<Class<?>>asList(FortifyRulesDefinition.class, FortifySensor.class, FortifySensorConfiguration.class);
+    return Arrays.asList(FortifyRuleRepositories.class, FortifySensor.class, FortifySensorConfiguration.class);
   }
 }

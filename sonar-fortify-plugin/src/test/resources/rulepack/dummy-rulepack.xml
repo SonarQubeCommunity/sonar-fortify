@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RulePack xmlns="xmlns://www.fortifysoftware.com/schema/rules"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RulePack">
+<RulePack xmlns="xmlns://www.fortifysoftware.com/schema/rules" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RulePack">
   <Name><![CDATA[Dummy Rulepack]]></Name>
-  <Language>java</Language>
   <Rules version="3.2">
     <RuleDefinitions>
       <SemanticRule formatVersion="3.3" language="java">
@@ -14,12 +11,15 @@
         </Description>
       </SemanticRule>
       <SemanticRule formatVersion="3.3" language="java">
-        <RuleID>2</RuleID>
+        <RuleID>1</RuleID>
         <VulnCategory>Dummy cat</VulnCategory>
         <VulnSubcategory>Dummy subcat</VulnSubcategory>
         <DefaultSeverity>2.0</DefaultSeverity>
         <Description>
         </Description>
+      </SemanticRule>
+      <SemanticRule formatVersion="3.3" language="other">
+        <RuleID>2</RuleID>
       </SemanticRule>
       <SemanticRule formatVersion="3.3" language="java">
         <RuleID>3</RuleID>
@@ -54,12 +54,11 @@
       </SemanticRule>
       <DummyRule formatVersion="3.3" language="java">
       </DummyRule>
-      <DataflowSourceRule formatVersion="3.3"
-                          language="java">
+      <DataflowSourceRule formatVersion="3.3" language="java">
       </DataflowSourceRule>
     </RuleDefinitions>
   </Rules>
   <Descriptions>
-    <Description id="ref.desc"></Description>
+    <Description id="ref.desc"/>
   </Descriptions>
 </RulePack>
