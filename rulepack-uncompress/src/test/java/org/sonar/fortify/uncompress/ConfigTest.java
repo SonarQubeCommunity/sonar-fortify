@@ -58,8 +58,8 @@ public class ConfigTest {
 
     File[] binFiles = config.inputBinFiles();
     assertThat(binFiles).hasSize(2);
-    assertThat(binFiles[0].getName()).isEqualTo("rulepack1.bin");
-    assertThat(binFiles[1].getName()).isEqualTo("rulepack2.BIN");
+    assertThat(binFiles[0].getName()).isEqualToIgnoringCase("rulepack1.bin");
+    assertThat(binFiles[1].getName()).isEqualToIgnoringCase("rulepack2.BIN");
   }
 
   @Test
