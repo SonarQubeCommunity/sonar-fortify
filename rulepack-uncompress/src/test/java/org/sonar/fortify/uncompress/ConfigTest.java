@@ -57,9 +57,7 @@ public class ConfigTest {
     assertThat(config.inputDir().getCanonicalPath()).isEqualTo(inputDir.getCanonicalPath());
 
     File[] binFiles = config.inputBinFiles();
-    assertThat(binFiles).hasSize(2);
-    assertThat(binFiles[0].getName()).isEqualToIgnoringCase("rulepack1.bin");
-    assertThat(binFiles[1].getName()).isEqualToIgnoringCase("rulepack2.BIN");
+    assertThat(binFiles).onProperty("name").containsOnly("rulepack1.bin", "rulepack2.BIN");
   }
 
   @Test
