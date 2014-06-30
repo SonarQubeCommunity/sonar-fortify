@@ -43,7 +43,7 @@ public class FortifySensorTest {
     this.resourcePerspectives = mock(ResourcePerspectives.class);
     this.fileSystem = mock(FileSystem.class);
     this.activeRules = mock(ActiveRules.class);
-    this.sensor = new FortifySensor(this.configuration, this.resourcePerspectives, this.fileSystem, this.activeRules);
+    this.sensor = new FortifySensor(this.configuration, this.resourcePerspectives, this.fileSystem, this.activeRules, null, null);
   }
 
   @Test

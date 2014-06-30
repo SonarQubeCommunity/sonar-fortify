@@ -105,8 +105,9 @@ class FvdlParser {
         if (Boolean.valueOf(isDefault)) {
           Element sourceLocation = getSingleElementByTagName(node, "SourceLocation");
           String file = this.sourceBasePath + "/" + sourceLocation.getAttribute("path");
+          String relativeFile = sourceLocation.getAttribute("path");
           Integer line = Integer.valueOf(sourceLocation.getAttribute("line"));
-          location = new Location(file, line);
+          location = new Location(file, relativeFile, line);
         }
       }
     }
@@ -153,7 +154,7 @@ class FvdlParser {
       Element trace = getAtLeastOneElementByTagName(unified, "Trace");
       Element primary = getSingleElementByTagName(trace, "Primary");
       Location location = handleVulnerabilityEntries(primary.getElementsByTagName("Entry"));
-      Vulnerability vulnerability = new Vulnerability(location.getFile(), location.getLine(), classID, instanceInfo, severity, message);
+      Vulnerability vulnerability = new Vulnerability(location.getFile(), location.getRelativeFile(), location.getLine(), classID, instanceInfo, severity, message);
 
       this.vulnerabilities.add(vulnerability);
     } catch (FortifyParseException e) {
@@ -214,15 +215,21 @@ class FvdlParser {
 
   private static class Location {
     private final String file;
+    private final String relativeFile;
     private final Integer line;
 
-    Location(String file, Integer line) {
+    Location(String file, String relativeFile, Integer line) {
       this.file = file;
+      this.relativeFile = relativeFile;
       this.line = line;
     }
 
     String getFile() {
       return this.file;
+    }
+
+    String getRelativeFile() {
+      return this.relativeFile;
     }
 
     Integer getLine() {
