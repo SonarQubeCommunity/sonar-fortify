@@ -19,17 +19,18 @@
  */
 package org.sonar.fortify.rule;
 
-import com.google.common.io.Closeables;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.fail;
+
+import java.io.InputStream;
+import java.util.Collection;
+
 import org.junit.Test;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RulePriority;
 import org.sonar.fortify.base.FortifyParseException;
 
-import java.io.InputStream;
-import java.util.Collection;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.fail;
+import com.google.common.io.Closeables;
 
 public class RulePackParserTest {
   @Test
@@ -70,6 +71,16 @@ public class RulePackParserTest {
   @Test
   public void testOtherLanguage() {
     assertThat(parse("rulepack/other-rulepack.xml").size()).isEqualTo(0);
+  }
+
+  @Test
+  public void compareFormatVersionTest() {
+    assertThat(RulePackParser.compareFormatVersion("2.10", "1.10")).isEqualTo(true);
+    assertThat(RulePackParser.compareFormatVersion("2.10", "2.1")).isEqualTo(true);
+    assertThat(RulePackParser.compareFormatVersion("2.10", "2")).isEqualTo(true);
+    assertThat(RulePackParser.compareFormatVersion("1.10", "2.10")).isEqualTo(false);
+    assertThat(RulePackParser.compareFormatVersion("2.1", "2.10")).isEqualTo(false);
+    assertThat(RulePackParser.compareFormatVersion("2", "2.10")).isEqualTo(false);
   }
 
   private Collection<Rule> parse(String rulePack) {

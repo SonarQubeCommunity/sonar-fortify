@@ -19,7 +19,20 @@
  */
 package org.sonar.fortify.rule;
 
-import com.google.common.collect.Sets;
+import static org.sonar.fortify.base.DomUtils.getAtMostOneElementByTagName;
+import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.rules.Rule;
@@ -32,19 +45,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.annotation.Nullable;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.sonar.fortify.base.DomUtils.getAtMostOneElementByTagName;
-import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
+import com.google.common.collect.Sets;
 
 /**
  *  Rule packs schema is defined in Fortify documentation: Docs/HP_Fortify_SCA_Custom_Rules_Guide_3.90.zip/rulesXMLschema/index.html
@@ -57,6 +58,7 @@ class RulePackParser {
   @Nullable
   private String rulePackLanguage = null;
   private final Map<String, Rule> rules = new HashMap<String, Rule>();
+  private final Map<String, String> ruleVersions = new HashMap<String, String>();
   private final Map<String, String> descriptions = new HashMap<String, String>();
 
   private static final Collection<String> INTERNAL_RULE_NAMES = Sets.newHashSet(
@@ -70,7 +72,7 @@ class RulePackParser {
     "ConfigurationRule", "ContentRule", "ControlflowRule", "DataflowSinkRule", "SemanticRule", "StructuralRule",
     "InternalRule");
 
-  private Rule createRule(String language, String ruleID, String vulnCategory, String vulnSubcategory, String defaultSeverity, String description) {
+  private Rule createRule(String language, String ruleID, String vulnCategory, String vulnSubcategory, String defaultSeverity, String description, String formatVersion) {
     String name = vulnCategory;
     if (vulnSubcategory != null) {
       name += ": " + vulnSubcategory;
@@ -86,6 +88,7 @@ class RulePackParser {
   private void handleRule(String language, Element element)
     throws FortifyParseException {
     String ruleLanguage = element.getAttribute("language");
+    String formatVersion = element.getAttribute("formatVersion");
     String ruleID = getSingleElementByTagName(element, "RuleID").getTextContent();
     if (ruleLanguage.length() == 0 || ruleLanguage.equals(language)) {
       String vulnCategory = getSingleElementByTagName(element, "VulnCategory").getTextContent();
@@ -103,8 +106,16 @@ class RulePackParser {
       } else {
         ruleDescription = this.descriptions.get(descriptionKey);
       }
-      if (this.rules.put(ruleID, createRule(language, ruleID, vulnCategory, vulnSubcategory, defaultSeverity, ruleDescription)) != null) {
-        RulePackParser.LOG.warn("The rule {} was already added, ignoring previous one.", ruleID, ruleLanguage);
+      String previousFormatVersion = this.ruleVersions.get(ruleID);
+      if (previousFormatVersion == null) {
+        this.rules.put(ruleID, createRule(language, ruleID, vulnCategory, vulnSubcategory, defaultSeverity, ruleDescription, formatVersion));
+        this.ruleVersions.put(ruleID, formatVersion);
+      } else if (compareFormatVersion(previousFormatVersion, formatVersion)) {
+        RulePackParser.LOG.debug("The rule {} was already added in formatVersion {}, ignoring one with formatVersion {}.", ruleID, previousFormatVersion, formatVersion);
+      } else {
+        RulePackParser.LOG.debug("The rule {} was already added in formatVersion {}, replace it by the one with formatVersion {}.", ruleID, previousFormatVersion, formatVersion);
+        this.rules.put(ruleID, createRule(language, ruleID, vulnCategory, vulnSubcategory, defaultSeverity, ruleDescription, formatVersion));
+        this.ruleVersions.put(ruleID, formatVersion);
       }
     } else {
       RulePackParser.LOG.info("Ignore rule {} as it is for {} language.", ruleID, ruleLanguage);
@@ -222,7 +233,7 @@ class RulePackParser {
         }
         handleRules(language, getSingleElementByTagName(document, "Rules"));
       } else {
-        RulePackParser.LOG.info("Ignore rulepack {} as it is for {} language.", this.rulePackName, this.rulePackLanguage);
+        RulePackParser.LOG.info("Ignore rulepack \"{}\" as it is for {} language.", this.rulePackName, this.rulePackLanguage);
       }
     } catch (ParserConfigurationException e) {
       throw new FortifyParseException(e);
@@ -232,5 +243,27 @@ class RulePackParser {
       throw new FortifyParseException(e);
     }
     return this.rules.values();
+  }
+
+  /**
+   * @return true is formatVersion1 is greater than formatVersion2
+   */
+  protected static boolean compareFormatVersion(String formatVersion1, String formatVersion2) {
+    String[] version1Parts = formatVersion1.split("\\.");
+    String[] version2Parts = formatVersion2.split("\\.");
+    int length = Math.max(version1Parts.length, version2Parts.length);
+    for (int i = 0; i < length; i++) {
+      int version1 = i < version1Parts.length ?
+        Integer.valueOf(version1Parts[i]) : 0;
+      int version2 = i < version2Parts.length ?
+        Integer.valueOf(version2Parts[i]) : 0;
+      if (version1 < version2) {
+        return false;
+      }
+      if (version1 > version2) {
+        return true;
+      }
+    }
+    return false;
   }
 }
