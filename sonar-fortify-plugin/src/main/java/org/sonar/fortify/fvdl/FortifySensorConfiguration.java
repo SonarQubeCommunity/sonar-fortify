@@ -46,4 +46,8 @@ public class FortifySensorConfiguration implements BatchExtension {
   public String getReportPath() {
     return this.settings.getString(FortifyConstants.REPORT_PATH_PROPERTY);
   }
+
+  public boolean hasNoSources() {
+    return this.settings.getBoolean(FortifyConstants.NO_SOURCES_PROPERTY);
+  }
 }
