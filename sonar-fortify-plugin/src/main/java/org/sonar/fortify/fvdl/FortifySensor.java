@@ -19,17 +19,22 @@
  */
 package org.sonar.fortify.fvdl;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.SonarIndex;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
+import org.sonar.api.resources.Directory;
 import org.sonar.api.resources.File;
+import org.sonar.api.resources.Language;
+import org.sonar.api.resources.Languages;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.rule.RuleKey;
@@ -52,16 +57,22 @@ public class FortifySensor implements Sensor {
   private final FileSystem fileSystem;
   private final ActiveRules activeRules;
   private final FortifyReportFile report;
+  private final SonarIndex sonarIndex;
+  private final Languages languages;
 
   public FortifySensor(
     FortifySensorConfiguration configuration,
     ResourcePerspectives resourcePerspectives,
     FileSystem fileSystem,
-    ActiveRules activeRules) {
+    ActiveRules activeRules,
+    SonarIndex sonarIndex,
+    Languages languages) {
     this.configuration = configuration;
     this.resourcePerspectives = resourcePerspectives;
     this.fileSystem = fileSystem;
     this.activeRules = activeRules;
+    this.sonarIndex = sonarIndex;
+    this.languages = languages;
     this.report = new FortifyReportFile(configuration, fileSystem);
   }
 
@@ -142,6 +153,15 @@ public class FortifySensor implements Sensor {
     Resource resource = File.fromIOFile(file, project);
     if (resource == null) {
       FortifySensor.LOG.debug("The file \"{}\" is not under module base dir.", file);
+      
+      if (this.configuration.hasNoSources()) {
+        String relativePath = vulnerability.getRelativeFile();
+        String filename = StringUtils.substringAfterLast(relativePath, Directory.SEPARATOR);
+        Language language = this.languages.get(StringUtils.substringAfterLast(relativePath, "."));
+        boolean isUnitTest = StringUtils.contains(relativePath, "test");
+        resource = File.create(relativePath, filename, language, isUnitTest);
+        sonarIndex.index(resource);
+      }
     }
     return resource;
   }

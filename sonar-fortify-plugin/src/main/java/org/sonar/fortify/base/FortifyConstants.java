@@ -27,6 +27,7 @@ public class FortifyConstants {
 
   public static final String REPORT_PATH_PROPERTY = "sonar.fortify.reportPath";
   public static final String RULEPACK_PATHS_PROPERTY = "sonar.fortify.rulepackPaths";
+  public static final String NO_SOURCES_PROPERTY = "sonar.fortify.no.sources";
 
   private FortifyConstants() {
     // only static stuff
