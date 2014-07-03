@@ -17,7 +17,20 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.SourceLocation;
+import org.xml.sax.Attributes;
 
+public class SourceLocationHandler extends AbstractHandler<SourceLocation> {
+
+  SourceLocationHandler() {
+    super("SourceLocation");
+  }
+
+  @Override
+  protected void start(Attributes attributes) {
+    super.start(attributes);
+    setResult(new SourceLocation(attributes.getValue("path"), Integer.valueOf(attributes.getValue("line"))));
+  }
+}

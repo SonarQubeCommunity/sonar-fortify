@@ -19,18 +19,17 @@
  */
 package org.sonar.fortify.rule;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.fail;
-
-import java.io.InputStream;
-import java.util.Collection;
-
+import com.google.common.io.Closeables;
 import org.junit.Test;
 import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RulePriority;
 import org.sonar.fortify.base.FortifyParseException;
 
-import com.google.common.io.Closeables;
+import java.io.InputStream;
+import java.util.Collection;
+
+import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
 public class RulePackParserTest {
   @Test

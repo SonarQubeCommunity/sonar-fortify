@@ -17,7 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.ReplacementDefinition;
+import org.xml.sax.Attributes;
 
+import java.util.Set;
+
+public class ReplacementDefinitionsHandler extends AbstractHandler<Set<ReplacementDefinition>> {
+
+  private final ReplacementDefinitionHandler replacementDefinitionHandler;
+
+  ReplacementDefinitionsHandler() {
+    super("ReplacementDefinitions");
+    this.replacementDefinitionHandler = new ReplacementDefinitionHandler();
+    setChildren(this.replacementDefinitionHandler);
+  }
+
+  @Override
+  protected void start(Attributes attributes) {
+    this.replacementDefinitionHandler.reset();
+  }
+
+  @Override
+  protected void end() {
+    setResult(this.replacementDefinitionHandler.getResult());
+  }
+}

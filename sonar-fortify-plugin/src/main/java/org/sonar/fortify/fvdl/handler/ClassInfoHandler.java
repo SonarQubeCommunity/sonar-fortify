@@ -17,7 +17,20 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+public class ClassInfoHandler extends AbstractHandler<String> {
 
+  private final StringHandler classIDHandler;
+
+  ClassInfoHandler() {
+    super("ClassInfo");
+    this.classIDHandler = new StringHandler("ClassID");
+    setChildren(this.classIDHandler);
+  }
+
+  @Override
+  protected void end() {
+    setResult(this.classIDHandler.getResult());
+  }
+}

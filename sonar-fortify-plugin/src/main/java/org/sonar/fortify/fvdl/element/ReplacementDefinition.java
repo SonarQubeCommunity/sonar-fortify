@@ -17,7 +17,27 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.element;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+public class ReplacementDefinition {
+  private final String key;
+  private final String value;
 
+  public ReplacementDefinition(String key, String value) {
+    this.key = key;
+    this.value = value;
+  }
+
+  public String getKey() {
+    return this.key;
+  }
+
+  public String getValue() {
+    return this.value;
+  }
+
+  @Override
+  public String toString() {
+    return "[ReplacementDefinition key=" + this.key + ", value=" + this.value + "]";
+  }
+}

@@ -19,20 +19,7 @@
  */
 package org.sonar.fortify.rule;
 
-import static org.sonar.fortify.base.DomUtils.getAtMostOneElementByTagName;
-import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
+import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.rules.Rule;
@@ -45,7 +32,19 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.google.common.collect.Sets;
+import javax.annotation.Nullable;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.sonar.fortify.base.DomUtils.getAtMostOneElementByTagName;
+import static org.sonar.fortify.base.DomUtils.getSingleElementByTagName;
 
 /**
  *  Rule packs schema is defined in Fortify documentation: Docs/HP_Fortify_SCA_Custom_Rules_Guide_3.90.zip/rulesXMLschema/index.html

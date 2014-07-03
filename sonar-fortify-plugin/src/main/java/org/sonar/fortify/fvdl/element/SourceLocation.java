@@ -17,7 +17,27 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.element;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+public class SourceLocation {
+  private final String path;
+  private final Integer line;
 
+  public SourceLocation(String path, Integer line) {
+    this.path = path;
+    this.line = line;
+  }
+
+  public String getPath() {
+    return this.path;
+  }
+
+  public Integer getLine() {
+    return this.line;
+  }
+
+  @Override
+  public String toString() {
+    return "[SourceLocation path=" + this.path + ", line=" + this.line + "]";
+  }
+}

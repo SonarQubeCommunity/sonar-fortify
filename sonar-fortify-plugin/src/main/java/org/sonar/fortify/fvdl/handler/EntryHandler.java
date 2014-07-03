@@ -17,7 +17,24 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.SourceLocation;
 
+public class EntryHandler extends AbstractHandler<SourceLocation> {
+  private final NodeHandler nodeHandler;
+
+  EntryHandler() {
+    super("Entry");
+    this.nodeHandler = new NodeHandler();
+    setChildren(this.nodeHandler);
+  }
+
+  @Override
+  protected void end() {
+    SourceLocation sourceLocation = this.nodeHandler.getResult();
+    if (sourceLocation != null) {
+      setResult(sourceLocation);
+    }
+  }
+}

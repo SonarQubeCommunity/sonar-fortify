@@ -26,6 +26,7 @@ import org.sonar.api.utils.MessageException;
 import org.sonar.fortify.base.FortifyConstants;
 
 import javax.annotation.CheckForNull;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

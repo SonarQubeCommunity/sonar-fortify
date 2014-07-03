@@ -17,7 +17,29 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.element;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 
+public class Unified {
+  private final Set<ReplacementDefinition> replacementDefinitions;
+  private final SourceLocation sourceLocation;
+
+  public Unified(Set<ReplacementDefinition> replacementDefinitions, SourceLocation sourceLocation) {
+    this.replacementDefinitions = replacementDefinitions;
+    this.sourceLocation = sourceLocation;
+  }
+
+  public Set<ReplacementDefinition> getReplacementDefinitions() {
+    return this.replacementDefinitions;
+  }
+
+  public SourceLocation getSourceLocation() {
+    return this.sourceLocation;
+  }
+
+  @Override
+  public String toString() {
+    return "[Unified path=" + this.sourceLocation + ", replacementDefinitions=" + this.replacementDefinitions + "]";
+  }
+}

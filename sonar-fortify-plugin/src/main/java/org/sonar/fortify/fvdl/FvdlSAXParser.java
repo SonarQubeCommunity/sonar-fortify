@@ -17,7 +17,25 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.Fvdl;
+import org.sonar.fortify.fvdl.handler.FvdlHandler;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class FvdlSAXParser {
+  Fvdl parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
+    SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+
+    FvdlHandler handler = new FvdlHandler();
+    parser.parse(inputStream, handler);
+    return handler.getResult();
+  }
+}

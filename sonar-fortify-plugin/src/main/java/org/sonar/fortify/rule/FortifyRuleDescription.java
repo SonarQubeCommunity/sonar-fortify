@@ -21,6 +21,7 @@ package org.sonar.fortify.rule;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 

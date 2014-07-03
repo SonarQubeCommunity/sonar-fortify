@@ -20,3 +20,4 @@
 @ParametersAreNonnullByDefault package org.sonar.fortify;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+

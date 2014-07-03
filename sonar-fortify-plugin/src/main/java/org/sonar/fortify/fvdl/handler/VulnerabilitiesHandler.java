@@ -17,7 +17,24 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.Vulnerability;
 
+import java.util.Set;
+
+public class VulnerabilitiesHandler extends AbstractHandler<Set<Vulnerability>> {
+
+  private final VulnerabilityHandler vulnerabilityHandler;
+
+  VulnerabilitiesHandler() {
+    super("Vulnerabilities");
+    this.vulnerabilityHandler = new VulnerabilityHandler();
+    setChildren(this.vulnerabilityHandler);
+  }
+
+  @Override
+  protected void end() {
+    setResult(this.vulnerabilityHandler.getResult());
+  }
+}

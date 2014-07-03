@@ -17,7 +17,23 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.Unified;
 
+public class AnalysisInfoHandler extends AbstractHandler<Unified> {
+
+  private final UnifiedHandler unifiedHandler;
+
+  AnalysisInfoHandler() {
+    super("AnalysisInfo");
+    this.unifiedHandler = new UnifiedHandler();
+    setChildren(this.unifiedHandler);
+  }
+
+  @Override
+  protected void end() {
+    setResult(this.unifiedHandler.getResult());
+  }
+
+}

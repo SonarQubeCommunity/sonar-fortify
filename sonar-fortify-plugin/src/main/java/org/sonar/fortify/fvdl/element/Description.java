@@ -17,7 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.element;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+public class Description {
+  private String classID;
+  private String descriptionAbstract;
 
+  public String getClassID() {
+    return this.classID;
+  }
+
+  public void setClassID(String classID) {
+    this.classID = classID;
+  }
+
+  public String getAbstract() {
+    return this.descriptionAbstract;
+  }
+
+  public void setAbstract(String descriptionAbstract) {
+    this.descriptionAbstract = descriptionAbstract;
+  }
+
+  @Override
+  public String toString() {
+    return "[Description classID=" + this.classID + ", abstract=" + this.descriptionAbstract + "]";
+  }
+}

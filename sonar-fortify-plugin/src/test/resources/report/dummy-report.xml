@@ -1,76 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FVDL xmlns="xmlns://www.fortifysoftware.com/schema/fvdl"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.11"
-      xsi:type="FVDL">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.11"
+  xsi:type="FVDL">
   <Build>
     <SourceBasePath>/a/dummy/path</SourceBasePath>
-    <Vulnerabilities>
-      <Vulnerability>
-        <ClassInfo>
-          <ClassID>1</ClassID>
-        </ClassInfo>
-        <InstanceInfo>
-          <InstanceID>1</InstanceID>
-          <InstanceSeverity>4.0</InstanceSeverity>
-        </InstanceInfo>
-        <AnalysisInfo>
-          <Unified>
-            <Trace>
-              <Primary>
-                <Entry>
-                  <Node isDefault="true">
-                    <SourceLocation path="dummy.file" line="1"/>
-                  </Node>
-                </Entry>
-              </Primary>
-            </Trace>
-            <ReplacementDefinitions>
-              <Def key="key" value="value"/>
-            </ReplacementDefinitions>
-          </Unified>
-        </AnalysisInfo>
-      </Vulnerability>
-      <Vulnerability>
-        <ClassInfo>
-          <ClassID>2</ClassID>
-        </ClassInfo>
-        <InstanceInfo>
-          <InstanceID>2</InstanceID>
-        </InstanceInfo>
-        <AnalysisInfo>
-          <Unified>
-            <Trace>
-              <Primary>
-                <Entry>
-                  <Node isDefault="false"/>
-                </Entry>
-              </Primary>
-            </Trace>
-          </Unified>
-        </AnalysisInfo>
-      </Vulnerability>
-      <Vulnerability>
-        <ClassInfo>
-          <ClassID>3</ClassID>
-        </ClassInfo>
-        <InstanceInfo>
-          <InstanceID>3</InstanceID>
-        </InstanceInfo>
-        <AnalysisInfo>
-          <Unified>
-            <Trace>
-              <Primary>
-                <Entry>
-                </Entry>
-              </Primary>
-            </Trace>
-          </Unified>
-        </AnalysisInfo>
-      </Vulnerability>
-    </Vulnerabilities>
   </Build>
+  <Vulnerabilities>
+    <Vulnerability>
+      <ClassInfo>
+        <ClassID>1</ClassID>
+      </ClassInfo>
+      <InstanceInfo>
+        <InstanceID>1</InstanceID>
+        <InstanceSeverity>4.0</InstanceSeverity>
+      </InstanceInfo>
+      <AnalysisInfo>
+        <Unified>
+          <Trace>
+            <Primary>
+              <Entry>
+                <Node isDefault="true">
+                  <SourceLocation path="dummy.file" line="1" />
+                </Node>
+              </Entry>
+            </Primary>
+          </Trace>
+          <ReplacementDefinitions>
+            <Def key="key" value="value" />
+          </ReplacementDefinitions>
+        </Unified>
+      </AnalysisInfo>
+    </Vulnerability>
+    <Vulnerability>
+      <ClassInfo>
+        <ClassID>2</ClassID>
+      </ClassInfo>
+      <InstanceInfo>
+        <InstanceID>2</InstanceID>
+      </InstanceInfo>
+      <AnalysisInfo>
+        <Unified>
+          <Trace>
+            <Primary>
+              <Entry>
+                <Node isDefault="false" />
+              </Entry>
+            </Primary>
+          </Trace>
+        </Unified>
+      </AnalysisInfo>
+    </Vulnerability>
+    <Vulnerability>
+      <ClassInfo>
+        <ClassID>3</ClassID>
+      </ClassInfo>
+      <InstanceInfo>
+        <InstanceID>3</InstanceID>
+      </InstanceInfo>
+      <AnalysisInfo>
+        <Unified>
+          <Trace>
+            <Primary>
+              <Entry>
+              </Entry>
+            </Primary>
+          </Trace>
+        </Unified>
+      </AnalysisInfo>
+    </Vulnerability>
+  </Vulnerabilities>
+
   <Description classID="1">
     <Abstract>Dummy</Abstract>
   </Description>
-  <Description classID="2"/>
+  <Description classID="2" />
 </FVDL>

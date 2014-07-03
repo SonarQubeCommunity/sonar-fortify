@@ -36,13 +36,15 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.SonarException;
 import org.sonar.api.utils.TimeProfiler;
 import org.sonar.fortify.base.FortifyConstants;
-import org.sonar.fortify.base.FortifyParseException;
-import org.sonar.fortify.base.FortifyUtils;
+import org.sonar.fortify.fvdl.element.Fvdl;
+import org.sonar.fortify.fvdl.element.Vulnerability;
+import org.xml.sax.SAXException;
 
 import javax.annotation.CheckForNull;
+import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 
 public class FortifySensor implements Sensor {
   private static final Logger LOG = LoggerFactory.getLogger(FortifySensor.class);
@@ -70,35 +72,34 @@ public class FortifySensor implements Sensor {
     return this.configuration.isActive(this.fileSystem.languages()) && this.report.exist();
   }
 
-  private void addIssue(Resource resource, Vulnerability vulnerability, ActiveRule activeRule) {
+  private void addIssue(Resource resource, Fvdl fvdl, Vulnerability vulnerability, ActiveRule activeRule) {
     Issuable issuable = this.resourcePerspectives.as(Issuable.class, resource);
     if (issuable != null) {
-      String severity;
-      if (vulnerability.getSeverity() == null) {
+      String severity = vulnerability.getInstanceSeverity();
+      if (severity == null) {
         severity = activeRule.severity();
-      } else {
-        severity = FortifyUtils.fortifyToSonarQubeSeverity(vulnerability.getSeverity());
       }
       Issue issue = issuable.newIssueBuilder()
         .ruleKey(activeRule.ruleKey())
         .line(vulnerability.getLine())
-        .message(vulnerability.getMessage())
+        .message(fvdl.getDescription(vulnerability))
         .severity(severity)
         .build();
       issuable.addIssue(issue);
     }
   }
 
-  private void addIssues(Project project, Collection<Vulnerability> vulnerabilities) {
-    for (Vulnerability vulnerability : vulnerabilities) {
-      Resource resource = resourceOf(vulnerability, project);
+  private void addIssues(Project project, Fvdl fvdl) {
+    String sourceBasePath = fvdl.getBuild().getSourceBasePath();
+    for (Vulnerability vulnerability : fvdl.getVulnerabilities()) {
+      Resource resource = resourceOf(sourceBasePath, vulnerability, project);
       if (resource != null) {
         ActiveRule activeRule = getRule(vulnerability);
         if (activeRule == null) {
           FortifySensor.LOG.warn(
             "Fortify rule '{}' is not active in Sonar.", vulnerability.getClassID());
         } else {
-          addIssue(resource, vulnerability, activeRule);
+          addIssue(resource, fvdl, vulnerability, activeRule);
         }
       }
     }
@@ -110,13 +111,16 @@ public class FortifySensor implements Sensor {
     try {
       InputStream stream = this.report.getInputStream();
       try {
-        addIssues(project, new FvdlParser().parse(stream));
+        Fvdl fvdl = new FvdlSAXParser().parse(stream);
+        addIssues(project, fvdl);
       } finally {
         stream.close();
       }
     } catch (IOException e) {
       throw new SonarException("Can not execute Fortify", e);
-    } catch (FortifyParseException e) {
+    } catch (SAXException e) {
+      throw new SonarException("Can not execute Fortify", e);
+    } catch (ParserConfigurationException e) {
       throw new SonarException("Can not execute Fortify", e);
     } finally {
       profiler.stop();
@@ -137,8 +141,8 @@ public class FortifySensor implements Sensor {
   }
 
   @CheckForNull
-  private Resource resourceOf(Vulnerability vulnerability, Project project) {
-    java.io.File file = new java.io.File(vulnerability.getFile());
+  private Resource resourceOf(String sourceBasePath, Vulnerability vulnerability, Project project) {
+    java.io.File file = new java.io.File(sourceBasePath + java.io.File.separator + vulnerability.getPath());
     Resource resource = File.fromIOFile(file, project);
     if (resource == null) {
       FortifySensor.LOG.debug("The file \"{}\" is not under module base dir.", file);

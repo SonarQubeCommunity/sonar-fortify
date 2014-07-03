@@ -17,7 +17,22 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.fvdl;
+package org.sonar.fortify.fvdl.handler;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.sonar.fortify.fvdl.element.Build;
 
+public class BuildHandler extends AbstractHandler<Build> {
+
+  private final StringHandler sourceBasePathHandler;
+
+  BuildHandler() {
+    super("Build");
+    this.sourceBasePathHandler = new StringHandler("SourceBasePath");
+    setChildren(this.sourceBasePathHandler);
+  }
+
+  @Override
+  public void end() {
+    setResult(new Build(this.sourceBasePathHandler.getResult()));
+  }
+}
