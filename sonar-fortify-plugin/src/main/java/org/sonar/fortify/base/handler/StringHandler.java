@@ -17,25 +17,31 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.base.handler;
 
-import org.sonar.fortify.base.handler.AbstractHandler;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import org.sonar.fortify.fvdl.element.Unified;
+public final class StringHandler extends AbstractHandler<String> {
+  private StringBuilder builder;
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
+  public StringHandler(String name) {
+    super(name);
+  }
 
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+  @Override
+  protected void start(Attributes attributes) {
+    super.start(attributes);
+    this.builder = new StringBuilder();
   }
 
   @Override
   protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+    setResult(this.builder.toString());
+  }
+
+  @Override
+  public void characters(char[] ch, int start, int length) throws SAXException {
+    this.builder.append(ch, start, length);
   }
 }

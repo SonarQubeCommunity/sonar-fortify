@@ -17,25 +17,25 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.base.handler;
 
-import org.sonar.fortify.base.handler.AbstractHandler;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.sonar.fortify.fvdl.element.Unified;
+public class AbstractSetHandler<T> extends AbstractHandler<Set<T>> {
+  private Set<T> elements;
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
-
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+  public AbstractSetHandler(String name) {
+    super(name);
+    reset();
   }
 
-  @Override
-  protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+  protected void add(T e) {
+    this.elements.add(e);
+  }
+
+  public void reset() {
+    this.elements = new HashSet<T>();
+    setResult(this.elements);
   }
 }

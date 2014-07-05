@@ -17,43 +17,53 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.rule;
-
-import javax.annotation.CheckForNull;
-import javax.annotation.Nullable;
+package org.sonar.fortify.rule.element;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-class FortifyRuleDescription {
-  @Nullable
-  private final String id;
-  @Nullable
-  private final String descriptionAbstract;
-  @Nullable
-  private final String explanation;
-  @Nullable
-  private final String recommendations;
-  private final List<Reference> references = new ArrayList<Reference>();
+public class Description {
+  private String id;
+  private String ref;
+  private String descriptionAbstract;
+  private String explanation;
+  private String recommendations;
+  private final Collection<Reference> references = new ArrayList<Reference>();
 
-  FortifyRuleDescription(@Nullable String id, @Nullable String descriptionAbstract,
-                         @Nullable String explanation, @Nullable String recommendations) {
-    this.id = id;
-    this.descriptionAbstract = descriptionAbstract;
-    this.explanation = explanation;
-    this.recommendations = recommendations;
-  }
-
-  void addReference(String title, @Nullable String author) {
-    this.references.add(new Reference(title, author));
-  }
-
-  @CheckForNull
-  String getId() {
+  public String getId() {
     return this.id;
   }
 
-  String toHTML() {
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getRef() {
+    return this.ref;
+  }
+
+  public void setRef(String ref) {
+    this.ref = ref;
+  }
+
+  public void setDescriptionAbstract(String descriptionAbstract) {
+    this.descriptionAbstract = descriptionAbstract;
+  }
+
+  public void setExplanation(String explanation) {
+    this.explanation = explanation;
+  }
+
+  public void setRecommendations(String recommendations) {
+    this.recommendations = recommendations;
+  }
+
+  public void setReferences(Collection<Reference> references) {
+    this.references.addAll(references);
+  }
+
+  @Override
+  public String toString() {
     StringBuilder builder = new StringBuilder();
     if (this.descriptionAbstract != null) {
       builder.append("<h2>ABSTRACT</h2><p>").append(this.descriptionAbstract).append("</p>");
@@ -63,36 +73,17 @@ class FortifyRuleDescription {
     }
     if (!this.references.isEmpty()) {
       builder.append("<h2>REFERENCES</h2>");
-      for (int index = 0; index < this.references.size(); index++) {
-        Reference reference = this.references.get(index);
+      int index = 0;
+      for (Reference reference : this.references) {
         builder.append("<p>[").append(index + 1).append("] ").append(reference.getTitle());
         if (reference.getAuthor() != null) {
           builder.append(" - ").append(reference.getAuthor());
         }
         builder.append("</p>");
+        index++;
       }
     }
 
     return builder.toString();
-  }
-
-  private static class Reference {
-    private final String title;
-    @Nullable
-    private final String author;
-
-    Reference(String title, @Nullable String author) {
-      this.title = title;
-      this.author = author;
-    }
-
-    String getTitle() {
-      return this.title;
-    }
-
-    @CheckForNull
-    String getAuthor() {
-      return this.author;
-    }
   }
 }

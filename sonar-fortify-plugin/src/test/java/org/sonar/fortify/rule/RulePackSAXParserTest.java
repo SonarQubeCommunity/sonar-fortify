@@ -21,49 +21,62 @@ package org.sonar.fortify.rule;
 
 import com.google.common.io.Closeables;
 import org.junit.Test;
-import org.sonar.api.rules.Rule;
-import org.sonar.api.rules.RulePriority;
 import org.sonar.fortify.base.FortifyParseException;
+import org.sonar.fortify.rule.element.Description;
+import org.sonar.fortify.rule.element.Rule;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
-public class RulePackParserTest {
+public class RulePackSAXParserTest {
   @Test
   public void test() {
     Collection<Rule> rules = parse("rulepack/dummy-rulepack.xml");
-    assertThat(rules.size()).isEqualTo(4);
+    assertThat(rules.size()).isEqualTo(6);
     for (Rule rule : rules) {
-      String key = rule.getKey();
-      if ("1".equals(key)) {
-        assertRule(rule, "Dummy cat: Dummy subcat", RulePriority.MAJOR, "");
+      String key = rule.getRuleID();
+      if ("1".equals(key) && "3.3".equals(rule.getFormatVersion().toString())) {
+        assertRule(rule, "Dummy cat: Dummy subcat", "java", "MAJOR", "");
+      } else if ("1".equals(key)) {
+        assertRule(rule, "Dummy cat: Dummy subcat", "java", "MINOR", "");
+      } else if ("2".equals(key)) {
+        assertRule(rule, null, "other", null, "");
       } else if ("3".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.CRITICAL,
-          "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>[1] Dummy reference 1</p><p>[2] Dummy reference 2 - Dummy author</p>");
+        assertRule(
+          rule,
+          "Dummy cat",
+          "java",
+          "CRITICAL",
+          "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>\\[1\\] Dummy reference . - Dummy author .</p><p>\\[2\\] Dummy reference . - Dummy author .</p>");
       } else if ("4".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.BLOCKER, "");
+        assertRule(rule, "Dummy cat", null, "BLOCKER", "");
       } else if ("5".equals(key)) {
-        assertRule(rule, "Dummy cat", RulePriority.INFO, "");
+        assertRule(rule, "Dummy cat", null, "INFO", "");
       } else {
         fail("Rule " + key + " is not expected");
       }
     }
   }
 
-  public void assertRule(Rule rule, String name, RulePriority priority, String description) {
+  public void assertRule(Rule rule, String name, String language, String priority, String description) {
     assertThat(rule.getName()).isEqualTo(name);
-    assertThat(rule.getRepositoryKey()).isEqualTo("fortify-java");
-    assertThat(rule.getLanguage()).isEqualTo("java");
-    assertThat(rule.getSeverity()).isEqualTo(priority);
-    assertThat(rule.getDescription()).isEqualTo(description);
+    assertThat(rule.getLanguage()).isEqualTo(language);
+    assertThat(rule.getDefaultSeverity()).isEqualTo(priority);
+    Description desc = rule.getDescription();
+    if (desc != null) {
+      assertThat(rule.getDescription().toString()).matches(description);
+    }
   }
 
   @Test
   public void testLanguage() {
-    parse("rulepack/dummy2-rulepack.xml");
     assertThat(parse("rulepack/dummy2-rulepack.xml").size()).isEqualTo(1);
   }
 
@@ -72,21 +85,17 @@ public class RulePackParserTest {
     assertThat(parse("rulepack/other-rulepack.xml").size()).isEqualTo(0);
   }
 
-  @Test
-  public void compareFormatVersionTest() {
-    assertThat(RulePackParser.compareFormatVersion("2.10", "1.10")).isEqualTo(true);
-    assertThat(RulePackParser.compareFormatVersion("2.10", "2.1")).isEqualTo(true);
-    assertThat(RulePackParser.compareFormatVersion("2.10", "2")).isEqualTo(true);
-    assertThat(RulePackParser.compareFormatVersion("1.10", "2.10")).isEqualTo(false);
-    assertThat(RulePackParser.compareFormatVersion("2.1", "2.10")).isEqualTo(false);
-    assertThat(RulePackParser.compareFormatVersion("2", "2.10")).isEqualTo(false);
-  }
-
   private Collection<Rule> parse(String rulePack) {
-    RulePackParser parser = new RulePackParser();
+    RulePackSAXParser parser = new RulePackSAXParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rulePack);
     try {
-      return parser.parse(inputStream, "java");
+      return parser.parse(inputStream).getRules();
+    } catch (SAXException e) {
+      throw new RuntimeException(e);
+    } catch (ParserConfigurationException e) {
+      throw new RuntimeException(e);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     } catch (FortifyParseException e) {
       throw new RuntimeException(e);
     } finally {

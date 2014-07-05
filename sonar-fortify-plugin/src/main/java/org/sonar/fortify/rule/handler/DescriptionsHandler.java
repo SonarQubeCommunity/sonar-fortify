@@ -17,25 +17,36 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.rule.handler;
 
 import org.sonar.fortify.base.handler.AbstractHandler;
+import org.sonar.fortify.rule.element.Description;
+import org.xml.sax.Attributes;
 
-import org.sonar.fortify.fvdl.element.Unified;
+import java.util.Collection;
+import java.util.Collections;
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
+public class DescriptionsHandler extends AbstractHandler<Collection<Description>> {
+  private final DescriptionHandler descriptionHandler;
 
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+  DescriptionsHandler() {
+    super("Descriptions");
+    this.descriptionHandler = new DescriptionHandler();
+    setChildren(this.descriptionHandler);
   }
 
   @Override
-  protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+  protected void start(Attributes attributes) {
+    this.descriptionHandler.reset();
+  }
+
+  @Override
+  public void end() {
+    Collection<Description> descriptions = this.descriptionHandler.getResult();
+    if (descriptions == null) {
+      setResult(Collections.<Description>emptyList());
+    } else {
+      setResult(descriptions);
+    }
   }
 }

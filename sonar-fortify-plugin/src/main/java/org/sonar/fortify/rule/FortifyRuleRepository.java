@@ -28,6 +28,11 @@ import org.sonar.api.rules.Rule;
 import org.sonar.api.rules.RuleRepository;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.FortifyParseException;
+import org.sonar.fortify.rule.element.FormatVersion;
+import org.sonar.fortify.rule.element.RulePack;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,13 +40,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FortifyRuleRepository extends RuleRepository {
   private static final Logger LOG = LoggerFactory.getLogger(FortifyRuleRepository.class);
 
   private final Settings settings;
   private final String language;
+  private final Map<String, FormatVersion> addedRules = new HashMap<String, FormatVersion>();
 
   FortifyRuleRepository(Settings settings, String language) {
     super(FortifyConstants.fortifyRepositoryKey(language), language);
@@ -56,24 +64,76 @@ public class FortifyRuleRepository extends RuleRepository {
     for (String location : this.settings.getStringArray(FortifyConstants.RULEPACK_PATHS_PROPERTY)) {
       File file = new File(location);
       if (file.isDirectory()) {
-        files.addAll(FileUtils.listFiles(file, new String[]{"xml"}, false));
+        files.addAll(FileUtils.listFiles(file, new String[] {"xml"}, false));
       } else if (file.exists()) {
         files.add(file);
       } else {
         FortifyRuleRepository.LOG.warn("Ignore rulepack location: \"{}\", file is not found.", file);
       }
     }
-    return parseRulePacks(files);
+    return createRules(parseRulePacks(files));
   }
 
-  private List<Rule> parseRulePacks(Collection<File> files) {
-    List<Rule> rules = new ArrayList<Rule>();
+  private List<Rule> createRules(List<RulePack> rulePacks) {
+    Map<String, Rule> rules = new HashMap<String, Rule>();
+
+    for (RulePack rulePack : rulePacks) {
+      for (org.sonar.fortify.rule.element.Rule rule : rulePack.getRules()) {
+        if (isAnInterestingRule(rulePack, rule)) {
+          rules.put(rule.getRuleID(), createRule(this.language, rulePack, rule));
+          this.addedRules.put(rule.getRuleID(), rule.getFormatVersion());
+        }
+      }
+    }
+    return new ArrayList<Rule>(rules.values());
+  }
+
+  private boolean isAnInterestingRule(RulePack rulePack, org.sonar.fortify.rule.element.Rule rule) {
+    boolean isInteresting;
+    if (this.language.equals(rulePack.getRuleLanguage(rule))) {
+      FormatVersion previousVersion = this.addedRules.get(rule.getRuleID());
+      if (previousVersion == null) {
+        isInteresting = true;
+      } else if (previousVersion.compareTo(rule.getFormatVersion()) > 0) {
+        FortifyRuleRepository.LOG.debug("The rule {} was already added in formatVersion {}, ignoring one with formatVersion {}.", rule.getRuleID(), previousVersion,
+          rule.getFormatVersion());
+        isInteresting = false;
+      } else if (previousVersion.compareTo(rule.getFormatVersion()) == 0) {
+        FortifyRuleRepository.LOG.debug("The rule {} was already added in formatVersion {}.", rule.getRuleID(), previousVersion);
+        isInteresting = false;
+      } else {
+        FortifyRuleRepository.LOG.debug("The rule {} was already added in formatVersion {}, replace it by the one with formatVersion {}.", rule.getRuleID(), previousVersion,
+          rule.getFormatVersion());
+        isInteresting = true;
+      }
+    } else {
+      isInteresting = false;
+    }
+
+    return isInteresting;
+  }
+
+  private Rule createRule(String language, RulePack rulePack, org.sonar.fortify.rule.element.Rule fortifyRule) {
+    Rule rule = Rule.create(FortifyConstants.fortifyRepositoryKey(language), fortifyRule.getRuleID(), fortifyRule.getName());
+    rule.setDescription(rulePack.getHTMLDescription(fortifyRule.getDescription()));
+    rule.setLanguage(language);
+    rule.setSeverity(org.sonar.api.rules.RulePriority.valueOf(fortifyRule.getDefaultSeverity()));
+
+    return rule;
+  }
+
+  private List<RulePack> parseRulePacks(Collection<File> files) {
+    List<RulePack> rulePacks = new ArrayList<RulePack>();
     for (File file : files) {
       InputStream stream = null;
       try {
         stream = new FileInputStream(file);
-        rules.addAll(new RulePackParser().parse(stream, this.language));
+        rulePacks.add(new RulePackSAXParser().parse(stream));
       } catch (IOException e) {
+        FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
+      } catch (SAXException e) {
+        FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
+      } catch (ParserConfigurationException e) {
         FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
       } catch (FortifyParseException e) {
         FortifyRuleRepository.LOG.error("Unexpected error during the parse of " + file + ".", e);
@@ -81,6 +141,6 @@ public class FortifyRuleRepository extends RuleRepository {
         Closeables.closeQuietly(stream);
       }
     }
-    return rules;
+    return rulePacks;
   }
 }

@@ -19,6 +19,8 @@
  */
 package org.sonar.fortify.fvdl.handler;
 
+import org.sonar.fortify.base.handler.AbstractSetHandler;
+
 import org.sonar.fortify.fvdl.element.ReplacementDefinition;
 import org.xml.sax.Attributes;
 

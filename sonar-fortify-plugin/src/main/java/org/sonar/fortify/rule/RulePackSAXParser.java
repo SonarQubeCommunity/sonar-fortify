@@ -17,11 +17,14 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl;
+package org.sonar.fortify.rule;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.base.handler.StartHandler;
-import org.sonar.fortify.fvdl.element.Fvdl;
-import org.sonar.fortify.fvdl.handler.FvdlHandler;
+import org.sonar.fortify.rule.element.RulePack;
+import org.sonar.fortify.rule.handler.RulePackHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,13 +34,20 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FvdlSAXParser {
-  Fvdl parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
+public class RulePackSAXParser {
+  private static final Logger LOG = LoggerFactory.getLogger(RulePackSAXParser.class);
+
+  RulePack parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException, FortifyParseException {
     SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 
-    FvdlHandler fvdlHandler = new FvdlHandler();
-    StartHandler<Fvdl> handler = new StartHandler<Fvdl>(fvdlHandler);
+    RulePackHandler rulePackhandler = new RulePackHandler();
+    StartHandler<RulePack> handler = new StartHandler<RulePack>(rulePackhandler);
     parser.parse(inputStream, handler);
-    return handler.getResult();
+    RulePack rulePack = handler.getResult();
+    if (rulePack == null) {
+      throw new FortifyParseException("Malformed RulePack");
+    }
+    RulePackSAXParser.LOG.debug(rulePack.getName() + " - " + rulePack.getLanguage() + " - " + rulePack.getRules().size());
+    return rulePack;
   }
 }

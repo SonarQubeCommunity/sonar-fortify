@@ -17,25 +17,24 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.rule.element;
 
-import org.sonar.fortify.base.handler.AbstractHandler;
+import org.junit.Test;
 
-import org.sonar.fortify.fvdl.element.Unified;
+import static org.fest.assertions.Assertions.assertThat;
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
-
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+public class FormatVersionTest {
+  private int compareFormatVersion(String f1, String f2) {
+    return new FormatVersion(f1).compareTo(new FormatVersion(f2));
   }
 
-  @Override
-  protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+  @Test
+  public void compareToTest() {
+    assertThat(compareFormatVersion("2.10", "1.10")).isGreaterThan(0);
+    assertThat(compareFormatVersion("2.10", "2.1")).isGreaterThan(0);
+    assertThat(compareFormatVersion("2.10", "2")).isGreaterThan(0);
+    assertThat(compareFormatVersion("1.10", "2.10")).isLessThan(0);
+    assertThat(compareFormatVersion("2.1", "2.10")).isLessThan(0);
+    assertThat(compareFormatVersion("2", "2.10")).isLessThan(0);
   }
 }

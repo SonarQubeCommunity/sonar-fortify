@@ -17,7 +17,6 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-@ParametersAreNonnullByDefault package org.sonar.fortify.rule;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+@javax.annotation.ParametersAreNonnullByDefault
+package org.sonar.fortify.rule;
 

@@ -19,6 +19,8 @@
  */
 package org.sonar.fortify.fvdl.handler;
 
+import org.sonar.fortify.base.handler.AbstractHandler;
+
 import org.sonar.fortify.fvdl.element.Vulnerability;
 
 import java.util.Set;

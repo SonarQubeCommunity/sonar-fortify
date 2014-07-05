@@ -17,25 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.rule.element;
 
-import org.sonar.fortify.base.handler.AbstractHandler;
+public class Reference {
+  private String title;
+  private String author;
 
-import org.sonar.fortify.fvdl.element.Unified;
+  public String getTitle() {
+    return this.title;
+  }
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+  public String getAuthor() {
+    return this.author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
   }
 
   @Override
-  protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+  public String toString() {
+    return "[Reference title=" + this.title + ", author=" + this.author + "]";
   }
 }

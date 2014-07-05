@@ -17,7 +17,7 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.base.handler;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -33,7 +33,7 @@ public abstract class AbstractHandler<T> extends DefaultHandler {
   private AbstractHandler<?> currentChild = null;
   private T result;
 
-  AbstractHandler(String name) {
+  public AbstractHandler(String name) {
     super();
     this.name = name;
   }
@@ -42,18 +42,20 @@ public abstract class AbstractHandler<T> extends DefaultHandler {
     this.children = Arrays.asList(children);
   }
 
-  private boolean isStart(String qName) {
+  protected boolean isStart(String qName) {
     return this.name.equals(qName);
   }
 
-  private boolean isEnd(String qName) {
+  protected boolean isEnd(String qName) {
     return this.name.equals(qName);
   }
 
-  protected void start(Attributes attributes) {
+  protected void start(@SuppressWarnings("unused") Attributes attributes) {
+    // Can be override
   }
 
   protected void end() {
+    // Can be override
   }
 
   @Override
@@ -64,6 +66,9 @@ public abstract class AbstractHandler<T> extends DefaultHandler {
           this.currentChild = child;
           this.currentChild.start(attributes);
         }
+      }
+      if (this.currentChild == null) {
+        this.currentChild = new LeafHandler();
       }
     } else {
       this.currentChild.startElement(uri, localName, qName, attributes);
@@ -90,9 +95,9 @@ public abstract class AbstractHandler<T> extends DefaultHandler {
   }
 
   public T getResult() {
-    T result = this.result;
+    T ret = this.result;
     this.result = null;
-    return result;
+    return ret;
   }
 
   public void setResult(T result) {

@@ -19,6 +19,10 @@
  */
 package org.sonar.fortify.fvdl.handler;
 
+import org.sonar.fortify.base.handler.StringHandler;
+
+import org.sonar.fortify.base.handler.AbstractHandler;
+
 public class ClassInfoHandler extends AbstractHandler<String> {
 
   private final StringHandler classIDHandler;

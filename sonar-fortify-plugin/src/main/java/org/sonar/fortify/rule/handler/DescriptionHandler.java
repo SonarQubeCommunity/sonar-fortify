@@ -17,33 +17,48 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
-
-import org.sonar.fortify.base.handler.StringHandler;
+package org.sonar.fortify.rule.handler;
 
 import org.sonar.fortify.base.handler.AbstractSetHandler;
-import org.sonar.fortify.fvdl.element.Description;
+import org.sonar.fortify.base.handler.StringHandler;
+import org.sonar.fortify.rule.element.Description;
+import org.sonar.fortify.rule.element.Reference;
 import org.xml.sax.Attributes;
+
+import java.util.Collection;
 
 public class DescriptionHandler extends AbstractSetHandler<Description> {
   private final StringHandler abstractHandler;
+  private final StringHandler explanationHandler;
+  private final StringHandler recommendationsHandler;
+  private final ReferencesHandler referencesHandler;
   private Description description;
 
   DescriptionHandler() {
     super("Description");
     this.abstractHandler = new StringHandler("Abstract");
-    setChildren(this.abstractHandler);
+    this.explanationHandler = new StringHandler("Explanation");
+    this.recommendationsHandler = new StringHandler("Recommendations");
+    this.referencesHandler = new ReferencesHandler();
+    setChildren(this.abstractHandler, this.explanationHandler, this.recommendationsHandler, this.referencesHandler);
   }
 
   @Override
-  protected void start(Attributes attributes) {
+  public void start(Attributes attributes) {
     this.description = new Description();
-    this.description.setClassID(attributes.getValue("classID"));
+    this.description.setId(attributes.getValue("id"));
+    this.description.setRef(attributes.getValue("ref"));
   }
 
   @Override
-  protected void end() {
-    this.description.setAbstract(this.abstractHandler.getResult());
+  public void end() {
+    this.description.setDescriptionAbstract(this.abstractHandler.getResult());
+    this.description.setExplanation(this.explanationHandler.getResult());
+    this.description.setRecommendations(this.recommendationsHandler.getResult());
+    Collection<Reference> references = this.referencesHandler.getResult();
+    if (references != null) {
+      this.description.setReferences(references);
+    }
     add(this.description);
   }
 }

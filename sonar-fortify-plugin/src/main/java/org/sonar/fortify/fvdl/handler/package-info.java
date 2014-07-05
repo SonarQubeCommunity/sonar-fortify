@@ -17,25 +17,6 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
+@javax.annotation.ParametersAreNonnullByDefault
 package org.sonar.fortify.fvdl.handler;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public class AbstractSetHandler<T> extends AbstractHandler<Set<T>> {
-  private Set<T> elements;
-
-  AbstractSetHandler(String name) {
-    super(name);
-    reset();
-  }
-
-  protected void add(T e) {
-    this.elements.add(e);
-  }
-
-  protected void reset() {
-    this.elements = new HashSet<T>();
-    setResult(this.elements);
-  }
-}

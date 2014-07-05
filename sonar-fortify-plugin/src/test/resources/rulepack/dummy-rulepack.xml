@@ -2,7 +2,7 @@
   <Name><![CDATA[Dummy Rulepack]]></Name>
   <Rules version="3.2">
     <RuleDefinitions>
-      <SemanticRule formatVersion="3.3" language="java">
+      <SemanticRule formatVersion="3.2" language="java">
         <RuleID>1</RuleID>
         <VulnCategory>Dummy cat</VulnCategory>
         <VulnSubcategory>Dummy subcat</VulnSubcategory>
@@ -32,10 +32,11 @@
           <References>
             <Reference>
               <Title>Dummy reference 1</Title>
+              <Author>Dummy author a</Author>
             </Reference>
             <Reference>
               <Title>Dummy reference 2</Title>
-              <Author>Dummy author</Author>
+              <Author>Dummy author b</Author>
             </Reference>
           </References>
         </Description>
@@ -46,7 +47,7 @@
         <DefaultSeverity>4.0</DefaultSeverity>
         <Description ref="ref.desc"/>
       </SemanticRule>
-      <SemanticRule>
+      <SemanticRule formatVersion="3.3">
         <RuleID>5</RuleID>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>0.5</DefaultSeverity>
@@ -54,8 +55,6 @@
       </SemanticRule>
       <DummyRule formatVersion="3.3" language="java">
       </DummyRule>
-      <DataflowSourceRule formatVersion="3.3" language="java">
-      </DataflowSourceRule>
     </RuleDefinitions>
   </Rules>
   <Descriptions>

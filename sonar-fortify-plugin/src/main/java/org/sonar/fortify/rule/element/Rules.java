@@ -17,25 +17,28 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.rule.element;
 
-import org.sonar.fortify.base.handler.AbstractHandler;
+import java.util.Collection;
+import java.util.Set;
 
-import org.sonar.fortify.fvdl.element.Unified;
+public class Rules {
+  private Set<Rule> rules;
+  private Collection<Description> descriptions;
 
-public class UnifiedHandler extends AbstractHandler<Unified> {
-  private final ReplacementDefinitionsHandler replacementDefinitionsHandler;
-  private final TraceHandler traceHandler;
-
-  UnifiedHandler() {
-    super("Unified");
-    this.replacementDefinitionsHandler = new ReplacementDefinitionsHandler();
-    this.traceHandler = new TraceHandler();
-    setChildren(this.replacementDefinitionsHandler, this.traceHandler);
+  public Set<Rule> getRules() {
+    return this.rules;
   }
 
-  @Override
-  protected void end() {
-    setResult(new Unified(this.replacementDefinitionsHandler.getResult(), this.traceHandler.getResult()));
+  public void setRules(Set<Rule> rules) {
+    this.rules = rules;
+  }
+
+  public Collection<Description> getDescriptions() {
+    return this.descriptions;
+  }
+
+  public void setDescriptions(Collection<Description> descriptions) {
+    this.descriptions = descriptions;
   }
 }

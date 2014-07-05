@@ -19,6 +19,9 @@
  */
 package org.sonar.fortify.fvdl.handler;
 
+import org.sonar.fortify.base.handler.StringHandler;
+
+import org.sonar.fortify.base.handler.AbstractHandler;
 import org.sonar.fortify.fvdl.element.Build;
 
 public class BuildHandler extends AbstractHandler<Build> {

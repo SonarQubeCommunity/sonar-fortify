@@ -19,6 +19,8 @@
  */
 package org.sonar.fortify.fvdl.handler;
 
+import org.sonar.fortify.base.handler.AbstractHandler;
+
 import org.sonar.fortify.fvdl.element.Fvdl;
 
 public class FvdlHandler extends AbstractHandler<Fvdl> {

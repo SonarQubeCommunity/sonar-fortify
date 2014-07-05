@@ -17,48 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify.fvdl.handler;
+package org.sonar.fortify.base.handler;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-public final class StringHandler extends AbstractHandler<String> {
-  private int childLevel = 0;
-  private StringBuilder builder;
+public class LeafHandler extends AbstractHandler<Void> {
+  private int level = 0;
 
-  StringHandler(String name) {
-    super(name);
+  public LeafHandler() {
+    super("Leaf");
   }
 
   @Override
-  protected void start(Attributes attributes) {
-    super.start(attributes);
-    this.builder = new StringBuilder();
-  }
-
-  @Override
-  protected void end() {
-    setResult(this.builder.toString());
+  protected boolean isEnd(String qName) {
+    return this.level == 0;
   }
 
   @Override
   public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-    this.childLevel++;
+    this.level++;
   }
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
-    this.childLevel--;
-  }
-
-  @Override
-  public void characters(char[] ch, int start, int length) throws SAXException {
-    if (isCurrentNode()) {
-      this.builder.append(ch, start, length);
-    }
-  }
-
-  protected boolean isCurrentNode() {
-    return this.childLevel == 0;
+    this.level--;
   }
 }

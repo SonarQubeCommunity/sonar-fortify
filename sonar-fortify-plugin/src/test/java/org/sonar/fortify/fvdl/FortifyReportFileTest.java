@@ -42,12 +42,12 @@ public class FortifyReportFileTest {
 
   @Rule
   public TemporaryFolder temp = new TemporaryFolder();
-  
+
   FileSystem fs = mock(FileSystem.class);
 
   @Before
   public void before() throws Exception {
-    when(fs.baseDir()).thenReturn(temp.newFolder());
+    when(this.fs.baseDir()).thenReturn(this.temp.newFolder());
   }
 
   @Test
@@ -67,7 +67,7 @@ public class FortifyReportFileTest {
     FortifySensorConfiguration configuration = mock(FortifySensorConfiguration.class);
     when(configuration.getReportPath()).thenReturn(null);
 
-    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, fs);
+    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, this.fs);
 
     assertFalse(fortifyReportFile.exist());
   }
@@ -77,7 +77,7 @@ public class FortifyReportFileTest {
     FortifySensorConfiguration configuration = mock(FortifySensorConfiguration.class);
     when(configuration.getReportPath()).thenReturn("/do/not/exist/audit.fvdl");
 
-    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, fs);
+    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, this.fs);
 
     try {
       fortifyReportFile.exist();
@@ -92,7 +92,7 @@ public class FortifyReportFileTest {
     FortifySensorConfiguration configuration = mock(FortifySensorConfiguration.class);
     when(configuration.getReportPath()).thenReturn(System.getProperty("user.dir"));
 
-    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, fs);
+    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, this.fs);
 
     try {
       fortifyReportFile.exist();
@@ -107,7 +107,7 @@ public class FortifyReportFileTest {
     FortifySensorConfiguration configuration = mock(FortifySensorConfiguration.class);
     when(configuration.getReportPath()).thenReturn(null);
 
-    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, fs);
+    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, this.fs);
 
     InputStream input = null;
     try {
@@ -125,7 +125,7 @@ public class FortifyReportFileTest {
     FortifySensorConfiguration configuration = mock(FortifySensorConfiguration.class);
     when(configuration.getReportPath()).thenReturn(System.getProperty("user.dir") + File.separator + "src/test/resources/report/audit.fvdl");
 
-    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, fs);
+    FortifyReportFile fortifyReportFile = new FortifyReportFile(configuration, this.fs);
 
     InputStream input = null;
     try {
