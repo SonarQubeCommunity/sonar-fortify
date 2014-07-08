@@ -19,12 +19,14 @@
  */
 package org.sonar.fortify.rule;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.sonar.api.ExtensionProvider;
 import org.sonar.api.ServerExtension;
 import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Languages;
+import org.sonar.fortify.rule.element.RulePack;
 
 import java.util.List;
 
@@ -34,20 +36,29 @@ public final class FortifyRuleRepositories extends ExtensionProvider implements 
   public static final List<String> SUPPORTED_LANGUAGES = ImmutableList.of(
     "abap", "c", "cobol", "cpp", "cs", "flex", "java", "js", "php", "plsql", "py", "sql", "vb", "vbnet", "xml");
 
-  private final Settings settings;
   private final Languages languages;
+  private final RulePackParser rulePackParser;
 
   public FortifyRuleRepositories(Settings settings, Languages languages) {
-    this.settings = settings;
+    this(new RulePackParser(settings), languages);
+  }
+
+  @VisibleForTesting
+  FortifyRuleRepositories(RulePackParser rulePackParser, Languages languages) {
+    this.rulePackParser = rulePackParser;
     this.languages = languages;
   }
 
   @Override
   public List<FortifyRuleRepository> provide() {
+    List<RulePack> rulePacks = rulePackParser.parse();
     List<FortifyRuleRepository> repositories = Lists.newArrayList();
     for (String language : FortifyRuleRepositories.SUPPORTED_LANGUAGES) {
       if (languages.get(language) != null) {
-        repositories.add(new FortifyRuleRepository(this.settings, language));
+        FortifyRuleRepository ruleRepository = new FortifyRuleRepository(rulePacks, language);
+        if (!ruleRepository.createRules().isEmpty()) {
+          repositories.add(ruleRepository);
+        }
       }
     }
     return repositories;

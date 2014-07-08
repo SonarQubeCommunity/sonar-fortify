@@ -33,48 +33,55 @@ public class Rule {
     return this.language;
   }
 
-  public void setLanguage(String language) {
+  public Rule setLanguage(String language) {
     this.language = language;
+    return this;
   }
 
   public FormatVersion getFormatVersion() {
     return this.formatVersion;
   }
 
-  public void setFormatVersion(String formatVersion) {
+  public Rule setFormatVersion(String formatVersion) {
     this.formatVersion = new FormatVersion(formatVersion);
+    return this;
   }
 
   public String getRuleID() {
     return this.ruleID;
   }
 
-  public void setRuleID(String ruleID) {
+  public Rule setRuleID(String ruleID) {
     this.ruleID = ruleID;
+    return this;
   }
 
-  public void setVulnCategory(String vulnCategory) {
+  public Rule setVulnCategory(String vulnCategory) {
     this.vulnCategory = vulnCategory;
+    return this;
   }
 
-  public void setVulnSubcategory(String vulnSubcategory) {
+  public Rule setVulnSubcategory(String vulnSubcategory) {
     this.vulnSubcategory = vulnSubcategory;
+    return this;
   }
 
   public String getDefaultSeverity() {
     return this.defaultSeverity;
   }
 
-  public void setDefaultSeverity(String defaultSeverity) {
+  public Rule setDefaultSeverity(String defaultSeverity) {
     this.defaultSeverity = defaultSeverity;
+    return this;
   }
 
   public Description getDescription() {
     return this.description;
   }
 
-  public void setDescription(Description description) {
+  public Rule setDescription(Description description) {
     this.description = description;
+    return this;
   }
 
   public String getName() {

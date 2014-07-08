@@ -45,16 +45,17 @@ public class DescriptionHandler extends AbstractSetHandler<Description> {
 
   @Override
   public void start(Attributes attributes) {
-    this.description = new Description();
-    this.description.setId(attributes.getValue("id"));
-    this.description.setRef(attributes.getValue("ref"));
+    this.description = new Description()
+      .setId(attributes.getValue("id"))
+      .setRef(attributes.getValue("ref"));
   }
 
   @Override
   public void end() {
-    this.description.setDescriptionAbstract(this.abstractHandler.getResult());
-    this.description.setExplanation(this.explanationHandler.getResult());
-    this.description.setRecommendations(this.recommendationsHandler.getResult());
+    this.description
+      .setDescriptionAbstract(this.abstractHandler.getResult())
+      .setExplanation(this.explanationHandler.getResult())
+      .setRecommendations(this.recommendationsHandler.getResult());
     Collection<Reference> references = this.referencesHandler.getResult();
     if (references != null) {
       this.description.setReferences(references);

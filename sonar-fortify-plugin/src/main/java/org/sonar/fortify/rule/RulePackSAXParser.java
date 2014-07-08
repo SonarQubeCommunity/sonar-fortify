@@ -47,7 +47,7 @@ public class RulePackSAXParser {
     if (rulePack == null) {
       throw new FortifyParseException("Malformed RulePack");
     }
-    RulePackSAXParser.LOG.debug(rulePack.getName() + " - " + rulePack.getLanguage() + " - " + rulePack.getRules().size());
+    RulePackSAXParser.LOG.debug(rulePack.name() + " - " + rulePack.language() + " - " + rulePack.getRules().size());
     return rulePack;
   }
 }

@@ -29,17 +29,45 @@ import java.util.List;
 import static org.fest.assertions.Assertions.assertThat;
 
 public class FortifyRuleRepositoryTest {
+
   @Test
   public void create_rules() {
     Settings settings = new Settings();
     settings.setProperty(FortifyConstants.RULEPACK_PATHS_PROPERTY, "src/test/resources/rulepack,src/test/resources/rulepack/other-rulepack.xml");
-    List<Rule> rules = new FortifyRuleRepository(settings, "java").createRules();
+
+    RulePackParser parser = new RulePackParser(settings);
+
+    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "java").createRules();
+    assertThat(rules).isNotEmpty();
+  }
+
+  @Test
+  public void create_flex_rules() {
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.RULEPACK_PATHS_PROPERTY, "src/test/resources/rulepack/actionscript-rulepack.xml");
+
+    RulePackParser parser = new RulePackParser(settings);
+
+    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "flex").createRules();
+    assertThat(rules).isNotEmpty();
+  }
+
+  @Test
+  public void create_js_rules() {
+    Settings settings = new Settings();
+    settings.setProperty(FortifyConstants.RULEPACK_PATHS_PROPERTY, "src/test/resources/rulepack/javascript-rulepack.xml");
+
+    RulePackParser parser = new RulePackParser(settings);
+
+    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "js").createRules();
     assertThat(rules).isNotEmpty();
   }
 
   @Test
   public void test_characteristics() {
-    FortifyRuleRepository repository = new FortifyRuleRepository(new Settings(), "java");
+    RulePackParser parser = new RulePackParser(new Settings());
+
+    FortifyRuleRepository repository = new FortifyRuleRepository(parser.parse(), "java");
 
     assertThat(repository.getKey()).isEqualTo("fortify-java");
     assertThat(repository.getName()).isEqualTo("Fortify");

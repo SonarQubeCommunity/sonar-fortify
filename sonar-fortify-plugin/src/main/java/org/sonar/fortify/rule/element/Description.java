@@ -34,32 +34,38 @@ public class Description {
     return this.id;
   }
 
-  public void setId(String id) {
+  public Description setId(String id) {
     this.id = id;
+    return this;
   }
 
   public String getRef() {
     return this.ref;
   }
 
-  public void setRef(String ref) {
+  public Description setRef(String ref) {
     this.ref = ref;
+    return this;
   }
 
-  public void setDescriptionAbstract(String descriptionAbstract) {
+  public Description setDescriptionAbstract(String descriptionAbstract) {
     this.descriptionAbstract = descriptionAbstract;
+    return this;
   }
 
-  public void setExplanation(String explanation) {
+  public Description setExplanation(String explanation) {
     this.explanation = explanation;
+    return this;
   }
 
-  public void setRecommendations(String recommendations) {
+  public Description setRecommendations(String recommendations) {
     this.recommendations = recommendations;
+    return this;
   }
 
-  public void setReferences(Collection<Reference> references) {
+  public Description setReferences(Collection<Reference> references) {
     this.references.addAll(references);
+    return this;
   }
 
   @Override

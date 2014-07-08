@@ -38,11 +38,15 @@
  */
 package org.sonar.fortify.rule;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.AbstractLanguage;
 import org.sonar.api.resources.Languages;
+import org.sonar.fortify.rule.element.Description;
+import org.sonar.fortify.rule.element.Rule;
+import org.sonar.fortify.rule.element.RulePack;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -51,6 +55,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class FortifyRuleRepositoriesTest {
+
+  private RulePackParser parser;
+
+  @Before
+  public void prepare() {
+    parser = mock(RulePackParser.class);
+  }
 
   @Test
   public void provide_rule_repositories_for_supported_fortify_languages() {
@@ -62,15 +73,33 @@ public class FortifyRuleRepositoriesTest {
       }
     });
 
-    FortifyRuleRepositories provider = new FortifyRuleRepositories(new Settings(), languages);
+    when(parser.parse()).thenReturn(Arrays.asList(new RulePack().setLanguage("java")
+      .addRules(Arrays.asList(new Rule()
+        .setDescription(new Description())
+        .setDefaultSeverity("MAJOR")))));
+
+    FortifyRuleRepositories provider = new FortifyRuleRepositories(parser, languages);
 
     List<FortifyRuleRepository> repositories = provider.provide();
     assertThat(repositories).isNotEmpty();
-    assertThat(repositories).onProperty("language").containsExactly(FortifyRuleRepositories.SUPPORTED_LANGUAGES.toArray());
+    assertThat(repositories).onProperty("language").containsExactly("java");
   }
 
   @Test
-  public void provide_rule_repositories_for_installed_languages() {
+  public void provide_rule_repositories_only_for_installed_languages() {
+    when(parser.parse()).thenReturn(Arrays.asList(new RulePack().setLanguage("java")
+      .addRules(Arrays.asList(new Rule()
+        .setDescription(new Description())
+        .setDefaultSeverity("MAJOR"),
+        new Rule()
+          .setLanguage("cpp")
+          .setDescription(new Description())
+          .setDefaultSeverity("MAJOR"),
+        new Rule()
+          .setLanguage("php")
+          .setDescription(new Description())
+          .setDefaultSeverity("MAJOR")))));
+
     Languages languages = mock(Languages.class);
     when(languages.get("cpp")).thenReturn(new AbstractLanguage("cpp") {
       @Override
@@ -78,18 +107,46 @@ public class FortifyRuleRepositoriesTest {
         return null;
       }
     });
-    when(languages.get("java")).thenReturn(new AbstractLanguage("cpp") {
+    when(languages.get("java")).thenReturn(new AbstractLanguage("java") {
       @Override
       public String[] getFileSuffixes() {
         return null;
       }
     });
 
-    FortifyRuleRepositories provider = new FortifyRuleRepositories(new Settings(), languages);
+    FortifyRuleRepositories provider = new FortifyRuleRepositories(parser, languages);
 
     List<FortifyRuleRepository> repositories = provider.provide();
     assertThat(repositories).isNotEmpty();
     assertThat(repositories).onProperty("language").containsExactly("cpp", "java");
+  }
+
+  @Test
+  public void provide_rule_repositories_only_for_non_empty_fortify_repo() {
+    when(parser.parse()).thenReturn(Arrays.asList(new RulePack().setLanguage("java")
+      .addRules(Arrays.asList(new Rule()
+        .setDescription(new Description())
+        .setDefaultSeverity("MAJOR")))));
+
+    Languages languages = mock(Languages.class);
+    when(languages.get("cpp")).thenReturn(new AbstractLanguage("cpp") {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    });
+    when(languages.get("java")).thenReturn(new AbstractLanguage("java") {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    });
+
+    FortifyRuleRepositories provider = new FortifyRuleRepositories(parser, languages);
+
+    List<FortifyRuleRepository> repositories = provider.provide();
+    assertThat(repositories).isNotEmpty();
+    assertThat(repositories).onProperty("language").containsExactly("java");
   }
 
 }

@@ -31,38 +31,42 @@ public class RulePack {
   private final Map<String, String> descriptions = new HashMap<String, String>();
   private final Collection<Rule> rules = new ArrayList<Rule>();
 
-  public String getName() {
+  public String name() {
     return this.name;
   }
 
-  public void setName(String name) {
+  public RulePack setName(String name) {
     this.name = name;
+    return this;
   }
 
-  public String getLanguage() {
+  public String language() {
     return this.language;
   }
 
-  public void setLanguage(String language) {
+  public RulePack setLanguage(String language) {
     this.language = language;
+    return this;
   }
 
-  public void addDescriptions(Collection<Description> newDescriptions) {
+  public RulePack addDescriptions(Collection<Description> newDescriptions) {
     if (newDescriptions != null) {
       for (Description description : newDescriptions) {
         this.descriptions.put(description.getId(), description.toString());
       }
     }
+    return this;
   }
 
   public Collection<Rule> getRules() {
     return this.rules;
   }
 
-  public void addRules(Collection<Rule> rules) {
+  public RulePack addRules(Collection<Rule> rules) {
     if (rules != null) {
       this.rules.addAll(rules);
     }
+    return this;
   }
 
   public String getRuleLanguage(Rule rule) {

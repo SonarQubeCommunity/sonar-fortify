@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RulePack xmlns="xmlns://www.fortifysoftware.com/schema/rules"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="RulePack">
+  <Name><![CDATA[JavaScript Rulepack]]></Name>
+  <Language>javascript</Language>
+  <Rules version="3.2">
+    <RuleDefinitions>
+      <SemanticRule formatVersion="3.3" language="javascript">
+        <RuleID>35</RuleID>
+        <VulnCategory>Dummy cat</VulnCategory>
+        <VulnSubcategory></VulnSubcategory>
+        <DefaultSeverity>1.0</DefaultSeverity>
+        <Description>
+        </Description>
+      </SemanticRule>
+    </RuleDefinitions>
+  </Rules>
+</RulePack>
