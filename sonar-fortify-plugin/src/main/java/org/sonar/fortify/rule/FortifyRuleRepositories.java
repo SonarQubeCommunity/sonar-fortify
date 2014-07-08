@@ -24,6 +24,7 @@ import com.google.common.collect.Lists;
 import org.sonar.api.ExtensionProvider;
 import org.sonar.api.ServerExtension;
 import org.sonar.api.config.Settings;
+import org.sonar.api.resources.Languages;
 
 import java.util.List;
 
@@ -34,16 +35,20 @@ public final class FortifyRuleRepositories extends ExtensionProvider implements 
     "abap", "c", "cobol", "cpp", "cs", "flex", "java", "js", "php", "plsql", "py", "sql", "vb", "vbnet", "xml");
 
   private final Settings settings;
+  private final Languages languages;
 
-  public FortifyRuleRepositories(Settings settings) {
+  public FortifyRuleRepositories(Settings settings, Languages languages) {
     this.settings = settings;
+    this.languages = languages;
   }
 
   @Override
   public List<FortifyRuleRepository> provide() {
     List<FortifyRuleRepository> repositories = Lists.newArrayList();
     for (String language : FortifyRuleRepositories.SUPPORTED_LANGUAGES) {
-      repositories.add(new FortifyRuleRepository(this.settings, language));
+      if (languages.get(language) != null) {
+        repositories.add(new FortifyRuleRepository(this.settings, language));
+      }
     }
     return repositories;
   }
