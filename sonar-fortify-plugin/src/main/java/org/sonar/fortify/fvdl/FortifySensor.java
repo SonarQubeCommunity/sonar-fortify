@@ -89,10 +89,10 @@ public class FortifySensor implements Sensor {
     }
   }
 
-  private void addIssues(Project project, Fvdl fvdl) {
+  private void addIssues(SensorContext context, Project project, Fvdl fvdl) {
     String sourceBasePath = fvdl.getBuild().getSourceBasePath();
     for (Vulnerability vulnerability : fvdl.getVulnerabilities()) {
-      Resource resource = resourceOf(sourceBasePath, vulnerability, project);
+      Resource resource = resourceOf(context, sourceBasePath, vulnerability, project);
       if (resource != null) {
         ActiveRule activeRule = getRule(vulnerability);
         if (activeRule == null) {
@@ -112,7 +112,7 @@ public class FortifySensor implements Sensor {
       InputStream stream = this.report.getInputStream();
       try {
         Fvdl fvdl = new FvdlSAXParser().parse(stream);
-        addIssues(project, fvdl);
+        addIssues(context, project, fvdl);
       } finally {
         stream.close();
       }
@@ -141,11 +141,20 @@ public class FortifySensor implements Sensor {
   }
 
   @CheckForNull
-  private Resource resourceOf(String sourceBasePath, Vulnerability vulnerability, Project project) {
-    java.io.File file = new java.io.File(sourceBasePath + java.io.File.separator + vulnerability.getPath());
+  private Resource resourceOf(SensorContext context, String sourceBasePath, Vulnerability vulnerability, Project project) {
+    java.io.File file = new java.io.File(fileSystem.baseDir(), vulnerability.getPath());
     Resource resource = File.fromIOFile(file, project);
-    if (resource == null) {
-      FortifySensor.LOG.debug("The file \"{}\" is not under module base dir.", file);
+    if (resource == null || context.getResource(resource) == null) {
+      LOG.debug("File \"{}\" is not under module basedir or is not indexed. Trying absolute path.", vulnerability.getPath());
+      file = new java.io.File(sourceBasePath, vulnerability.getPath());
+      if (file.exists()) {
+        resource = File.fromIOFile(file, project);
+        if (resource == null || context.getResource(resource) == null) {
+          LOG.debug("File \"{}\" is not under module basedir or is not indexed.", file);
+        }
+      } else {
+        LOG.debug("Unable to find \"{}\".", file);
+      }
     }
     return resource;
   }
