@@ -23,7 +23,7 @@ import com.google.common.io.Closeables;
 import org.junit.Test;
 import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.rule.element.Description;
-import org.sonar.fortify.rule.element.Rule;
+import org.sonar.fortify.rule.element.FortifyRule;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,9 +38,9 @@ import static org.junit.Assert.fail;
 public class RulePackSAXParserTest {
   @Test
   public void test() {
-    Collection<Rule> rules = parse("rulepack/dummy-rulepack.xml");
+    Collection<FortifyRule> rules = parse("rulepack/dummy-rulepack.xml");
     assertThat(rules.size()).isEqualTo(6);
-    for (Rule rule : rules) {
+    for (FortifyRule rule : rules) {
       String key = rule.getRuleID();
       if ("1".equals(key) && "3.3".equals(rule.getFormatVersion().toString())) {
         assertRule(rule, "1", "java", "MAJOR", "");
@@ -65,7 +65,7 @@ public class RulePackSAXParserTest {
     }
   }
 
-  public void assertRule(Rule rule, String name, String language, String priority, String description) {
+  public void assertRule(FortifyRule rule, String name, String language, String priority, String description) {
     assertThat(rule.getName()).isEqualTo(name);
     assertThat(rule.getLanguage()).isEqualTo(language);
     assertThat(rule.getDefaultSeverity()).isEqualTo(priority);
@@ -85,7 +85,7 @@ public class RulePackSAXParserTest {
     assertThat(parse("rulepack/other-rulepack.xml").size()).isEqualTo(0);
   }
 
-  private Collection<Rule> parse(String rulePack) {
+  private Collection<FortifyRule> parse(String rulePack) {
     RulePackSAXParser parser = new RulePackSAXParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rulePack);
     try {

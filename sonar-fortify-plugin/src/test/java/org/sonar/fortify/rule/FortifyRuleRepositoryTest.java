@@ -21,10 +21,10 @@ package org.sonar.fortify.rule;
 
 import org.junit.Test;
 import org.sonar.api.config.Settings;
-import org.sonar.api.rules.Rule;
+import org.sonar.api.resources.AbstractLanguage;
+import org.sonar.api.resources.Languages;
+import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.fortify.base.FortifyConstants;
-
-import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -37,8 +37,18 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "java").createRules();
-    assertThat(rules).isNotEmpty();
+    Languages languages = new Languages(new AbstractLanguage("java") {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    });
+
+    RulesDefinition.Context context = new RulesDefinition.Context();
+    new FortifyRulesDefinition(parser, languages).define(context);
+
+    assertThat(context.repository("fortify-java")).isNotNull();
+    assertThat(context.repository("fortify-java").rules()).isNotEmpty();
   }
 
   @Test
@@ -48,8 +58,17 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "flex").createRules();
-    assertThat(rules).isNotEmpty();
+    Languages languages = new Languages(new AbstractLanguage("flex") {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    });
+
+    RulesDefinition.Context context = new RulesDefinition.Context();
+    new FortifyRulesDefinition(parser, languages).define(context);
+
+    assertThat(context.repository("fortify-flex").rules()).isNotEmpty();
   }
 
   @Test
@@ -59,18 +78,17 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    List<Rule> rules = new FortifyRuleRepository(parser.parse(), "js").createRules();
-    assertThat(rules).isNotEmpty();
+    Languages languages = new Languages(new AbstractLanguage("js") {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    });
+
+    RulesDefinition.Context context = new RulesDefinition.Context();
+    new FortifyRulesDefinition(parser, languages).define(context);
+
+    assertThat(context.repository("fortify-js").rules()).isNotEmpty();
   }
 
-  @Test
-  public void test_characteristics() {
-    RulePackParser parser = new RulePackParser(new Settings());
-
-    FortifyRuleRepository repository = new FortifyRuleRepository(parser.parse(), "java");
-
-    assertThat(repository.getKey()).isEqualTo("fortify-java");
-    assertThat(repository.getName()).isEqualTo("Fortify");
-    assertThat(repository.getLanguage()).isEqualTo("java");
-  }
 }

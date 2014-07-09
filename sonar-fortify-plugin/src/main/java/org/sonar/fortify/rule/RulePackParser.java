@@ -19,7 +19,6 @@
  */
 package org.sonar.fortify.rule;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.io.Closeables;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -42,10 +41,6 @@ import java.util.List;
 public class RulePackParser {
 
   private static final Logger LOG = LoggerFactory.getLogger(RulePackParser.class);
-
-  // List of supported languages as declared at http://www.hpenterprisesecurity.com/vulncat/en/vulncat/index.html
-  public static final List<String> SUPPORTED_LANGUAGES = ImmutableList.of(
-    "abap", "c", "cobol", "cpp", "cs", "flex", "java", "js", "php", "plsql", "py", "sql", "vb", "vbnet", "xml");
 
   private final Settings settings;
 

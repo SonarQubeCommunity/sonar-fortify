@@ -29,7 +29,7 @@ public class RulePack {
   private String name;
   private String language;
   private final Map<String, String> descriptions = new HashMap<String, String>();
-  private final Collection<Rule> rules = new ArrayList<Rule>();
+  private final Collection<FortifyRule> rules = new ArrayList<FortifyRule>();
 
   public String name() {
     return this.name;
@@ -58,18 +58,18 @@ public class RulePack {
     return this;
   }
 
-  public Collection<Rule> getRules() {
+  public Collection<FortifyRule> getRules() {
     return this.rules;
   }
 
-  public RulePack addRules(Collection<Rule> rules) {
+  public RulePack addRules(Collection<FortifyRule> rules) {
     if (rules != null) {
       this.rules.addAll(rules);
     }
     return this;
   }
 
-  public String getRuleLanguage(Rule rule) {
+  public String getRuleLanguage(FortifyRule rule) {
     String ruleLanguage = rule.getLanguage();
     if (ruleLanguage == null) {
       ruleLanguage = this.language;
@@ -105,7 +105,7 @@ public class RulePack {
     builder.append("rules.size()=").append(this.rules.size()).append("\n\t");
     builder.append("rules=[\n\t\t");
     int i = 0;
-    for (Rule rule : this.rules) {
+    for (FortifyRule rule : this.rules) {
       i++;
       builder.append(rule).append(",\n\t\t");
       if (i > 10) {

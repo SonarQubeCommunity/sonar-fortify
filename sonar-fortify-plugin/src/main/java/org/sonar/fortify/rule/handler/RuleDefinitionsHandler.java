@@ -20,11 +20,11 @@
 package org.sonar.fortify.rule.handler;
 
 import org.sonar.fortify.base.handler.AbstractHandler;
-import org.sonar.fortify.rule.element.Rule;
+import org.sonar.fortify.rule.element.FortifyRule;
 
 import java.util.Set;
 
-public class RuleDefinitionsHandler extends AbstractHandler<Set<Rule>> {
+public class RuleDefinitionsHandler extends AbstractHandler<Set<FortifyRule>> {
   private final RuleHandler ruleHandler;
 
   RuleDefinitionsHandler() {

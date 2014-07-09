@@ -19,12 +19,20 @@
  */
 package org.sonar.fortify.rule.element;
 
-public class Rule {
+import org.apache.commons.lang.StringUtils;
+
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+public class FortifyRule {
   // According to Fortify documentation 3.90, language is not in the XSD, but it's in their RulePack :/
   private String language;
   private FormatVersion formatVersion;
   private String ruleID;
   private String notes;
+  private String vulnKingdom;
   private String vulnCategory;
   private String vulnSubcategory;
   private String defaultSeverity;
@@ -34,7 +42,7 @@ public class Rule {
     return this.language;
   }
 
-  public Rule setLanguage(String language) {
+  public FortifyRule setLanguage(String language) {
     this.language = language;
     return this;
   }
@@ -43,7 +51,7 @@ public class Rule {
     return this.formatVersion;
   }
 
-  public Rule setFormatVersion(String formatVersion) {
+  public FortifyRule setFormatVersion(String formatVersion) {
     this.formatVersion = new FormatVersion(formatVersion);
     return this;
   }
@@ -52,22 +60,27 @@ public class Rule {
     return this.ruleID;
   }
 
-  public Rule setRuleID(String ruleID) {
+  public FortifyRule setRuleID(String ruleID) {
     this.ruleID = ruleID;
     return this;
   }
 
-  public Rule setNotes(String notes) {
+  public FortifyRule setNotes(String notes) {
     this.notes = notes;
     return this;
   }
 
-  public Rule setVulnCategory(String vulnCategory) {
+  public FortifyRule setVulnCategory(String vulnCategory) {
     this.vulnCategory = vulnCategory;
     return this;
   }
 
-  public Rule setVulnSubcategory(String vulnSubcategory) {
+  public FortifyRule setVulnKingdom(String vulnKingdom) {
+    this.vulnKingdom = vulnKingdom;
+    return this;
+  }
+
+  public FortifyRule setVulnSubcategory(String vulnSubcategory) {
     this.vulnSubcategory = vulnSubcategory;
     return this;
   }
@@ -76,7 +89,7 @@ public class Rule {
     return this.defaultSeverity;
   }
 
-  public Rule setDefaultSeverity(String defaultSeverity) {
+  public FortifyRule setDefaultSeverity(String defaultSeverity) {
     this.defaultSeverity = defaultSeverity;
     return this;
   }
@@ -85,7 +98,7 @@ public class Rule {
     return this.description;
   }
 
-  public Rule setDescription(Description description) {
+  public FortifyRule setDescription(Description description) {
     this.description = description;
     return this;
   }
@@ -98,6 +111,31 @@ public class Rule {
   public String toString() {
     return "[Rule language=" + this.language + ", formatVersion=" + this.formatVersion + ", ruleID=" + this.ruleID + ", vulnCategory=" + this.vulnCategory + ", vulnSubcategory="
       + this.vulnSubcategory + ", defaultSeverity=" + this.defaultSeverity + ", description=" + this.description + "]";
+  }
+
+  public String[] getTags() {
+    List<String> tags = new ArrayList<String>();
+    if (StringUtils.isNotBlank(vulnKingdom)) {
+      tags.add(slugify(vulnKingdom));
+    }
+    if (StringUtils.isNotBlank(vulnCategory)) {
+      tags.add(slugify(vulnCategory));
+    }
+    if (StringUtils.isNotBlank(vulnSubcategory)) {
+      tags.add(slugify(vulnSubcategory));
+    }
+    return tags.toArray(new String[tags.size()]);
+  }
+
+  private static String slugify(String s) {
+    return Normalizer.normalize(s, Normalizer.Form.NFD)
+      .replaceAll("[^\\p{ASCII}]", "")
+      .replaceAll("[^\\w+]", "-")
+      .replaceAll("\\s+", "-")
+      .replaceAll("_", "-")
+      .replaceAll("[-]+", "-")
+      .replaceAll("^-", "")
+      .replaceAll("-$", "").toLowerCase(Locale.ENGLISH);
   }
 
 }

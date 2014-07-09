@@ -26,12 +26,12 @@ import org.sonar.fortify.base.FortifyUtils;
 import org.sonar.fortify.base.handler.AbstractSetHandler;
 import org.sonar.fortify.base.handler.StringHandler;
 import org.sonar.fortify.rule.element.Description;
-import org.sonar.fortify.rule.element.Rule;
+import org.sonar.fortify.rule.element.FortifyRule;
 import org.xml.sax.Attributes;
 
 import java.util.Collection;
 
-public class RuleHandler extends AbstractSetHandler<Rule> {
+public class RuleHandler extends AbstractSetHandler<FortifyRule> {
   private static final Logger LOG = LoggerFactory.getLogger(RuleHandler.class);
 
   private static final Collection<String> INTERNAL_RULE_NAMES = Sets.newHashSet(
@@ -47,23 +47,26 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
 
   private final StringHandler ruleIDHandler;
   private final StringHandler notesHandler;
+  private final StringHandler vulnKingdomHandler;
   private final StringHandler vulnCategoryHandler;
   private final StringHandler vulnSubcategoryHandler;
   private final StringHandler defaultSeverityHandler;
   private final DescriptionHandler descriptionHandler;
 
   private String currentRuleType;
-  private Rule rule;
+  private FortifyRule rule;
 
   RuleHandler() {
     super("dummy");
     this.ruleIDHandler = new StringHandler("RuleID");
     this.notesHandler = new StringHandler("Notes");
+    this.vulnKingdomHandler = new StringHandler("VulnKingdom");
     this.vulnCategoryHandler = new StringHandler("VulnCategory");
     this.vulnSubcategoryHandler = new StringHandler("VulnSubcategory");
     this.defaultSeverityHandler = new StringHandler("DefaultSeverity");
     this.descriptionHandler = new DescriptionHandler();
-    setChildren(this.ruleIDHandler, this.notesHandler, this.vulnCategoryHandler, this.vulnSubcategoryHandler, this.defaultSeverityHandler, this.descriptionHandler);
+    setChildren(this.ruleIDHandler, this.notesHandler, this.vulnKingdomHandler, this.vulnCategoryHandler, this.vulnSubcategoryHandler, this.defaultSeverityHandler,
+      this.descriptionHandler);
   }
 
   @Override
@@ -89,7 +92,7 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
   protected void start(Attributes attributes) {
     if (this.currentRuleType != null) {
       this.descriptionHandler.reset();
-      this.rule = new Rule();
+      this.rule = new FortifyRule();
       this.rule.setLanguage(attributes.getValue("language"));
       this.rule.setFormatVersion(attributes.getValue("formatVersion"));
     }
@@ -100,6 +103,7 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
     if (this.currentRuleType != null) {
       this.rule.setRuleID(this.ruleIDHandler.getResult());
       this.rule.setNotes(this.notesHandler.getResult());
+      this.rule.setVulnKingdom(this.vulnKingdomHandler.getResult());
       this.rule.setVulnCategory(this.vulnCategoryHandler.getResult());
       this.rule.setVulnSubcategory(this.vulnSubcategoryHandler.getResult());
       String defaultSeverity = this.defaultSeverityHandler.getResult();

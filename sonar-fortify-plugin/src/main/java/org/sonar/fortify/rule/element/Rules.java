@@ -23,14 +23,14 @@ import java.util.Collection;
 import java.util.Set;
 
 public class Rules {
-  private Set<Rule> rules;
+  private Set<FortifyRule> rules;
   private Collection<Description> descriptions;
 
-  public Set<Rule> getRules() {
+  public Set<FortifyRule> getRules() {
     return this.rules;
   }
 
-  public void setRules(Set<Rule> rules) {
+  public void setRules(Set<FortifyRule> rules) {
     this.rules = rules;
   }
 
