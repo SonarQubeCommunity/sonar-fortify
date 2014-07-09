@@ -24,6 +24,7 @@ public class Rule {
   private String language;
   private FormatVersion formatVersion;
   private String ruleID;
+  private String notes;
   private String vulnCategory;
   private String vulnSubcategory;
   private String defaultSeverity;
@@ -56,6 +57,11 @@ public class Rule {
     return this;
   }
 
+  public Rule setNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
   public Rule setVulnCategory(String vulnCategory) {
     this.vulnCategory = vulnCategory;
     return this;
@@ -85,11 +91,7 @@ public class Rule {
   }
 
   public String getName() {
-    String name = this.vulnCategory;
-    if (this.vulnSubcategory != null) {
-      name += ": " + this.vulnSubcategory;
-    }
-    return name;
+    return ruleID;
   }
 
   @Override
@@ -97,4 +99,5 @@ public class Rule {
     return "[Rule language=" + this.language + ", formatVersion=" + this.formatVersion + ", ruleID=" + this.ruleID + ", vulnCategory=" + this.vulnCategory + ", vulnSubcategory="
       + this.vulnSubcategory + ", defaultSeverity=" + this.defaultSeverity + ", description=" + this.description + "]";
   }
+
 }

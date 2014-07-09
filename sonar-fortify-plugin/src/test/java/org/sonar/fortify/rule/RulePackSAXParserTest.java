@@ -43,22 +43,22 @@ public class RulePackSAXParserTest {
     for (Rule rule : rules) {
       String key = rule.getRuleID();
       if ("1".equals(key) && "3.3".equals(rule.getFormatVersion().toString())) {
-        assertRule(rule, "Dummy cat: Dummy subcat", "java", "MAJOR", "");
+        assertRule(rule, "1", "java", "MAJOR", "");
       } else if ("1".equals(key)) {
-        assertRule(rule, "Dummy cat: Dummy subcat", "java", "MINOR", "");
+        assertRule(rule, "1", "java", "MINOR", "");
       } else if ("2".equals(key)) {
-        assertRule(rule, null, "other", null, "");
+        assertRule(rule, "2", "other", null, "");
       } else if ("3".equals(key)) {
         assertRule(
           rule,
-          "Dummy cat",
+          "3",
           "java",
           "CRITICAL",
           "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>\\[1\\] Dummy reference . - Dummy author .</p><p>\\[2\\] Dummy reference . - Dummy author .</p>");
       } else if ("4".equals(key)) {
-        assertRule(rule, "Dummy cat", null, "BLOCKER", "");
+        assertRule(rule, "4", null, "BLOCKER", "");
       } else if ("5".equals(key)) {
-        assertRule(rule, "Dummy cat", null, "INFO", "");
+        assertRule(rule, "5", null, "INFO", "");
       } else {
         fail("Rule " + key + " is not expected");
       }

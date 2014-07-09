@@ -46,6 +46,7 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
     "InternalRule");
 
   private final StringHandler ruleIDHandler;
+  private final StringHandler notesHandler;
   private final StringHandler vulnCategoryHandler;
   private final StringHandler vulnSubcategoryHandler;
   private final StringHandler defaultSeverityHandler;
@@ -57,11 +58,12 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
   RuleHandler() {
     super("dummy");
     this.ruleIDHandler = new StringHandler("RuleID");
+    this.notesHandler = new StringHandler("Notes");
     this.vulnCategoryHandler = new StringHandler("VulnCategory");
     this.vulnSubcategoryHandler = new StringHandler("VulnSubcategory");
     this.defaultSeverityHandler = new StringHandler("DefaultSeverity");
     this.descriptionHandler = new DescriptionHandler();
-    setChildren(this.ruleIDHandler, this.vulnCategoryHandler, this.vulnSubcategoryHandler, this.defaultSeverityHandler, this.descriptionHandler);
+    setChildren(this.ruleIDHandler, this.notesHandler, this.vulnCategoryHandler, this.vulnSubcategoryHandler, this.defaultSeverityHandler, this.descriptionHandler);
   }
 
   @Override
@@ -97,6 +99,7 @@ public class RuleHandler extends AbstractSetHandler<Rule> {
   protected void end() {
     if (this.currentRuleType != null) {
       this.rule.setRuleID(this.ruleIDHandler.getResult());
+      this.rule.setNotes(this.notesHandler.getResult());
       this.rule.setVulnCategory(this.vulnCategoryHandler.getResult());
       this.rule.setVulnSubcategory(this.vulnSubcategoryHandler.getResult());
       String defaultSeverity = this.defaultSeverityHandler.getResult();

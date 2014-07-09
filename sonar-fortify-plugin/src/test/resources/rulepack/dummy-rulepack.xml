@@ -4,6 +4,7 @@
     <RuleDefinitions>
       <SemanticRule formatVersion="3.2" language="java">
         <RuleID>1</RuleID>
+        <Notes>Foo</Notes>
         <VulnCategory>Dummy cat</VulnCategory>
         <VulnSubcategory>Dummy subcat</VulnSubcategory>
         <DefaultSeverity>1.0</DefaultSeverity>
@@ -12,6 +13,7 @@
       </SemanticRule>
       <SemanticRule formatVersion="3.3" language="java">
         <RuleID>1</RuleID>
+        <Notes>Foo</Notes>
         <VulnCategory>Dummy cat</VulnCategory>
         <VulnSubcategory>Dummy subcat</VulnSubcategory>
         <DefaultSeverity>2.0</DefaultSeverity>
@@ -23,6 +25,7 @@
       </SemanticRule>
       <SemanticRule formatVersion="3.3" language="java">
         <RuleID>3</RuleID>
+        <Notes>Foo</Notes>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>3.0</DefaultSeverity>
         <Description>
@@ -43,12 +46,14 @@
       </SemanticRule>
       <SemanticRule formatVersion="3.3">
         <RuleID>4</RuleID>
+        <Notes>Foo</Notes>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>4.0</DefaultSeverity>
         <Description ref="ref.desc"/>
       </SemanticRule>
       <SemanticRule formatVersion="3.3">
         <RuleID>5</RuleID>
+        <Notes>Foo</Notes>
         <VulnCategory>Dummy cat</VulnCategory>
         <DefaultSeverity>0.5</DefaultSeverity>
         <Description/>
