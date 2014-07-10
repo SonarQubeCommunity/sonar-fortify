@@ -107,11 +107,11 @@ public final class FortifyRulesDefinition implements RulesDefinition {
       Set<String> ruleIds = addedRuleIdsByName.get(name);
       if (ruleIds.size() == 1) {
         NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
-        alreadyAdded.setName(name + " (1)");
+        alreadyAdded.setName(name + " - #1");
       }
       ruleIds.add(rule.getRuleID());
       newRule
-        .setName(name + " (" + ruleIds.size() + ")");
+        .setName(name + " - #" + ruleIds.size());
     } else {
       Set<String> ruleIds = new HashSet<String>();
       ruleIds.add(rule.getRuleID());
