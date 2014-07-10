@@ -50,6 +50,7 @@ public final class FortifyRulesDefinition implements RulesDefinition {
     .put("configuration", "xml")
     .put("content", "web")
     .put("jsp", "web")
+    .put("python", "py")
     .build();
 
   private final Languages languages;
