@@ -29,10 +29,10 @@ import java.util.Collection;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
-public class FvdlSAXParserTest {
+public class FvdlStAXParserTest {
   @Test
   public void parse_dummy_report() throws Exception {
-    FvdlSAXParser parser = new FvdlSAXParser();
+    FvdlStAXParser parser = new FvdlStAXParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/dummy-report.xml");
     Fvdl fvdl = parser.parse(inputStream);
     assertThat(fvdl.getBuild().getSourceBasePath()).isEqualTo("/a/dummy/path");
@@ -62,15 +62,12 @@ public class FvdlSAXParserTest {
 
   @Test
   public void parse_full_report() throws Exception {
-    FvdlSAXParser parser = new FvdlSAXParser();
+    FvdlStAXParser parser = new FvdlStAXParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/audit.fvdl");
     Collection<Vulnerability> vulnerabilities = parser.parse(inputStream).getVulnerabilities();
     assertThat(vulnerabilities.size()).isEqualTo(1048);
     for (Vulnerability vulnerability : vulnerabilities) {
       assertThat(vulnerability.getClassID()).isNotNull();
-      if (vulnerability.getPath() == null) {
-        System.err.println(vulnerability.getClassID());
-      }
       assertThat(vulnerability.getPath()).isNotNull();
       assertThat(vulnerability.getInstanceID()).isNotNull();
       assertThat(vulnerability.getLine()).isNotNull();

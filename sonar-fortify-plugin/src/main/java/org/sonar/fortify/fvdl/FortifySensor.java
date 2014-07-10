@@ -111,7 +111,7 @@ public class FortifySensor implements Sensor {
     try {
       InputStream stream = this.report.getInputStream();
       try {
-        Fvdl fvdl = new FvdlSAXParser().parse(stream);
+        Fvdl fvdl = new FvdlStAXParser().parse(stream);
         addIssues(context, project, fvdl);
       } finally {
         stream.close();
@@ -142,6 +142,10 @@ public class FortifySensor implements Sensor {
 
   @CheckForNull
   private Resource resourceOf(SensorContext context, String sourceBasePath, Vulnerability vulnerability, Project project) {
+    if (vulnerability.getPath() == null) {
+      LOG.error("Vulnerability \"{}\" has no path.", vulnerability);
+      return null;
+    }
     java.io.File file = new java.io.File(fileSystem.baseDir(), vulnerability.getPath());
     Resource resource = File.fromIOFile(file, project);
     if (resource == null || context.getResource(resource) == null) {
@@ -154,6 +158,7 @@ public class FortifySensor implements Sensor {
         }
       } else {
         LOG.debug("Unable to find \"{}\".", file);
+        return null;
       }
     }
     return resource;
