@@ -28,7 +28,7 @@ import org.sonar.fortify.base.FortifyConstants;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class FortifyRuleRepositoryTest {
+public class FortifyRulesDefinitionTest {
 
   @Test
   public void create_rules() {
@@ -37,18 +37,22 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    Languages languages = new Languages(new AbstractLanguage("java") {
-      @Override
-      public String[] getFileSuffixes() {
-        return null;
-      }
-    });
+    Languages languages = new Languages(language("java"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
     new FortifyRulesDefinition(parser, languages).define(context);
 
     assertThat(context.repository("fortify-java")).isNotNull();
     assertThat(context.repository("fortify-java").rules()).isNotEmpty();
+  }
+
+  private AbstractLanguage language(String key) {
+    return new AbstractLanguage(key) {
+      @Override
+      public String[] getFileSuffixes() {
+        return null;
+      }
+    };
   }
 
   @Test
@@ -58,12 +62,7 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    Languages languages = new Languages(new AbstractLanguage("flex") {
-      @Override
-      public String[] getFileSuffixes() {
-        return null;
-      }
-    });
+    Languages languages = new Languages(language("flex"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
     new FortifyRulesDefinition(parser, languages).define(context);
@@ -78,12 +77,7 @@ public class FortifyRuleRepositoryTest {
 
     RulePackParser parser = new RulePackParser(settings);
 
-    Languages languages = new Languages(new AbstractLanguage("js") {
-      @Override
-      public String[] getFileSuffixes() {
-        return null;
-      }
-    });
+    Languages languages = new Languages(language("js"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
     new FortifyRulesDefinition(parser, languages).define(context);

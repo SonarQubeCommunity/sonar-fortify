@@ -104,6 +104,17 @@ public class FortifyRule {
   }
 
   public String getName() {
+    if (StringUtils.isNotBlank(vulnCategory)) {
+      StringBuilder sb = new StringBuilder();
+      sb.append(vulnCategory);
+      if (StringUtils.isNotBlank(vulnSubcategory)) {
+        sb.append(": ");
+        sb.append(vulnSubcategory);
+      }
+      return sb.toString();
+    } else if (StringUtils.isNotBlank(vulnSubcategory)) {
+      return vulnSubcategory;
+    }
     return ruleID;
   }
 

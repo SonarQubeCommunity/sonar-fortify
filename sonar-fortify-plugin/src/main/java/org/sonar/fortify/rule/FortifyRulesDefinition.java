@@ -34,8 +34,10 @@ import org.sonar.fortify.rule.element.RulePack;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public final class FortifyRulesDefinition implements RulesDefinition {
 
@@ -44,14 +46,17 @@ public final class FortifyRulesDefinition implements RulesDefinition {
   private static final Map<String, String> FORTIFY_TO_SQ = ImmutableMap.of(
     "actionscript", "flex",
     "javascript", "js",
-    "dotnet", "cs"
+    "dotnet", "cs",
+    "configuration", "xml",
+    "content", "web"
     );
 
   private final Languages languages;
   private final RulePackParser rulePackParser;
 
   private final Map<String, NewRepository> newRepositories = new HashMap<String, NewRepository>();
-  private final Map<String, FormatVersion> addedRules = new HashMap<String, FormatVersion>();
+  private final Map<String, FormatVersion> addedRulesVersions = new HashMap<String, FormatVersion>();
+  private final Map<String, Map<String, Set<String>>> addedRuleIdsByLanguageAndName = new HashMap<String, Map<String, Set<String>>>();
 
   public FortifyRulesDefinition(Settings settings, Languages languages) {
     this(new RulePackParser(settings), languages);
@@ -74,7 +79,7 @@ public final class FortifyRulesDefinition implements RulesDefinition {
   private Collection<NewRepository> parseRulePacks(Context context, List<RulePack> rulePacks) {
     for (RulePack rulePack : rulePacks) {
       for (FortifyRule rule : rulePack.getRules()) {
-        String sqLanguageKey = convertToSQ(rule.getLanguage());
+        String sqLanguageKey = convertToSQ(rulePack.getRuleLanguage(rule));
         if (languages.get(sqLanguageKey) != null && isAnInterestingRule(rulePack, rule)) {
           NewRepository repo = getRepository(context, sqLanguageKey);
           String htmlDescription = rulePack.getHTMLDescription(rule.getDescription());
@@ -83,12 +88,32 @@ public final class FortifyRulesDefinition implements RulesDefinition {
             newRule = repo
               .createRule(rule.getRuleID());
           }
+          String name = rule.getName();
+          if (!addedRuleIdsByLanguageAndName.containsKey(sqLanguageKey)) {
+            addedRuleIdsByLanguageAndName.put(sqLanguageKey, new HashMap<String, Set<String>>());
+          }
+          Map<String, Set<String>> addedRuleIdsByName = addedRuleIdsByLanguageAndName.get(sqLanguageKey);
+          if (addedRuleIdsByName.containsKey(name)) {
+            Set<String> ruleIds = addedRuleIdsByName.get(name);
+            if (ruleIds.size() == 1) {
+              NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
+              alreadyAdded.setName(name + " (1)");
+            }
+            ruleIds.add(rule.getRuleID());
+            newRule
+              .setName(name + " (" + ruleIds.size() + ")");
+          } else {
+            Set<String> ruleIds = new HashSet<String>();
+            ruleIds.add(rule.getRuleID());
+            addedRuleIdsByName.put(name, ruleIds);
+            newRule
+              .setName(name);
+          }
           newRule
-            .setName(rule.getRuleID())
             .setHtmlDescription(StringUtils.isNotBlank(htmlDescription) ? htmlDescription : "No description available")
             .setSeverity(rule.getDefaultSeverity())
             .setTags(rule.getTags());
-          this.addedRules.put(rule.getRuleID(), rule.getFormatVersion());
+          this.addedRulesVersions.put(rule.getRuleID(), rule.getFormatVersion());
         }
       }
     }
@@ -98,7 +123,7 @@ public final class FortifyRulesDefinition implements RulesDefinition {
 
   private boolean isAnInterestingRule(RulePack rulePack, org.sonar.fortify.rule.element.FortifyRule rule) {
     boolean isInteresting;
-    FormatVersion previousVersion = this.addedRules.get(rule.getRuleID());
+    FormatVersion previousVersion = this.addedRulesVersions.get(rule.getRuleID());
     if (previousVersion == null) {
       isInteresting = true;
     } else if (previousVersion.compareTo(rule.getFormatVersion()) > 0) {
