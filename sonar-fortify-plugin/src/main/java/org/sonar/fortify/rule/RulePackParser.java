@@ -66,7 +66,7 @@ public class RulePackParser {
       InputStream stream = null;
       try {
         stream = new FileInputStream(file);
-        rulePacks.add(new RulePackSAXParser().parse(stream));
+        rulePacks.add(new RulePackStAXParser().parse(stream));
       } catch (IOException e) {
         LOG.error("Unexpected error during the parse of " + file + ".", e);
       } catch (SAXException e) {

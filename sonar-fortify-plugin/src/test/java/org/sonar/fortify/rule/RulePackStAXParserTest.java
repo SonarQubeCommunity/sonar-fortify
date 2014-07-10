@@ -35,7 +35,7 @@ import java.util.Collection;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
-public class RulePackSAXParserTest {
+public class RulePackStAXParserTest {
   @Test
   public void test() {
     Collection<FortifyRule> rules = parse("rulepack/dummy-rulepack.xml");
@@ -86,7 +86,7 @@ public class RulePackSAXParserTest {
   }
 
   private Collection<FortifyRule> parse(String rulePack) {
-    RulePackSAXParser parser = new RulePackSAXParser();
+    RulePackStAXParser parser = new RulePackStAXParser();
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream(rulePack);
     try {
       return parser.parse(inputStream).getRules();

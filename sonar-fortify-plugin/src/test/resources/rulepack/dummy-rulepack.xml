@@ -59,8 +59,8 @@
       <DummyRule formatVersion="3.3" language="java">
       </DummyRule>
     </RuleDefinitions>
+    <Descriptions>
+      <Description id="ref.desc"/>
+    </Descriptions>
   </Rules>
-  <Descriptions>
-    <Description id="ref.desc"/>
-  </Descriptions>
 </RulePack>

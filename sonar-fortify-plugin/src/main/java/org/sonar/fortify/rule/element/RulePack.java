@@ -49,12 +49,8 @@ public class RulePack {
     return this;
   }
 
-  public RulePack addDescriptions(Collection<Description> newDescriptions) {
-    if (newDescriptions != null) {
-      for (Description description : newDescriptions) {
-        this.descriptions.put(description.getId(), description.toString());
-      }
-    }
+  public RulePack addDescription(Description newDescription) {
+    this.descriptions.put(newDescription.getId(), newDescription.toString());
     return this;
   }
 
@@ -62,10 +58,8 @@ public class RulePack {
     return this.rules;
   }
 
-  public RulePack addRules(Collection<FortifyRule> rules) {
-    if (rules != null) {
-      this.rules.addAll(rules);
-    }
+  public RulePack addRule(FortifyRule rule) {
+    this.rules.add(rule);
     return this;
   }
 

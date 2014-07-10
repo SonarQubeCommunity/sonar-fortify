@@ -63,8 +63,8 @@ public class Description {
     return this;
   }
 
-  public Description setReferences(Collection<Reference> references) {
-    this.references.addAll(references);
+  public Description addReference(Reference reference) {
+    this.references.add(reference);
     return this;
   }
 
