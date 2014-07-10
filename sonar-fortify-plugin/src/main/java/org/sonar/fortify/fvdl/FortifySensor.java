@@ -94,7 +94,7 @@ public class FortifySensor implements Sensor {
         ActiveRule activeRule = getRule(vulnerability);
         if (activeRule == null) {
           FortifySensor.LOG.warn(
-            "Fortify rule '{}' is not active in Sonar.", vulnerability.getClassID());
+            "Fortify rule '{}' is not active in quality profiles of your project.", vulnerability.getClassID());
         } else {
           addIssue(resource, fvdl, vulnerability, activeRule);
         }

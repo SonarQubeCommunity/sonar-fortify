@@ -37,8 +37,7 @@ public final class FortifyUtils {
     // just so it won't try to load DTD in if there's DOCTYPE
     xmlFactory.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.FALSE);
     xmlFactory.setProperty(XMLInputFactory.IS_VALIDATING, Boolean.FALSE);
-    SMInputFactory inputFactory = new SMInputFactory(xmlFactory);
-    return inputFactory;
+    return new SMInputFactory(xmlFactory);
   }
 
   public static String fortifyToSonarQubeSeverity(String fortifySeverity) {
