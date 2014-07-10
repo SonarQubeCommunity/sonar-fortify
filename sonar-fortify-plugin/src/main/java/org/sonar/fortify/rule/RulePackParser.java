@@ -25,15 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
 import org.sonar.fortify.base.FortifyConstants;
-import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.rule.element.RulePack;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +62,7 @@ public class RulePackParser {
       try {
         stream = new FileInputStream(file);
         rulePacks.add(new RulePackStAXParser().parse(stream));
-      } catch (IOException e) {
-        LOG.error("Unexpected error during the parse of " + file + ".", e);
-      } catch (SAXException e) {
-        LOG.error("Unexpected error during the parse of " + file + ".", e);
-      } catch (ParserConfigurationException e) {
-        LOG.error("Unexpected error during the parse of " + file + ".", e);
-      } catch (FortifyParseException e) {
+      } catch (Exception e) {
         LOG.error("Unexpected error during the parse of " + file + ".", e);
       } finally {
         Closeables.closeQuietly(stream);

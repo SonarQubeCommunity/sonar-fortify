@@ -38,12 +38,9 @@ import org.sonar.api.utils.TimeProfiler;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.fvdl.element.Fvdl;
 import org.sonar.fortify.fvdl.element.Vulnerability;
-import org.xml.sax.SAXException;
 
 import javax.annotation.CheckForNull;
-import javax.xml.parsers.ParserConfigurationException;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class FortifySensor implements Sensor {
@@ -107,7 +104,7 @@ public class FortifySensor implements Sensor {
 
   @Override
   public void analyse(Project project, SensorContext context) {
-    TimeProfiler profiler = new TimeProfiler().start("Execute Fortify");
+    TimeProfiler profiler = new TimeProfiler().start("Process Fortify report");
     try {
       InputStream stream = this.report.getInputStream();
       try {
@@ -116,12 +113,8 @@ public class FortifySensor implements Sensor {
       } finally {
         stream.close();
       }
-    } catch (IOException e) {
-      throw new SonarException("Can not execute Fortify", e);
-    } catch (SAXException e) {
-      throw new SonarException("Can not execute Fortify", e);
-    } catch (ParserConfigurationException e) {
-      throw new SonarException("Can not execute Fortify", e);
+    } catch (Exception e) {
+      throw new SonarException("Can not process Fortify report", e);
     } finally {
       profiler.stop();
     }

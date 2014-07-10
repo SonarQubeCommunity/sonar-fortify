@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class RulePack {
   private String name;
@@ -84,30 +83,4 @@ public class RulePack {
     return htmlDescription;
   }
 
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("[RulePack\n\t");
-    builder.append("name=").append(this.name).append("\n\t");
-    builder.append("language=").append(this.language).append("\n\t");
-    builder.append("descriptions.size()=").append(this.descriptions.size()).append("\n\t");
-    builder.append("descriptions=[\n\t\t");
-    for (Entry<String, String> description : this.descriptions.entrySet()) {
-      builder.append(description).append(",\n\t\t");
-    }
-    builder.append("\n\t]");
-    builder.append("rules.size()=").append(this.rules.size()).append("\n\t");
-    builder.append("rules=[\n\t\t");
-    int i = 0;
-    for (FortifyRule rule : this.rules) {
-      i++;
-      builder.append(rule).append(",\n\t\t");
-      if (i > 10) {
-        break;
-      }
-    }
-    builder.append("\n\t]");
-    builder.append("\n]");
-    return builder.toString();
-  }
 }

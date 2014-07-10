@@ -20,12 +20,12 @@
 package org.sonar.fortify.rule.element;
 
 public class FormatVersion implements Comparable<FormatVersion> {
-  private final String formatVersion;
+  private final String versionString;
   private final String[] versionParts;
 
-  FormatVersion(String formatVersion) {
-    this.formatVersion = formatVersion;
-    this.versionParts = formatVersion.split("\\.");
+  FormatVersion(String versionString) {
+    this.versionString = versionString;
+    this.versionParts = versionString.split("\\.");
   }
 
   @Override
@@ -48,16 +48,16 @@ public class FormatVersion implements Comparable<FormatVersion> {
 
   @Override
   public String toString() {
-    return this.formatVersion;
+    return this.versionString;
   }
 
   @Override
   public boolean equals(Object o) {
-    return o instanceof FormatVersion && this.formatVersion.equals(((FormatVersion) o).formatVersion);
+    return o instanceof FormatVersion && this.versionString.equals(((FormatVersion) o).versionString);
   }
 
   @Override
   public int hashCode() {
-    return this.formatVersion.hashCode();
+    return this.versionString.hashCode();
   }
 }

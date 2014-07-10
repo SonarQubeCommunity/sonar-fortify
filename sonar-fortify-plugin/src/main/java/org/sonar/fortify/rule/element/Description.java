@@ -63,6 +63,10 @@ public class Description {
     return this;
   }
 
+  public String getRecommendations() {
+    return recommendations;
+  }
+
   public Description addReference(Reference reference) {
     this.references.add(reference);
     return this;
@@ -76,6 +80,9 @@ public class Description {
     }
     if (this.explanation != null) {
       builder.append("<h2>EXPLANATION</h2><p>").append(this.explanation).append("</p>");
+    }
+    if (this.recommendations != null) {
+      builder.append("<h2>RECOMMENDATIONS</h2><p>").append(this.recommendations).append("</p>");
     }
     if (!this.references.isEmpty()) {
       builder.append("<h2>REFERENCES</h2>");

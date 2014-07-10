@@ -32,7 +32,6 @@ import org.sonar.fortify.fvdl.element.Vulnerability;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 
 import java.io.IOException;
@@ -43,13 +42,7 @@ import java.util.Collection;
 public class FvdlStAXParser {
   Fvdl parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
 
-    XMLInputFactory xmlFactory = XMLInputFactory.newInstance();
-    xmlFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
-    xmlFactory.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, Boolean.FALSE);
-    // just so it won't try to load DTD in if there's DOCTYPE
-    xmlFactory.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.FALSE);
-    xmlFactory.setProperty(XMLInputFactory.IS_VALIDATING, Boolean.FALSE);
-    SMInputFactory inputFactory = new SMInputFactory(xmlFactory);
+    SMInputFactory inputFactory = FortifyUtils.newStaxParser();
     try {
       SMHierarchicCursor rootC = inputFactory.rootElementCursor(inputStream);
       rootC.advance(); // <FVDL>
@@ -134,16 +127,18 @@ public class FvdlStAXParser {
     if (primaryCursor.getNext() != null) {
       SMInputCursor entryCursor = primaryCursor.childElementCursor("Entry");
       while (entryCursor.getNext() != null) {
-        SMInputCursor nodeCursor = entryCursor.childElementCursor("Node");
-        if (nodeCursor.getNext() != null) {
-          if ("true".equals(nodeCursor.getAttrValue("isDefault"))) {
-            SMInputCursor sourceLocationCursor = nodeCursor.childElementCursor("SourceLocation");
-            if (sourceLocationCursor.getNext() != null) {
-              vulnerability.setPath(sourceLocationCursor.getAttrValue("path"));
-              vulnerability.setLine(Integer.valueOf(sourceLocationCursor.getAttrValue("line")));
-            }
-          }
-        }
+        processNode(vulnerability, entryCursor);
+      }
+    }
+  }
+
+  private void processNode(Vulnerability vulnerability, SMInputCursor entryCursor) throws XMLStreamException {
+    SMInputCursor nodeCursor = entryCursor.childElementCursor("Node");
+    if (nodeCursor.getNext() != null && "true".equals(nodeCursor.getAttrValue("isDefault"))) {
+      SMInputCursor sourceLocationCursor = nodeCursor.childElementCursor("SourceLocation");
+      if (sourceLocationCursor.getNext() != null) {
+        vulnerability.setPath(sourceLocationCursor.getAttrValue("path"));
+        vulnerability.setLine(Integer.valueOf(sourceLocationCursor.getAttrValue("line")));
       }
     }
   }

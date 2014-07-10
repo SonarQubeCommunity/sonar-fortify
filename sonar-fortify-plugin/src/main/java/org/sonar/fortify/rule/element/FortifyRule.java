@@ -103,6 +103,10 @@ public class FortifyRule {
     return this;
   }
 
+  public String getNotes() {
+    return notes;
+  }
+
   public String getName() {
     if (StringUtils.isNotBlank(vulnCategory)) {
       StringBuilder sb = new StringBuilder();

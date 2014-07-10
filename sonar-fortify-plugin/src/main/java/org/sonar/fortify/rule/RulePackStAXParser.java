@@ -35,7 +35,6 @@ import org.sonar.fortify.rule.element.RulePack;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 
 import java.io.IOException;
@@ -58,13 +57,7 @@ public class RulePackStAXParser {
 
   RulePack parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException, FortifyParseException {
 
-    XMLInputFactory xmlFactory = XMLInputFactory.newInstance();
-    xmlFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
-    xmlFactory.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, Boolean.FALSE);
-    // just so it won't try to load DTD in if there's DOCTYPE
-    xmlFactory.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.FALSE);
-    xmlFactory.setProperty(XMLInputFactory.IS_VALIDATING, Boolean.FALSE);
-    SMInputFactory inputFactory = new SMInputFactory(xmlFactory);
+    SMInputFactory inputFactory = FortifyUtils.newStaxParser();
     try {
       SMHierarchicCursor rootC = inputFactory.rootElementCursor(inputStream);
       rootC.advance(); // <RulePack>
@@ -130,23 +123,27 @@ public class RulePackStAXParser {
       } else if ("Recommendations".equals(nodeName)) {
         desc.setRecommendations(StringUtils.trim(childCursor.collectDescendantText(false)));
       } else if ("References".equals(nodeName)) {
-        SMInputCursor refCursor = childCursor.childElementCursor("Reference");
-        while (refCursor.getNext() != null) {
-          Reference reference = new Reference();
-          SMInputCursor refChildCursor = refCursor.childCursor();
-          while (refChildCursor.getNext() != null) {
-            String refNodeName = refChildCursor.getLocalName();
-            if ("Title".equals(refNodeName)) {
-              reference.setTitle(StringUtils.trim(refChildCursor.collectDescendantText(false)));
-            } else if ("Author".equals(refNodeName)) {
-              reference.setAuthor(StringUtils.trim(refChildCursor.collectDescendantText(false)));
-            }
-          }
-          desc.addReference(reference);
-        }
+        processReference(desc, childCursor);
       }
     }
     return desc;
+  }
+
+  private void processReference(Description desc, SMInputCursor childCursor) throws XMLStreamException {
+    SMInputCursor refCursor = childCursor.childElementCursor("Reference");
+    while (refCursor.getNext() != null) {
+      Reference reference = new Reference();
+      SMInputCursor refChildCursor = refCursor.childCursor();
+      while (refChildCursor.getNext() != null) {
+        String refNodeName = refChildCursor.getLocalName();
+        if ("Title".equals(refNodeName)) {
+          reference.setTitle(StringUtils.trim(refChildCursor.collectDescendantText(false)));
+        } else if ("Author".equals(refNodeName)) {
+          reference.setAuthor(StringUtils.trim(refChildCursor.collectDescendantText(false)));
+        }
+      }
+      desc.addReference(reference);
+    }
   }
 
   private void processRuleDefinitions(SMInputCursor ruleDefsCursor, RulePack rulePack) throws XMLStreamException {

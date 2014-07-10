@@ -54,7 +54,7 @@ public class RulePackStAXParserTest {
           "Dummy cat",
           "java",
           "CRITICAL",
-          "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>REFERENCES</h2><p>\\[1\\] Dummy reference . - Dummy author .</p><p>\\[2\\] Dummy reference . - Dummy author .</p>");
+          "<h2>ABSTRACT</h2><p>Dummy abstract</p><h2>EXPLANATION</h2><p>Dummy explanation</p><h2>RECOMMENDATIONS</h2><p>Dummy recommendations</p><h2>REFERENCES</h2><p>\\[1\\] Dummy reference . - Dummy author .</p><p>\\[2\\] Dummy reference . - Dummy author .</p>");
       } else if ("4".equals(key)) {
         assertRule(rule, "Dummy cat", null, "BLOCKER", "");
       } else if ("5".equals(key)) {

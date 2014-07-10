@@ -19,11 +19,26 @@
  */
 package org.sonar.fortify.base;
 
+import org.codehaus.staxmate.SMInputFactory;
 import org.sonar.api.rule.Severity;
+
+import javax.xml.stream.FactoryConfigurationError;
+import javax.xml.stream.XMLInputFactory;
 
 public final class FortifyUtils {
   private FortifyUtils() {
     // only static stuff
+  }
+
+  public static SMInputFactory newStaxParser() throws FactoryConfigurationError {
+    XMLInputFactory xmlFactory = XMLInputFactory.newInstance();
+    xmlFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
+    xmlFactory.setProperty(XMLInputFactory.IS_NAMESPACE_AWARE, Boolean.FALSE);
+    // just so it won't try to load DTD in if there's DOCTYPE
+    xmlFactory.setProperty(XMLInputFactory.SUPPORT_DTD, Boolean.FALSE);
+    xmlFactory.setProperty(XMLInputFactory.IS_VALIDATING, Boolean.FALSE);
+    SMInputFactory inputFactory = new SMInputFactory(xmlFactory);
+    return inputFactory;
   }
 
   public static String fortifyToSonarQubeSeverity(String fortifySeverity) {

@@ -43,13 +43,14 @@ public final class FortifyRulesDefinition implements RulesDefinition {
 
   private static final Logger LOG = LoggerFactory.getLogger(FortifyRulesDefinition.class);
 
-  private static final Map<String, String> FORTIFY_TO_SQ = ImmutableMap.of(
-    "actionscript", "flex",
-    "javascript", "js",
-    "dotnet", "cs",
-    "configuration", "xml",
-    "content", "web"
-    );
+  private static final Map<String, String> FORTIFY_TO_SQ = ImmutableMap.<String, String>builder()
+    .put("actionscript", "flex")
+    .put("javascript", "js")
+    .put("dotnet", "cs")
+    .put("configuration", "xml")
+    .put("content", "web")
+    .put("jsp", "web")
+    .build();
 
   private final Languages languages;
   private final RulePackParser rulePackParser;
@@ -81,44 +82,48 @@ public final class FortifyRulesDefinition implements RulesDefinition {
       for (FortifyRule rule : rulePack.getRules()) {
         String sqLanguageKey = convertToSQ(rulePack.getRuleLanguage(rule));
         if (languages.get(sqLanguageKey) != null && isAnInterestingRule(rulePack, rule)) {
-          NewRepository repo = getRepository(context, sqLanguageKey);
-          String htmlDescription = rulePack.getHTMLDescription(rule.getDescription());
-          NewRule newRule = repo.rule(rule.getRuleID());
-          if (newRule == null) {
-            newRule = repo
-              .createRule(rule.getRuleID());
-          }
-          String name = rule.getName();
-          if (!addedRuleIdsByLanguageAndName.containsKey(sqLanguageKey)) {
-            addedRuleIdsByLanguageAndName.put(sqLanguageKey, new HashMap<String, Set<String>>());
-          }
-          Map<String, Set<String>> addedRuleIdsByName = addedRuleIdsByLanguageAndName.get(sqLanguageKey);
-          if (addedRuleIdsByName.containsKey(name)) {
-            Set<String> ruleIds = addedRuleIdsByName.get(name);
-            if (ruleIds.size() == 1) {
-              NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
-              alreadyAdded.setName(name + " (1)");
-            }
-            ruleIds.add(rule.getRuleID());
-            newRule
-              .setName(name + " (" + ruleIds.size() + ")");
-          } else {
-            Set<String> ruleIds = new HashSet<String>();
-            ruleIds.add(rule.getRuleID());
-            addedRuleIdsByName.put(name, ruleIds);
-            newRule
-              .setName(name);
-          }
-          newRule
-            .setHtmlDescription(StringUtils.isNotBlank(htmlDescription) ? htmlDescription : "No description available")
-            .setSeverity(rule.getDefaultSeverity())
-            .setTags(rule.getTags());
-          this.addedRulesVersions.put(rule.getRuleID(), rule.getFormatVersion());
+          processRule(context, rulePack, rule, sqLanguageKey);
         }
       }
     }
 
     return newRepositories.values();
+  }
+
+  private void processRule(Context context, RulePack rulePack, FortifyRule rule, String sqLanguageKey) {
+    NewRepository repo = getRepository(context, sqLanguageKey);
+    String htmlDescription = rulePack.getHTMLDescription(rule.getDescription());
+    NewRule newRule = repo.rule(rule.getRuleID());
+    if (newRule == null) {
+      newRule = repo
+        .createRule(rule.getRuleID());
+    }
+    String name = rule.getName();
+    if (!addedRuleIdsByLanguageAndName.containsKey(sqLanguageKey)) {
+      addedRuleIdsByLanguageAndName.put(sqLanguageKey, new HashMap<String, Set<String>>());
+    }
+    Map<String, Set<String>> addedRuleIdsByName = addedRuleIdsByLanguageAndName.get(sqLanguageKey);
+    if (addedRuleIdsByName.containsKey(name)) {
+      Set<String> ruleIds = addedRuleIdsByName.get(name);
+      if (ruleIds.size() == 1) {
+        NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
+        alreadyAdded.setName(name + " (1)");
+      }
+      ruleIds.add(rule.getRuleID());
+      newRule
+        .setName(name + " (" + ruleIds.size() + ")");
+    } else {
+      Set<String> ruleIds = new HashSet<String>();
+      ruleIds.add(rule.getRuleID());
+      addedRuleIdsByName.put(name, ruleIds);
+      newRule
+        .setName(name);
+    }
+    newRule
+      .setHtmlDescription(StringUtils.isNotBlank(htmlDescription) ? htmlDescription : "No description available")
+      .setSeverity(rule.getDefaultSeverity())
+      .setTags(rule.getTags());
+    this.addedRulesVersions.put(rule.getRuleID(), rule.getFormatVersion());
   }
 
   private boolean isAnInterestingRule(RulePack rulePack, org.sonar.fortify.rule.element.FortifyRule rule) {
