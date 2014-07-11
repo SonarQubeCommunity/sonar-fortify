@@ -14,6 +14,19 @@
   </InstanceInfo>
   <AnalysisInfo>
     <Unified>
+      <ReplacementDefinitions>
+        <Def key="EnclosingFunction.name" value="_jspService()"/>
+        <Def key="PrimaryLocation.file" value="main.jsp"/>
+        <Def key="PrimaryLocation.line" value="163"/>
+        <Def key="SinkFunction" value="print()"/>
+        <Def key="SinkLocation.file" value="main.jsp"/>
+        <Def key="SinkLocation.line" value="163"/>
+        <Def key="SourceFunction" value="getParameter()"/>
+        <Def key="SourceLocation.file" value="WebSession.java"/>
+        <Def key="SourceLocation.line" value="472"/>
+        <LocationDef path="WebContent/main.jsp" line="163" lineEnd="163" colStart="0" colEnd="0" key="SinkLocation"/>
+        <LocationDef path="JavaSource/org/owasp/webgoat/session/WebSession.java" line="472" lineEnd="472" colStart="0" colEnd="0" key="SourceLocation"/>
+      </ReplacementDefinitions>
       <Trace>
         <Primary>
           <Entry>

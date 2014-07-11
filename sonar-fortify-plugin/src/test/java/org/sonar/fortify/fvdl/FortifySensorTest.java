@@ -27,6 +27,9 @@ import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.issue.Issuable;
+import org.sonar.api.issue.Issuable.IssueBuilder;
+import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.rule.RuleKey;
@@ -81,9 +84,77 @@ public class FortifySensorTest {
     when(fileSystem.baseDir()).thenReturn(baseDir);
     when(fileSystem.languages()).thenReturn(Sets.newTreeSet(Arrays.asList("web")));
     ActiveRule activeRule = mock(ActiveRule.class);
-    when(activeRules.find(RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792"))).thenReturn(activeRule);
+    RuleKey ruleKey = RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792");
+    when(activeRule.ruleKey()).thenReturn(ruleKey);
+    when(activeRules.find(ruleKey)).thenReturn(activeRule);
     SensorContext context = mock(SensorContext.class);
-    when(context.getResource(org.sonar.api.resources.File.create("WebContent/main.jsp"))).thenReturn(org.sonar.api.resources.File.create("WebContent/main.jsp"));
+    org.sonar.api.resources.File resource = org.sonar.api.resources.File.create("WebContent/main.jsp");
+    when(context.getResource(resource)).thenReturn(resource);
+    Issuable issuable = mock(Issuable.class);
+    when(resourcePerspectives.as(Issuable.class, resource)).thenReturn(issuable);
+    MockIssueBuilder mockIssueBuilder = new MockIssueBuilder();
+    when(issuable.newIssueBuilder()).thenReturn(mockIssueBuilder);
+
     sensor.analyse(project, context);
+
+    assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792"));
+    assertThat(mockIssueBuilder.line).isEqualTo(163);
+    assertThat(mockIssueBuilder.message)
+      .isEqualTo(
+        "The method _jspService() in main.jsp sends unvalidated data to a web browser on line 163, which can result in the browser executing malicious code.Sending unvalidated data to a web browser can result in the browser executing malicious code.");
+    assertThat(mockIssueBuilder.severity).isEqualTo("BLOCKER");
+  }
+
+  private class MockIssueBuilder implements IssueBuilder {
+
+    private RuleKey ruleKey;
+    private Integer line;
+    private String message;
+    private String severity;
+
+    @Override
+    public IssueBuilder ruleKey(RuleKey ruleKey) {
+      this.ruleKey = ruleKey;
+      return this;
+    }
+
+    @Override
+    public IssueBuilder line(Integer line) {
+      this.line = line;
+      return this;
+    }
+
+    @Override
+    public IssueBuilder message(String message) {
+      this.message = message;
+      return this;
+    }
+
+    @Override
+    public IssueBuilder severity(String severity) {
+      this.severity = severity;
+      return this;
+    }
+
+    @Override
+    public IssueBuilder reporter(String reporter) {
+      return this;
+    }
+
+    @Override
+    public IssueBuilder effortToFix(Double d) {
+      return this;
+    }
+
+    @Override
+    public IssueBuilder attribute(String key, String value) {
+      return this;
+    }
+
+    @Override
+    public Issue build() {
+      return null;
+    }
+
   }
 }
