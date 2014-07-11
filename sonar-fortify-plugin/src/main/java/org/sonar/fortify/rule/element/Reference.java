@@ -39,8 +39,4 @@ public class Reference {
     this.author = author;
   }
 
-  @Override
-  public String toString() {
-    return "[Reference title=" + this.title + ", author=" + this.author + "]";
-  }
 }

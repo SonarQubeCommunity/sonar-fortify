@@ -22,7 +22,6 @@ package org.sonar.fortify.fvdl.element;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 
 public class Fvdl {
@@ -63,29 +62,4 @@ public class Fvdl {
     return message;
   }
 
-  @Override
-  public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append("[FVDL\n\t");
-    builder.append(this.build.toString()).append("\n\t");
-    builder.append("descriptions.size()=").append(this.descriptions.size()).append("\n\t");
-    builder.append("descriptions=[\n\t\t");
-    for (Entry<String, String> description : this.descriptions.entrySet()) {
-      builder.append(description).append(",\n\t\t");
-    }
-    builder.append("\n\t]");
-    builder.append("vulnerabilities.size()=").append(this.vulnerabilities.size()).append("\n\t");
-    builder.append("vulnerabilities=[\n\t\t");
-    int i = 0;
-    for (Vulnerability vulnerability : this.vulnerabilities) {
-      i++;
-      builder.append(vulnerability).append(",\n\t\t");
-      if (i > 10) {
-        break;
-      }
-    }
-    builder.append("\n\t]");
-    builder.append("\n]");
-    return builder.toString();
-  }
 }

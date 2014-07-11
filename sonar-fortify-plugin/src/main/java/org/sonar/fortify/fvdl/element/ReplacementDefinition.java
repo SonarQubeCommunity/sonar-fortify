@@ -36,8 +36,4 @@ public class ReplacementDefinition {
     return this.value;
   }
 
-  @Override
-  public String toString() {
-    return "[ReplacementDefinition key=" + this.key + ", value=" + this.value + "]";
-  }
 }

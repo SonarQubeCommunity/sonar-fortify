@@ -122,12 +122,6 @@ public class FortifyRule {
     return ruleID;
   }
 
-  @Override
-  public String toString() {
-    return "[Rule language=" + this.language + ", formatVersion=" + this.formatVersion + ", ruleID=" + this.ruleID + ", vulnCategory=" + this.vulnCategory + ", vulnSubcategory="
-      + this.vulnSubcategory + ", defaultSeverity=" + this.defaultSeverity + ", description=" + this.description + "]";
-  }
-
   public String[] getTags() {
     List<String> tags = new ArrayList<String>();
     if (StringUtils.isNotBlank(vulnKingdom)) {

@@ -39,8 +39,4 @@ public class Description {
     this.descriptionAbstract = descriptionAbstract;
   }
 
-  @Override
-  public String toString() {
-    return "[Description classID=" + this.classID + ", abstract=" + this.descriptionAbstract + "]";
-  }
 }

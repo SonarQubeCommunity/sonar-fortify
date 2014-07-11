@@ -30,8 +30,4 @@ public class Build {
     return this.sourceBasePath;
   }
 
-  @Override
-  public String toString() {
-    return "[Build sourceBasePath=" + this.sourceBasePath + "]";
-  }
 }
