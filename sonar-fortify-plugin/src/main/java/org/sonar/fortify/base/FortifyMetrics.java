@@ -41,36 +41,40 @@ public final class FortifyMetrics implements Metrics {
   /**
    * The following metrics are used for the chart Impact versus Likelihood
    */
-  public static final Metric CFPO = new Metric.Builder("fortify-cfpo", "Fortify Critical Priority Issues", Metric.ValueType.INT)
+  public static final Metric CFPO = new Metric.Builder("fortify-cfpo", "Fortify Critical Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Critical Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
+    .setHidden(true)
     .create();
 
-  public static final Metric HFPO = new Metric.Builder("fortify-hfpo", "Fortify High Priority Issues", Metric.ValueType.INT)
+  public static final Metric HFPO = new Metric.Builder("fortify-hfpo", "Fortify High Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify High Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
+    .setHidden(true)
     .create();
 
-  public static final Metric MFPO = new Metric.Builder("fortify-mfpo", "Fortify Medium Priority Issues", Metric.ValueType.INT)
+  public static final Metric MFPO = new Metric.Builder("fortify-mfpo", "Fortify Medium Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Medium Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
+    .setHidden(true)
     .create();
 
-  public static final Metric LFPO = new Metric.Builder("fortify-lfpo", "Fortify Low Priority Issues", Metric.ValueType.INT)
+  public static final Metric LFPO = new Metric.Builder("fortify-lfpo", "Fortify Low Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Low Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
     .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
+    .setHidden(true)
     .create();
 
   @Override
