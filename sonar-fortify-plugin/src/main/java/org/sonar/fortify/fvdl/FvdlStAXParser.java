@@ -117,7 +117,7 @@ public class FvdlStAXParser {
   private void processReplacementDefinitions(SMInputCursor repDefsCursor, Vulnerability vulnerability) throws XMLStreamException {
     SMInputCursor repDefCursor = repDefsCursor.childElementCursor("Def");
     while (repDefCursor.getNext() != null) {
-      vulnerability.addReplacementDefinitions(new ReplacementDefinition(repDefCursor.getAttrValue("key"), repDefCursor.getAttrValue("value")));
+      vulnerability.addReplacementDefinition(new ReplacementDefinition(repDefCursor.getAttrValue("key"), repDefCursor.getAttrValue("value")));
     }
 
   }
