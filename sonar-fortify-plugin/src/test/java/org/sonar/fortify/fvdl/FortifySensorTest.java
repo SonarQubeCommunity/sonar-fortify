@@ -33,14 +33,17 @@ import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.rule.RuleKey;
+import org.sonar.fortify.base.FortifyMetrics;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class FortifySensorTest {
@@ -94,6 +97,7 @@ public class FortifySensorTest {
     when(resourcePerspectives.as(Issuable.class, resource)).thenReturn(issuable);
     MockIssueBuilder mockIssueBuilder = new MockIssueBuilder();
     when(issuable.newIssueBuilder()).thenReturn(mockIssueBuilder);
+    when(issuable.addIssue(any(Issue.class))).thenReturn(true);
 
     sensor.analyse(project, context);
 
@@ -103,6 +107,12 @@ public class FortifySensorTest {
       .isEqualTo(
         "The method _jspService() in main.jsp sends unvalidated data to a web browser on line 163, which can result in the browser executing malicious code.Sending unvalidated data to a web browser can result in the browser executing malicious code.");
     assertThat(mockIssueBuilder.severity).isEqualTo("BLOCKER");
+
+    verify(context).saveMeasure(FortifyMetrics.CFPO, 1.0);
+    verify(context).saveMeasure(FortifyMetrics.HFPO, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.MFPO, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.LFPO, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
   }
 
   private class MockIssueBuilder implements IssueBuilder {

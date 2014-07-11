@@ -17,29 +17,6 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify;
+@javax.annotation.ParametersAreNonnullByDefault
+package org.sonar.fortify.ui;
 
-import org.sonar.api.SonarPlugin;
-import org.sonar.fortify.base.FortifyMetrics;
-import org.sonar.fortify.fvdl.FortifySensor;
-import org.sonar.fortify.fvdl.FortifySensorConfiguration;
-import org.sonar.fortify.rule.FortifyRulesDefinition;
-import org.sonar.fortify.rule.RulePackParser;
-import org.sonar.fortify.ui.FortifyWidget;
-
-import java.util.Arrays;
-import java.util.List;
-
-public final class FortifyPlugin extends SonarPlugin {
-
-  @Override
-  public List getExtensions() {
-    return Arrays.asList(
-      FortifyRulesDefinition.class,
-      RulePackParser.class,
-      FortifySensor.class,
-      FortifySensorConfiguration.class,
-      FortifyMetrics.class,
-      FortifyWidget.class);
-  }
-}

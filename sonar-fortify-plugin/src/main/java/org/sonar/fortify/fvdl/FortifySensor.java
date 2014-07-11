@@ -33,9 +33,11 @@ import org.sonar.api.resources.File;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.rule.RuleKey;
+import org.sonar.api.rule.Severity;
 import org.sonar.api.utils.SonarException;
 import org.sonar.api.utils.TimeProfiler;
 import org.sonar.fortify.base.FortifyConstants;
+import org.sonar.fortify.base.FortifyMetrics;
 import org.sonar.fortify.fvdl.element.Fvdl;
 import org.sonar.fortify.fvdl.element.Vulnerability;
 
@@ -51,6 +53,11 @@ public class FortifySensor implements Sensor {
   private final FileSystem fileSystem;
   private final ActiveRules activeRules;
   private final FortifyReportFile report;
+
+  private int blockerIssuesCount = 0;
+  private int criticalIssuesCount = 0;
+  private int majorIssuesCount = 0;
+  private int minorIssuesCount = 0;
 
   public FortifySensor(
     FortifySensorConfiguration configuration,
@@ -82,7 +89,21 @@ public class FortifySensor implements Sensor {
         .message(fvdl.getDescription(vulnerability))
         .severity(severity)
         .build();
-      issuable.addIssue(issue);
+      if (issuable.addIssue(issue)) {
+        incrementCount(severity);
+      }
+    }
+  }
+
+  private void incrementCount(String severity) {
+    if (Severity.BLOCKER.equals(severity)) {
+      blockerIssuesCount++;
+    } else if (Severity.CRITICAL.equals(severity)) {
+      criticalIssuesCount++;
+    } else if (Severity.MAJOR.equals(severity)) {
+      majorIssuesCount++;
+    } else if (Severity.MINOR.equals(severity)) {
+      minorIssuesCount++;
     }
   }
 
@@ -117,6 +138,25 @@ public class FortifySensor implements Sensor {
       throw new SonarException("Can not process Fortify report", e);
     } finally {
       profiler.stop();
+    }
+    saveMeasures(context);
+  }
+
+  private void saveMeasures(SensorContext context) {
+    context.saveMeasure(FortifyMetrics.CFPO, Double.valueOf(blockerIssuesCount));
+    context.saveMeasure(FortifyMetrics.HFPO, Double.valueOf(criticalIssuesCount));
+    context.saveMeasure(FortifyMetrics.MFPO, Double.valueOf(majorIssuesCount));
+    context.saveMeasure(FortifyMetrics.LFPO, Double.valueOf(minorIssuesCount));
+    if (blockerIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
+    } else if (criticalIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 2.0);
+    } else if (majorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 3.0);
+    } else if (minorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 4.0);
+    } else {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
     }
   }
 

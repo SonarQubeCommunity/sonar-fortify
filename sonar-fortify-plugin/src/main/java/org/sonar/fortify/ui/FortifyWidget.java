@@ -17,29 +17,30 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02
  */
-package org.sonar.fortify;
+package org.sonar.fortify.ui;
 
-import org.sonar.api.SonarPlugin;
-import org.sonar.fortify.base.FortifyMetrics;
-import org.sonar.fortify.fvdl.FortifySensor;
-import org.sonar.fortify.fvdl.FortifySensorConfiguration;
-import org.sonar.fortify.rule.FortifyRulesDefinition;
-import org.sonar.fortify.rule.RulePackParser;
-import org.sonar.fortify.ui.FortifyWidget;
+import org.sonar.api.web.AbstractRubyTemplate;
+import org.sonar.api.web.RubyRailsWidget;
+import org.sonar.api.web.WidgetProperties;
+import org.sonar.api.web.WidgetProperty;
+import org.sonar.api.web.WidgetPropertyType;
 
-import java.util.Arrays;
-import java.util.List;
+@WidgetProperties({
+  @WidgetProperty(key = "enableReportLink", type = WidgetPropertyType.BOOLEAN, defaultValue = "true")
+})
+public class FortifyWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
-public final class FortifyPlugin extends SonarPlugin {
+  public String getId() {
+    return "fortify";
+  }
+
+  public String getTitle() {
+    return "Fortify";
+  }
 
   @Override
-  public List getExtensions() {
-    return Arrays.asList(
-      FortifyRulesDefinition.class,
-      RulePackParser.class,
-      FortifySensor.class,
-      FortifySensorConfiguration.class,
-      FortifyMetrics.class,
-      FortifyWidget.class);
+  protected String getTemplatePath() {
+    return "/org/sonar/fortify/ui/fortify-widget.html.erb";
   }
+
 }
