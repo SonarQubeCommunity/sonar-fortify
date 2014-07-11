@@ -19,11 +19,21 @@
  */
 package org.sonar.fortify.fvdl;
 
+import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
+import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.resources.Project;
+import org.sonar.api.resources.ProjectFileSystem;
+import org.sonar.api.rule.RuleKey;
+
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.anyListOf;
@@ -58,5 +68,22 @@ public class FortifySensorTest {
   @Test
   public void toStringTest() {
     assertThat(this.sensor.toString()).isEqualTo("Fortify sensor");
+  }
+
+  @Test
+  public void shouldAnalyse() throws URISyntaxException {
+    when(configuration.getReportPath()).thenReturn("audit-simple.fvdl");
+    Project project = new Project("foo");
+    ProjectFileSystem fs = mock(ProjectFileSystem.class);
+    project.setFileSystem(fs);
+    File baseDir = new File(this.getClass().getResource("/project/placeholder.txt").toURI()).getParentFile();
+    when(fs.getBasedir()).thenReturn(baseDir);
+    when(fileSystem.baseDir()).thenReturn(baseDir);
+    when(fileSystem.languages()).thenReturn(Sets.newTreeSet(Arrays.asList("web")));
+    ActiveRule activeRule = mock(ActiveRule.class);
+    when(activeRules.find(RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792"))).thenReturn(activeRule);
+    SensorContext context = mock(SensorContext.class);
+    when(context.getResource(org.sonar.api.resources.File.create("WebContent/main.jsp"))).thenReturn(org.sonar.api.resources.File.create("WebContent/main.jsp"));
+    sensor.analyse(project, context);
   }
 }

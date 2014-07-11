@@ -135,26 +135,27 @@ public class FortifySensor implements Sensor {
 
   @CheckForNull
   private Resource resourceOf(SensorContext context, String sourceBasePath, Vulnerability vulnerability, Project project) {
-    if (vulnerability.getPath() == null) {
-      LOG.error("Vulnerability \"{}\" has no path.", vulnerability);
-      return null;
-    }
-    java.io.File file = new java.io.File(fileSystem.baseDir(), vulnerability.getPath());
-    Resource resource = File.fromIOFile(file, project);
-    if (resource == null || context.getResource(resource) == null) {
-      LOG.debug("File \"{}\" is not under module basedir or is not indexed. Trying absolute path.", vulnerability.getPath());
-      file = new java.io.File(sourceBasePath, vulnerability.getPath());
-      if (file.exists()) {
-        resource = File.fromIOFile(file, project);
-        if (resource == null || context.getResource(resource) == null) {
-          LOG.debug("File \"{}\" is not under module basedir or is not indexed.", file);
-        }
-      } else {
-        LOG.debug("Unable to find \"{}\".", file);
+    java.io.File file = new java.io.File(sourceBasePath, vulnerability.getPath());
+    if (file.exists()) {
+      Resource resource = File.fromIOFile(file, project);
+      if (resource == null || context.getResource(resource) == null) {
+        LOG.debug("File \"{}\" is not under module basedir or is not indexed. Skip it.", vulnerability.getPath());
         return null;
       }
+      return resource;
     }
-    return resource;
+    LOG.debug("Unable to find \"{}\". Trying relative path.", file);
+    file = new java.io.File(fileSystem.baseDir(), vulnerability.getPath());
+    if (file.exists()) {
+      Resource resource = File.fromIOFile(file, project);
+      if (resource == null || context.getResource(resource) == null) {
+        LOG.debug("File \"{}\" is not indexed. Skip it.", vulnerability.getPath());
+        return null;
+      }
+      return resource;
+    }
+    LOG.debug("Unable to find \"{}\". Your Fortify analysis was probably started from a different location than current SonarQube analysis.", file);
+    return null;
   }
 
   @Override
