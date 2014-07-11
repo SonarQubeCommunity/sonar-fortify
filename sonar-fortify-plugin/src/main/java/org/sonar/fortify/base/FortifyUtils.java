@@ -30,6 +30,11 @@ public final class FortifyUtils {
     // only static stuff
   }
 
+  private static final double BLOCKER_SEVERITY_THRESHOLD = 4.0;
+  private static final double CRITICAL_SEVERITY_THRESHOLD = 3.0;
+  private static final double MAJOR_SEVERITY_THRESHOLD = 2.0;
+  private static final double MINOR_SEVERITY_THRESHOLD = 1.0;
+
   public static SMInputFactory newStaxParser() throws FactoryConfigurationError {
     XMLInputFactory xmlFactory = XMLInputFactory.newInstance();
     xmlFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
@@ -43,13 +48,13 @@ public final class FortifyUtils {
   public static String fortifyToSonarQubeSeverity(String fortifySeverity) {
     String severity;
     Double level = Double.valueOf(fortifySeverity);
-    if (level >= 4.0) {
+    if (level >= FortifyUtils.BLOCKER_SEVERITY_THRESHOLD) {
       severity = Severity.BLOCKER;
-    } else if (level >= 3.0) {
+    } else if (level >= FortifyUtils.CRITICAL_SEVERITY_THRESHOLD) {
       severity = Severity.CRITICAL;
-    } else if (level >= 2.0) {
+    } else if (level >= FortifyUtils.MAJOR_SEVERITY_THRESHOLD) {
       severity = Severity.MAJOR;
-    } else if (level >= 1.0) {
+    } else if (level >= FortifyUtils.MINOR_SEVERITY_THRESHOLD) {
       severity = Severity.MINOR;
     } else {
       severity = Severity.INFO;

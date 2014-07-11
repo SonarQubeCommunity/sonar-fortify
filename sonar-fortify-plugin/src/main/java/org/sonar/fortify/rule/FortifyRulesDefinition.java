@@ -72,7 +72,7 @@ public final class FortifyRulesDefinition implements RulesDefinition {
 
   @Override
   public void define(Context context) {
-    List<RulePack> rulePacks = rulePackParser.parse();
+    List<RulePack> rulePacks = this.rulePackParser.parse();
     for (NewRepository newRepository : parseRulePacks(context, rulePacks)) {
       newRepository.done();
     }
@@ -82,13 +82,13 @@ public final class FortifyRulesDefinition implements RulesDefinition {
     for (RulePack rulePack : rulePacks) {
       for (FortifyRule rule : rulePack.getRules()) {
         String sqLanguageKey = convertToSQ(rulePack.getRuleLanguage(rule));
-        if (languages.get(sqLanguageKey) != null && isAnInterestingRule(rulePack, rule)) {
+        if (this.languages.get(sqLanguageKey) != null && isAnInterestingRule(rule)) {
           processRule(context, rulePack, rule, sqLanguageKey);
         }
       }
     }
 
-    return newRepositories.values();
+    return this.newRepositories.values();
   }
 
   private void processRule(Context context, RulePack rulePack, FortifyRule rule, String sqLanguageKey) {
@@ -100,12 +100,19 @@ public final class FortifyRulesDefinition implements RulesDefinition {
         .createRule(rule.getRuleID());
     }
     String name = rule.getName();
-    if (!addedRuleIdsByLanguageAndName.containsKey(sqLanguageKey)) {
-      addedRuleIdsByLanguageAndName.put(sqLanguageKey, new HashMap<String, Set<String>>());
+    Map<String, Set<String>> addedRuleIdsByName = this.addedRuleIdsByLanguageAndName.get(sqLanguageKey);
+    if (addedRuleIdsByName == null) {
+      addedRuleIdsByName = new HashMap<String, Set<String>>();
+      this.addedRuleIdsByLanguageAndName.put(sqLanguageKey, addedRuleIdsByName);
     }
-    Map<String, Set<String>> addedRuleIdsByName = addedRuleIdsByLanguageAndName.get(sqLanguageKey);
-    if (addedRuleIdsByName.containsKey(name)) {
-      Set<String> ruleIds = addedRuleIdsByName.get(name);
+    Set<String> ruleIds = addedRuleIdsByName.get(name);
+    if (ruleIds == null) {
+      ruleIds = new HashSet<String>();
+      ruleIds.add(rule.getRuleID());
+      addedRuleIdsByName.put(name, ruleIds);
+      newRule
+        .setName(name);
+    } else {
       if (ruleIds.size() == 1) {
         NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
         alreadyAdded.setName(name + " - #1");
@@ -113,12 +120,6 @@ public final class FortifyRulesDefinition implements RulesDefinition {
       ruleIds.add(rule.getRuleID());
       newRule
         .setName(name + " - #" + ruleIds.size());
-    } else {
-      Set<String> ruleIds = new HashSet<String>();
-      ruleIds.add(rule.getRuleID());
-      addedRuleIdsByName.put(name, ruleIds);
-      newRule
-        .setName(name);
     }
     newRule
       .setHtmlDescription(StringUtils.isNotBlank(htmlDescription) ? htmlDescription : "No description available")
@@ -127,20 +128,20 @@ public final class FortifyRulesDefinition implements RulesDefinition {
     this.addedRulesVersions.put(rule.getRuleID(), rule.getFormatVersion());
   }
 
-  private boolean isAnInterestingRule(RulePack rulePack, org.sonar.fortify.rule.element.FortifyRule rule) {
+  private boolean isAnInterestingRule(FortifyRule rule) {
     boolean isInteresting;
     FormatVersion previousVersion = this.addedRulesVersions.get(rule.getRuleID());
     if (previousVersion == null) {
       isInteresting = true;
     } else if (previousVersion.compareTo(rule.getFormatVersion()) > 0) {
-      LOG.debug("The rule {} was already added in formatVersion {}, ignoring one with formatVersion {}.", rule.getRuleID(), previousVersion,
+      FortifyRulesDefinition.LOG.debug("The rule {} was already added in formatVersion {}, ignoring one with formatVersion {}.", rule.getRuleID(), previousVersion,
         rule.getFormatVersion());
       isInteresting = false;
     } else if (previousVersion.compareTo(rule.getFormatVersion()) == 0) {
-      LOG.debug("The rule {} was already added in formatVersion {}.", rule.getRuleID(), previousVersion);
+      FortifyRulesDefinition.LOG.debug("The rule {} was already added in formatVersion {}.", rule.getRuleID(), previousVersion);
       isInteresting = false;
     } else {
-      LOG.debug("The rule {} was already added in formatVersion {}, replace it by the one with formatVersion {}.", rule.getRuleID(), previousVersion,
+      FortifyRulesDefinition.LOG.debug("The rule {} was already added in formatVersion {}, replace it by the one with formatVersion {}.", rule.getRuleID(), previousVersion,
         rule.getFormatVersion());
       isInteresting = true;
     }
@@ -150,15 +151,15 @@ public final class FortifyRulesDefinition implements RulesDefinition {
 
   private NewRepository getRepository(Context context, String sqLanguageKey) {
     String repoKey = FortifyConstants.fortifyRepositoryKey(sqLanguageKey);
-    if (!newRepositories.containsKey(repoKey)) {
-      newRepositories.put(repoKey, context.createRepository(repoKey, sqLanguageKey).setName("Fortify"));
+    if (!this.newRepositories.containsKey(repoKey)) {
+      this.newRepositories.put(repoKey, context.createRepository(repoKey, sqLanguageKey).setName("Fortify"));
     }
-    return newRepositories.get(repoKey);
+    return this.newRepositories.get(repoKey);
   }
 
   private String convertToSQ(String ruleLanguage) {
-    if (FORTIFY_TO_SQ.containsKey(ruleLanguage)) {
-      return FORTIFY_TO_SQ.get(ruleLanguage);
+    if (FortifyRulesDefinition.FORTIFY_TO_SQ.containsKey(ruleLanguage)) {
+      return FortifyRulesDefinition.FORTIFY_TO_SQ.get(ruleLanguage);
     }
     return ruleLanguage;
   }

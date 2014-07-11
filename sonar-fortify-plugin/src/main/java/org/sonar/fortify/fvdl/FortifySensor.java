@@ -48,6 +48,12 @@ import java.io.InputStream;
 public class FortifySensor implements Sensor {
   private static final Logger LOG = LoggerFactory.getLogger(FortifySensor.class);
 
+  private static final double BLOCKER_SECURITY_RATING_LEVEL = 1.0;
+  private static final double CRITICAL_SECURITY_RATING_LEVEL = 2.0;
+  private static final double MAJOR_SECURITY_RATING_LEVEL = 3.0;
+  private static final double MINOR_SECURITY_RATING_LEVEL = 4.0;
+  private static final double DEFAULT_SECURITY_RATING_LEVEL = 5.0;
+
   private final FortifySensorConfiguration configuration;
   private final ResourcePerspectives resourcePerspectives;
   private final FileSystem fileSystem;
@@ -97,13 +103,13 @@ public class FortifySensor implements Sensor {
 
   private void incrementCount(String severity) {
     if (Severity.BLOCKER.equals(severity)) {
-      blockerIssuesCount++;
+      this.blockerIssuesCount++;
     } else if (Severity.CRITICAL.equals(severity)) {
-      criticalIssuesCount++;
+      this.criticalIssuesCount++;
     } else if (Severity.MAJOR.equals(severity)) {
-      majorIssuesCount++;
+      this.majorIssuesCount++;
     } else if (Severity.MINOR.equals(severity)) {
-      minorIssuesCount++;
+      this.minorIssuesCount++;
     }
   }
 
@@ -143,20 +149,20 @@ public class FortifySensor implements Sensor {
   }
 
   private void saveMeasures(SensorContext context) {
-    context.saveMeasure(FortifyMetrics.CFPO, Double.valueOf(blockerIssuesCount));
-    context.saveMeasure(FortifyMetrics.HFPO, Double.valueOf(criticalIssuesCount));
-    context.saveMeasure(FortifyMetrics.MFPO, Double.valueOf(majorIssuesCount));
-    context.saveMeasure(FortifyMetrics.LFPO, Double.valueOf(minorIssuesCount));
-    if (blockerIssuesCount > 0) {
-      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
-    } else if (criticalIssuesCount > 0) {
-      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 2.0);
-    } else if (majorIssuesCount > 0) {
-      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 3.0);
-    } else if (minorIssuesCount > 0) {
-      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 4.0);
+    context.saveMeasure(FortifyMetrics.CFPO, Double.valueOf(this.blockerIssuesCount));
+    context.saveMeasure(FortifyMetrics.HFPO, Double.valueOf(this.criticalIssuesCount));
+    context.saveMeasure(FortifyMetrics.MFPO, Double.valueOf(this.majorIssuesCount));
+    context.saveMeasure(FortifyMetrics.LFPO, Double.valueOf(this.minorIssuesCount));
+    if (this.blockerIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.BLOCKER_SECURITY_RATING_LEVEL);
+    } else if (this.criticalIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.CRITICAL_SECURITY_RATING_LEVEL);
+    } else if (this.majorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.MAJOR_SECURITY_RATING_LEVEL);
+    } else if (this.minorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.MINOR_SECURITY_RATING_LEVEL);
     } else {
-      context.saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.DEFAULT_SECURITY_RATING_LEVEL);
     }
   }
 
@@ -179,22 +185,22 @@ public class FortifySensor implements Sensor {
     if (file.exists()) {
       Resource resource = File.fromIOFile(file, project);
       if (resource == null || context.getResource(resource) == null) {
-        LOG.debug("File \"{}\" is not under module basedir or is not indexed. Skip it.", vulnerability.getPath());
+        FortifySensor.LOG.debug("File \"{}\" is not under module basedir or is not indexed. Skip it.", vulnerability.getPath());
         return null;
       }
       return resource;
     }
-    LOG.debug("Unable to find \"{}\". Trying relative path.", file);
-    file = new java.io.File(fileSystem.baseDir(), vulnerability.getPath());
+    FortifySensor.LOG.debug("Unable to find \"{}\". Trying relative path.", file);
+    file = new java.io.File(this.fileSystem.baseDir(), vulnerability.getPath());
     if (file.exists()) {
       Resource resource = File.fromIOFile(file, project);
       if (resource == null || context.getResource(resource) == null) {
-        LOG.debug("File \"{}\" is not indexed. Skip it.", vulnerability.getPath());
+        FortifySensor.LOG.debug("File \"{}\" is not indexed. Skip it.", vulnerability.getPath());
         return null;
       }
       return resource;
     }
-    LOG.debug("Unable to find \"{}\". Your Fortify analysis was probably started from a different location than current SonarQube analysis.", file);
+    FortifySensor.LOG.debug("Unable to find \"{}\". Your Fortify analysis was probably started from a different location than current SonarQube analysis.", file);
     return null;
   }
 

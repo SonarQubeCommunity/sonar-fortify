@@ -26,7 +26,6 @@ import org.codehaus.staxmate.in.SMHierarchicCursor;
 import org.codehaus.staxmate.in.SMInputCursor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.base.FortifyUtils;
 import org.sonar.fortify.rule.element.Description;
 import org.sonar.fortify.rule.element.FortifyRule;
@@ -55,7 +54,7 @@ public class RulePackStAXParser {
     "ConfigurationRule", "ContentRule", "ControlflowRule", "DataflowSinkRule", "SemanticRule", "StructuralRule",
     "InternalRule");
 
-  RulePack parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException, FortifyParseException {
+  RulePack parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
 
     SMInputFactory inputFactory = FortifyUtils.newStaxParser();
     try {
@@ -78,7 +77,7 @@ public class RulePackStAXParser {
         }
       }
 
-      LOG.debug(rulePack.name() + " - " + rulePack.language() + " - " + rulePack.getRules().size());
+      RulePackStAXParser.LOG.debug(rulePack.name() + " - " + rulePack.language() + " - " + rulePack.getRules().size());
       return rulePack;
 
     } catch (XMLStreamException e) {
@@ -150,9 +149,9 @@ public class RulePackStAXParser {
     SMInputCursor childCursor = ruleDefsCursor.childCursor();
     while (childCursor.getNext() != null) {
       String nodeName = childCursor.getLocalName();
-      if (INTERNAL_RULE_NAMES.contains(nodeName)) {
+      if (RulePackStAXParser.INTERNAL_RULE_NAMES.contains(nodeName)) {
         // Ignore
-      } else if (REAL_RULE_NAMES.contains(nodeName)) {
+      } else if (RulePackStAXParser.REAL_RULE_NAMES.contains(nodeName)) {
         processRule(childCursor, rulePack);
       }
     }

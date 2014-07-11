@@ -30,10 +30,12 @@ import org.sonar.api.web.WidgetPropertyType;
 })
 public class FortifyWidget extends AbstractRubyTemplate implements RubyRailsWidget {
 
+  @Override
   public String getId() {
     return "fortify";
   }
 
+  @Override
   public String getTitle() {
     return "Fortify";
   }

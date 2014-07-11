@@ -30,11 +30,11 @@ public final class FortifyMetrics implements Metrics {
   public static final String DOMAIN = "Fortify";
 
   public static final String SECURITY_RATING_KEY = "fortify-security-rating";
-  public static final Metric SECURITY_RATING = new Metric.Builder(SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.INT)
+  public static final Metric SECURITY_RATING = new Metric.Builder(FortifyMetrics.SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.INT)
     .setDescription("Fortify Security Rating")
     .setDirection(Metric.DIRECTION_BETTER)
     .setQualitative(true)
-    .setDomain(DOMAIN)
+    .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(5.0)
     .create();
 
@@ -45,7 +45,7 @@ public final class FortifyMetrics implements Metrics {
     .setDescription("Fortify Critical Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
-    .setDomain(DOMAIN)
+    .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
     .create();
 
@@ -53,7 +53,7 @@ public final class FortifyMetrics implements Metrics {
     .setDescription("Fortify High Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
-    .setDomain(DOMAIN)
+    .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
     .create();
 
@@ -61,7 +61,7 @@ public final class FortifyMetrics implements Metrics {
     .setDescription("Fortify Medium Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
-    .setDomain(DOMAIN)
+    .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
     .create();
 
@@ -69,11 +69,12 @@ public final class FortifyMetrics implements Metrics {
     .setDescription("Fortify Low Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
-    .setDomain(DOMAIN)
+    .setDomain(FortifyMetrics.DOMAIN)
     .setBestValue(0.0)
     .create();
 
+  @Override
   public List<Metric> getMetrics() {
-    return Arrays.asList(SECURITY_RATING, CFPO, HFPO, MFPO, LFPO);
+    return Arrays.asList(FortifyMetrics.SECURITY_RATING, FortifyMetrics.CFPO, FortifyMetrics.HFPO, FortifyMetrics.MFPO, FortifyMetrics.LFPO);
   }
 }

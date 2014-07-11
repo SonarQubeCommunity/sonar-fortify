@@ -27,16 +27,18 @@ public class Reference {
     return this.title;
   }
 
-  public void setTitle(String title) {
+  public Reference setTitle(String title) {
     this.title = title;
+    return this;
   }
 
   public String getAuthor() {
     return this.author;
   }
 
-  public void setAuthor(String author) {
+  public Reference setAuthor(String author) {
     this.author = author;
+    return this;
   }
 
 }

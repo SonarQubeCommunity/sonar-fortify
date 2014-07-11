@@ -78,28 +78,28 @@ public class FortifySensorTest {
 
   @Test
   public void shouldAnalyse() throws URISyntaxException {
-    when(configuration.getReportPath()).thenReturn("audit-simple.fvdl");
+    when(this.configuration.getReportPath()).thenReturn("audit-simple.fvdl");
     Project project = new Project("foo");
     ProjectFileSystem fs = mock(ProjectFileSystem.class);
     project.setFileSystem(fs);
     File baseDir = new File(this.getClass().getResource("/project/placeholder.txt").toURI()).getParentFile();
     when(fs.getBasedir()).thenReturn(baseDir);
-    when(fileSystem.baseDir()).thenReturn(baseDir);
-    when(fileSystem.languages()).thenReturn(Sets.newTreeSet(Arrays.asList("web")));
+    when(this.fileSystem.baseDir()).thenReturn(baseDir);
+    when(this.fileSystem.languages()).thenReturn(Sets.newTreeSet(Arrays.asList("web")));
     ActiveRule activeRule = mock(ActiveRule.class);
     RuleKey ruleKey = RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792");
     when(activeRule.ruleKey()).thenReturn(ruleKey);
-    when(activeRules.find(ruleKey)).thenReturn(activeRule);
+    when(this.activeRules.find(ruleKey)).thenReturn(activeRule);
     SensorContext context = mock(SensorContext.class);
     org.sonar.api.resources.File resource = org.sonar.api.resources.File.create("WebContent/main.jsp");
     when(context.getResource(resource)).thenReturn(resource);
     Issuable issuable = mock(Issuable.class);
-    when(resourcePerspectives.as(Issuable.class, resource)).thenReturn(issuable);
+    when(this.resourcePerspectives.as(Issuable.class, resource)).thenReturn(issuable);
     MockIssueBuilder mockIssueBuilder = new MockIssueBuilder();
     when(issuable.newIssueBuilder()).thenReturn(mockIssueBuilder);
     when(issuable.addIssue(any(Issue.class))).thenReturn(true);
 
-    sensor.analyse(project, context);
+    this.sensor.analyse(project, context);
 
     assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792"));
     assertThat(mockIssueBuilder.line).isEqualTo(163);

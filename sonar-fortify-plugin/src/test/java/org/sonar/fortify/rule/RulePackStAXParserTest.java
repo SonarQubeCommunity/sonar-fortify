@@ -21,7 +21,6 @@ package org.sonar.fortify.rule;
 
 import com.google.common.io.Closeables;
 import org.junit.Test;
-import org.sonar.fortify.base.FortifyParseException;
 import org.sonar.fortify.rule.element.Description;
 import org.sonar.fortify.rule.element.FortifyRule;
 import org.xml.sax.SAXException;
@@ -95,8 +94,6 @@ public class RulePackStAXParserTest {
     } catch (ParserConfigurationException e) {
       throw new RuntimeException(e);
     } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (FortifyParseException e) {
       throw new RuntimeException(e);
     } finally {
       Closeables.closeQuietly(inputStream);

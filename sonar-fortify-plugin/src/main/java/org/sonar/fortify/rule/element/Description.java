@@ -64,7 +64,7 @@ public class Description {
   }
 
   public String getRecommendations() {
-    return recommendations;
+    return this.recommendations;
   }
 
   public Description addReference(Reference reference) {

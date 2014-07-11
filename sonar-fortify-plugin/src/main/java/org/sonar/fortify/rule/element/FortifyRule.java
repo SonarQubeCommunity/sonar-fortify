@@ -104,34 +104,34 @@ public class FortifyRule {
   }
 
   public String getNotes() {
-    return notes;
+    return this.notes;
   }
 
   public String getName() {
-    if (StringUtils.isNotBlank(vulnCategory)) {
+    if (StringUtils.isNotBlank(this.vulnCategory)) {
       StringBuilder sb = new StringBuilder();
-      sb.append(vulnCategory);
-      if (StringUtils.isNotBlank(vulnSubcategory)) {
+      sb.append(this.vulnCategory);
+      if (StringUtils.isNotBlank(this.vulnSubcategory)) {
         sb.append(": ");
-        sb.append(vulnSubcategory);
+        sb.append(this.vulnSubcategory);
       }
       return sb.toString();
-    } else if (StringUtils.isNotBlank(vulnSubcategory)) {
-      return vulnSubcategory;
+    } else if (StringUtils.isNotBlank(this.vulnSubcategory)) {
+      return this.vulnSubcategory;
     }
-    return ruleID;
+    return this.ruleID;
   }
 
   public String[] getTags() {
     List<String> tags = new ArrayList<String>();
-    if (StringUtils.isNotBlank(vulnKingdom)) {
-      tags.add(slugify(vulnKingdom));
+    if (StringUtils.isNotBlank(this.vulnKingdom)) {
+      tags.add(slugify(this.vulnKingdom));
     }
-    if (StringUtils.isNotBlank(vulnCategory)) {
-      tags.add(slugify(vulnCategory));
+    if (StringUtils.isNotBlank(this.vulnCategory)) {
+      tags.add(slugify(this.vulnCategory));
     }
-    if (StringUtils.isNotBlank(vulnSubcategory)) {
-      tags.add(slugify(vulnSubcategory));
+    if (StringUtils.isNotBlank(this.vulnSubcategory)) {
+      tags.add(slugify(this.vulnSubcategory));
     }
     return tags.toArray(new String[tags.size()]);
   }
