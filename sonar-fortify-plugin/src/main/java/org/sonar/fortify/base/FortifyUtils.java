@@ -26,14 +26,14 @@ import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 
 public final class FortifyUtils {
-  private FortifyUtils() {
-    // only static stuff
-  }
-
   private static final double BLOCKER_SEVERITY_THRESHOLD = 4.0;
   private static final double CRITICAL_SEVERITY_THRESHOLD = 3.0;
   private static final double MAJOR_SEVERITY_THRESHOLD = 2.0;
   private static final double MINOR_SEVERITY_THRESHOLD = 1.0;
+
+  private FortifyUtils() {
+    // only static stuff
+  }
 
   public static SMInputFactory newStaxParser() throws FactoryConfigurationError {
     XMLInputFactory xmlFactory = XMLInputFactory.newInstance();
