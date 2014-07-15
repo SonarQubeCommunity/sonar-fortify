@@ -45,6 +45,12 @@
       <url>https://github.com/bubuabu</url>
       <timezone>+1</timezone>
     </developer>
+    <developer>
+      <id>julien.henry</id>
+      <name>Julien HENRY</name>
+      <email>julien.henry@sonarsource.com</email>
+      <timezone>+1</timezone>
+    </developer>
   </developers>
 
   <scm>
