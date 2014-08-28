@@ -11,7 +11,6 @@
   <packaging>pom</packaging>
   <name>Fortify for SonarQube</name>
   <description>Integrates Fortify SCA reports into SonarQube</description>
-  <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
   <inceptionYear>2014</inceptionYear>
 
   <properties>
