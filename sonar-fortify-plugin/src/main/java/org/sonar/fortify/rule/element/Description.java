@@ -29,6 +29,7 @@ public class Description {
   private String explanation;
   private String recommendations;
   private final Collection<Reference> references = new ArrayList<Reference>();
+  private final Collection<String> tips = new ArrayList<String>();
 
   public String getId() {
     return this.id;
@@ -72,6 +73,11 @@ public class Description {
     return this;
   }
 
+  public Description addTip(String tip) {
+    this.tips.add(tip);
+    return this;
+  }
+
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
@@ -83,6 +89,13 @@ public class Description {
     }
     if (this.recommendations != null) {
       builder.append("<h2>RECOMMENDATIONS</h2><p>").append(this.recommendations).append("</p>");
+    }
+    if (!this.tips.isEmpty()) {
+      builder.append("<h2>TIPS</h2><p><ul>");
+      for (String tip : this.tips) {
+        builder.append("<li>").append(tip).append("</li>");
+      }
+      builder.append("</ul></p>");
     }
     if (!this.references.isEmpty()) {
       builder.append("<h2>REFERENCES</h2>");

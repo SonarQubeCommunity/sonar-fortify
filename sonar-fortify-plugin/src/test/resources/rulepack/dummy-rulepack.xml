@@ -30,6 +30,10 @@
           <Abstract><![CDATA[Dummy abstract]]></Abstract>
           <Explanation><![CDATA[Dummy explanation]]></Explanation>
           <Recommendations><![CDATA[Dummy recommendations]]></Recommendations>
+          <Tips>
+              <Tip><![CDATA[Dummy tip 1]]></Tip>
+              <Tip>Dummy tip 2</Tip>
+          </Tips>
           <References>
             <Reference>
               <Title>Dummy reference 1</Title>

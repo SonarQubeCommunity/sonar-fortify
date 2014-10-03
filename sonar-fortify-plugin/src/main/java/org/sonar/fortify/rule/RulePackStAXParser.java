@@ -121,6 +121,8 @@ public class RulePackStAXParser {
         desc.setExplanation(StringUtils.trim(childCursor.collectDescendantText(false)));
       } else if ("Recommendations".equals(nodeName)) {
         desc.setRecommendations(StringUtils.trim(childCursor.collectDescendantText(false)));
+      } else if ("Tips".equals(nodeName)) {
+        processTip(desc, childCursor);
       } else if ("References".equals(nodeName)) {
         processReference(desc, childCursor);
       }
@@ -142,6 +144,13 @@ public class RulePackStAXParser {
         }
       }
       desc.addReference(reference);
+    }
+  }
+
+  private void processTip(Description desc, SMInputCursor childCursor) throws XMLStreamException {
+    SMInputCursor tipCursor = childCursor.childElementCursor("Tip");
+    while (tipCursor.getNext() != null) {
+      desc.addTip(StringUtils.trim(tipCursor.collectDescendantText(false)));
     }
   }
 
