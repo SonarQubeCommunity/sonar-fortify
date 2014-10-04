@@ -1,0 +1,20 @@
+Some text that will be included
+
+<Paragraph>
+Ignored text at <Replace key="SourceFunction" link="SourceLocation"/> in <Replace key="SourceLocation.file"/> at line <Replace key="SourceLocation.line"/>. 
+</Paragraph>
+Some text that will be included. 
+<Paragraph>
+Ignored text at <Replace key="SinkFunction" link="SinkLocation"/> in <Replace key="SinkLocation.file"/> at line <Replace key="SinkLocation.line"/><AltParagraph>Some text that will be included</AltParagraph>
+</Paragraph>
+<IfNotDef var="ConditionalDescriptions">
+<b>Example 1:</b> Included text
+
+<pre>
+  formated
+    text
+</pre>
+</IfNotDef>
+<IfDef var="ConditionalDescriptions">
+Ignored text
+</IfDef>

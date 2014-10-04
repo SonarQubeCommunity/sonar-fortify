@@ -54,6 +54,8 @@ public class RulePackStAXParser {
     "ConfigurationRule", "ContentRule", "ControlflowRule", "DataflowSinkRule", "SemanticRule", "StructuralRule",
     "InternalRule");
 
+  private final DescriptionFormatter descriptionFormatter = new DescriptionFormatter();
+
   RulePack parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
 
     SMInputFactory inputFactory = FortifyUtils.newStaxParser();
@@ -116,11 +118,11 @@ public class RulePackStAXParser {
       String nodeName = childCursor.getLocalName();
 
       if ("Abstract".equals(nodeName)) {
-        desc.setDescriptionAbstract(StringUtils.trim(childCursor.collectDescendantText(false)));
+        desc.setDescriptionAbstract(this.descriptionFormatter.format(StringUtils.trim(childCursor.collectDescendantText(false))));
       } else if ("Explanation".equals(nodeName)) {
-        desc.setExplanation(StringUtils.trim(childCursor.collectDescendantText(false)));
+        desc.setExplanation(this.descriptionFormatter.format(StringUtils.trim(childCursor.collectDescendantText(false))));
       } else if ("Recommendations".equals(nodeName)) {
-        desc.setRecommendations(StringUtils.trim(childCursor.collectDescendantText(false)));
+        desc.setRecommendations(this.descriptionFormatter.format(StringUtils.trim(childCursor.collectDescendantText(false))));
       } else if ("Tips".equals(nodeName)) {
         processTip(desc, childCursor);
       } else if ("References".equals(nodeName)) {

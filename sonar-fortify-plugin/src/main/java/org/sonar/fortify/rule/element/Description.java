@@ -78,17 +78,16 @@ public class Description {
     return this;
   }
 
-  @Override
-  public String toString() {
+  private String format() {
     StringBuilder builder = new StringBuilder();
     if (this.descriptionAbstract != null) {
-      builder.append("<h2>ABSTRACT</h2><p>").append(this.descriptionAbstract).append("</p>");
+      builder.append("<h2>ABSTRACT</h2>").append(this.descriptionAbstract);
     }
     if (this.explanation != null) {
-      builder.append("<h2>EXPLANATION</h2><p>").append(this.explanation).append("</p>");
+      builder.append("<h2>EXPLANATION</h2>").append(this.explanation);
     }
     if (this.recommendations != null) {
-      builder.append("<h2>RECOMMENDATIONS</h2><p>").append(this.recommendations).append("</p>");
+      builder.append("<h2>RECOMMENDATIONS</h2>").append(this.recommendations);
     }
     if (!this.tips.isEmpty()) {
       builder.append("<h2>TIPS</h2><p><ul>");
@@ -111,5 +110,10 @@ public class Description {
     }
 
     return builder.toString();
+  }
+
+  @Override
+  public String toString() {
+    return format();
   }
 }
