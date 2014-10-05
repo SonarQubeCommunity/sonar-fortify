@@ -111,7 +111,7 @@ public class FortifyReportFileTest {
 
     InputStream input = null;
     try {
-      input = fortifyReportFile.getInputStream();
+      input = fortifyReportFile.getFvdlInputStream();
       fail("An exception is expected!");
     } catch (FileNotFoundException e) {
       // expected
@@ -129,7 +129,7 @@ public class FortifyReportFileTest {
 
     InputStream input = null;
     try {
-      input = fortifyReportFile.getInputStream();
+      input = fortifyReportFile.getFvdlInputStream();
     } finally {
       Closeables.closeQuietly(input);
     }

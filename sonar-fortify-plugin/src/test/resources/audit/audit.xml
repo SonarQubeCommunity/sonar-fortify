@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Audit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="xmlns://www.fortify.com/schema/audit" xmlns:ns3="xmlns://www.fortify.com/schema/issuemanagement" xmlns:ns4="xmlns://www.fortifysoftware.com/schema/activitytemplate" xmlns:ns5="xmlns://www.fortifysoftware.com/schema/wsTypes" xmlns:ns6="http://www.fortify.com/schema/fws" xmlns:ns7="xmlns://www.fortifysoftware.com/schema/runtime" xmlns:ns8="xmlns://www.fortifysoftware.com/schema/seed" xmlns:ns9="xmlns://www.fortify.com/schema/attachments" version="4.3">
+    <ns2:ProjectInfo>
+        <ns2:Name>sonar-fortify-plugin-2.1-SNAPSHOT</ns2:Name>
+        <ns2:ProjectVersionId>-1</ns2:ProjectVersionId>
+        <ns2:WriteDate>2014-10-04T19:32:53.677+02:00</ns2:WriteDate>
+    </ns2:ProjectInfo>
+    <ns2:IssueList>
+        <ns2:Issue revision="0" instanceId="F9B7B21FA144452F466648AFAC19F6CD">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Reliability Issue</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Reliability Issue</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:15.141+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="6F337B92841ED26C1FE8E4CF193C3E39">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Reliability Issue</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Reliability Issue</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:27.383+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="37B77CB43027EE8D3C4A228A4A4A4113">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Not an Issue</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Not an Issue</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:31:22.472+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="149E13C48DE8B7FAB830B0D1FB655A69">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Suspicious</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b"/>
+                    <ns2:EditTime>2014-10-04T19:31:44.111+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Suspicious</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:31:51.210+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="94988052D7E3EDCEA5AC855F04B4B855">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Not an Issue</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Not an Issue</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:31:09.029+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="2BA90259018D64698DBAAB1C4DE2DBEA">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Exploitable</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Exploitable</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:31.767+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="45DA6B8CABDF5C4BB53D4359D6BFBBE0">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Exploitable</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Exploitable</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:37.801+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="9D08EB241ECF1C5968ACEBB789E332EA">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Bad Practice</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Bad Practice</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:05.619+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="3F7156D3619F9774D7375540106E17E6">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Bad Practice</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Bad Practice</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:32:01.123+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+        <ns2:Issue revision="0" instanceId="94988052D7E3EDCEA5AC855F04B4B856">
+            <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                <ns2:Value>Not an Issue</ns2:Value>
+            </ns2:Tag>
+            <ns2:ManagerAuditTrail/>
+            <ns2:ClientAuditTrail>
+                <ns2:TagHistory>
+                    <ns2:Tag id="87f2364f-dcd4-49e6-861d-f8d3f351686b">
+                        <ns2:Value>Not an Issue</ns2:Value>
+                    </ns2:Tag>
+                    <ns2:EditTime>2014-10-04T19:31:17.758+02:00</ns2:EditTime>
+                    <ns2:Username>bubuabu</ns2:Username>
+                </ns2:TagHistory>
+            </ns2:ClientAuditTrail>
+        </ns2:Issue>
+    </ns2:IssueList>
+</ns2:Audit>

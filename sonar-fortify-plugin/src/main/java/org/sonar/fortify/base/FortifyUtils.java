@@ -60,6 +60,5 @@ public final class FortifyUtils {
       severity = Severity.INFO;
     }
     return severity;
-
   }
 }

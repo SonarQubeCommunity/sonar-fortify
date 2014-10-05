@@ -19,21 +19,11 @@
  */
 package org.sonar.fortify.base;
 
-import org.apache.commons.lang.StringUtils;
-
-public class FortifyConstants {
-
-  public static final String AUDIT_FVDL_FILE = "audit.fvdl";
-  public static final String AUDIT_FILE = "audit.xml";
-
-  public static final String REPORT_PATH_PROPERTY = "sonar.fortify.reportPath";
-  public static final String RULEPACK_PATHS_PROPERTY = "sonar.fortify.rulepackPaths";
-
-  private FortifyConstants() {
-    // only static stuff
-  }
-
-  public static String fortifyRepositoryKey(String language) {
-    return "fortify-" + StringUtils.lowerCase(language);
-  }
+public enum AnalysisState {
+  NOT_AN_ISSUE,
+  RELIABILITY_ISSUE,
+  BAD_PRACTICE,
+  SUSPICIOUS,
+  EXPLOITABLE,
+  NOT_AUDITED;
 }

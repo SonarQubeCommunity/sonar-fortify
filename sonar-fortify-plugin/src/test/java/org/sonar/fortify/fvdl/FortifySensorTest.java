@@ -19,6 +19,8 @@
  */
 package org.sonar.fortify.fvdl;
 
+import org.sonar.fortify.base.metrics.FortifyMetrics;
+
 import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +35,6 @@ import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.rule.RuleKey;
-import org.sonar.fortify.base.FortifyMetrics;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -112,7 +113,19 @@ public class FortifySensorTest {
     verify(context).saveMeasure(FortifyMetrics.HFPO, 0.0);
     verify(context).saveMeasure(FortifyMetrics.MFPO, 0.0);
     verify(context).saveMeasure(FortifyMetrics.LFPO, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
+
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_BAD_PRACTICE, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_EXPLOITABLE, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_NOT_AN_ISSUE, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_NOT_AUDITED, 1.0);
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_RELIABILITY_ISSUE, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.AUDIT_SUSPICIOUS, 0.0);
+
+    verify(context).saveMeasure(FortifyMetrics.CRITICAL_NOT_AUDITED_ISSUES, 1.0);
+    verify(context).saveMeasure(FortifyMetrics.HIGH_NOT_AUDITED_ISSUES, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.MEDIUM_NOT_AUDITED_ISSUES, 0.0);
+    verify(context).saveMeasure(FortifyMetrics.LOW_NOT_AUDITED_ISSUES, 0.0);
+
   }
 
   private class MockIssueBuilder implements IssueBuilder {
