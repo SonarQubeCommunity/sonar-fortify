@@ -1,4 +1,4 @@
 Fortify SCA Plugin for SonarQube
 ================================
 
-See http://docs.sonarqube.org/display/SONAR/Documentation
+See http://docs.codehaus.org/display/SONAR/Fortify+Plugin
