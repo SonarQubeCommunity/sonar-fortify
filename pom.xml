@@ -69,7 +69,6 @@
   </ciManagement>
 
   <modules>
-    <module>rulepack-uncompress</module>
     <module>sonar-fortify-plugin</module>
   </modules>
 
