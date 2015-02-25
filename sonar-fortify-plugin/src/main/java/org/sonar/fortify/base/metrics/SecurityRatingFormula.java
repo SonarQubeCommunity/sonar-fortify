@@ -19,12 +19,7 @@
  */
 package org.sonar.fortify.base.metrics;
 
-import org.sonar.api.measures.Formula;
-import org.sonar.api.measures.FormulaContext;
-import org.sonar.api.measures.FormulaData;
-import org.sonar.api.measures.Measure;
-import org.sonar.api.measures.MeasureUtils;
-import org.sonar.api.measures.Metric;
+import org.sonar.api.measures.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +34,7 @@ public class SecurityRatingFormula implements Formula {
 
   @Override
   public List<Metric> dependsUponMetrics() {
-    return Arrays.asList(FortifyMetrics.CFPO, FortifyMetrics.HFPO, FortifyMetrics.MFPO, FortifyMetrics.LFPO);
+    return Arrays.<Metric>asList(FortifyMetrics.CFPO, FortifyMetrics.HFPO, FortifyMetrics.MFPO, FortifyMetrics.LFPO);
   }
 
   @Override

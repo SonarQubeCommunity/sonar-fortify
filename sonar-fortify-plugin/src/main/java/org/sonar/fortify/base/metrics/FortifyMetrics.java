@@ -31,7 +31,7 @@ public final class FortifyMetrics implements Metrics {
   public static final String DOMAIN = "Fortify";
 
   public static final String SECURITY_RATING_KEY = "fortify-security-rating";
-  public static final Metric SECURITY_RATING = new Metric.Builder(FortifyMetrics.SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.INT)
+  public static final Metric<Integer> SECURITY_RATING = new Metric.Builder(FortifyMetrics.SECURITY_RATING_KEY, "Fortify Security Rating", Metric.ValueType.INT)
     .setDescription("Fortify Security Rating")
     .setDirection(Metric.DIRECTION_BETTER)
     .setQualitative(true)
@@ -43,7 +43,7 @@ public final class FortifyMetrics implements Metrics {
   /**
    * The following metrics are used for the chart Impact versus Likelihood
    */
-  public static final Metric CFPO = new Metric.Builder("fortify-cfpo", "Fortify Critical Severity Issues", Metric.ValueType.INT)
+  public static final Metric<Integer> CFPO = new Metric.Builder("fortify-cfpo", "Fortify Critical Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Critical Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
@@ -53,7 +53,7 @@ public final class FortifyMetrics implements Metrics {
     .setFormula(new SumChildValuesFormula(false))
     .create();
 
-  public static final Metric HFPO = new Metric.Builder("fortify-hfpo", "Fortify High Severity Issues", Metric.ValueType.INT)
+  public static final Metric<Integer> HFPO = new Metric.Builder("fortify-hfpo", "Fortify High Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify High Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
@@ -63,7 +63,7 @@ public final class FortifyMetrics implements Metrics {
     .setFormula(new SumChildValuesFormula(false))
     .create();
 
-  public static final Metric MFPO = new Metric.Builder("fortify-mfpo", "Fortify Medium Severity Issues", Metric.ValueType.INT)
+  public static final Metric<Integer> MFPO = new Metric.Builder("fortify-mfpo", "Fortify Medium Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Medium Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
@@ -73,7 +73,7 @@ public final class FortifyMetrics implements Metrics {
     .setFormula(new SumChildValuesFormula(false))
     .create();
 
-  public static final Metric LFPO = new Metric.Builder("fortify-lfpo", "Fortify Low Severity Issues", Metric.ValueType.INT)
+  public static final Metric<Integer> LFPO = new Metric.Builder("fortify-lfpo", "Fortify Low Severity Issues", Metric.ValueType.INT)
     .setDescription("Fortify Low Priority Issues")
     .setDirection(Metric.DIRECTION_WORST)
     .setQualitative(false)
