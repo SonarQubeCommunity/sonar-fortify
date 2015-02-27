@@ -55,7 +55,6 @@
     <connection>scm:git:https://github.com/SonarCommunity/sonar-fortify</connection>
     <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-fortify</developerConnection>
     <url>https://github.com/SonarCommunity/sonar-fortify</url>
-    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>

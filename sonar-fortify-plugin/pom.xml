@@ -15,6 +15,12 @@
   <properties>
     <sonar.version>4.5.2</sonar.version>
   </properties>
+  
+  <scm>
+    <connection>scm:git:https://github.com/SonarCommunity/sonar-fortify</connection>
+    <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-fortify</developerConnection>
+    <url>https://github.com/SonarCommunity/sonar-fortify</url>
+  </scm>
 
   <dependencies>
     <dependency>
