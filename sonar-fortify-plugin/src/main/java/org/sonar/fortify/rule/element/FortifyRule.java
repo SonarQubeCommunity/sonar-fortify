@@ -20,6 +20,9 @@
 package org.sonar.fortify.rule.element;
 
 import org.apache.commons.lang.StringUtils;
+import org.sonar.fortify.base.FortifyConstants;
+
+import javax.annotation.CheckForNull;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -107,6 +110,12 @@ public class FortifyRule {
     return this.notes;
   }
 
+  @CheckForNull
+  public String getSonarKey() {
+    return FortifyConstants.fortifySQRuleKey(this.vulnKingdom, this.vulnCategory, this.vulnSubcategory);
+  }
+
+  @CheckForNull
   public String getName() {
     if (StringUtils.isNotBlank(this.vulnCategory)) {
       StringBuilder sb = new StringBuilder();
@@ -119,7 +128,7 @@ public class FortifyRule {
     } else if (StringUtils.isNotBlank(this.vulnSubcategory)) {
       return this.vulnSubcategory;
     }
-    return this.ruleID;
+    return null;
   }
 
   public String[] getTags() {

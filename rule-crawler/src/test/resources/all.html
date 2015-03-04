@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+
+<title>A Taxonomy of Coding Errors That Affect Security: Navigation</title>
+
+<link href="css/dtree.css" rel="stylesheet"type="text/css" />
+
+<link href="css/vcmain.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript" src="code/dtree.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+
+function query()
+	{
+
+	var url		= "";
+
+	var query	= window.location.search.substring(1);
+
+	var vars	= query.split("&");
+
+	for (var i = 0; i < vars.length; i++)
+		{
+		var pair	= vars[i].split("=");
+
+		if (pair[0] == "open")
+			{
+			url		= pair[1];
+			}
+		}
+
+	if(url.length > 0)
+		{
+
+		// Remove HTTP and folders from URL path
+
+		url	= url.substring(39);
+
+		d.openUrl(url);
+
+		parent.main.location.href = url;
+		}
+	}
+
+
+
+<!--
+
+if (top.location == self.location) { //if page is not in its frameset
+
+top.location.href = "/vulncat/index.html" + "?" + window.location.href; }
+
+//-->
+
+</script>
+
+</head>
+
+
+
+
+
+
+
+
+
+<div id="theContentCenter">
+
+<div class="dtree">
+
+
+
+	<p><a href="javascript: d.openAll();"><strong>Expand All</strong></a> | <a href="javascript: d.closeAll();"><strong>Close All</strong></a></p>
+
+
+
+	<script type="text/javascript">
+
+		<!--
+
+		d = new dTree('d');
+
+
+
+		d.add(0,-1,'A Taxonomy of Coding Errors that Affect Security','intro.html');   //parent
+						// iterate through descriptions in abap
+					    //language tree  [5]
+				d.add(1000,0,'ABAP')
+						        		//kingdom tree API Abuse for language abap [3]
+					d.add(41000,1000,'API Abuse','abap/APIA.html');
+							            							d.add(641000,41000,'SQL Bad Practices: Direct Update','abap/sql_bad_practices_direct_update.html');
+			                		            							d.add(941000,41000,'System Field Overwrite','abap/system_field_overwrite.html');
+			                		            		          		//kingdom tree Code Quality for language abap [1]
+					d.add(61000,1000,'Code Quality','abap/CQ.html');
+							            							d.add(661000,61000,'Obsolete','abap/obsolete.html');
+			                		            		          		  		// iterate through descriptions in actionscript
+					    //language tree  [6]
+				d.add(2000,0,'ActionScript')
+						        		//kingdom tree API Abuse for language actionscript [2]
+					d.add(42000,2000,'API Abuse','actionscript/APIA.html');
+							            							d.add(642000,42000,'Dangerous Function: ASNative','actionscript/dangerous_function_asnative.html');
+			                		            		          		  		// iterate through descriptions in preview
+					    //language tree  [8]
+				d.add(18000,0,'Extended Taxonomy Preview')
+						        		//kingdom tree API Abuse for language preview [1]
+					d.add(58000,18000,'API Abuse','preview/APIA.html');
+							            							d.add(658000,58000,'Often Misused: Login','preview/often_misused_login.html');
+			                		            		          		  		//end dTree construction
+		document.write(d);
+		//-->
+		query();
+	</script>
+
+
+
+
+
+<!--<a href="showall.html" target="main">Show all Kingdoms</a> -->
+
+</div></div>
+
+</body>
+
+</html>
+

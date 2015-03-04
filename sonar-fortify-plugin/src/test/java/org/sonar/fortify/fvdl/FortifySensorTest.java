@@ -19,13 +19,11 @@
  */
 package org.sonar.fortify.fvdl;
 
-import org.sonar.fortify.base.metrics.FortifyMetrics;
-
-import com.google.common.collect.Sets;
 import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.internal.DefaultFileSystem;
+import org.sonar.api.batch.fs.internal.DefaultInputFile;
 import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
@@ -33,12 +31,11 @@ import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issuable.IssueBuilder;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
-import org.sonar.api.resources.ProjectFileSystem;
 import org.sonar.api.rule.RuleKey;
+import org.sonar.fortify.base.metrics.FortifyMetrics;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -50,7 +47,7 @@ import static org.mockito.Mockito.when;
 public class FortifySensorTest {
   private FortifySensorConfiguration configuration;
   private ResourcePerspectives resourcePerspectives;
-  private FileSystem fileSystem;
+  private DefaultFileSystem fileSystem;
   private ActiveRules activeRules;
   private FortifySensor sensor;
 
@@ -58,7 +55,7 @@ public class FortifySensorTest {
   public void init() {
     this.configuration = mock(FortifySensorConfiguration.class);
     this.resourcePerspectives = mock(ResourcePerspectives.class);
-    this.fileSystem = mock(FileSystem.class);
+    this.fileSystem = new DefaultFileSystem();
     this.activeRules = mock(ActiveRules.class);
     this.sensor = new FortifySensor(this.configuration, this.resourcePerspectives, this.fileSystem, this.activeRules);
   }
@@ -81,28 +78,25 @@ public class FortifySensorTest {
   public void shouldAnalyse() throws URISyntaxException {
     when(this.configuration.getReportPath()).thenReturn("audit-simple.fvdl");
     Project project = new Project("foo");
-    ProjectFileSystem fs = mock(ProjectFileSystem.class);
-    project.setFileSystem(fs);
     File baseDir = new File(this.getClass().getResource("/project/placeholder.txt").toURI()).getParentFile();
-    when(fs.getBasedir()).thenReturn(baseDir);
-    when(this.fileSystem.baseDir()).thenReturn(baseDir);
-    when(this.fileSystem.languages()).thenReturn(Sets.newTreeSet(Arrays.asList("web")));
+    fileSystem.setBaseDir(baseDir);
+    fileSystem.addLanguages("web");
     ActiveRule activeRule = mock(ActiveRule.class);
-    RuleKey ruleKey = RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792");
+    RuleKey ruleKey = RuleKey.of("fortify-web", "Code Quality/Unreleased Resource: Database");
     when(activeRule.ruleKey()).thenReturn(ruleKey);
     when(this.activeRules.find(ruleKey)).thenReturn(activeRule);
     SensorContext context = mock(SensorContext.class);
-    org.sonar.api.resources.File resource = org.sonar.api.resources.File.create("WebContent/main.jsp");
-    when(context.getResource(resource)).thenReturn(resource);
+    DefaultInputFile inputFile = new DefaultInputFile("WebContent/main.jsp").setFile(new File(baseDir, "WebContent/main.jsp"));
+    fileSystem.add(inputFile);
     Issuable issuable = mock(Issuable.class);
-    when(this.resourcePerspectives.as(Issuable.class, resource)).thenReturn(issuable);
+    when(this.resourcePerspectives.as(Issuable.class, inputFile)).thenReturn(issuable);
     MockIssueBuilder mockIssueBuilder = new MockIssueBuilder();
     when(issuable.newIssueBuilder()).thenReturn(mockIssueBuilder);
     when(issuable.addIssue(any(Issue.class))).thenReturn(true);
 
     this.sensor.analyse(project, context);
 
-    assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "45BF957F-1A34-4E28-9B34-FEB83EC96792"));
+    assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "Code Quality/Unreleased Resource: Database"));
     assertThat(mockIssueBuilder.line).isEqualTo(163);
     assertThat(mockIssueBuilder.message)
       .isEqualTo(

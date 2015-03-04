@@ -40,11 +40,17 @@ public class FvdlStAXParserTest {
     assertThat(vulnerabilities.size()).isEqualTo(3);
     for (Vulnerability vulnerability : vulnerabilities) {
       if ("1".equals(vulnerability.getClassID())) {
+        assertThat(vulnerability.getKingdom()).isEqualTo("Code Quality");
+        assertThat(vulnerability.getType()).isEqualTo("Unreleased Resource");
+        assertThat(vulnerability.getSubtype()).isEqualTo("Database");
         assertThat(vulnerability.getPath()).isEqualTo("dummy.file");
         assertThat(vulnerability.getInstanceID()).isEqualTo("1");
         assertThat(vulnerability.getLine()).isEqualTo(1);
         assertThat(vulnerability.getReplacementDefinitions().size()).isEqualTo(1);
       } else if ("2".equals(vulnerability.getClassID())) {
+        assertThat(vulnerability.getKingdom()).isEqualTo("Input Validation and Representation");
+        assertThat(vulnerability.getType()).isEqualTo("Command Injection");
+        assertThat(vulnerability.getSubtype()).isNull();
         assertThat(vulnerability.getPath()).isNull();
         assertThat(vulnerability.getInstanceID()).isEqualTo("2");
         assertThat(vulnerability.getLine()).isNull();

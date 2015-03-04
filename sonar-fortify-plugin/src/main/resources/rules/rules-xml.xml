@@ -1,0 +1,134 @@
+<rules>
+  <!-- see names and descriptions in org/sonar/l10n/ -->
+  <rule>
+    <key>Environment/Weak XML Schema: Lax Processing</key>
+    <name>Weak XML Schema: Lax Processing</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  When the <code>processContents</code> attribute is set to <code>lax</code> or <code>skip</code>, no input validation is performed for wildcard elements and attributes.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A schema that does not enforce strict input validation can allow arbitrary elements or attributes to be validated against it. This opens the door for an attacker to supply a malicious document to the system.<br><br>Example: Imagine you are using the following two schemas for validation.<br><br>Schema 1:<br><br><pre><br>&lt;?xml version=&quot;1.0&quot;?&gt;<br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;  &gt;<br>  &lt;xs:element name=&quot;cart&quot; &gt;<br>    &lt;xs:complexType&gt;<br>      &lt;xs:sequence&gt;<br>	&lt;xs:element name=&quot;itemID&quot; maxOccurs=&quot;1&quot; /&gt;<br>	&lt;xs:any namespace=&quot;http://itemInfo&quot; processContents=&quot;lax&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;5&quot;/&gt;<br>      &lt;/xs:sequence&gt;<br>    &lt;/xs:complexType&gt;<br>  &lt;/xs:element&gt;<br>&lt;/xs:schema&gt;<br></pre><br><br>Schema 2:<br><br><pre><br>&lt;?xml version=&quot;1.0&quot;?&gt;<br>&lt;xsd:schema targetNamespace=&quot;http://itemInfo&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; &gt;<br>  &lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot;/&gt;<br>  &lt;xsd:element name=&quot;description&quot; type=&quot;xsd:string&quot;/&gt;<br>&lt;/xsd:schema&gt;<br></pre><br><br>Schema 1 permits arbitrary tags in the <code>http://itemInfo</code> namespace to be validated against it, thus allowing the following XML to pass validation.<br><br><pre><br>&lt;?xml version=\&quot;1.0\&quot; ?&gt;<br>&lt;cart xmlns:itemInfo=&quot;http://itemInfo&quot;&gt;<br>  &lt;itemID&gt;123&lt;/itemID&gt;<br>  &lt;itemInfo:name&gt;Shoes&lt;/itemInfo:name&gt;<br>  &lt;itemInfo:description&gt;Black Shoes&lt;/itemInfo:description&gt;<br>  &lt;itemInfo:price&gt;1.00&lt;/itemInfo:price&gt;<br>&lt;/cart&gt;<br></pre><br><br>The above XML contains an <code>itemInfo:price</code> tag which is not defined in Schema 2. As a result, it might be possible to trick the consumer of this XML document into setting a price of $1 for <code>Shoes</code>.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 20</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 020</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[19]  <em>XML Schema Part 1: Structures Second Edition</em> W3C<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+  <rule>
+    <key>Environment/Weak XML Schema: Type Any</key>
+    <name>Weak XML Schema: Type Any</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The <code>&lt;any&gt;</code> element makes it easier to perform attacks like XML injection.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The <code>&lt;any&gt;</code> element means arbitrary tags can be included in a valid document. Permitting arbitrary content makes it easier for attackers to perform attacks like XML injection.<br><br>Example: Imagine you are using the following schema for validation.<br><br><pre><br>&lt;?xml version=&quot;1.0&quot;?&gt;<br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;  &gt;<br>  &lt;xs:element name=&quot;cart&quot; &gt;<br>    &lt;xs:complexType&gt;<br>      &lt;xs:sequence&gt;<br>	&lt;xs:element name=&quot;itemID&quot; maxOccurs=&quot;1&quot; /&gt;<br>	&lt;xs:element name=&quot;price&quot; maxOccurs=&quot;1&quot; /&gt;<br>	&lt;xs:element name=&quot;description&quot; maxOccurs=&quot;1&quot;/&gt;<br>      &lt;/xs:sequence&gt;<br>    &lt;/xs:complexType&gt;<br>  &lt;/xs:element&gt;<br>  &lt;xs:element name=&quot;description&quot; type=&quot;xs:string&quot;/&gt;<br>  &lt;xs:element name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;<br>  &lt;xs:element name=&quot;price&quot; type=&quot;xs:decimal&quot;/&gt;<br>  &lt;xs:element name=&quot;code&quot; type=&quot;xs:string&quot;/&gt;<br>&lt;/xs:schema&gt;<br></pre><br><br>Since this schema uses the <code>&lt;any&gt;</code> element, the following XML documentation will be considered valid.<br><br><pre><br>&lt;?xml version=\&quot;1.0\&quot; ?&gt;<br>&lt;cart&gt;<br>  &lt;itemID&gt;123&lt;/itemID&gt;<br>  &lt;price&gt;50.00&lt;/price&gt;<br>  &lt;price&gt;1.0&lt;/price&gt;<br>&lt;/cart&gt;<br></pre><br><br>This is especially dangerous when using SAX parsers since later nodes will overwrite previous nodes.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 20</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 020</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[19]  <em>XML Schema Part 1: Structures Second Edition</em> W3C<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+  <rule>
+    <key>Environment/Weak XML Schema: Unbounded Occurrences</key>
+    <name>Weak XML Schema: Unbounded Occurrences</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Setting a <code>maxOccurs</code> value to unbounded can lead to resources exhaustion and ultimately a denial of service.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Processing XML documents can be computationally expensive. Attackers can take advantage of schemas that allow unbounded elements by supplying an application with a very large number elements causing the application to exhaust system resources.<br><br>The following is an example of a schema that allows unbounded <code>bar</code> elements.<br><pre><br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; &gt;<br>  &lt;xs:element name=&quot;foo&quot; &gt;<br>    &lt;xs:complexType&gt;<br>      &lt;xs:sequence&gt;<br>	&lt;xs:element name=&quot;bar&quot; maxOccurs=&quot;unbounded&quot; /&gt;<br>      &lt;/xs:sequence&gt;<br>    &lt;/xs:complexType&gt;<br>  &lt;/xs:element&gt;<br>&lt;/xs:schema&gt;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A9 Application Denial of Service</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP6080 CAT II</em> <br></p>
+																									   <p>[8] Roger L. Costello <em>Constrain the Number of Occurrences of Elements in your XML Schema</em> <br></p>
+																									   <p>[9] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 400, CWE ID 770</em> <br></p>
+																									   <p>[10] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 770</em> <br></p>
+																									   <p>[14] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-5 Denial of Service Protection (P1)</em> <br></p>
+																									   <p>[15]  <em>XML Schema Part 1: Structures Second Edition</em> W3C<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+  <rule>
+    <key>Environment/Weak XML Schema: Undefined Namespace</key>
+    <name>Weak XML Schema: Undefined Namespace</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Specifying a namespace of <code>##any</code> in the <code>&lt;any&gt;</code> element means the schema allows elements beyond what is explicitly defined in the schema, thereby making it easier to craft malicious documents.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A schema that does not restrict element namespaces permits arbitrary elements to be included in a valid document. This makes it easier for attackers to perform attacks like XML injection by including tags that do not conform to the standards imposed on the rest of the document.<br><br>The following schema allows unrestricted namespaces.<br><pre><br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; &gt;<br> &lt;xs:element name='foo'&gt;<br>  &lt;xs:complexType&gt;<br>   &lt;xs:sequence&gt;<br>     &lt;xs:any namespace='##any' /&gt;<br>   &lt;/xs:sequence&gt;<br>  &lt;/xs:complexType&gt;<br> &lt;/xs:element&gt;<br>&lt;/xs:schema&gt;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 20</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 020</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[18]  <em>XML Schema Part 1: Structures Second Edition</em> W3C<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+</rules>

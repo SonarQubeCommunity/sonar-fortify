@@ -19,27 +19,24 @@
  */
 package org.sonar.fortify.fvdl;
 
-import org.sonar.fortify.base.metrics.FortifyMetrics;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.rule.ActiveRule;
 import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
-import org.sonar.api.resources.File;
 import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
-import org.sonar.api.utils.SonarException;
 import org.sonar.api.utils.TimeProfiler;
 import org.sonar.fortify.base.AnalysisState;
 import org.sonar.fortify.base.FortifyConstants;
+import org.sonar.fortify.base.metrics.FortifyMetrics;
 import org.sonar.fortify.fvdl.element.Fvdl;
 import org.sonar.fortify.fvdl.element.Vulnerability;
 import org.xml.sax.SAXException;
@@ -84,8 +81,8 @@ public class FortifySensor implements Sensor {
     return this.configuration.isActive(this.fileSystem.languages()) && this.report.exist();
   }
 
-  private void addIssue(Resource resource, Fvdl fvdl, Vulnerability vulnerability, ActiveRule activeRule) {
-    Issuable issuable = this.resourcePerspectives.as(Issuable.class, resource);
+  private void addIssue(InputFile inputFile, Fvdl fvdl, Vulnerability vulnerability, ActiveRule activeRule) {
+    Issuable issuable = this.resourcePerspectives.as(Issuable.class, inputFile);
     if (issuable != null) {
       String severity = vulnerability.getInstanceSeverity();
       if (severity == null) {
@@ -120,14 +117,14 @@ public class FortifySensor implements Sensor {
   private void addIssues(SensorContext context, Project project, Fvdl fvdl) {
     String sourceBasePath = fvdl.getBuild().getSourceBasePath();
     for (Vulnerability vulnerability : fvdl.getVulnerabilities()) {
-      Resource resource = resourceOf(context, sourceBasePath, vulnerability, project);
-      if (resource != null) {
-        ActiveRule activeRule = getRule(vulnerability);
+      InputFile inputFile = resourceOf(context, sourceBasePath, vulnerability, project);
+      if (inputFile != null) {
+        ActiveRule activeRule = getRule(vulnerability, inputFile.language());
         if (activeRule == null) {
           FortifySensor.LOG.debug(
             "Fortify rule '{}' is not active in quality profiles of your project.", vulnerability.getClassID());
         } else {
-          addIssue(resource, fvdl, vulnerability, activeRule);
+          addIssue(inputFile, fvdl, vulnerability, activeRule);
         }
       }
     }
@@ -169,7 +166,7 @@ public class FortifySensor implements Sensor {
       }
       addIssues(context, project, fvdl);
     } catch (Exception e) {
-      throw new SonarException("Can not process Fortify report", e);
+      throw new IllegalStateException("Can not process Fortify report", e);
     } finally {
       profiler.stop();
     }
@@ -220,40 +217,49 @@ public class FortifySensor implements Sensor {
   }
 
   @CheckForNull
-  private ActiveRule getRule(Vulnerability vulnerability) {
-    ActiveRule rule = null;
-    for (String language : this.fileSystem.languages()) {
-      String repositoryKey = FortifyConstants.fortifyRepositoryKey(language);
-      rule = this.activeRules.find(RuleKey.of(repositoryKey, vulnerability.getClassID()));
+  private ActiveRule getRule(Vulnerability vulnerability, String fileLanguage) {
+    String ruleKey = FortifyConstants.fortifySQRuleKey(vulnerability.getKingdom(), vulnerability.getType(), vulnerability.getSubtype());
+    if (ruleKey != null) {
+      // Search in priority the same language as the file
+      ActiveRule rule = activeRules.find(RuleKey.of(FortifyConstants.fortifyRepositoryKey(fileLanguage), ruleKey));
       if (rule != null) {
         return rule;
       }
+      // Search rule in other languages
+      for (String language : this.fileSystem.languages()) {
+        String repositoryKey = FortifyConstants.fortifyRepositoryKey(language);
+        rule = this.activeRules.find(RuleKey.of(repositoryKey, ruleKey));
+        if (rule != null) {
+          return rule;
+        }
+      }
     }
-    return rule;
+    LOG.debug("Unable to find rule for vulnerability " + vulnerability);
+    return null;
   }
 
   @CheckForNull
-  private Resource resourceOf(SensorContext context, String sourceBasePath, Vulnerability vulnerability, Project project) {
+  private InputFile resourceOf(SensorContext context, String sourceBasePath, Vulnerability vulnerability, Project project) {
     java.io.File file = new java.io.File(sourceBasePath, vulnerability.getPath());
     if (file.exists()) {
-      Resource resource = File.fromIOFile(file, project);
-      if (resource == null || context.getResource(resource) == null) {
-        FortifySensor.LOG.debug("File \"{}\" is not under module basedir or is not indexed. Skip it.", vulnerability.getPath());
+      InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().is(file));
+      if (inputFile == null) {
+        LOG.debug("File \"{}\" is not under module basedir or is not indexed. Skip it.", vulnerability.getPath());
         return null;
       }
-      return resource;
+      return inputFile;
     }
-    FortifySensor.LOG.debug("Unable to find \"{}\". Trying relative path.", file);
+    LOG.debug("Unable to find \"{}\". Trying relative path.", file);
     file = new java.io.File(this.fileSystem.baseDir(), vulnerability.getPath());
     if (file.exists()) {
-      Resource resource = File.fromIOFile(file, project);
-      if (resource == null || context.getResource(resource) == null) {
-        FortifySensor.LOG.debug("File \"{}\" is not indexed. Skip it.", vulnerability.getPath());
+      InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().is(file));
+      if (inputFile == null) {
+        LOG.debug("File \"{}\" is not indexed. Skip it.", vulnerability.getPath());
         return null;
       }
-      return resource;
+      return inputFile;
     }
-    FortifySensor.LOG.debug("Unable to find \"{}\". Your Fortify analysis was probably started from a different location than current SonarQube analysis.", file);
+    LOG.debug("Unable to find \"{}\". Your Fortify analysis was probably started from a different location than current SonarQube analysis.", file);
     return null;
   }
 

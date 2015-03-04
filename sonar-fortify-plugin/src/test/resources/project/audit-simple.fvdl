@@ -7,6 +7,9 @@
 <Vulnerability>
   <ClassInfo>
     <ClassID>45BF957F-1A34-4E28-9B34-FEB83EC96792</ClassID>
+    <Kingdom>Code Quality</Kingdom>
+    <Type>Unreleased Resource</Type>
+    <Subtype>Database</Subtype>
   </ClassInfo>
   <InstanceInfo>
     <InstanceID>1EEA24C519E307822F6D1FAD0AD7B45A</InstanceID>

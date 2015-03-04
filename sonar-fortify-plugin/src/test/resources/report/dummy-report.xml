@@ -9,6 +9,9 @@
     <Vulnerability>
       <ClassInfo>
         <ClassID>1</ClassID>
+        <Kingdom>Code Quality</Kingdom>
+        <Type>Unreleased Resource</Type>
+        <Subtype>Database</Subtype>
       </ClassInfo>
       <InstanceInfo>
         <InstanceID>1</InstanceID>
@@ -34,6 +37,8 @@
     <Vulnerability>
       <ClassInfo>
         <ClassID>2</ClassID>
+        <Kingdom>Input Validation and Representation</Kingdom>
+        <Type>Command Injection</Type>
       </ClassInfo>
       <InstanceInfo>
         <InstanceID>2</InstanceID>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+					<title>Software Security | Protect your Software at the Source | Fortify Software</title>
+					<link rel="stylesheet" href="../css/vcmain.css" type="text/css" media="screen" title="no title"
+					      charset="utf-8"/>
+				</head>
+				<script language="javascript">
+
+					if (top.location == self.location)
+					{ //if page is not in its frameset
+					//top.location.href = "/vulncat/index.html?open=" + window.location.href;
+					}
+
+				</script>
+
+				<!-- End of document.header.tile -->
+
+				<body class="level3">
+
+
+					<div id="theWrapper">
+						<div id="theContentCenter">
+							<!-- desc.semantic.abap.obsolete -->						
+							<h1>
+							   Obsolete
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  The use of deprecated or obsolete functions could indicate neglected code.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  In general as programming languages evolve, methods occasionally become obsolete due to:<br><br>    - Advances in the language<br><br>    - Improved understanding of how operations should perform effectively and<br>     securely<br><br>    - Changes in the conventions that govern certain operations<br>Statements that are removed from a language are usually replaced by newer counterparts that perform the same task in somewhat different and hopefully better way.<br><br>In particular, SAP ABAP evolved to include ABAP Objects - the object oriented extension of ABAP and to operate in a Unicode compatible environment. As a result, stricter syntax is enforced in classes or in Unicode programs. Obsolete constructs are still available only for reasons of compatibility with older releases and they can only be used outside of classes or in non-Unicode programs. There are replacement constructions for all obsolete language elements, which improve the efficiency and readability of programs. Many implicit, ambiguous type/length/memory specifications in the obsolete syntax are required to be specified in a more precise and explicit way in the newer syntax. It is recommended to adopt the newer syntax to make programs easier to understand, more robust and easier to maintain.<br><br><br>Not all functions are deprecated or replaced because they pose a security risk. However, the presence of an obsolete function often indicates that the surrounding code has been neglected and may be in a state of disrepair. Software security has not been a priority, or even a consideration, for very long. If the program uses deprecated or obsolete functions, it raises the probability that there are security problems lurking nearby.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 477</em> <br></p>
+																														<div id="theFooter">
+							<p></p>
+							<br/>
+							<center>
+							Copyright 2014 Fortify Software - All rights reserved.
+							<br/>
+							(Generated from version 2014.4.0.0008 of the Fortify Secure Coding Rulepacks)
+							<br/>
+							desc.semantic.abap.obsolete
+							</center>
+							<p></p>
+						</div>

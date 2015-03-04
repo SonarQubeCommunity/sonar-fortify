@@ -1,0 +1,435 @@
+<rules>
+  <!-- see names and descriptions in org/sonar/l10n/ -->
+  <rule>
+    <key>API Abuse/Often Misused: Price-Related Fields</key>
+    <name>Often Misused: Price-Related Fields</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Relying solely on client-side security controls and failure to perform server-side validation can allow attackers to manipulate sensitive data and adversely affect the application operation.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Attackers can manipulate product prices if the application accepts unvalidated data and overrides existing values with the attacker supplied data. Pricing attacks can occur when:<br>	1.  The application relies on weak client-side protections such as hidden form input fields and in turn expose sensitive information to manipulation<br>	2.  Fails to perform server-side validation against white list of acceptable values<br>
+							</p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>api-abuse</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Cross-Site Request Forgery</key>
+    <name>Cross-Site Request Forgery</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Form posts must contain a user-specific secret in order to prevent an attacker from making unauthorized requests.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A cross-site request forgery (CSRF) vulnerability occurs when:<br>1. A Web application uses session cookies.<br><br>2. The application acts on an HTTP request without verifying that the request was made with the user's consent.<br><br><br><br>A nonce is a cryptographic random value that is sent with a message to prevent replay attacks. If the request does not contain a nonce that proves its provenance, the code that handles the request is vulnerable to a CSRF attack (unless it does not change the state of the application.)  This means a Web application that uses session cookies has to take special precautions in order to ensure that an attacker can't trick users into submitting bogus requests. Imagine a Web application that allows administrators to create new accounts by submitting this form:<br><br><pre><br>&lt;form method="POST" action="/new_user" &gt;<br>  Name of new user: &lt;input type="text" name="username"&gt;<br>  Password for new user: &lt;input type="password" name="user_passwd"&gt;<br>    &lt;input type="submit" name="action" value="Create User"&gt;<br>&lt;/form&gt;<br></pre><br><br>An attacker might set up a Web site with the following:<br><br><pre><br>&lt;form method="POST" action="http://www.example.com/new_user"&gt;<br>  &lt;input type="hidden" name="username" value="hacker"&gt;<br>  &lt;input type="hidden" name="user_passwd" value="hacked"&gt;<br>&lt;/form&gt;<br>&lt;script&gt;<br>  document.usr_form.submit();<br>&lt;/script&gt;<br></pre><br><br>If an administrator for example.com visits the malicious page while she has an active session on the site, she will unwittingly create an account for the attacker. This is a CSRF attack. It is possible because the application does not have a way to determine the provenance of the request. Any request could be a legitimate action chosen by the user or a faked action set up by an attacker. The attacker does not get to see the Web page that the bogus request generates, so the attack technique is only useful for requests that alter the state of the application.<br><br>Most Web browsers send an HTTP header named <code>referer</code> along with each request. The <code>referer</code> header is supposed to contain the URL of the referring page, but attackers can forge it, so the referer header is not useful for determining the provenance of a request.<br><br>Applications that pass the session identifier on the URL rather than as a cookie do not have CSRF problems because there is no way for the attacker to access the session identifier and include it as part of the bogus request.<br><br>CSRF is entry number five on the 2007 OWASP Top 10 list.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] OWASP <em>2007 OWASP Top 10</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A5 Cross Site Request Forgery (CSRF)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A5 Cross-Site Request Forgery (CSRF)</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A8 Cross-Site Request Forgery (CSRF)</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3585 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3585 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3585 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3585 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3585 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Cross-Site Request Forgery</em> <br></p>
+																									   <p>[11] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 352</em> <br></p>
+																									   <p>[12] A. Klein <em>Divide and Conquer: HTTP Response Splitting, Web Cache Poisoning Attacks, and Related Topics</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 352</em> <br></p>
+																									   <p>[14] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 352</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 352</em> <br></p>
+																									   <p>[16] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.9</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-23 Session Authenticity (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/HTML5: Sensitive Information Disclosure via Client-Side Storage</key>
+    <name>HTML5: Sensitive Information Disclosure via Client-Side Storage</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Improper use of client-side storage could lead to disclosure of sensitive information.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Sensitive information persisted using the HTML5 storage objects are stored on the client-side. While this option may sound attractive from a performance perspective, any information stored on the client is easily accessible and may pose a security risk if it is accessed by an unauthorized third party.<br>Storing sensitive information in the localStorage or sessionStorage objects provided by HTML5 is not a secure option. While this information may not be visible to a naive user, a technically savvy person could easily retrieve such data from a browser. If an application exhibiting this behavior is used in a publicly accessible computer, then any data stored on the client could be stolen by a malicious user.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Hardcoded Domain in HTML</key>
+    <name>Hardcoded Domain in HTML</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Including a script from another domain means that the security of this web page is dependent on the security of the other domain.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Including executable content from another web site is a risky proposition. It ties the security of your site to the security of the other site.<br><br><b>Example:</b> Consider the following <code>script</code> tag.<br><pre><br>&lt;script src="http://www.example.com/js/fancyWidget.js"/&gt;<br></pre><br><br>If this tag appears on a web site other than <code>www.example.com</code>, then the site is dependent upon <code>www.example.com</code> to serve up correct and non-malicious code. If attackers can compromise <code>www.example.com</code>, then they can alter the contents of <code>fancyWidget.js</code> to subvert the security of the site. They could, for example, add code to <code>fancyWidget.js</code> to steal a user's confidential data.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Process Validation</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 094</em> <br></p>
+																									   <p>[4] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Hidden Field</key>
+    <name>Hidden Field</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  A hidden form field is used.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Programmers often trust the contents of hidden fields, expecting that users will not be able to view them or manipulate their contents. Attackers will violate these assumptions. They will examine the values written to hidden fields and alter them or replace the contents with attack data.<br><br><b>Example:</b> An <code>&lt;input&gt;</code> tag of type <code>hidden</code> indicates the use of a hidden field.<br><pre><br>&lt;input type="hidden"&gt;<br></pre><br><br>If hidden fields carry sensitive information, this information will be cached the same way the rest of the page is cached. This can lead to sensitive information being tucked away in the browser cache without the user's knowledge.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3610 CAT I</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3610 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3610 CAT I</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3610 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3610 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 472, CWE ID 642</em> <br></p>
+																									   <p>[7]  <em>Input Validation and Representation</em> Fortify, An HP Company<br></p>
+																									   <p>[8] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[9] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 642</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/System Information Leak: HTML Comment</key>
+    <name>System Information Leak: HTML Comment</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Revealing sensitive information in HTML comments might help an adversary learn about the system and form a plan of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  HTML comments provide an attacker with an easy source of information about the system. Sensitive information revealed in HTML comments could include:<br><b>Filenames and system paths: </b>This information could reveal locations of hidden resources including backup files, vulnerable versions of application code, database files, configuration files etc. An attacker can use this information to steal sensitive information or gain access to restricted interfaces.<br><b>Hostnames: </b>An attacker can use this information to discover restricted resources or internal systems or scan the network for hosts with names similar to the one revealed in the comment.<br><b>Version information: </b>Providing exact version information for the application and related components will allow attackers to target known vulnerabilities reported against the application.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 615</em> <br></p>
+																									   <p>[9] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[10] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[12] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Environment/HTML5: CORS Unsafe Methods Allowed</key>
+    <name>HTML5: CORS Unsafe Methods Allowed</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Allowing unsafe HTTP methods such as PUT or DELETE could allow an attacker to inject malicious code, backdoor, deface site, or delete and lock resources to cause denial of service attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The Access-Control-Allow-Methods header, as reflected in the preflight response for the requested resource, indicates that it allows unsafe HTTP methods. An attacker can use HTTP methods such as PUT or DELETE to make unexpected modifications to shared resource and pose a security threat to the overall site security. A user agent rejects any request for this resource with an HTTP method other than the ones that are listed in the Access-Control-Allow-Methods response header.<br>Cross-Origin Resource Sharing, commonly referred to as CORS, is a technology that allows a domain to define a policy for its resources to be accessed by a web page hosted on a different domain using cross domain XML HTTP Requests (XHR). Historically, the browser restricts cross domain XHR requests to abide by the same origin policy. At its basic form, the same origin policy sets the script execution scope to the resources available on the current domain and prohibits any communication to domains outside this scope. Therefore, execution and incorporation of remote methods and functions hosted on domains outside of the current domain are effectively prohibited. While CORS is supported on all major browsers, it also requires that the domain correctly defines the CORS policy in order to have its resources shared with another domain. These restrictions are managed by access policies typically included in specialized response headers, such as:<br><br>- <code>Access-Control-Allow-Origin</code><br>- <code>Access-Control-Allow-Headers</code><br>- <code>Access-Control-Allow-Methods</code><br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 749</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/HTML5: Form Validation Turned Off</key>
+    <name>HTML5: Form Validation Turned Off</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  HTML5 validation of input form fields is disabled.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  HTML5 provides a new ability to do simple input form fields validation. One can specify whether an input form field is required by using the <code>required</code> attribute. Specifying the field type makes sure that the input is checked against its type. One can even supply a customizable <code>pattern</code> attribute that checks the input against a regular expression. However, this validation gets disabled when adding a <code>novalidate</code> attribute on a form tag and a <code>formnovalidate</code> attribute on a submit input tag.<br><br><b>Example 1:</b> The following sample disables form validation via a <code>novalidate</code> attribute.<br><br><pre><br>      &lt;form action="demo_form.asp" novalidate="novalidate"&gt;<br>        E-mail: &lt;input type="email" name="user_email" /&gt;<br>        &lt;input type="submit" /&gt;<br>      &lt;/form&gt;<br></pre><br><br><b>Example 2:</b> The following sample disables form validation via a <code>formnovalidate</code> attribute.<br><br><pre><br>      &lt;form action="demo_form.asp" &gt;<br>        E-mail: &lt;input type="email" name="user_email" /&gt;<br>        &lt;input type="submit" formnovalidate="formnovalidate"/&gt;<br>      &lt;/form&gt;<br></pre><br><br>HTML forms with disabled validation are not user-friendly and can potentially expose the server to numerous types of attacks. Unchecked input is the root cause of vulnerabilities like cross-site scripting, process control, and SQL injection.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 20</em> <br></p>
+																									   <p>[10]  <em>HTML5 form novalidate Attribute</em> W3Schools<br></p>
+																									   <p>[11]  <em>HTML5 input formnovalidate Attribute</em> W3Schools<br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M8 Security Decisions Via Untrusted Inputs</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[15] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[16] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Often Misused: File Upload</key>
+    <name>Often Misused: File Upload</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Permitting users to upload files can allow attackers to inject dangerous content or malicious code to run on the server.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Regardless of the language a program is written in, the most devastating attacks often involve remote code execution, whereby an attacker succeeds in executing malicious code in the program's context. If attackers are allowed to upload files to a directory that is accessible from the Web and cause these files to be passed to a code interpreter (e.g. JSP/ASPX/PHP), then they can cause malicious code contained in these files to execute on the server.<br>Even if a program stores uploaded files under a directory that isn't accessible from the Web, attackers might still be able to leverage the ability to introduce malicious content into the server environment to mount other attacks. If the program is susceptible to path manipulation, command injection, or dangerous file inclusion vulnerabilities, then an attacker might upload a file with malicious content and cause the program to read or execute it by exploiting another vulnerability.<br><br>An <code>&lt;input&gt;</code> tag of type <code>file</code> indicates the program accepts file uploads.<br><b>Example:</b><br><pre><br>&lt;input type="file"&gt;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A3 Malicious File Execution</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 434</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 434</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 434</em> <br></p>
+																									   <p>[13] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.3</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>
+																									   <p>[19] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Parameter Tampering: Client-Side Price Manipulation</key>
+    <name>Parameter Tampering: Client-Side Price Manipulation</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Failure to sufficiently validate user supplied data could allow an attacker to manipulate pricing information.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  An unauthorized manipulation of pricing data can occur if an application relies on information received from the client-side without further validation. E-commerce sites often use HTML hidden fields to store rates of items for sale.<br><br><b>Example:</b> <br><pre>&lt;input name="Price" type="hidden" value="2730" /&gt;</pre><br>While this information may not be visible on the rendered page, an attacker can access this information by inspecting the HTML source of the page. Furthermore, the attacker could save a local copy of the HTML page, manipulate the price specified by the hidden input field and resubmit the form with the modified price.<br><br><b>Example:</b><br><pre>&lt;input name="Price" type="hidden" value="0" /&gt;</pre><br>If the application fails to perform a server-side verification of the price submitted via such a hidden parameter against the actual price, it would allow the attacker to purchase any item at a lower rate or even free of charge.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 602</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 602</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[9] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[11] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Security Features/HTML5: CORS Functionality Abuse</key>
+    <name>HTML5: CORS Functionality Abuse</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Failure to properly restrict cross domain access to sensitive resources could allow an attacker to carry out data theft or content spoofing attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Cross-Origin Resource Sharing, commonly referred to as CORS, is a technology that allows a domain to define a policy for its resources to be accessed by a web page hosted on a different domain using cross domain XML HTTP Requests (XHR). Historically, the browsers have restricted XHR requests to abide by the same origin policy.  This policy sets the script execution scope to the resources available on the current domain and prohibits any communication to domains outside this scope. However, a few HTML tags, such as SCRIPT, IMG, and IFRAME, are exempt from the same origin policy and allow remote content to be loaded from a different domain. These are secure alternatives for the site that loads contents from remote domain and no special permission or cross-domain policy is required from hosting domain.<br>While CORS is supported on all major browsers, it also requires that the domain correctly defines the CORS policy in order to have its resources shared with another domain. These restrictions are managed by access policies typically communicated in specialized response headers, such as: <br><br>- <code>Access-Control-Allow-Origin</code><br>- <code>Access-Control-Allow-Headers</code><br>- <code>Access-Control-Allow-Methods</code><br><br>However, caution should be taken when defining these headers because an overly permissive policy configured at server level for domain or directory on a domain can open more content for cross domains access than intended. CORS can allow a malicious application to communicate with victim application in an inappropriate way leading to information disclosure, spoofing, data theft, relay or other attacks.<br>Implementing CORS can increase an application's attack surface and should be used only when necessary.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 830</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/HTML5: CORS Prolonged Caching of Preflight Response</key>
+    <name>HTML5: CORS Prolonged Caching of Preflight Response</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Unsafe caching of the preflight response could result in unauthorized cross domain access to sensitive resources based on an invalid policy.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Cross-Origin Resource Sharing, commonly referred to as CORS, is a technology that allows a domain to define a policy for its resources to be accessed by a web page hosted on a different domain using cross domain XML HTTP Requests (XHR). Historically, the browser restricts cross domain XHR requests to abide by the same origin policy.  At its basic form, the same origin policy sets the script execution scope to the resources available on the current domain and prohibits any communication to domains outside this scope.  Therefore, execution and incorporation of remote methods and functions hosted on domains outside of the current domain are effectively prohibited. While CORS is supported on all major browsers, it also requires that the domain correctly defines the CORS policy in order to have its resources shared with another domain. These restrictions are managed by access policies typically included in specialized response headers, such as:<br><br>- <code>Access-Control-Allow-Origin</code><br>- <code>Access-Control-Allow-Headers</code><br>- <code>Access-Control-Allow-Methods</code><br>- <code>Access-Control-Max-Age</code><br><br>The browser generates a preflight OPTIONS request whenever the cross domain request made by the web page is anything other than a simple HTTP request. A GET or POST HTTP request with no special headers or credentials is considered a simple request. A response for a preflight request exposes the server's CORS policy via specialized headers mentioned above. After examining the required permissions, the browser makes the actual request that the web page initially performed. This extra preflight request adds overhead and hence the server can configure its preflight response to be cached.<br>Prolonged caching of a preflight response can pose a security threat as the policy can be updated on the server while a browser will still allow unauthorized access to resources based on the original cached policy. The time a response is allowed to be cached is conveyed using an Access-Control-Max-Age response header and a value more than 30 minutes is considered to be prolonged.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 524</em> <br></p>
+																									   <p>[4] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[5] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/HTML5: Misconfigured Content Security Policy</key>
+    <name>HTML5: Misconfigured Content Security Policy</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Incorrectly configured Content Security Policy could expose an application against client-side threats including Cross-Site Scripting, Cross Frame Scripting and Cross-Site Request Forgery.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Content Security Policy (CSP) is a declarative security header that allows developers to dictate which domains the site is allowed to load contents from or initiate connection to when rendered in the web browser. It provides an additional layer of security from critical vulnerabilities like cross site scripting, clickjacking, cross origin access etc. on top of input validation and whitelisting in code. Improperly configured header however, fails to provide this additional layer of security. The policy is defined with the help of fifteen directives including eight that control resource access namely:<br><br>	-  <code>script-src</code><br>	-  <code>img-src</code><br>	-  <code>object-src</code><br>	-  <code>style_src</code><br>	-  <code>font-src</code><br>	-  <code>media-src</code><br>	-  <code>frame-src</code><br>	-  <code>connect-src</code><br><br>Each of these takes a source list as a value specifying domains the site is allowed to access for feature covered by that directive.  Developers may use wildcard * to indicate all or part of the source. None of the directives are mandatory. Browsers will either allow all sources for unlisted directive or will derive its value from optional <code>default-src</code> directive. Furthermore, the specification for this header has evolved over time. It was implemented as <code>X-Content-Security-Policy</code> in Firefox until version 23 and in IE until version 10, and was implemented as <code>X-Webkit-CSP</code> in Chrome until version 25. Both of the names are deprecated in favor of the now standard name Content Security Policy.  Given number of directives, two deprecated alternate names, and the way multiple occurrences of the same header and repeat directives in a single header are treated, there is a high probability that a developer might misconfigure this header.<br>Consider following misconfiguration scenarios:<br><br>	-  It can be an overly permissive policy if default-src is not set or set to wildcard and/or other directives are set to wildcard.<br>	-  Multiple instances of this header are allowed in same response. A development team and security team might both set the header but one may use one of the deprecated names. While deprecated headers are honored if header with latest name Content Security Policy is not present, they are ignored if policy with content-security-header name is present. Older versions only understand deprecated names. Hence, in order to achieve desired support it is essential that the response include an identical policy with all three names.<br>	-  If a directive is repeated within the same instance of the header, all subsequent occurrences are ignored. <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Insecure Submission</key>
+    <name>Password Management: Insecure Submission</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Submitting a password as part of an HTTP GET request will cause the password to be displayed, logged, or stored in a cache.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By convention, the parameters associated with an HTTP GET request are not treated as sensitive data, so web servers log them, proxies cache them, and web browsers do not make an effort to conceal them. Sending a password or other sensitive data as part of an HTTP GET will likely cause the data to be mishandled and potentially revealed to an attacker.<br><br><b>Example 1:</b> In the example below, new user password is submitted via an HTTP GET request.<br><pre><br>&lt;form method="get"&gt;<br>  Name of new user: &lt;input type="text" name="username"&gt;<br>  Password for new user: &lt;input type="password" name="user_passwd"&gt;<br>  &lt;input type="submit" name="action" value="Create User"&gt;<br>&lt;/form&gt;<br></pre><br><br>Also, note that the default value of the <code>method</code> attributed is <code>GET</code>, thus omitting the attribute results in the same outcome.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3250.1 CAT I, APP3250.2 CAT I, APP3250.3 CAT II, APP3250.4 CAT II, APP3330 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 359</em> <br></p>
+																									   <p>[11] W3Schools <em>HTML form method attribute</em> <br></p>
+																									   <p>[12] W3Schools <em>HTML5 input formmethod attribute</em> <br></p>
+																									   <p>[13] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[14] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[15] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>
+																									   <p>[21]  <em>Writing Secure Web Applications</em> Advosys Consulting<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Password in HTML Form</key>
+    <name>Password Management: Password in HTML Form</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Populating password fields in an HTML form could result in a system compromise.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Populating password fields in an HTML form allows anyone to see their values in the HTML source. Furthermore, sensitive information stored in password fields may be cached by proxies or browsers.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 259, CWE ID 798</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 259</em> <br></p>
+																									   <p>[14] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Privacy Violation: Autocomplete</key>
+    <name>Privacy Violation: Autocomplete</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Autocompletion of forms allows some browsers to retain sensitive information in their history.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  With autocompletion enabled, some browsers retain user input across sessions, which could allow someone using the computer after the initial user to see information previously submitted.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 525</em> <br></p>
+																									   <p>[9] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[10] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 6.5.5, Requirement 8.4</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 6.5.6, Requirement 8.4</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 8.2.1</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 8.4</em> <br></p>
+																									   <p>[15] Pete Freitag <em>Turn off autocomplete for credit card input</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Privacy Violation: Password</key>
+    <name>Privacy Violation: Password</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  A viewed password endangers system security.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  A password need not be viewable to its owner, and must not be viewable to others. If a password is displayed in plaintext, anyone in the vicinity could see and use it to compromise the system. In computer security, shoulder surfing refers to using direct observation techniques, such as looking over someone's shoulder, to get information. Shoulder surfing is particularly effective in crowded, public environments. This threat particularly applies to mobile devices, which are generally intended for use in all environments, both private and public.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 549</em> <br></p>
+																									   <p>[3]  <em>HTML Code Tutorial</em> <br></p>
+																									   <p>[4] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>IA-6 Authenticator Feedback (P2)</em> <br></p>
+																									   <p>[5] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[6] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M4 Unintended Data Leakage</em> <br></p>
+																									   <p>[7] W3C <em>W3 HTML Specifications</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+</rules>

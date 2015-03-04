@@ -21,6 +21,9 @@ package org.sonar.fortify.base;
 
 import org.apache.commons.lang.StringUtils;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nullable;
+
 public class FortifyConstants {
 
   public static final String AUDIT_FVDL_FILE = "audit.fvdl";
@@ -35,5 +38,21 @@ public class FortifyConstants {
 
   public static String fortifyRepositoryKey(String language) {
     return "fortify-" + StringUtils.lowerCase(language);
+  }
+
+  @CheckForNull
+  public static String fortifySQRuleKey(@Nullable String kingdom, @Nullable String category, @Nullable String subcategory) {
+    StringBuilder sb = new StringBuilder();
+    if (StringUtils.isNotBlank(kingdom)) {
+      sb.append(kingdom).append("/");
+    }
+    if (StringUtils.isNotBlank(category)) {
+      sb.append(category);
+    }
+    if (StringUtils.isNotBlank(subcategory)) {
+      sb.append(": ");
+      sb.append(subcategory);
+    }
+    return sb.length() > 0 ? sb.toString() : null;
   }
 }

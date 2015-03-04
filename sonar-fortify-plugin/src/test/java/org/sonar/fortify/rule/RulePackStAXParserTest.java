@@ -46,7 +46,7 @@ public class RulePackStAXParserTest {
       } else if ("1".equals(key)) {
         assertRule(rule, "Dummy cat: Dummy subcat", "java", "MINOR", "");
       } else if ("2".equals(key)) {
-        assertRule(rule, "2", "other", null, "");
+        assertRule(rule, null, "other", null, "");
       } else if ("3".equals(key)) {
         assertRule(
           rule,

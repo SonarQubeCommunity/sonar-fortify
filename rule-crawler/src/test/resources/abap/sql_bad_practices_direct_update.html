@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+					<title>Software Security | Protect your Software at the Source | Fortify Software</title>
+					<link rel="stylesheet" href="../css/vcmain.css" type="text/css" media="screen" title="no title"
+					      charset="utf-8"/>
+				</head>
+				<script language="javascript">
+
+					if (top.location == self.location)
+					{ //if page is not in its frameset
+					//top.location.href = "/vulncat/index.html?open=" + window.location.href;
+					}
+
+				</script>
+
+				<!-- End of document.header.tile -->
+
+				<body class="level3">
+
+
+					<div id="theWrapper">
+						<div id="theContentCenter">
+							<!-- desc.structural.abap.sql_bad_practices_direct_update -->						
+							<h1>
+							   SQL Bad Practices: Direct Update
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Direct Open SQL write operations are bad practice and should be avoided.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Direct Open SQL write operations (Insert/Update/Modify/Delete) are in general bad practice and should be avoided. They undermine the integrity and security of the system and should not be allowed.<br><br><br><br>Direct Open SQL write operations are also error prone and can cause unexpected system behavior. Some of the issues to watch out for in SAP include:<br><br>-  SAP recommends using 'update bundling' techniques to ensure data integrity within an SAP LUW (logical unit of work) that may span multiple database LUWs. Direct modifications to table entries without update bundling may leave the SAP transaction in an inconsistent state.<br><br>-  Direct Open SQL write operations only set database level locks and bypass the SAP application locks. This may lead to deadlocks and corrupted data.<br><br>-  Direct Open SQL write operations bypass SAP authorization checks within the application program.<br><br>-  When standard mechanisms are used to write table entries, edit checks, audit trails, dependent updates (like change documents, for example) are all correctly performed. This is not the case when Direct Open SQL write operations are used.<br><br>    
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 662</em> <br></p>
+																														<div id="theFooter">
+							<p></p>
+							<br/>
+							<center>
+							Copyright 2014 Fortify Software - All rights reserved.
+							<br/>
+							(Generated from version 2014.4.0.0008 of the Fortify Secure Coding Rulepacks)
+							<br/>
+							desc.structural.abap.sql_bad_practices_direct_update
+							</center>
+							<p></p>
+						</div>

@@ -20,24 +20,25 @@
 package org.sonar.fortify.rule;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableMap;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.config.Settings;
+import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.rule.element.FormatVersion;
 import org.sonar.fortify.rule.element.FortifyRule;
 import org.sonar.fortify.rule.element.RulePack;
 
-import java.util.Collection;
+import java.io.InputStream;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public final class FortifyRulesDefinition implements RulesDefinition {
 
@@ -55,30 +56,43 @@ public final class FortifyRulesDefinition implements RulesDefinition {
 
   private final Languages languages;
   private final RulePackParser rulePackParser;
+  private final RulesDefinitionXmlLoader xmlLoader;
 
   private final Map<String, NewRepository> newRepositories = new HashMap<String, NewRepository>();
   private final Map<String, FormatVersion> addedRulesVersions = new HashMap<String, FormatVersion>();
-  private final Map<String, Map<String, Set<String>>> addedRuleIdsByLanguageAndName = new HashMap<String, Map<String, Set<String>>>();
 
-  public FortifyRulesDefinition(Settings settings, Languages languages) {
-    this(new RulePackParser(settings), languages);
+  public FortifyRulesDefinition(Settings settings, Languages languages, RulesDefinitionXmlLoader xmlLoader) {
+    this(new RulePackParser(settings), languages, xmlLoader);
   }
 
   @VisibleForTesting
-  FortifyRulesDefinition(RulePackParser rulePackParser, Languages languages) {
+  FortifyRulesDefinition(RulePackParser rulePackParser, Languages languages, RulesDefinitionXmlLoader xmlLoader) {
     this.rulePackParser = rulePackParser;
     this.languages = languages;
+    this.xmlLoader = xmlLoader;
   }
 
   @Override
   public void define(Context context) {
     List<RulePack> rulePacks = this.rulePackParser.parse();
-    for (NewRepository newRepository : parseRulePacks(context, rulePacks)) {
+    parseXml(context);
+    parseRulePacks(context, rulePacks);
+    for (NewRepository newRepository : newRepositories.values()) {
       newRepository.done();
     }
   }
 
-  private Collection<NewRepository> parseRulePacks(Context context, List<RulePack> rulePacks) {
+  private void parseXml(Context context) {
+    for (Language supportedLanguage : languages.all()) {
+      InputStream rulesXml = this.getClass().getResourceAsStream("/rules/rules-" + supportedLanguage.getKey() + ".xml");
+      if (rulesXml != null) {
+        NewRepository repository = getRepository(context, supportedLanguage.getKey());
+        xmlLoader.load(repository, rulesXml, Charsets.UTF_8.name());
+      }
+    }
+  }
+
+  private void parseRulePacks(Context context, List<RulePack> rulePacks) {
     for (RulePack rulePack : rulePacks) {
       for (FortifyRule rule : rulePack.getRules()) {
         String sqLanguageKey = convertToSQ(rulePack.getRuleLanguage(rule));
@@ -87,41 +101,22 @@ public final class FortifyRulesDefinition implements RulesDefinition {
         }
       }
     }
-
-    return this.newRepositories.values();
   }
 
   private void processRule(Context context, RulePack rulePack, FortifyRule rule, String sqLanguageKey) {
     NewRepository repo = getRepository(context, sqLanguageKey);
     String htmlDescription = rulePack.getHTMLDescription(rule.getDescription());
-    NewRule newRule = repo.rule(rule.getRuleID());
+    NewRule newRule = repo.rule(rule.getSonarKey());
     if (newRule == null) {
-      newRule = repo
-        .createRule(rule.getRuleID());
+      newRule = repo.createRule(rule.getSonarKey());
     }
     String name = rule.getName();
-    Map<String, Set<String>> addedRuleIdsByName = this.addedRuleIdsByLanguageAndName.get(sqLanguageKey);
-    if (addedRuleIdsByName == null) {
-      addedRuleIdsByName = new HashMap<String, Set<String>>();
-      this.addedRuleIdsByLanguageAndName.put(sqLanguageKey, addedRuleIdsByName);
-    }
-    Set<String> ruleIds = addedRuleIdsByName.get(name);
-    if (ruleIds == null) {
-      ruleIds = new HashSet<String>();
-      ruleIds.add(rule.getRuleID());
-      addedRuleIdsByName.put(name, ruleIds);
-      newRule
-        .setName(name);
-    } else {
-      if (ruleIds.size() == 1) {
-        NewRule alreadyAdded = repo.rule(ruleIds.iterator().next());
-        alreadyAdded.setName(name + " - #1");
-      }
-      ruleIds.add(rule.getRuleID());
-      newRule
-        .setName(name + " - #" + ruleIds.size());
+    if (name == null) {
+      LOG.debug("Ignoring Fortify rule " + rule.getRuleID());
+      return;
     }
     newRule
+      .setName(name)
       .setHtmlDescription(StringUtils.isNotBlank(htmlDescription) ? htmlDescription : "No description available")
       .setSeverity(rule.getDefaultSeverity())
       .setTags(rule.getTags());

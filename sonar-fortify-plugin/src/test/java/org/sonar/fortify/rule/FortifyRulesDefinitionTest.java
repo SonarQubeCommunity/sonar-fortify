@@ -24,6 +24,7 @@ import org.sonar.api.config.Settings;
 import org.sonar.api.resources.AbstractLanguage;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonar.fortify.base.FortifyConstants;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -31,19 +32,21 @@ import static org.fest.assertions.Assertions.assertThat;
 public class FortifyRulesDefinitionTest {
 
   @Test
-  public void create_rules() {
+  public void create_rules_from_xml_definition_and_rulepack() {
     Settings settings = new Settings();
     settings.setProperty(FortifyConstants.RULEPACK_PATHS_PROPERTY, "src/test/resources/rulepack,src/test/resources/rulepack/other-rulepack.xml");
 
     RulePackParser parser = new RulePackParser(settings);
 
-    Languages languages = new Languages(language("java"));
+    Languages languages = new Languages(language("java"), language("plsql"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
-    new FortifyRulesDefinition(parser, languages).define(context);
+    new FortifyRulesDefinition(parser, languages, new RulesDefinitionXmlLoader()).define(context);
 
     assertThat(context.repository("fortify-java")).isNotNull();
     assertThat(context.repository("fortify-java").rules()).isNotEmpty();
+    assertThat(context.repository("fortify-plsql")).isNotNull();
+    assertThat(context.repository("fortify-plsql").rules()).isNotEmpty();
   }
 
   private AbstractLanguage language(String key) {
@@ -65,7 +68,7 @@ public class FortifyRulesDefinitionTest {
     Languages languages = new Languages(language("flex"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
-    new FortifyRulesDefinition(parser, languages).define(context);
+    new FortifyRulesDefinition(parser, languages, new RulesDefinitionXmlLoader()).define(context);
 
     assertThat(context.repository("fortify-flex").rules()).isNotEmpty();
   }
@@ -80,7 +83,7 @@ public class FortifyRulesDefinitionTest {
     Languages languages = new Languages(language("js"));
 
     RulesDefinition.Context context = new RulesDefinition.Context();
-    new FortifyRulesDefinition(parser, languages).define(context);
+    new FortifyRulesDefinition(parser, languages, new RulesDefinitionXmlLoader()).define(context);
 
     assertThat(context.repository("fortify-js").rules()).isNotEmpty();
   }

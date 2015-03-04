@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
+					<title>Software Security | Protect your Software at the Source | Fortify Software</title>
+					<link rel="stylesheet" href="../css/vcmain.css" type="text/css" media="screen" title="no title"
+					      charset="utf-8"/>
+				</head>
+				<script language="javascript">
+
+					if (top.location == self.location)
+					{ //if page is not in its frameset
+					//top.location.href = "/vulncat/index.html?open=" + window.location.href;
+					}
+
+				</script>
+
+				<!-- End of document.header.tile -->
+
+				<body class="level3">
+
+
+					<div id="theWrapper">
+						<div id="theContentCenter">
+							<!-- desc.dynamic.actionscript.dangerous_function_asnative -->						
+							<h1>
+							   Dangerous Function: ASNative
+							</h1>
+							<h2>ABSTRACT</h2>
+							<p>
+							  Using undocumented function an attacker could inject malicious functionality into the application.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Use of ASNative function was detected. ASNative is an undocumented function reference list. Developers can use the list to call Flash system functions by using indices into the list. For example, the trace() function can also be referenced as ASNative(100, 4). Since the use of ASNative allows a developer to hide the intended function name, this could indicate a malicious intent. Support for ASNative has been discontinued for Flash Player versions 7 and above. ASNative function can be used by malware developers to hide malicious content from auditors. This may be an indication of potentially malicious activity being performed by the Flash application.<br><b>Example:</b> <br>      ASNative(100, 4)("Hi"); //is equivalent to trace("Hi");<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 676</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Risky Resource Management - CWE ID 676</em> <br></p>
+																									   <p>[8] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>
+																														<div id="theFooter">
+							<p></p>
+							<br/>
+							<center>
+							Copyright 2014 Fortify Software - All rights reserved.
+							<br/>
+							(Generated from version 2014.4.0.0008 of the Fortify Secure Coding Rulepacks)
+							<br/>
+							desc.dynamic.actionscript.dangerous_function_asnative
+							</center>
+							<p></p>
+						</div>

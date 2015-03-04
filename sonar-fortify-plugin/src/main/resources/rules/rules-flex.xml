@@ -1,0 +1,999 @@
+<rules>
+  <!-- see names and descriptions in org/sonar/l10n/ -->
+  <rule>
+    <key>API Abuse/Dangerous Function: ASNative</key>
+    <name>Dangerous Function: ASNative</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Using undocumented function an attacker could inject malicious functionality into the application.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Use of ASNative function was detected. ASNative is an undocumented function reference list. Developers can use the list to call Flash system functions by using indices into the list. For example, the trace() function can also be referenced as ASNative(100, 4). Since the use of ASNative allows a developer to hide the intended function name, this could indicate a malicious intent. Support for ASNative has been discontinued for Flash Player versions 7 and above. ASNative function can be used by malware developers to hide malicious content from auditors. This may be an indication of potentially malicious activity being performed by the Flash application.<br><b>Example:</b> <br>      ASNative(100, 4)("Hi"); //is equivalent to trace("Hi");<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP2060.4 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 676</em> <br></p>
+																									   <p>[7] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Risky Resource Management - CWE ID 676</em> <br></p>
+																									   <p>[8] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>api-abuse</tag>
+  </rule>
+  <rule>
+    <key>API Abuse/Often Misused: Flash Storage Object</key>
+    <name>Often Misused: Flash Storage Object</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Unsafe use of Flash storage objects could lead to unauthorized client-side access to sensitive content.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Local Storage Objects (LSO) are a mechanism provided by the Flash platform to persistently store data on the client machine. By default the Flash security model restricts access to a shared object based on the domain hosting the SWF file that created it, the path of the SWF file and whether the creating SWF file was hosted on HTTP or HTTPS. The localpath property on a shared object specifies the path of the SWFs that have access to a shared object. So a shared object created by http://www.example.com/dir1/dir2/sample.swf can be configured to be accessible by any SWF at http://www.example.com/dir1 by setting its localPath property to http://www.example.com/dir1.<br>Setting the localPath value to "/", all SWF files on that domain gain access to the shared object. On a domain hosting SWF applications from multiple parties, such a setting could lead to unauthorized data access.<br><br>If an application uses "/" to set the localPath inside a <code>SharedObject.getLocal()</code> call, the shared object is configured to be accessible by all SWFs on the domain exposing the application to information theft risks.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.3</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.3</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[9] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-4 Information in Shared Resources (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>api-abuse</tag>
+  </rule>
+  <rule>
+    <key>Code Quality/Portability Flaw: File Separator</key>
+    <name>Portability Flaw: File Separator</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The use of hardcoded file separators causes portability problems.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Different operating systems use different characters as file separators. For example, Microsoft Windows systems use "\", while UNIX systems use "/". When applications have to run on different platforms, the use of hardcoded file separators can lead to incorrect execution of application logic and potentially a denial of service.<br><br><br><br><b>Example 1:</b> The following code uses a hardcoded file separator to open a file:<br><br><pre><br>...<br>var file:File = new File(directoryName + "\\" + fileName);<br>...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 474</em> <br></p>
+																									   <p>[2] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>code-quality</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: ENABLEDEBUGGER Tag</key>
+    <name>Flash Misconfiguration: ENABLEDEBUGGER Tag</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Enabling remote debugging of Flash applications can expose sensitive functionality and lead to a severe compromise of the application.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The use of <code>ENABLEDEBUGGER</code> and <code>ENABLEDEBUGGER2</code> enables support for remote debugging and also contains a poorly salted MD5 password hash. The tag does not offer any security guarantees and can be easily cirumvented by using any hex editor tool. Not only is the remote debugging protection easily bypassed, the password the developer used to secure the file is easily recoverable. Flash uses a 16 bit salt added to the password and applies the MD5 hash algorithm to it. This is a weak salt and the password can be recovered using password cracking programs.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 215</em> <br></p>
+																									   <p>[6] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[9] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: Overly Permissive Cross-Domain Policy</key>
+    <name>Flash Misconfiguration: Overly Permissive Cross-Domain Policy</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The program defines an overly permissive cross-domain policy.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By default, Flash applications are subject to the Same Origin Policy which ensures that two SWF applications can access each other's data only if they come from the same domain. Adobe Flash allows developers to alter the policy either programmatically or via appropriate settings in the <code>crossdomain.xml</code> configuration file. However, caution should be taken when changing the settings because an overly permissive cross-domain policy will allow a malicious application to communicate with the victim application in an inappropriate way, leading to spoofing, data theft, relay and other attacks.<br><br><b>Example 1:</b> Below is an example of using a wildcard to specify which domains the application is allowed to communicate with.<br><br><pre><br>  &lt;cross-domain-policy&gt;<br>    &lt;allow-access-from domain="*"/&gt;<br>  &lt;/cross-domain-policy&gt;<br></pre><br><br>Using the <code>*</code> as the value of the <code>domain</code> attribute indicates that the application's data is accessible to other SWF applications from any domain.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Matt Wood and Prajakta Jagdale <em>Auditing Adobe Flash through Static Analysis</em> <br></p>
+																									   <p>[4] Peleus Uhley <em>Creating more secure SWF web applications</em> <br></p>
+																									   <p>[5] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: Overly Permissive Custom Headers Policy</key>
+    <name>Flash Misconfiguration: Overly Permissive Custom Headers Policy</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The program defines an overly permissive custom headers policy.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By default, Flash applications are subject to the Same Origin Policy which ensures that two SWF applications can access each other's data only if they come from the same domain. Adobe Flash allows developers to alter the policy either programmatically or via appropriate settings in the <code>crossdomain.xml</code> configuration file. Starting with Flash Player 9,0,124,0, Adobe also introduced the capability to define which custom headers Flash Player can send across domains. However, caution should be taken when defining these settings because an overly permissive custom headers policy, when applied together with the overly permissive cross-domain policy, will allow a malicious application to send headers of their choosing to the target application, potentially leading to a variety of attacks or causing errors in the execution of the application that does not know how to handle received headers.<br><br><b>Example 1:</b> Below is an example of using a wildcard to specify which headers Flash Player can send across domains.<br><br><pre><br>  &lt;cross-domain-policy&gt;<br>    &lt;allow-http-request-headers-from domain="*" headers="*"/&gt;<br>  &lt;/cross-domain-policy&gt;<br></pre><br><br>Using the <code>*</code> as the value of the <code>headers</code> attribute indicates that any header will be sent across domains.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Matt Wood and Prajakta Jagdale <em>Auditing Adobe Flash through Static Analysis</em> <br></p>
+																									   <p>[4] Peleus Uhley <em>Creating more secure SWF web applications</em> <br></p>
+																									   <p>[5] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: Policy Restrictions Bypass</key>
+    <name>Flash Misconfiguration: Policy Restrictions Bypass</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The program uses unvalidated user input to bypass intended cross-domain policy restrictions.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  By default, Flash applications are subject to the Same Origin Policy which ensures that two SWF applications can access each other's data only if they come from the same domain. Adobe Flash allows developers to alter the policy either programmatically or via appropriate settings in the <code>crossdomain.xml</code> configuration file. However, caution should be taken when deciding who can influence the settings because an overly permissive cross-domain policy will allow a malicious application to communicate with the victim application in an inappropriate way, leading to spoofing, data theft, relay and other attacks. Policy restrictions bypass vulnerabilities occur when:<br><br>1. Data enters an application from an untrusted source.<br><br>2. The data is used to load or modify cross-domain policy settings.<br><br><br><b>Example 1:</b> The code below uses the value of one of the parameters to the loaded SWF file as the URL to load the cross-domain policy file from.<br><br><pre><br>   ...<br>   var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>   var url:String = String(params["url"]);<br>   flash.system.Security.loadPolicyFile(url);<br>   ...<br></pre><br><br><b>Example 2:</b> The code below uses the value of one of the parameters to the loaded SWF file to define the list of trusted domains.<br><br><pre><br>   ...<br>   var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>   var domain:String = String(params["domain"]);<br>   flash.system.Security.allowDomain(domain);<br>   ...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[2] Matt Wood and Prajakta Jagdale <em>Auditing Adobe Flash through Static Analysis</em> <br></p>
+																									   <p>[3] Peleus Uhley <em>Creating more secure SWF web applications</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: Source Code Disclosure</key>
+    <name>Flash Misconfiguration: Source Code Disclosure</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Enabling access to the source code of production Flash applications could lead to unintended disclosure of sensitive information.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  As a convenient debugging option, certain Flex authoring tools allow developers to export Flex projects with the source code files for the project. The failure to disable this access for production files could severely compromise the security of the application. It will allow any end user to view the source of the Flex application by right clicking on the running SWF inside the browser and selecting view source. This results in a source disclosure vulnerability. It is recommended that this feature be turned off to avoid unintended access to the source code.<br><br>Source code often contains database usernames, passwords and connection strings and locations of sensitive files. It also reveals the detailed mechanics and design of the application's logic, which can be used to develop other attacks.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[11] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[16] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/Flash Misconfiguration: Unauthorized Data Access</key>
+    <name>Flash Misconfiguration: Unauthorized Data Access</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The program allows HTTP and HTTPS SWF applications to communicate.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Starting with Flash Player 7, SWF applications loaded over HTTP are not allowed to access data of SWF applications loaded over HTTPS by default. Adobe Flash allows developers to alter this restriction either programmatically or via appropriate settings in the <code>crossdomain.xml</code> configuration file. However, caution should be taken when defining these settings because HTTP loaded SWF applications are subject to man-in-the-middle attacks, and thus should not be trusted.<br><br><b>Example:</b> The <code>crossdomain.xml</code> file below turns off the restriction that prevents HTTP loaded SWF applications from accessing the data of HTTPS loaded SWF applications by setting the value of the <code>secure</code> attribute to <code>false</code>.<br><br><pre><br>  &lt;cross-domain-policy&gt;<br>    &lt;allow-access-from domain="*" secure="false"/&gt;<br>  &lt;/cross-domain-policy&gt;<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-4 Information Flow Enforcement (P1)</em> <br></p>
+																									   <p>[3] Matt Wood and Prajakta Jagdale <em>Auditing Adobe Flash through Static Analysis</em> <br></p>
+																									   <p>[4] Peleus Uhley <em>Creating more secure SWF web applications</em> <br></p>
+																									   <p>[5] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[6] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 862</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[8] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.4, Requirement 6.5.8</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/System Information Leak: External</key>
+    <name>System Information Leak: External</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Revealing system data or debugging information helps an adversary learn about the system and form a plan of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  An external information leak occurs when system data or debugging information leaves the program to a remote machine via a socket or network connection.<br><br><br><br><b>Example:</b> The following code prints a stack trace to either a "Debug" console or a log file:<br><br><pre><br>  try {<br>    ...<br>  }<br>  catch(e:Error) {<br>    trace(e.getStackTrace());<br>  }<br></pre><br><br>Depending upon the system configuration, this information can be dumped to a console, written to a log file, or exposed to a remote user. For example, with scripting mechanisms it is trivial to redirect output information from &quot;Standard error&quot; or &quot;Standard output&quot; into a file or another program. Alternatively the system that the program runs on could have a remote logging mechanism such as a &quot;syslog&quot; server that will send the logs to a remote device. During development you will have no way of knowing where this information may end up being displayed. <br><br>In some cases the error message tells the attacker precisely what sort of an attack the system is vulnerable to. For example, a database error message can reveal that the application is vulnerable to a SQL injection attack. Other error messages can reveal more oblique clues about the system. In the example above, the search path could imply information about the type of operating system, the applications installed on the system, and the amount of care that the administrators have put into configuring the program.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 497</em> <br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[9] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Encapsulation/System Information Leak: Internal</key>
+    <name>System Information Leak: Internal</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Revealing system data or debugging information helps an adversary learn about the system and form a plan of attack.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  An internal information leak occurs when system data or debugging information is sent to a local file, console, or screen via printing or logging.<br><br><br><br><b>Example:</b> The following code prints a stack trace to either a "Debug" console or a log file:<br><br><pre><br>  try {<br>    ...<br>  }<br>  catch(e:Error) {<br>    trace(e.getStackTrace());<br>  }<br></pre><br><br>Depending upon the system configuration, this information can be dumped to a console, written to a log file, or exposed to a user. In some cases the error message tells the attacker precisely what sort of an attack the system is vulnerable to. For example, a database error message can reveal that the application is vulnerable to a SQL injection attack. Other error messages can reveal more oblique clues about the system. In the example above, the search path could imply information about the type of operating system, the applications installed on the system, and the amount of care that the administrators have put into configuring the program.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[3] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3620 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 497</em> <br></p>
+																									   <p>[8] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[9] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[10] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[11] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.5</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.6</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>encapsulation</tag>
+  </rule>
+  <rule>
+    <key>Environment/Flash Misconfiguration: Vulnerable Flash Engine</key>
+    <name>Flash Misconfiguration: Vulnerable Flash Engine</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Failure to limit the execution of a Flash application to the latest version of Flash player could expose it to compromise by malware distributors.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Several versions of the Flash player have been known to be vulnerable to code execution issues. Every flash application can configure the version of the player that can be used to run it. Programmers can therefore restrict the execution of their applications to only the latest versions. However since this could potentially limit the userbase, programmers often do not adhere to this practice.<br>Using an old, possibly vulnerable version of the player to execute an application introduces unnecessary risk. Generally web developers will allow the minimum required version run the flash object, but this exposes the users to an exploitable situation. Requiring the latest Flash Player version is critical to protect users from known player vulnerabilities including Cross-Site Scripting, and Remote Code Execution (on the client machine).
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[2] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>environment</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Command Injection</key>
+    <name>Command Injection</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Executing commands that include unvalidated user input can cause an application to execute malicious commands on behalf of an attacker.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Command injection vulnerabilities take two forms:<br><br>- An attacker can change the command that the program executes: the attacker explicitly controls what the command is.<br><br>- An attacker can change the environment in which the command executes: the attacker implicitly controls what the command means.<br><br>In this case we are primarily concerned with the second scenario, the possibility that an attacker may be able to change the meaning of the command by changing an environment variable or by putting a malicious executable early in the search path. Command injection vulnerabilities of this type occur when:<br><br>1. An attacker modifies an application's environment.<br><br>2. The application executes a command without specifying an absolute path or verifying the binary being executed.<br><br>3. By executing the command, the application gives an attacker a privilege or capability that the attacker would not otherwise have.<br><br><b>Example:</b> The following code is from a web application that allows users access to an interface through which they can update their password on the system. Part of the process for updating passwords in certain network environments is to run a <code>make</code> command in the <code>/var/yp</code> directory, the code for which is shown below.<br><br><pre><br>...<br>fscommand("exec", "make");<br>...<br></pre><br><br>The problem here is that the program does not specify an absolute path for make and fails to clean its environment prior to executing the call to <code>fscommand()</code>. If an attacker can modify the <code>$PATH</code> variable to point to a malicious binary called <code>make</code> and then execute the application in their environment, the malicious binary will be loaded instead of the one intended. Because of the nature of the application, it runs with the privileges necessary to perform system operations, which means the attacker's <code>make</code> will now be run with these privileges, possibly giving them complete control of the system.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 77, CWE ID 78</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 078</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 078</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[15] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>OS Commanding</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Cross-Site Flashing</key>
+    <name>Cross-Site Flashing</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  The program uses unvalidated user input to load a SWF file, which can cause arbitrary content to be referenced and possibly executed by the targeted Flash application.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Flash APIs provide an interface for loading remote SWF files into the existing execution environment. Even though the cross-domain policy only allows to load SWF files from a list of trusted domains, more often than not the defined cross-domain policy is overly permissive. Allowing untrusted user input to define which SWF files to load can lead to arbitrary content being referenced and possibly executed by the targeted application, resulting in a cross-site flashing attack.<br><br>Cross-site flashing vulnerabilities occur when:<br><br>1. Data enters an application from an untrusted source.<br><br>2. The data is used to load a remote SWF file.<br><br><br><b>Example:</b> The code below uses the value of one of the parameters to the loaded SWF file as the URL to load a remote SWF file from.<br><br><pre><br>   ...<br>   var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>   var url:String = String(params["url"]);<br>   var ldr:Loader = new Loader();<br>   var urlReq:URLRequest = new URLRequest(url);<br>   ldr.load(urlReq);<br>   ...<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Matt Wood and Prajakta Jagdale <em>Auditing Adobe Flash through Static Analysis</em> <br></p>
+																									   <p>[2] Peleus Uhley <em>Creating more secure SWF web applications</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[4] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[6] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[7] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[8] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Cross-Site Scripting: Persistent</key>
+    <name>Cross-Site Scripting: Persistent</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Sending unvalidated data to a web browser can result in the browser executing malicious code.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Cross-site scripting (XSS) vulnerabilities occur when:<br><br>1. Data enters a web application through an untrusted source. In the case of Persistent (also known as Stored) XSS, the untrusted source is typically a database or other back-end datastore, while in the case of Reflected XSS it is typically a web request.<br><br><br>2. The data is included in dynamic content that is sent to a web user without being validated.<br><br>The malicious content sent to the web browser often takes the form of a segment of JavaScript, but may also include HTML, Flash or any other type of code that the browser may execute. The variety of attacks based on XSS is almost limitless, but they commonly include transmitting private data like cookies or other session information to the attacker, redirecting the victim to web content controlled by the attacker, or performing other malicious operations on the user's machine under the guise of the vulnerable site.<br><br><b>Example 1:</b> The following ActionScript code segment queries a database for an employee with a given ID and prints the corresponding employee's name.<br><br><pre><br>  stmt.sqlConnection = conn;<br>  stmt.text = "select * from emp where id="+eid;<br>  stmt.execute();<br>  var rs:SQLResult = stmt.getResult();<br>  if (null != rs) {<br>    var name:String = String(rs.data[0]);<br>    var display:TextField = new TextField();<br>    display.htmlText = "Employee Name: " + name;<br>  }<br></pre><br><br>This code functions correctly when the values of <code>name</code> are well-behaved, but it does nothing to prevent exploits if they are not. This code can appear less dangerous because the value of <code>name</code> is read from a database, whose contents are apparently managed by the application. However, if the value of <code>name</code> originates from user-supplied data, then the database can be a conduit for malicious content. Without proper input validation on all data stored in the database, an attacker can execute malicious commands in the user's web browser. This type of exploit, known as Persistent (or Stored) XSS, is particularly insidious because the indirection caused by the data store makes it more difficult to identify the threat and increases the possibility that the attack will affect multiple users. XSS got its start in this form with web sites that offered a "guestbook" to visitors. Attackers would include JavaScript in their guestbook entries, and all subsequent visitors to the guestbook page would execute the malicious code.<br><br><b>Example 2:</b> The following ActionScript code segment reads an employee ID, <code>eid</code>, from an HTTP request and displays it to the user.<br><br><pre><br>var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>var eid:String = String(params["eid"]);<br>...<br>var display:TextField = new TextField();<br>display.htmlText = "Employee ID: " + eid;<br>...<br></pre><br><br>As in Example 1, this code operates correctly if <code>eid</code> contains only standard alphanumeric text. If <code>eid</code> has a value that includes meta-characters or source code, then the code will be executed by the web browser as it displays the HTTP response.<br><br>Initially this might not appear to be much of a vulnerability. After all, why would someone enter a URL that causes malicious code to run on their own computer? The real danger is that an attacker will create the malicious URL, then use e-mail or social engineering tricks to lure victims into visiting a link to the URL. When victims click the link, they unwittingly reflect the malicious content through the vulnerable web application back to their own computers. This mechanism of exploiting vulnerable web applications is known as Reflected XSS.<br><br>As the examples demonstrate, XSS vulnerabilities are caused by code that includes unvalidated data in an HTTP response. There are three vectors by which an XSS attack can reach a victim:<br><br>- As in Example 1, the application stores dangerous data in a database or other trusted data store. The dangerous data is subsequently read back into the application and included in dynamic content. Persistent XSS exploits occur when an attacker injects dangerous content into a data store that is later read and included in dynamic content. From an attacker's perspective, the optimal place to inject malicious content is in an area that is displayed to either many users or particularly interesting users. Interesting users typically have elevated privileges in the application or interact with sensitive data that is valuable to the attacker. If one of these users executes malicious content, the attacker may be able to perform privileged operations on behalf of the user or gain access to sensitive data belonging to the user.<br><br>- As in Example 2, data is read directly from the HTTP request and reflected back in the HTTP response. Reflected XSS exploits occur when an attacker causes a user to supply dangerous content to a vulnerable web application, which is then reflected back to the user and executed by the web browser. The most common mechanism for delivering malicious content is to include it as a parameter in a URL that is posted publicly or e-mailed directly to victims. URLs constructed in this manner constitute the core of many phishing schemes, whereby an attacker convinces victims to visit a URL that refers to a vulnerable site. After the site reflects the attacker's content back to the user, the content is executed and proceeds to transfer private information, such as cookies that may include session information, from the user's machine to the attacker or perform other nefarious activities.<br><br>- A source outside the application stores dangerous data in a database or other data store, and the dangerous data is subsequently read back into the application as trusted data and included in dynamic content.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A1 Cross Site Scripting (XSS)</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A2 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A3 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A4 Cross Site Scripting</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Cross-site Scripting</em> <br></p>
+																									   <p>[11] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 79, CWE ID 80</em> <br></p>
+																									   <p>[12]  <em>HTML 4.01 Specification</em> W3<br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[14] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[16] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[20] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[21] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[22] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[23]  <em>Understanding Malicious Content Mitigation for Web Developers</em> CERT<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Cross-Site Scripting: Poor Validation</key>
+    <name>Cross-Site Scripting: Poor Validation</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Relying on HTML, XML and other types of encoding to validate user input can result in the browser executing malicious code.>
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The use of certain encoding functions will prevent some, but not all cross-site scripting attacks. Depending on the context in which the data appear, characters beyond the basic &lt;, &gt;, &amp;, and " that are HTML-encoded and those beyond &lt;, &gt;, &amp;, ", and ' that are XML-encoded may take on meta-meaning. Relying on such encoding functions is equivalent to using a weak blacklist to prevent cross-site scripting and might allow an attacker to inject malicious code that will be executed in the browser. Because accurately identifying the context in which the data appear statically is not always possible, the HP Fortify Secure Coding Rulepacks report cross-site scripting findings even when encoding is applied and presents them as Cross-Site Scripting: Poor Validation issues.<br><br>Cross-site scripting (XSS) vulnerabilities occur when:<br><br>1. Data enters a web application through an untrusted source. In the case of Reflected XSS, the untrusted source is typically a web request, while in the case of Persisted (also known as Stored) XSS it is typically a database or other back-end datastore.<br><br><br>2. The data is included in dynamic content that is sent to a web user without being validated.<br><br>The malicious content sent to the web browser often takes the form of a segment of JavaScript, but may also include HTML, Flash or any other type of code that the browser may execute. The variety of attacks based on XSS is almost limitless, but they commonly include transmitting private data like cookies or other session information to the attacker, redirecting the victim to web content controlled by the attacker, or performing other malicious operations on the user's machine under the guise of the vulnerable site.<br><br><b>Example 1:</b> The following ActionScript code segment reads an employee ID, <code>eid</code>, from an HTTP request, HTML-encodes it, and displays it to the user.<br><br><pre><br>var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>var eid:String = String(params["eid"]);<br>...<br>var display:TextField = new TextField();<br>display.htmlText = "Employee ID: " + escape(eid);<br>...<br></pre><br><br>The code in this example operates correctly if <code>eid</code> contains only standard alphanumeric text. If <code>eid</code> has a value that includes meta-characters or source code, then the code will be executed by the web browser as it displays the HTTP response.<br><br>Initially this might not appear to be much of a vulnerability. After all, why would someone enter a URL that causes malicious code to run on their own computer? The real danger is that an attacker will create the malicious URL, then use e-mail or social engineering tricks to lure victims into visiting a link to the URL. When victims click the link, they unwittingly reflect the malicious content through the vulnerable web application back to their own computers. This mechanism of exploiting vulnerable web applications is known as Reflected XSS.<br><br><b>Example 2:</b> The following ActionScript code segment queries a database for an employee with a given ID and prints the corresponding HTML-encoded employee's name.<br><br><pre><br>  stmt.sqlConnection = conn;<br>  stmt.text = "select * from emp where id="+eid;<br>  stmt.execute();<br>  var rs:SQLResult = stmt.getResult();<br>  if (null != rs) {<br>    var name:String = String(rs.data[0]);<br>    var display:TextField = new TextField();<br>    display.htmlText = "Employee Name: " + escape(name);<br>  }<br></pre><br><br>As in Example 1, this code functions correctly when the values of <code>name</code> are well-behaved, but it does nothing to prevent exploits if they are not. Again, this code can appear less dangerous because the value of <code>name</code> is read from a database, whose contents are apparently managed by the application. However, if the value of <code>name</code> originates from user-supplied data, then the database can be a conduit for malicious content. Without proper input validation on all data stored in the database, an attacker can execute malicious commands in the user's web browser. This type of exploit, known as Persistent (or Stored) XSS, is particularly insidious because the indirection caused by the data store makes it more difficult to identify the threat and increases the possibility that the attack will affect multiple users. XSS got its start in this form with web sites that offered a "guestbook" to visitors. Attackers would include JavaScript in their guestbook entries, and all subsequent visitors to the guestbook page would execute the malicious code.<br><br>As the examples demonstrate, XSS vulnerabilities are caused by code that includes unvalidated data in an HTTP response. There are three vectors by which an XSS attack can reach a victim:<br><br>- As in Example 1, data is read directly from the HTTP request and reflected back in the HTTP response. Reflected XSS exploits occur when an attacker causes a user to supply dangerous content to a vulnerable web application, which is then reflected back to the user and executed by the web browser. The most common mechanism for delivering malicious content is to include it as a parameter in a URL that is posted publicly or e-mailed directly to victims. URLs constructed in this manner constitute the core of many phishing schemes, whereby an attacker convinces victims to visit a URL that refers to a vulnerable site. After the site reflects the attacker's content back to the user, the content is executed and proceeds to transfer private information, such as cookies that may include session information, from the user's machine to the attacker or perform other nefarious activities.<br><br>- As in Example 2, the application stores dangerous data in a database or other trusted data store. The dangerous data is subsequently read back into the application and included in dynamic content. Persistent XSS exploits occur when an attacker injects dangerous content into a data store that is later read and included in dynamic content. From an attacker's perspective, the optimal place to inject malicious content is in an area that is displayed to either many users or particularly interesting users. Interesting users typically have elevated privileges in the application or interact with sensitive data that is valuable to the attacker. If one of these users executes malicious content, the attacker may be able to perform privileged operations on behalf of the user or gain access to sensitive data belonging to the user.<br><br>- A source outside the application stores dangerous data in a database or other data store, and the dangerous data is subsequently read back into the application as trusted data and included in dynamic content.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A1 Cross Site Scripting (XSS)</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A2 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A3 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A4 Cross Site Scripting</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Cross-site Scripting, Content Spoofing</em> <br></p>
+																									   <p>[11] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 82, CWE ID 83, CWE ID 87, CWE ID 692</em> <br></p>
+																									   <p>[12]  <em>HTML 4.01 Specification</em> W3<br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[19] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[21]  <em>Understanding Malicious Content Mitigation for Web Developers</em> CERT<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Cross-Site Scripting: Reflected</key>
+    <name>Cross-Site Scripting: Reflected</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Sending unvalidated data to a web browser can result in the browser executing malicious code.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Cross-site scripting (XSS) vulnerabilities occur when:<br><br>1. Data enters a web application through an untrusted source. In the case of Reflected XSS, the untrusted source is typically a web request, while in the case of Persisted (also known as Stored) XSS it is typically a database or other back-end datastore.<br><br><br>2. The data is included in dynamic content that is sent to a web user without being validated.<br><br>The malicious content sent to the web browser often takes the form of a segment of JavaScript, but may also include HTML, Flash or any other type of code that the browser may execute. The variety of attacks based on XSS is almost limitless, but they commonly include transmitting private data like cookies or other session information to the attacker, redirecting the victim to web content controlled by the attacker, or performing other malicious operations on the user's machine under the guise of the vulnerable site.<br><br><b>Example 1:</b> The following ActionScript code segment reads an employee ID, <code>eid</code>, from an HTTP request and displays it to the user.<br><br><pre><br>var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>var eid:String = String(params["eid"]);<br>...<br>var display:TextField = new TextField();<br>display.htmlText = "Employee ID: " + eid;<br>...<br></pre><br><br>The code in this example operates correctly if <code>eid</code> contains only standard alphanumeric text. If <code>eid</code> has a value that includes meta-characters or source code, then the code will be executed by the web browser as it displays the HTTP response.<br><br>Initially this might not appear to be much of a vulnerability. After all, why would someone enter a URL that causes malicious code to run on their own computer? The real danger is that an attacker will create the malicious URL, then use e-mail or social engineering tricks to lure victims into visiting a link to the URL. When victims click the link, they unwittingly reflect the malicious content through the vulnerable web application back to their own computers. This mechanism of exploiting vulnerable web applications is known as Reflected XSS.<br><br><b>Example 2:</b> The following ActionScript code segment queries a database for an employee with a given ID and prints the corresponding employee's name.<br><br><pre><br>  stmt.sqlConnection = conn;<br>  stmt.text = "select * from emp where id="+eid;<br>  stmt.execute();<br>  var rs:SQLResult = stmt.getResult();<br>  if (null != rs) {<br>    var name:String = String(rs.data[0]);<br>    var display:TextField = new TextField();<br>    display.htmlText = "Employee Name: " + name;<br>  }<br></pre><br><br>As in Example 1, this code functions correctly when the values of <code>name</code> are well-behaved, but it does nothing to prevent exploits if they are not. Again, this code can appear less dangerous because the value of <code>name</code> is read from a database, whose contents are apparently managed by the application. However, if the value of <code>name</code> originates from user-supplied data, then the database can be a conduit for malicious content. Without proper input validation on all data stored in the database, an attacker can execute malicious commands in the user's web browser. This type of exploit, known as Persistent (or Stored) XSS, is particularly insidious because the indirection caused by the data store makes it more difficult to identify the threat and increases the possibility that the attack will affect multiple users. XSS got its start in this form with web sites that offered a "guestbook" to visitors. Attackers would include JavaScript in their guestbook entries, and all subsequent visitors to the guestbook page would execute the malicious code.<br><br>As the examples demonstrate, XSS vulnerabilities are caused by code that includes unvalidated data in an HTTP response. There are three vectors by which an XSS attack can reach a victim:<br><br>- As in Example 1, data is read directly from the HTTP request and reflected back in the HTTP response. Reflected XSS exploits occur when an attacker causes a user to supply dangerous content to a vulnerable web application, which is then reflected back to the user and executed by the web browser. The most common mechanism for delivering malicious content is to include it as a parameter in a URL that is posted publicly or e-mailed directly to victims. URLs constructed in this manner constitute the core of many phishing schemes, whereby an attacker convinces victims to visit a URL that refers to a vulnerable site. After the site reflects the attacker's content back to the user, the content is executed and proceeds to transfer private information, such as cookies that may include session information, from the user's machine to the attacker or perform other nefarious activities.<br><br>- As in Example 2, the application stores dangerous data in a database or other trusted data store. The dangerous data is subsequently read back into the application and included in dynamic content. Persistent XSS exploits occur when an attacker injects dangerous content into a data store that is later read and included in dynamic content. From an attacker's perspective, the optimal place to inject malicious content is in an area that is displayed to either many users or particularly interesting users. Interesting users typically have elevated privileges in the application or interact with sensitive data that is valuable to the attacker. If one of these users executes malicious content, the attacker may be able to perform privileged operations on behalf of the user or gain access to sensitive data belonging to the user.<br><br>- A source outside the application stores dangerous data in a database or other data store, and the dangerous data is subsequently read back into the application as trusted data and included in dynamic content.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A1 Cross Site Scripting (XSS)</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A2 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A3 Cross-Site Scripting (XSS)</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A4 Cross Site Scripting</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3580 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Cross-site Scripting</em> <br></p>
+																									   <p>[11] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 79, CWE ID 80</em> <br></p>
+																									   <p>[12]  <em>HTML 4.01 Specification</em> W3<br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[14] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 079</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.7</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>
+																									   <p>[21] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[22]  <em>Understanding Malicious Content Mitigation for Web Developers</em> CERT<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Dynamic Code Evaluation: Code Injection</key>
+    <name>Dynamic Code Evaluation: Code Injection</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Interpreting user-controlled instructions at run-time can allow attackers to execute malicious code.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Many modern programming languages allow dynamic interpretation of source instructions. This capability allows programmers to perform dynamic instructions based on input received from the user. Code injection vulnerabilities occur when the programmer incorrectly assumes that instructions supplied directly from the user will perform only innocent operations, such as performing simple calculations on active user objects or otherwise modifying the user's state. However, without proper validation, a user might specify operations the programmer does not intend.<br><IfDef var="ConditionalDescriptions"><br> <br></IfDef><br><br><b>Example:</b> In this classic code injection example, the application implements a basic calculator that allows the user to specify commands for execution.<br><br><pre><br>...<br>        var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>        var userOps:String = String(params["operation"]);<br>        result = ExternalInterface.call("eval", userOps);<br>...<br></pre><br><br>The program behaves correctly when the <code>operation</code> parameter is a benign value, such as &quot;8 + 7 * 2&quot;, in which case the <code>result</code> variable is assigned a value of 22. However, if an attacker specifies language operations that are both valid and malicious, those operations would be executed with the full privilege of the parent process. Such attacks are even more dangerous when the underlying language provides access to system resources or allows execution of system commands. In the case of ActionScript, the attacker can utilize this vulnerability to perform a cross-site scripting attack.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 95</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 116</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[17] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Log Forging</key>
+    <name>Log Forging</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Writing unvalidated user input to log files can allow an attacker to forge log entries or inject malicious content into the logs.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Log forging vulnerabilities occur when:<br><br>1. Data enters an application from an untrusted source.<br><br>2. The data is written to an application or system log file.<br><br>Applications typically use log files to store a history of events or transactions for later review, statistics gathering, or debugging. Depending on the nature of the application, the task of reviewing log files may be performed manually on an as-needed basis or automated with a tool that automatically culls logs for important events or trending information.<br><br>Interpretation of the log files may be hindered or misdirected if an attacker can supply data to the application that is subsequently logged verbatim. In the most benign case, an attacker may be able to insert false entries into the log file by providing the application with input that includes appropriate characters. If the log file is processed automatically, the attacker can render the file unusable by corrupting the format of the file or injecting unexpected characters. A more subtle attack might involve skewing the log file statistics. Forged or otherwise, corrupted log files can be used to cover an attacker's tracks or even to implicate another party in the commission of a malicious act [1]. In the worst case, an attacker may inject code or other commands into the log file and take advantage of a vulnerability in the log processing utility [2].<br><br><b>Example:</b> The following web application code attempts to read an integer value from a request object. If the value fails to parse as an integer, then the input is logged with an error message indicating what happened.<br><br><pre><br>var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>var val:String = String(params["username"]);<br>var value:Number = parseInt(val);<br>if (value == Number.NaN) {<br>  trace("Failed to parse val = " + val);<br>}<br></pre><br><br>If a user submits the string "<code>twenty-one</code>" for <code>val</code>, the following entry is logged:<br><br><pre><br>Failed to parse val=twenty-one<br></pre><br><br>However, if an attacker submits the string "<code>twenty-one%0a%0aINFO:+User+logged+out%3dbadguy</code>", the following entry is logged:<br><br><pre><br>Failed to parse val=twenty-one<br><br>User logged out=badguy<br></pre><br><br>Clearly, attackers can use this same mechanism to insert arbitrary log entries.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3690.2 CAT II, APP3690.4 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - FIPS200 - (FISMA) <em>AU, SI</em> <br></p>
+																									   <p>[11] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AU-9 Protection of Audit Information (P1)</em> <br></p>
+																									   <p>[12] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 117</em> <br></p>
+																									   <p>[13] G. Hoglund, G. McGraw <em>Exploiting Software</em> Addison-Wesley<br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M8 Security Decisions Via Untrusted Inputs</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2, Requirement 10.5.2</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1, Requirement 10.5.2</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1, Requirement 10.5.2</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1, Requirement 10.5.2</em> <br></p>
+																									   <p>[19] A. Muffet <em>The night the log was forged.</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Open Redirect</key>
+    <name>Open Redirect</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Allowing unvalidated input to control the URL used in a redirect can aid phishing attacks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Redirects allow web applications to direct users to different pages within the same application or to external sites. Applications utilize redirects to aid in site navigation and, in some cases, to track how users exit the site. Open redirect vulnerabilities occur when a web application redirects clients to any arbitrary URL that can be controlled by an attacker.<br><br>Attackers can utilize open redirects to trick users into visiting a URL to a trusted site and redirecting them to a malicious site. By encoding the URL, an attacker can make it more difficult for end-users to notice the malicious destination of the redirect, even when it is passed as a URL parameter to the trusted site. Open redirects are often abused as part of phishing scams to harvest sensitive end-user data.<br><br><br><br><br><b>Example 1:</b> The following ActionScript code instructs the user's browser to open a URL read from the <code>dest</code> request parameter when a user clicks the link.<br><br><pre><br>        ...<br>        var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>        var strDest:String = String(params["dest"]);<br>        host.updateLocation(strDest);<br>        ...<br></pre><br><br>If a victim received an email instructing the user to follow a link to &quot;http://trusted.example.com/ecommerce/redirect.asp?dest=www.wilyhacker.com&quot;, the user would likely click on the link believing they would be transferred to the trusted site. However, when the user clicks the link, the code above will redirect the browser to &quot;http://www.wilyhacker.com&quot;.<br><br>Many users have been educated to always inspect URLs they receive in emails to make sure the link specifies a trusted site they know. However, if the attacker Hex encoded the destination url as follows:<br> &quot;http://trusted.example.com/ecommerce/redirect.asp?dest=%77%69%6C%79%68%61%63%6B%65%72%2E%63%6F%6D&quot;<br><br>then even a savvy end-user may be fooled into following the link.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A10 Unvalidated Redirects and Forwards</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A10 Unvalidated Redirects and Forwards</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Content Spoofing</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 601</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 601</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 601</em> <br></p>
+																									   <p>[13] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M1 Weak Server Side Controls</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Path Manipulation</key>
+    <name>Path Manipulation</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Allowing user input to control paths used in filesystem operations could enable an attacker to access or modify otherwise protected system resources.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Path manipulation errors occur when the following two conditions are met:<br><br>1. An attacker can specify a path used in an operation on the filesystem.<br><br>2. By specifying the resource, the attacker gains a capability that would not otherwise be permitted.<br><br>For example, the program may give the attacker the ability to overwrite the specified file or run with a configuration controlled by the attacker.<br><br><IfDef var="ConditionalDescriptions"><br> <br></IfDef><br><br><b>Example 1:</b> The following code uses input from an HTTP request to create a file name. The programmer has not considered the possibility that an attacker could provide a file name such as "<code>../../tomcat/conf/server.xml</code>", which causes the application to delete one of its own configuration files.<br><br><pre><br>var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>var rName:String = String(params["reportName"]);<br>var rFile:File = new File("/usr/local/apfr/reports/" + rName);<br>...<br>rFile.deleteFile();<br></pre><br><br><b>Example 2:</b> The following code uses input from a configuration file to determine which file to open and write to a "Debug" console or a log file. If the program runs with privileges and malicious users can change the configuration file, they can use the program to read any file on the system that ends with the extension <code>.txt</code>.<br><br><pre><br>var fs:FileStream = new FileStream();<br>fs.open(new File(String(configStream.readObject())+".txt"), FileMode.READ);<br>fs.readBytes(arr);<br>trace(arr);<br></pre>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3600 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 22, CWE ID 73</em> <br></p>
+																									   <p>[11] G. Hoglund, G. McGraw <em>Exploiting Software</em> Addison-Wesley<br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M8 Security Decisions Via Untrusted Inputs</em> <br></p>
+																									   <p>[13] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Path Traversal</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[18] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Risky Resource Management - CWE ID 022</em> <br></p>
+																									   <p>[19] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Risky Resource Management - CWE ID 022</em> <br></p>
+																									   <p>[20] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Risky Resource Management - CWE ID 426</em> <br></p>
+																									   <p>[21] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[22] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/SQL Injection</key>
+    <name>SQL Injection</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Constructing a dynamic SQL statement with input coming from an untrusted source could allow an attacker to modify the statement's meaning or to execute arbitrary SQL commands. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  SQL injection errors occur when:<br><br>1. Data enters a program from an untrusted source.<br><br>2. The data is used to dynamically construct a SQL query.<br><br><b>Example 1:</b> The following code dynamically constructs and executes a SQL query that searches for items matching a specified name. The query restricts the items displayed to those where the owner matches the user name of the currently-authenticated user.<br><br><pre><br>        ...<br>        var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>        var username:String = String(params["username"]);<br>        var itemName:String = String(params["itemName"]);<br>        var query:String = "SELECT * FROM items WHERE owner = " + username + " AND itemname = " + itemName;<br><br>        stmt.sqlConnection = conn;<br>        stmt.text = query;<br>        stmt.execute();<br>        ...<br></pre><br><br>The query that this code intends to execute follows:<br><br><pre><br>        SELECT * FROM items<br>        WHERE owner = &lt;userName&gt;<br>        AND itemname = &lt;itemName&gt;;<br></pre><br><br>However, because the query is constructed dynamically by concatenating a constant base query string and a user input string, the query only behaves correctly if <code>itemName</code> does not contain a single-quote character. If an attacker with the user name <code>wiley</code> enters the string "<code>name' OR 'a'='a</code>" for <code>itemName</code>, then the query becomes the following:<br><br><pre><br>        SELECT * FROM items<br>        WHERE owner = 'wiley'<br>        AND itemname = 'name' OR 'a'='a';<br></pre><br><br>The addition of the <code>OR 'a'='a'</code> condition causes the where clause to always evaluate to true, so the query becomes logically equivalent to the much simpler query:<br><br><pre><br>        SELECT * FROM items;<br></pre><br><br>This simplification of the query allows the attacker to bypass the requirement that the query only return items owned by the authenticated user; the query now returns all entries stored in the <code>items</code> table, regardless of their specified owner.<br><br><b>Example 2:</b> This example examines the effects of a different malicious value passed to the query constructed and executed in Example 1. If an attacker with the user name <code>wiley</code> enters the string "<code>name'; DELETE FROM items; --</code>" for <code>itemName</code>, then the query becomes the following two queries:<br><br><pre><br>        SELECT * FROM items<br>        WHERE owner = 'wiley'<br>        AND itemname = 'name';<br><br>        DELETE FROM items;<br><br>        --'<br></pre><br><br>Many database servers, including Microsoft(R) SQL Server 2000, allow multiple SQL statements separated by semicolons to be executed at once. While this attack string results in an error on Oracle and other database servers that do not allow the batch-execution of statements separated by semicolons, on databases that do allow batch execution, this type of attack allows the attacker to execute arbitrary commands against the database.<br><br>Notice the trailing pair of hyphens (--), which specifies to most database servers that the remainder of the statement is to be treated as a comment and not executed [4]. In this case the comment character serves to remove the trailing single-quote left over from the modified query. On a database where comments are not allowed to be used in this way, the general attack could still be made effective using a trick similar to the one shown in Example 1. If an attacker enters the string "<code>name'); DELETE FROM items; SELECT * FROM items WHERE 'a'='a</code>", the following three valid statements will be created:<br><br><pre><br>        SELECT * FROM items<br>        WHERE owner = 'wiley'<br>        AND itemname = 'name';<br><br>        DELETE FROM items;<br><br>        SELECT * FROM items WHERE 'a'='a';<br></pre><br><br>One traditional approach to preventing SQL injection attacks is to handle them as an input validation problem and either accept only characters from a whitelist of safe values or identify and escape a blacklist of potentially malicious values. Whitelisting can be a very effective means of enforcing strict input validation rules, but parameterized SQL statements require less maintenance and can offer more guarantees with respect to security. As is almost always the case, blacklisting is riddled with loopholes that make it ineffective at preventing SQL injection attacks. For example, attackers can:<br><br>- Target fields that are not quoted<br><br>- Find ways to bypass the need for certain escaped meta-characters<br><br>- Use stored procedures to hide the injected meta-characters<br><br>Manually escaping characters in input to SQL queries can help, but it will not make your application secure from SQL injection attacks.<br><br>Another solution commonly proposed for dealing with SQL injection attacks is to use stored procedures. Although stored procedures prevent some types of SQL injection attacks, they fail to protect against many others. Stored procedures typically help prevent SQL injection attacks by limiting the types of statements that can be passed to their parameters. However, there are many ways around the limitations and many interesting statements that can still be passed to stored procedures. Again, stored procedures can prevent some exploits, but they will not make your application secure against SQL injection attacks.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A1 Injection</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A1 Injection</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A2 Injection Flaws</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A6 Injection Flaws</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3540.1 CAT I, APP3540.3 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3540.1 CAT I, APP3540.3 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3540.1 CAT I, APP3540.3 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3540.1 CAT I, APP3540.3 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3540.1 CAT I, APP3540.3 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 89</em> <br></p>
+																									   <p>[11] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Insecure Interaction - CWE ID 089</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Insecure Interaction - CWE ID 089</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Insecure Interaction - CWE ID 089</em> <br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.2</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.6</em> <br></p>
+																									   <p>[19] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>
+																									   <p>[21] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>SQL Injection</em> <br></p>
+																									   <p>[22] P. Finnigan <em>SQL Injection and Oracle, Part One</em> Security Focus<br></p>
+																									   <p>[23] S. J. Friedl <em>SQL Injection Attacks by Example</em> <br></p>
+																									   <p>[24] P. Litwin <em>Stop SQL Injection Attacks Before They Stop You</em> MSDN Magazine<br></p>
+																									   <p>[25] M. Howard, D. LeBlanc <em>Writing Secure Code, Second Edition</em> Microsoft Press<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Input Validation and Representation/Unsafe Reflection</key>
+    <name>Unsafe Reflection</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  An attacker may be able to create unexpected control flow paths through the application, potentially bypassing security checks.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  If an attacker can supply values that the application then uses to determine which class to instantiate or which method to invoke, the potential exists for the attacker to create control flow paths through the application that were not intended by the application developers. This attack vector may allow the attacker to bypass authentication or access control checks or otherwise cause the application to behave in an unexpected manner. Even the ability to control the arguments passed to a given method or constructor may give a wily attacker the edge necessary to mount a successful attack.<br><br><br><b>Example:</b> A common reason that programmers use reflection technology is to implement their own command dispatcher. The following example shows a command dispatcher that does not use reflection:<br><br><pre><br>    var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>    var ctl:String = String(params["ctl"]);<br>    var ao:Worker;<br>    if (ctl == "Add) {<br>      ao = new AddCommand();<br>    } else if (ctl == "Modify") {<br>      ao = new ModifyCommand();<br>    } else {<br>      throw new UnknownActionError();<br>    }<br>    ao.doAction(params);<br></pre><br><br>A programmer might refactor this code to use reflection as follows:<br><br><pre><br>    var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>    var ctl:String = String(params["ctl"]);<br>    var ao:Worker;<br>    var cmdClass:Class = getDefinitionByName(ctl + "Command") as Class;<br>    ao = new cmdClass();<br>    ao.doAction(params);<br></pre><br><br>The refactoring initially appears to offer a number of advantages. There are fewer lines of code, the <code>if/else</code> blocks have been entirely eliminated, and it is now possible to add new command types without modifying the command dispatcher.<br><br>However, the refactoring allows an attacker to instantiate any object that implements the <code>Worker</code> interface. If the command dispatcher is still responsible for access control, then whenever programmers create a new class that implements the <code>Worker</code> interface, they must remember to modify the dispatcher's access control code. If they fail to modify the access control code, then some <code>Worker</code> classes will not have any access control.<br><br>One way to address this access control problem is to make the <code>Worker</code> object responsible for performing the access control check. An example of the re-refactored code follows:<br><br><pre><br>    var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>    var ctl:String = String(params["ctl"]);<br>    var ao:Worker;<br>    var cmdClass:Class = getDefinitionByName(ctl + "Command") as Class;<br>    ao = new cmdClass();<br>    <b>ao.checkAccessControl(params);</b><br>    ao.doAction(params);<br></pre><br><br>Although this is an improvement, it encourages a decentralized approach to access control, which makes it easier for programmers to make access control mistakes.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A1 Unvalidated Input</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I, APP3570 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 470</em> <br></p>
+																									   <p>[11] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M7 Client Side Injection</em> <br></p>
+																									   <p>[12] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.3.1.1, Requirement 6.5.4</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.1</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[16] Standards Mapping - FIPS200 - (FISMA) <em>SI</em> <br></p>
+																									   <p>[17] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SI-10 Information Input Validation (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>input-validation-and-representation</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Access Control: Database</key>
+    <name>Access Control: Database</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Without proper access control, executing a SQL statement that contains a user-controlled primary key can allow an attacker to view unauthorized records.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Database access control errors occur when:<br><br>1.      Data enters a program from an untrusted source.<br><br><br>2.      The data is used to specify the value of a primary key in a SQL query.<br><br><b>Example 1:</b> The following code uses a parameterized statement, which escapes metacharacters and prevents SQL injection vulnerabilities, to construct and execute a SQL query that searches for an invoice matching the specified identifier [1]. The identifier is selected from a list of all invoices associated with the current authenticated user.<br><br><pre><br>        ...<br>        var params:Object = LoaderInfo(this.root.loaderInfo).parameters;<br>        var id:int = int(Number(params["invoiceID"]));<br>        var query:String = "SELECT * FROM invoices WHERE id = :id";<br><br>        stmt.sqlConnection = conn;<br>        stmt.text = query;<br>        stmt.parameters[":id"] = id;<br>        stmt.execute();<br>        ...<br></pre><br><br>The problem is that the developer has failed to consider all of the possible values of <code>id</code>. Although the interface generates a list of invoice identifiers that belong to the current user, an attacker can bypass this interface to request any desired invoice. Because the code in this example does not check to ensure that the user has permission to access the requested invoice, it will display any invoice, even if it does not belong to the current user.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A2 Broken Access Control</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A4 Insecure Direct Object Reference</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A4 Insecure Direct Object References</em> <br></p>
+																									   <p>[5] Standards Mapping - FIPS200 - (FISMA) <em>AC</em> <br></p>
+																									   <p>[6] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>AC-3 Access Enforcement (P1)</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[11] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3510 CAT I</em> <br></p>
+																									   <p>[12] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 566</em> <br></p>
+																									   <p>[13] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Insufficient Authorization</em> <br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M5 Poor Authorization and Authentication</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 863</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.2</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 6.5.4</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 6.5.8</em> <br></p>
+																									   <p>[20] S. J. Friedl <em>SQL Injection Attacks by Example</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Flash Bad Practices: Hardcoded Sensitive Information</key>
+    <name>Flash Bad Practices: Hardcoded Sensitive Information</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Hardcoding sensitive information in binary SWF files could lead to information theft.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The misconception that any information stored in the binary SWF files is safe from unauthorized access often leads to programmers embedding sensitive information like passwords, cryptographic data and sensitive business logic in them. Attackers can however easily decompile the binary SWF files and steal the sensitive information. This could lead to further compromise of the system.<br><b>Example:</b><br><pre><br> if (password eq '783-1') {<br>    getURL('http://.../client_pages/.../783.html', '');<br>} <br>else {<br>    if (password eq '771-2 Update') {<br>        getURL('http://.../client_pages/.../771.html', '');<br>    } <br>    else {<br>        if (password eq '7990') {<br>            getURL('http://.../client_pages/.../799.html', '');<br>        }<br>}<br></pre><br>By decompile the binary SWF, an attacker can not only gain access to the passwords but also to locations of unexposed URLs.<br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3350 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 200, CWE ID 318, CWE ID 798</em> <br></p>
+																									   <p>[10] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>MP</em> <br></p>
+																									   <p>[12] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.3.1, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Flash Bad Practices: Insecure Embedded SWF Settings</key>
+    <name>Flash Bad Practices: Insecure Embedded SWF Settings</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Granting overly excessive permissions could allow a malicious flash application to transmit sensitive information to an arbitrary remote site.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  When a flash application is embedded within HTML, there are several flags which inform the Flash player if the SWF file should have access to content from the browser or from the network. <br>	-  <b>AllowScriptAccess</b> <br>	   This flag tells the Flash player to allow the SWF to communicate with the browser and HTML DOM using <code>ExternalInterface</code>, <code>fscommand</code> or <code>getURL</code>. <br>	-  <b>AllowNetworkingAccess</b><br>	   This flag informs the Flash player that it is allowed to make networking calls like <code>XML.load</code>, <code>loadVariables</code>, <code>LoadVars.load</code> etc. If a Flash application should not communicate with the browser or need to make any networking calls the <code>AllowNetworkingAccess</code> tag should be set to "none".<br>	   	1.  If a Flash application should not communicate with the browser or need to make any networking calls the <code>AllowNetworkingAccess</code> tag should be set to <code>"none"</code>. <br>		2.  If a Flash application should not communicate with the browser but does need to make networking calls the <code>AllowNetworkingAccess</code> tag should be set to <code>"internal"</code>. <br>		3.  If a Flash application needs to communicate with both the browser and the network, the <code>AllowNetworkingAccess</code> tag should be set to <code>"all"</code>. <br>
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A10 Insecure Configuration Management</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A5 Security Misconfiguration</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A6 Security Misconfiguration</em> <br></p>
+																									   <p>[4] Standards Mapping - FIPS200 - (FISMA) <em>CM</em> <br></p>
+																									   <p>[5] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 6.5.10</em> <br></p>
+																									   <p>[6] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Flash Bad Practices: Stage Size Too Small</key>
+    <name>Flash Bad Practices: Stage Size Too Small</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Failure to adhere to a safe stage size could allow an attacker to mask critical browser messages pertaining to the user's privacy.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  The stage size set in this Flash application must meet the minimum stage requirements as defined by Adobe. Flash security best practices dictate that all Flash objects have a minimum stage of 215 pixels wide and at least 138 pixels high so that Flash Player messages from shared objects, microphone, camera and other components can be displayed fully to the user. <br>To protect against clickjacking and spoofing attacks, Flash Player requires the area of the stage displaying the dialog box to be visible with the default window mode set.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-18 Mobile Code (P2)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management</key>
+    <name>Password Management</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Storing a password in plaintext can result in a system compromise.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Password management issues occur when a password is stored in plaintext in an application's properties or configuration file.<br><br><b>Example:</b> The following code reads a password from a properties file and uses the password to set default authentication credentials for URL requests.<br><br><pre><br>...<br>var fs:FileStream = new FileStream();<br>fs.open(new File("config.properties"), FileMode.READ);<br>var password:String = fs.readMultiByte(fs.bytesAvailable, File.systemCharset);<br><br>URLRequestDefaults.setLoginCredentialsForHost(hostname, usr, password);<br>...<br></pre><br><br>This code will run successfully, but anyone who has access to config.properties can read the value of <code>password</code>. If a devious employee has access to this information, they can use it to break into the system.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 256</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[13] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Empty Password</key>
+    <name>Password Management: Empty Password</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Empty passwords can compromise system security in a way that cannot be easily remedied.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is never a good idea to assign an empty string to a password variable. If the empty password is used to successfully authenticate against another system, then the corresponding account's security is likely compromised because it accepts an empty password. If the empty password is merely a placeholder until a legitimate value can be assigned to the variable, then it can confuse anyone unfamiliar with the code and potentially cause problems on unexpected control flow paths.<br><br><br><br><b>Example 1:</b> The code below attempts to set default authentication credentials for URL requests, supplying an empty string for a password.<br><pre><br>    ...<br>    URLRequestDefaults.setLoginCredentialsForHost(hostname, "scott", "");<br>    ...<br></pre><br><br>The code in Example 1 indicates that the user account "scott" is configured with an empty password, which can be easily guessed by an attacker. Even worse, once the program has shipped, updating the account to use a non-empty password will require a code change.<br><br><b>Example 2:</b> The code below initializes a password variable to an empty string, attempts to read a stored value for the password, and compares it against a user-supplied value.<br><br><pre><br>    ...<br>    var storedPassword:String = "";<br>    var temp:String;<br><br>    if ((temp = readPassword()) != null) {<br>        storedPassword = temp;<br>    }<br><br>    if(storedPassword.equals(userPassword))<br>        // Access protected resources<br>        ...<br>    }<br>    ...<br></pre><br><br>If <code>readPassword()</code> fails to retrieve the stored password due to a database error or another problem, then an attacker could trivially bypass the password check by providing an empty string for <code>userPassword</code>.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 259</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 259</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Hardcoded Password</key>
+    <name>Password Management: Hardcoded Password</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Hardcoded passwords can compromise system security in a way that cannot be easily remedied.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is never a good idea to hardcode a password. Not only does hardcoding a password allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. Once the code is in production, the password cannot be changed without patching the software. If the account protected by the password is compromised, the owners of the system will be forced to choose between security and availability.<br><br><br><b>Example:</b> The following code sets default authentication credentials for URL requests, supplying a hardcoded string for a password:<br><br><pre><br>...<br>URLRequestDefaults.setLoginCredentialsForHost(hostname, "scott", "tiger");<br>...<br></pre><br><br>This code will run successfully, but anyone who has access to it will have access to the password. Once the program has shipped, there is no going back from the user "scott" with a password of "tiger" unless the program is patched. A devious employee with access to this information can use it to break into the system. Even worse, if attackers have access to the binary for the application they can use one of many publicly available decompilers to access the disassembled code, which will contain the values of the passwords used.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 259, CWE ID 798</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 259</em> <br></p>
+																									   <p>[14] Standards Mapping - SANS Top 25 2010 - (SANS 2010) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[15] Standards Mapping - SANS Top 25 2011 - (SANS Top 25 2011) <em>Porous Defenses - CWE ID 798</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[20] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Null Password</key>
+    <name>Password Management: Null Password</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Null passwords can compromise security.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Assigning null to password variables is a bad idea because it can allow attackers to bypass password verification or might indicate that resources are protected by an empty password.<br><br><br><br><b>Example:</b> The code below initializes a password variable to null, attempts to read a stored value for the password, and compares it against a user-supplied value.<br><br><pre><br>    ...<br>    var storedPassword:String = null;<br>    var temp:String;<br><br>    if ((temp = readPassword()) != null) {<br>        storedPassword = temp;<br>    }<br><br>    if(Utils.verifyPassword(userPassword, storedPassword))<br>        // Access protected resources<br>        ...<br>    }<br>    ...<br></pre><br><br>If <code>readPassword()</code> fails to retrieve the stored password due to a database error or another problem, then an attacker could trivially bypass the password check by providing a null value for <code>userPassword</code>.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 259</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[13] Standards Mapping - SANS Top 25 2009 - (SANS 2009) <em>Porous Defenses - CWE ID 259</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Password in Comment</key>
+    <name>Password Management: Password in Comment</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Storing passwords or password details in plaintext anywhere in the system or system code can compromise system security in a way that cannot be easily remedied.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  It is never a good idea to hardcode a password. Storing password details within comments is equivalent to hardcoding passwords.  Not only does it allow all of the project's developers to view the password, it also makes fixing the problem extremely difficult. Once the code is in production, the password is now leaked to the outside world and cannot be protected or changed without patching the software. If the account protected by the password is compromised, the owners of the system will be forced to choose between security and availability.<br><br><br><b>Example:</b> The following comment specifies the default password to connect to a database:<br><br><pre><br>...<br>// Default username for database connection is "scott"<br>// Default password for database connection is "tiger"<br>...<br></pre><br><br>This code will run successfully, but anyone who has access to it will have access to the password. Once the program has shipped, there is no going back from the database user "scott" with a password of "tiger" unless the program is patched. A devious employee with access to this information can use it to break into the system.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I, APP3350 CAT I</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 615</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[13] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Password Management: Weak Cryptography</key>
+    <name>Password Management: Weak Cryptography</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Obscuring a password with a trivial encoding does not protect the password.
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Password management issues occur when a password is stored in plaintext in an application's properties or configuration file. A programmer can attempt to remedy the password management problem by obscuring the password with an encoding function, such as base 64 encoding, but this effort does not adequately protect the password.<br><br><br><b>Example:</b> The following code reads a password from a properties file and uses the password to set default authentication credentials for URL requests.<br><br><pre><br>...<br>var fs:FileStream = new FileStream();<br>fs.open(new File("config.properties"), FileMode.READ);<br>var decoder:Base64Decoder = new Base64Decoder();<br>decoder.decode(fs.readMultiByte(fs.bytesAvailable, File.systemCharset));<br>var password:String = decoder.toByteArray().toString();<br><br>URLRequestDefaults.setLoginCredentialsForHost(hostname, usr, password);<br>...<br></pre><br><br>This code will run successfully, but anyone with access to <code>config.properties</code> can read the value of <code>password</code> and easily determine that the value has been base 64 encoded. If a devious employee has access to this information, they can use it to break into the system.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2010 - (OWASP 2010) <em>A7 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[3] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A8 Insecure Cryptographic Storage</em> <br></p>
+																									   <p>[4] Standards Mapping - OWASP Top 10 2004 - (OWASP 2004) <em>A8 Insecure Storage</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[9] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3150.1 CAT II</em> <br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 261</em> <br></p>
+																									   <p>[11] Standards Mapping - FIPS200 - (FISMA) <em>IA</em> <br></p>
+																									   <p>[12] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[13] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M6 Broken Cryptography</em> <br></p>
+																									   <p>[14] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.4, Requirement 6.3.1.3, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[15] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.2.1</em> <br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.4, Requirement 6.5.3, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.4, Requirement 6.5.8, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - NIST Special Publication 800-53 Revision 4 - (NIST SP 800-53 Rev.4) <em>SC-28 Protection of Information at Rest (P1)</em> <br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+  <rule>
+    <key>Security Features/Privacy Violation</key>
+    <name>Privacy Violation</name>
+    <description><![CDATA[<h2>ABSTRACT</h2>
+							<p>
+							  Mishandling private information, such as customer passwords or social security numbers, can compromise user privacy and is often illegal. 
+							</p>
+							<h2>EXPLANATION</h2>
+							<p>
+							  Privacy violations occur when:<br><br>1. Private user information enters the program.<br><br>2. The data is written to an external location, such as the console, file system, or network.<br><br><br><b>Example:</b> The following code contains a logging statement that tracks the contents of records added to a database by storing them in a log file. Among other values that are stored, the <code>getPassword()</code> function returns the user-supplied plaintext password associated with the account.<br><br><pre><br>pass = getPassword();<br>...<br>trace(id+":"+pass+":"+type+":"+tstamp);<br></pre><br><br>The code in the example above logs a plaintext password to the filesystem. Although many developers trust the filesystem as a safe storage location for data, it should not be trusted implicitly, particularly when privacy is a concern.<br><br>Private data can enter a program in a variety of ways:<br><br>- Directly from the user in the form of a password or personal information<br><br>- Accessed from a database or other data store by the application<br><br>- Indirectly from a partner or other third party<br><br>Sometimes data that is not labeled as private can have a privacy implication in a different context. For example, student identification numbers are usually not considered private because there is no explicit and publicly-available mapping to an individual student's personal information. However, if a school generates identification numbers based on student social security numbers, then the identification numbers should be considered private.<br><br>Security and privacy concerns often seem to compete with each other. From a security perspective, you should record all important operations so that any anomalous activity can later be identified. However, when private data is involved, this practice can create risk.<br><br>Although there are many ways in which private data can be handled unsafely, a common risk stems from misplaced trust. Programmers often trust the operating environment in which a program runs, and therefore believe that it is acceptable to store private information on the file system, in the registry, or in other locally-controlled resources. However, even if access to certain resources is restricted, this does not guarantee that the individuals who do have access can be trusted. For example, in 2004, an unscrupulous employee at AOL sold approximately 92 million private customer e-mail addresses to a spammer marketing an offshore gambling web site [1].<br><br>In response to such high-profile exploits, the collection and management of private data is becoming increasingly regulated. Depending on its location, the type of business it conducts, and the nature of any private data it handles, an organization may be required to comply with one or more of the following federal and state regulations:<br><br>- Safe Harbor Privacy Framework [3]<br><br>- Gramm-Leach Bliley Act (GLBA) [4]<br><br>- Health Insurance Portability and Accountability Act (HIPAA) [5]<br><br>- California SB-1386 [6]<br><br>Despite these regulations, privacy violations continue to occur with alarming frequency.
+							</p>
+							 								<h2>REFERENCES</h2>
+																								   <p>[1] Standards Mapping - OWASP Top 10 2007 - (OWASP 2007) <em>A6 Information Leakage and Improper Error Handling</em> <br></p>
+																									   <p>[2] Standards Mapping - OWASP Top 10 2013 - (OWASP 2013) <em>A6 Sensitive Data Exposure</em> <br></p>
+																									   <p>[3] J. Oates <em>AOL man pleads guilty to selling 92m email addies</em> The Register<br></p>
+																									   <p>[4] Standards Mapping - Security Technical Implementation Guide Version 3 - (STIG 3) <em>APP3210.1 CAT II, APP3310 CAT I, APP3340 CAT I</em> <br></p>
+																									   <p>[5] Standards Mapping - Security Technical Implementation Guide Version 3.4 - (STIG 3.4) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[6] Standards Mapping - Security Technical Implementation Guide Version 3.5 - (STIG 3.5) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[7] Standards Mapping - Security Technical Implementation Guide Version 3.6 - (STIG 3.6) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[8] Standards Mapping - Security Technical Implementation Guide Version 3.7 - (STIG 3.7) <em>APP3210.1 CAT II, APP3340 CAT I</em> <br></p>
+																									   <p>[9]  <em>California SB-1386</em> Government of the State of California<br></p>
+																									   <p>[10] Standards Mapping - Common Weakness Enumeration - (CWE) <em>CWE ID 359</em> <br></p>
+																									   <p>[11]  <em>Financial Privacy: The Gramm-Leach Bliley Act (GLBA)</em> Federal Trade Commission<br></p>
+																									   <p>[12]  <em>Health Insurance Portability and Accountability Act (HIPAA)</em> U.S. Department of Human Services<br></p>
+																									   <p>[13] Standards Mapping - Web Application Security Consortium 24 + 2 - (WASC 24 + 2) <em>Information Leakage</em> <br></p>
+																									   <p>[14] Standards Mapping - OWASP Mobile Top 10 Risks 2014 - (OWASP Mobile 2014) <em>M2 Insecure Data Storage</em> <br></p>
+																									   <p>[15]  <em>Privacy Initiatives</em> U.S. Federal Trade Commission<br></p>
+																									   <p>[16] Standards Mapping - Payment Card Industry Data Security Standard Version 2.0 - (PCI 2.0) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 6.5.5, Requirement 8.4</em> <br></p>
+																									   <p>[17] Standards Mapping - Payment Card Industry Data Security Standard Version 1.2 - (PCI 1.2) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 6.5.6, Requirement 8.4</em> <br></p>
+																									   <p>[18] Standards Mapping - Payment Card Industry Data Security Standard Version 3.0 - (PCI 3.0) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 8.2.1</em> <br></p>
+																									   <p>[19] Standards Mapping - Payment Card Industry Data Security Standard Version 1.1 - (PCI 1.1) <em>Requirement 3.2, Requirement 3.4, Requirement 4.2, Requirement 8.4</em> <br></p>
+																									   <p>[20]  <em>Safe Harbor Privacy Framework</em> U.S. Department of Commerce<br></p>
+																									   <p>[21] M. Howard, D. LeBlanc <em>Writing Secure Code, Second Edition</em> Microsoft Press<br></p>]]></description>
+    <severity>MAJOR</severity>
+    <tag>security-features</tag>
+  </rule>
+</rules>

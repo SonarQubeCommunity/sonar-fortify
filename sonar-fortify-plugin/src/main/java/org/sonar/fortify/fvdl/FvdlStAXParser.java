@@ -24,11 +24,7 @@ import org.codehaus.staxmate.SMInputFactory;
 import org.codehaus.staxmate.in.SMHierarchicCursor;
 import org.codehaus.staxmate.in.SMInputCursor;
 import org.sonar.fortify.base.FortifyUtils;
-import org.sonar.fortify.fvdl.element.Build;
-import org.sonar.fortify.fvdl.element.Description;
-import org.sonar.fortify.fvdl.element.Fvdl;
-import org.sonar.fortify.fvdl.element.ReplacementDefinition;
-import org.sonar.fortify.fvdl.element.Vulnerability;
+import org.sonar.fortify.fvdl.element.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -157,9 +153,19 @@ public class FvdlStAXParser {
   }
 
   private void processClassInfo(SMInputCursor classInfoCursor, Vulnerability vulnerability) throws XMLStreamException {
-    SMInputCursor classIDCursor = classInfoCursor.childElementCursor("ClassID");
-    if (classIDCursor.getNext() != null) {
-      vulnerability.setClassID(StringUtils.trim(classIDCursor.collectDescendantText(false)));
+    SMInputCursor childCursor = classInfoCursor.childCursor();
+    while (childCursor.getNext() != null) {
+      String nodeName = childCursor.getLocalName();
+
+      if ("ClassID".equals(nodeName)) {
+        vulnerability.setClassID(StringUtils.trim(childCursor.collectDescendantText(false)));
+      } else if ("Kingdom".equals(nodeName)) {
+        vulnerability.setKingdom(StringUtils.trim(childCursor.collectDescendantText(false)));
+      } else if ("Type".equals(nodeName)) {
+        vulnerability.setType(StringUtils.trim(childCursor.collectDescendantText(false)));
+      } else if ("Subtype".equals(nodeName)) {
+        vulnerability.setSubtype(StringUtils.trim(childCursor.collectDescendantText(false)));
+      }
     }
   }
 
