@@ -119,10 +119,14 @@ public class FortifySensor implements Sensor {
     for (Vulnerability vulnerability : fvdl.getVulnerabilities()) {
       InputFile inputFile = resourceOf(context, sourceBasePath, vulnerability, project);
       if (inputFile != null) {
-        ActiveRule activeRule = getRule(vulnerability, inputFile.language());
+        String ruleKey = FortifyConstants.fortifySQRuleKey(vulnerability.getKingdom(), vulnerability.getType(), vulnerability.getSubtype());
+        if (ruleKey == null) {
+          LOG.debug("Unable to find rule for vulnerability " + vulnerability);
+          continue;
+        }
+        ActiveRule activeRule = getRule(ruleKey, inputFile.language());
         if (activeRule == null) {
-          FortifySensor.LOG.debug(
-            "Fortify rule '{}' is not active in quality profiles of your project.", vulnerability.getClassID());
+          FortifySensor.LOG.debug("Fortify rule '{}' is not active in quality profiles of your project.", ruleKey);
         } else {
           addIssue(inputFile, fvdl, vulnerability, activeRule);
         }
@@ -217,24 +221,20 @@ public class FortifySensor implements Sensor {
   }
 
   @CheckForNull
-  private ActiveRule getRule(Vulnerability vulnerability, String fileLanguage) {
-    String ruleKey = FortifyConstants.fortifySQRuleKey(vulnerability.getKingdom(), vulnerability.getType(), vulnerability.getSubtype());
-    if (ruleKey != null) {
-      // Search in priority the same language as the file
-      ActiveRule rule = activeRules.find(RuleKey.of(FortifyConstants.fortifyRepositoryKey(fileLanguage), ruleKey));
+  private ActiveRule getRule(String ruleKey, String fileLanguage) {
+    // Search in priority the same language as the file
+    ActiveRule rule = activeRules.find(RuleKey.of(FortifyConstants.fortifyRepositoryKey(fileLanguage), ruleKey));
+    if (rule != null) {
+      return rule;
+    }
+    // Search rule in other languages
+    for (String language : this.fileSystem.languages()) {
+      String repositoryKey = FortifyConstants.fortifyRepositoryKey(language);
+      rule = this.activeRules.find(RuleKey.of(repositoryKey, ruleKey));
       if (rule != null) {
         return rule;
       }
-      // Search rule in other languages
-      for (String language : this.fileSystem.languages()) {
-        String repositoryKey = FortifyConstants.fortifyRepositoryKey(language);
-        rule = this.activeRules.find(RuleKey.of(repositoryKey, ruleKey));
-        if (rule != null) {
-          return rule;
-        }
-      }
     }
-    LOG.debug("Unable to find rule for vulnerability " + vulnerability);
     return null;
   }
 
