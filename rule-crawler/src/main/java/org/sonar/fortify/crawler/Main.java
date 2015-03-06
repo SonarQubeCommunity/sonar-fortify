@@ -32,7 +32,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.Normalizer;
@@ -62,8 +61,13 @@ public class Main {
     .put("XML", "xml")
     .build();
 
-  public static void main(String... args) throws Exception {
-    new Main(new File(".")).extractRules();
+  public static void main(String... args) {
+    try {
+      new Main(new File(".")).extractRules();
+    } catch (Exception e) {
+      LOG.error("Unable to get Fortify rules", e);
+      System.exit(1);
+    }
   }
 
   private String currentLanguage;
@@ -77,7 +81,8 @@ public class Main {
     this.outputBaseDir = output;
   }
 
-  public void extractRules() throws Exception {
+  @VisibleForTesting
+  void extractRules() throws IOException, ScriptException {
     String pageSrc = getPageSource();
 
     String script = extractDTreeJSCode(pageSrc);
@@ -87,7 +92,7 @@ public class Main {
     writeRulesXmlFiles();
   }
 
-  private void writeRulesXmlFiles() throws Exception {
+  private void writeRulesXmlFiles() throws IOException {
     for (String language : rulesByLanguage.keySet()) {
       String sonarLanguage = FORTIFY_TO_SQ.get(language);
       if (sonarLanguage == null) {
@@ -123,23 +128,21 @@ public class Main {
 
   private String extractDTreeJSCode(String pageSrc) {
     String startScript = "d = new dTree('d');";
-    pageSrc = pageSrc.substring(pageSrc.indexOf(startScript) + startScript.length());
-    pageSrc = pageSrc.substring(0, pageSrc.indexOf("document.write(d);"));
-    return pageSrc;
+    String scriptCode = pageSrc.substring(pageSrc.indexOf(startScript) + startScript.length());
+    scriptCode = scriptCode.substring(0, scriptCode.indexOf("document.write(d);"));
+    return scriptCode;
   }
 
-  private String getPageSource() throws MalformedURLException, IOException {
+  private String getPageSource() throws IOException {
     URL url = new URL(BASE_URL + "all.html");
-    String pageSrc = download(url);
-    return pageSrc;
+    return download(url);
   }
 
   @VisibleForTesting
   String download(URL url) throws IOException {
     LOG.info("Download: " + url);
     URLConnection openConnection = url.openConnection();
-    String pageSrc = IOUtils.toString(openConnection.getInputStream(), openConnection.getContentEncoding());
-    return pageSrc;
+    return IOUtils.toString(openConnection.getInputStream(), openConnection.getContentEncoding());
   }
 
   // Called by JavaScript code
@@ -182,7 +185,7 @@ public class Main {
       return this.kingdom;
     }
 
-    public String getHtmlDescription() throws Exception {
+    public String getHtmlDescription() throws IOException {
       URL urlDescription = new URL(BASE_URL + url);
       String description = download(urlDescription);
       description = description.substring(description.indexOf("</h1>") + "</h1>".length());

@@ -106,7 +106,12 @@ public final class FortifyRulesDefinition implements RulesDefinition {
   private void processRule(Context context, RulePack rulePack, FortifyRule rule, String sqLanguageKey) {
     NewRepository repo = getRepository(context, sqLanguageKey);
     String htmlDescription = rulePack.getHTMLDescription(rule.getDescription());
-    NewRule newRule = repo.rule(rule.getSonarKey());
+    String sonarKey = rule.getSonarKey();
+    if (sonarKey == null) {
+      LOG.debug("Unable to determine rule key for " + rule + ". Ignoring it.");
+      return;
+    }
+    NewRule newRule = repo.rule(sonarKey);
     if (newRule == null) {
       newRule = repo.createRule(rule.getSonarKey());
     }

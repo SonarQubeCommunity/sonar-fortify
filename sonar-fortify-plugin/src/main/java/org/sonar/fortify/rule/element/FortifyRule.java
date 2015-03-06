@@ -20,6 +20,7 @@
 package org.sonar.fortify.rule.element;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.sonar.fortify.base.FortifyConstants;
 
 import javax.annotation.CheckForNull;
@@ -154,6 +155,11 @@ public class FortifyRule {
       .replaceAll("[-]+", "-")
       .replaceAll("^-", "")
       .replaceAll("-$", "").toLowerCase(Locale.ENGLISH);
+  }
+
+  @Override
+  public String toString() {
+    return new ReflectionToStringBuilder(this).toString();
   }
 
 }
