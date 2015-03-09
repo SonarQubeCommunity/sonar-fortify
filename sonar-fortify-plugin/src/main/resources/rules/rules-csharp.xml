@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/ASP.NET MVC Bad Practices: Controller Action Not Restricted to POST</key>
+    <key>api_abuse_asp_net_mvc_bad_practices_controller_action_not_restricted_to_post</key>
+    <internalKey>API Abuse/ASP.NET MVC Bad Practices/Controller Action Not Restricted to POST</internalKey>
     <name>ASP.NET MVC Bad Practices: Controller Action Not Restricted to POST</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -36,7 +37,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/ASP.NET MVC Bad Practices: Model With Optional and Required Properties</key>
+    <key>api_abuse_asp_net_mvc_bad_practices_model_with_optional_and_required_properties</key>
+    <internalKey>API Abuse/ASP.NET MVC Bad Practices/Model With Optional and Required Properties</internalKey>
     <name>ASP.NET MVC Bad Practices: Model With Optional and Required Properties</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -63,7 +65,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/ASP.NET MVC Bad Practices: Model With Required Non-Nullable Property</key>
+    <key>api_abuse_asp_net_mvc_bad_practices_model_with_required_non_nullable_property</key>
+    <internalKey>API Abuse/ASP.NET MVC Bad Practices/Model With Required Non-Nullable Property</internalKey>
     <name>ASP.NET MVC Bad Practices: Model With Required Non-Nullable Property</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -88,7 +91,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/ASP.NET MVC Bad Practices: Optional Submodel With Required Property</key>
+    <key>api_abuse_asp_net_mvc_bad_practices_optional_submodel_with_required_property</key>
+    <internalKey>API Abuse/ASP.NET MVC Bad Practices/Optional Submodel With Required Property</internalKey>
     <name>ASP.NET MVC Bad Practices: Optional Submodel With Required Property</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -113,7 +117,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Call to GC.Collect()</key>
+    <key>api_abuse_code_correctness_call_to_gc_collect_</key>
+    <internalKey>API Abuse/Code Correctness/Call to GC.Collect()</internalKey>
     <name>Code Correctness: Call to GC.Collect()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -139,7 +144,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Class Does Not Implement Equals</key>
+    <key>api_abuse_code_correctness_class_does_not_implement_equals</key>
+    <internalKey>API Abuse/Code Correctness/Class Does Not Implement Equals</internalKey>
     <name>Code Correctness: Class Does Not Implement Equals</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -155,7 +161,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: ToString on Array</key>
+    <key>api_abuse_code_correctness_tostring_on_array</key>
+    <internalKey>API Abuse/Code Correctness/ToString on Array</internalKey>
     <name>Code Correctness: ToString on Array</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -172,7 +179,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Mass Assignment: Insecure Binder Configuration</key>
+    <key>api_abuse_mass_assignment_insecure_binder_configuration</key>
+    <internalKey>API Abuse/Mass Assignment/Insecure Binder Configuration</internalKey>
     <name>Mass Assignment: Insecure Binder Configuration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -199,7 +207,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Mass Assignment: Request Parameters Bound into Persisted Objects</key>
+    <key>api_abuse_mass_assignment_request_parameters_bound_into_persisted_objects</key>
+    <internalKey>API Abuse/Mass Assignment/Request Parameters Bound into Persisted Objects</internalKey>
     <name>Mass Assignment: Request Parameters Bound into Persisted Objects</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -226,7 +235,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Missing Check against Null</key>
+    <key>api_abuse_missing_check_against_null</key>
+    <internalKey>API Abuse/Missing Check against Null</internalKey>
     <name>Missing Check against Null</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -250,7 +260,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Object Model Violation: Just One of Equals() and GetHashCode() Defined(just_one_of_equals_hashcode_defined)</key>
+    <key>api_abuse_object_model_violation_just_one_of_equals___and_gethashcode___defined_just_one_of_equals_hashcode_defined</key>
+    <internalKey>API Abuse/Object Model Violation/Just One of Equals() and GetHashCode() Defined(just_one_of_equals_hashcode_defined)</internalKey>
     <name>Object Model Violation: Just One of Equals() and GetHashCode() Defined(just_one_of_equals_hashcode_defined)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -268,7 +279,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Authentication</key>
+    <key>api_abuse_often_misused_authentication</key>
+    <internalKey>API Abuse/Often Misused/Authentication</internalKey>
     <name>Often Misused: Authentication</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -303,7 +315,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Unchecked Return Value</key>
+    <key>api_abuse_unchecked_return_value</key>
+    <internalKey>API Abuse/Unchecked Return Value</internalKey>
     <name>Unchecked Return Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -332,7 +345,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Code Quality/ASP.NET Bad Practices: Unminified Code</key>
+    <key>code_quality_asp_net_bad_practices_unminified_code</key>
+    <internalKey>Code Quality/ASP.NET Bad Practices/Unminified Code</internalKey>
     <name>ASP.NET Bad Practices: Unminified Code</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -365,7 +379,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Class Implements ICloneable</key>
+    <key>code_quality_code_correctness_class_implements_icloneable</key>
+    <internalKey>Code Quality/Code Correctness/Class Implements ICloneable</internalKey>
     <name>Code Correctness: Class Implements ICloneable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -382,7 +397,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous Class Compare</key>
+    <key>code_quality_code_correctness_erroneous_class_compare</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous Class Compare</internalKey>
     <name>Code Correctness: Erroneous Class Compare</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -398,7 +414,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Misleading Method Signature</key>
+    <key>code_quality_code_correctness_misleading_method_signature</key>
+    <internalKey>Code Quality/Code Correctness/Misleading Method Signature</internalKey>
     <name>Code Correctness: Misleading Method Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -414,7 +431,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Missing [Serializable] Attribute</key>
+    <key>code_quality_code_correctness_missing__serializable__attribute</key>
+    <internalKey>Code Quality/Code Correctness/Missing [Serializable] Attribute</internalKey>
     <name>Code Correctness: Missing [Serializable] Attribute</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -440,7 +458,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Regular Expressions Denial of Service</key>
+    <key>code_quality_code_correctness_regular_expressions_denial_of_service</key>
+    <internalKey>Code Quality/Code Correctness/Regular Expressions Denial of Service</internalKey>
     <name>Code Correctness: Regular Expressions Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -467,7 +486,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: null Argument to Equals()</key>
+    <key>code_quality_code_correctness_null_argument_to_equals_</key>
+    <internalKey>Code Quality/Code Correctness/null Argument to Equals()</internalKey>
     <name>Code Correctness: null Argument to Equals()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -484,7 +504,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Unused Field</key>
+    <key>code_quality_dead_code_unused_field</key>
+    <internalKey>Code Quality/Dead Code/Unused Field</internalKey>
     <name>Dead Code: Unused Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -505,7 +526,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Unused Method</key>
+    <key>code_quality_dead_code_unused_method</key>
+    <internalKey>Code Quality/Dead Code/Unused Method</internalKey>
     <name>Dead Code: Unused Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -526,7 +548,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Null Dereference</key>
+    <key>code_quality_null_dereference</key>
+    <internalKey>Code Quality/Null Dereference</internalKey>
     <name>Null Dereference</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -551,7 +574,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Obsolete</key>
+    <key>code_quality_obsolete</key>
+    <internalKey>Code Quality/Obsolete</internalKey>
     <name>Obsolete</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -567,7 +591,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Portability Flaw: File Separator</key>
+    <key>code_quality_portability_flaw_file_separator</key>
+    <internalKey>Code Quality/Portability Flaw/File Separator</internalKey>
     <name>Portability Flaw: File Separator</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -584,7 +609,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource</key>
+    <key>code_quality_unreleased_resource</key>
+    <internalKey>Code Quality/Unreleased Resource</internalKey>
     <name>Unreleased Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -610,7 +636,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Database</key>
+    <key>code_quality_unreleased_resource_database</key>
+    <internalKey>Code Quality/Unreleased Resource/Database</internalKey>
     <name>Unreleased Resource: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -636,7 +663,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Streams</key>
+    <key>code_quality_unreleased_resource_streams</key>
+    <internalKey>Code Quality/Unreleased Resource/Streams</internalKey>
     <name>Unreleased Resource: Streams</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -662,7 +690,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Synchronization</key>
+    <key>code_quality_unreleased_resource_synchronization</key>
+    <internalKey>Code Quality/Unreleased Resource/Synchronization</internalKey>
     <name>Unreleased Resource: Synchronization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -688,7 +717,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Unmanaged Object</key>
+    <key>code_quality_unreleased_resource_unmanaged_object</key>
+    <internalKey>Code Quality/Unreleased Resource/Unmanaged Object</internalKey>
     <name>Unreleased Resource: Unmanaged Object</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -714,7 +744,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Encapsulation/ASP.NET Bad Practices: Leftover Debug Code</key>
+    <key>encapsulation_asp_net_bad_practices_leftover_debug_code</key>
+    <internalKey>Encapsulation/ASP.NET Bad Practices/Leftover Debug Code</internalKey>
     <name>ASP.NET Bad Practices: Leftover Debug Code</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -740,7 +771,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Cross-Site Request Forgery</key>
+    <key>encapsulation_cross_site_request_forgery</key>
+    <internalKey>Encapsulation/Cross-Site Request Forgery</internalKey>
     <name>Cross-Site Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -775,7 +807,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Cross-Site WebSocket Hijacking</key>
+    <key>encapsulation_cross_site_websocket_hijacking</key>
+    <internalKey>Encapsulation/Cross-Site WebSocket Hijacking</internalKey>
     <name>Cross-Site WebSocket Hijacking</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -809,7 +842,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/HTML5: Overly Permissive CORS Policy</key>
+    <key>encapsulation_html5_overly_permissive_cors_policy</key>
+    <internalKey>Encapsulation/HTML5/Overly Permissive CORS Policy</internalKey>
     <name>HTML5: Overly Permissive CORS Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -832,7 +866,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Hidden Field</key>
+    <key>encapsulation_hidden_field</key>
+    <internalKey>Encapsulation/Hidden Field</internalKey>
     <name>Hidden Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -856,7 +891,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/JavaScript Hijacking: Vulnerable Framework</key>
+    <key>encapsulation_javascript_hijacking_vulnerable_framework</key>
+    <internalKey>Encapsulation/JavaScript Hijacking/Vulnerable Framework</internalKey>
     <name>JavaScript Hijacking: Vulnerable Framework</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -873,7 +909,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Javascript Hijacking: JSONP</key>
+    <key>encapsulation_javascript_hijacking_jsonp</key>
+    <internalKey>Encapsulation/Javascript Hijacking/JSONP</internalKey>
     <name>Javascript Hijacking: JSONP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -890,7 +927,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Mass Assignment: Sensitive Field Exposure</key>
+    <key>encapsulation_mass_assignment_sensitive_field_exposure</key>
+    <internalKey>Encapsulation/Mass Assignment/Sensitive Field Exposure</internalKey>
     <name>Mass Assignment: Sensitive Field Exposure</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -917,7 +955,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Poor Logging Practice: Use of a System Output Stream</key>
+    <key>encapsulation_poor_logging_practice_use_of_a_system_output_stream</key>
+    <internalKey>Encapsulation/Poor Logging Practice/Use of a System Output Stream</internalKey>
     <name>Poor Logging Practice: Use of a System Output Stream</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -946,7 +985,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Silverlight Misconfiguration: Overly Permissive Cross-Domain Policy</key>
+    <key>encapsulation_silverlight_misconfiguration_overly_permissive_cross_domain_policy</key>
+    <internalKey>Encapsulation/Silverlight Misconfiguration/Overly Permissive Cross-Domain Policy</internalKey>
     <name>Silverlight Misconfiguration: Overly Permissive Cross-Domain Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -969,7 +1009,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak</key>
+    <key>encapsulation_system_information_leak</key>
+    <internalKey>Encapsulation/System Information Leak</internalKey>
     <name>System Information Leak</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -996,7 +1037,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: External</key>
+    <key>encapsulation_system_information_leak_external</key>
+    <internalKey>Encapsulation/System Information Leak/External</internalKey>
     <name>System Information Leak: External</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1023,7 +1065,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Internal</key>
+    <key>encapsulation_system_information_leak_internal</key>
+    <internalKey>Encapsulation/System Information Leak/Internal</internalKey>
     <name>System Information Leak: Internal</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1050,7 +1093,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: SignalR Exposed JavaScript Proxy</key>
+    <key>encapsulation_system_information_leak_signalr_exposed_javascript_proxy</key>
+    <internalKey>Encapsulation/System Information Leak/SignalR Exposed JavaScript Proxy</internalKey>
     <name>System Information Leak: SignalR Exposed JavaScript Proxy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1082,7 +1126,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Trust Boundary Violation</key>
+    <key>encapsulation_trust_boundary_violation</key>
+    <internalKey>Encapsulation/Trust Boundary Violation</internalKey>
     <name>Trust Boundary Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1110,7 +1155,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Certificate Validation Disabled</key>
+    <key>environment_asp_net_misconfiguration_certificate_validation_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Certificate Validation Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Certificate Validation Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1143,7 +1189,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Cookie Protection Disabled</key>
+    <key>environment_asp_net_misconfiguration_cookie_protection_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Cookie Protection Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Cookie Protection Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1177,7 +1224,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Cross-Site Scripting Protection</key>
+    <key>environment_asp_net_misconfiguration_cross_site_scripting_protection</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Cross-Site Scripting Protection</internalKey>
     <name>ASP.NET Misconfiguration: Cross-Site Scripting Protection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1216,7 +1264,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Debug Information</key>
+    <key>environment_asp_net_misconfiguration_debug_information</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Debug Information</internalKey>
     <name>ASP.NET Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1250,7 +1299,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Excessive Session Timeout</key>
+    <key>environment_asp_net_misconfiguration_excessive_session_timeout</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Excessive Session Timeout</internalKey>
     <name>ASP.NET Misconfiguration: Excessive Session Timeout</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1284,7 +1334,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Incomplete Certificate Validation</key>
+    <key>environment_asp_net_misconfiguration_incomplete_certificate_validation</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Incomplete Certificate Validation</internalKey>
     <name>ASP.NET Misconfiguration: Incomplete Certificate Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1315,7 +1366,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Incomplete Cookie Protection</key>
+    <key>environment_asp_net_misconfiguration_incomplete_cookie_protection</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Incomplete Cookie Protection</internalKey>
     <name>ASP.NET Misconfiguration: Incomplete Cookie Protection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1349,7 +1401,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Incomplete Role Protection</key>
+    <key>environment_asp_net_misconfiguration_incomplete_role_protection</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Incomplete Role Protection</internalKey>
     <name>ASP.NET Misconfiguration: Incomplete Role Protection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1383,7 +1436,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Information Disclosure</key>
+    <key>environment_asp_net_misconfiguration_information_disclosure</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Information Disclosure</internalKey>
     <name>ASP.NET Misconfiguration: Information Disclosure</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1405,7 +1459,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: MIME Sniffing</key>
+    <key>environment_asp_net_misconfiguration_mime_sniffing</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/MIME Sniffing</internalKey>
     <name>ASP.NET Misconfiguration: MIME Sniffing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1443,7 +1498,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Password Protection Disabled</key>
+    <key>environment_asp_net_misconfiguration_password_protection_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Password Protection Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Password Protection Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1477,7 +1533,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Request Validation Disabled</key>
+    <key>environment_asp_net_misconfiguration_request_validation_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Request Validation Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Request Validation Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1509,7 +1566,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Request Validation Disabled(request_validation_disabled)</key>
+    <key>environment_asp_net_misconfiguration_request_validation_disabled_request_validation_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Request Validation Disabled(request_validation_disabled)</internalKey>
     <name>ASP.NET Misconfiguration: Request Validation Disabled(request_validation_disabled)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1541,7 +1599,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Role Protection Disabled</key>
+    <key>environment_asp_net_misconfiguration_role_protection_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Role Protection Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Role Protection Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1575,7 +1634,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Session Cookies Disabled</key>
+    <key>environment_asp_net_misconfiguration_session_cookies_disabled</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Session Cookies Disabled</internalKey>
     <name>ASP.NET Misconfiguration: Session Cookies Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1608,7 +1668,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Trace Output</key>
+    <key>environment_asp_net_misconfiguration_trace_output</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Trace Output</internalKey>
     <name>ASP.NET Misconfiguration: Trace Output</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1642,7 +1703,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Use of Impersonation Context</key>
+    <key>environment_asp_net_misconfiguration_use_of_impersonation_context</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Use of Impersonation Context</internalKey>
     <name>ASP.NET Misconfiguration: Use of Impersonation Context</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1675,7 +1737,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ASP.NET Misconfiguration: Weak Password Protection</key>
+    <key>environment_asp_net_misconfiguration_weak_password_protection</key>
+    <internalKey>Environment/ASP.NET Misconfiguration/Weak Password Protection</internalKey>
     <name>ASP.NET Misconfiguration: Weak Password Protection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1708,7 +1771,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Certificate Management: Certificate in Configuration File</key>
+    <key>environment_certificate_management_certificate_in_configuration_file</key>
+    <internalKey>Environment/Certificate Management/Certificate in Configuration File</internalKey>
     <name>Certificate Management: Certificate in Configuration File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1743,7 +1807,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: HTTPOnly not Set on Application Cookie</key>
+    <key>environment_cookie_security_httponly_not_set_on_application_cookie</key>
+    <internalKey>Environment/Cookie Security/HTTPOnly not Set on Application Cookie</internalKey>
     <name>Cookie Security: HTTPOnly not Set on Application Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1768,7 +1833,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Session Cookie not Sent Over SSL</key>
+    <key>environment_cookie_security_session_cookie_not_sent_over_ssl</key>
+    <internalKey>Environment/Cookie Security/Session Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Session Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1803,7 +1869,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/External Content: Content Delivery Network</key>
+    <key>environment_external_content_content_delivery_network</key>
+    <internalKey>Environment/External Content/Content Delivery Network</internalKey>
     <name>External Content: Content Delivery Network</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1839,7 +1906,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Password Management: Empty Password in Configuration File</key>
+    <key>environment_password_management_empty_password_in_configuration_file</key>
+    <internalKey>Environment/Password Management/Empty Password in Configuration File</internalKey>
     <name>Password Management: Empty Password in Configuration File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1874,7 +1942,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Password Management: Password in Configuration File</key>
+    <key>environment_password_management_password_in_configuration_file</key>
+    <internalKey>Environment/Password Management/Password in Configuration File</internalKey>
     <name>Password Management: Password in Configuration File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1907,7 +1976,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Anonymous Message Client</key>
+    <key>environment_wcf_misconfiguration_anonymous_message_client</key>
+    <internalKey>Environment/WCF Misconfiguration/Anonymous Message Client</internalKey>
     <name>WCF Misconfiguration: Anonymous Message Client</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1944,7 +2014,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Anonymous Transport Client</key>
+    <key>environment_wcf_misconfiguration_anonymous_transport_client</key>
+    <internalKey>Environment/WCF Misconfiguration/Anonymous Transport Client</internalKey>
     <name>WCF Misconfiguration: Anonymous Transport Client</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1981,7 +2052,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Debug Information</key>
+    <key>environment_wcf_misconfiguration_debug_information</key>
+    <internalKey>Environment/WCF Misconfiguration/Debug Information</internalKey>
     <name>WCF Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2015,7 +2087,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Insecure Transport</key>
+    <key>environment_wcf_misconfiguration_insecure_transport</key>
+    <internalKey>Environment/WCF Misconfiguration/Insecure Transport</internalKey>
     <name>WCF Misconfiguration: Insecure Transport</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2053,7 +2126,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Insufficient Audit Failure Handling</key>
+    <key>environment_wcf_misconfiguration_insufficient_audit_failure_handling</key>
+    <internalKey>Environment/WCF Misconfiguration/Insufficient Audit Failure Handling</internalKey>
     <name>WCF Misconfiguration: Insufficient Audit Failure Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2086,7 +2160,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Insufficient Logging</key>
+    <key>environment_wcf_misconfiguration_insufficient_logging</key>
+    <internalKey>Environment/WCF Misconfiguration/Insufficient Logging</internalKey>
     <name>WCF Misconfiguration: Insufficient Logging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2118,7 +2193,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: MSMQ Anonymous Transport Client</key>
+    <key>environment_wcf_misconfiguration_msmq_anonymous_transport_client</key>
+    <internalKey>Environment/WCF Misconfiguration/MSMQ Anonymous Transport Client</internalKey>
     <name>WCF Misconfiguration: MSMQ Anonymous Transport Client</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2154,7 +2230,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Metadata</key>
+    <key>environment_wcf_misconfiguration_metadata</key>
+    <internalKey>Environment/WCF Misconfiguration/Metadata</internalKey>
     <name>WCF Misconfiguration: Metadata</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2186,7 +2263,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Security Not Enabled</key>
+    <key>environment_wcf_misconfiguration_security_not_enabled</key>
+    <internalKey>Environment/WCF Misconfiguration/Security Not Enabled</internalKey>
     <name>WCF Misconfiguration: Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2222,7 +2300,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Service Enumeration</key>
+    <key>environment_wcf_misconfiguration_service_enumeration</key>
+    <internalKey>Environment/WCF Misconfiguration/Service Enumeration</internalKey>
     <name>WCF Misconfiguration: Service Enumeration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2254,7 +2333,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Throttling Not Enabled</key>
+    <key>environment_wcf_misconfiguration_throttling_not_enabled</key>
+    <internalKey>Environment/WCF Misconfiguration/Throttling Not Enabled</internalKey>
     <name>WCF Misconfiguration: Throttling Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2283,7 +2363,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Transport Security Enabled</key>
+    <key>environment_wcf_misconfiguration_transport_security_enabled</key>
+    <internalKey>Environment/WCF Misconfiguration/Transport Security Enabled</internalKey>
     <name>WCF Misconfiguration: Transport Security Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2320,7 +2401,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Unauthorized Access</key>
+    <key>environment_wcf_misconfiguration_unauthorized_access</key>
+    <internalKey>Environment/WCF Misconfiguration/Unauthorized Access</internalKey>
     <name>WCF Misconfiguration: Unauthorized Access</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2357,7 +2439,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Unsafe Revocation Mode</key>
+    <key>environment_wcf_misconfiguration_unsafe_revocation_mode</key>
+    <internalKey>Environment/WCF Misconfiguration/Unsafe Revocation Mode</internalKey>
     <name>WCF Misconfiguration: Unsafe Revocation Mode</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2393,7 +2476,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WCF Misconfiguration: Weak Token</key>
+    <key>environment_wcf_misconfiguration_weak_token</key>
+    <internalKey>Environment/WCF Misconfiguration/Weak Token</internalKey>
     <name>WCF Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2428,7 +2512,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WSE Misconfiguration: Insufficient Encryption</key>
+    <key>environment_wse_misconfiguration_insufficient_encryption</key>
+    <internalKey>Environment/WSE Misconfiguration/Insufficient Encryption</internalKey>
     <name>WSE Misconfiguration: Insufficient Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2464,7 +2549,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WSE Misconfiguration: Missing Authorization</key>
+    <key>environment_wse_misconfiguration_missing_authorization</key>
+    <internalKey>Environment/WSE Misconfiguration/Missing Authorization</internalKey>
     <name>WSE Misconfiguration: Missing Authorization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2500,7 +2586,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WSE Misconfiguration: Unsigned Fault Timestamp</key>
+    <key>environment_wse_misconfiguration_unsigned_fault_timestamp</key>
+    <internalKey>Environment/WSE Misconfiguration/Unsigned Fault Timestamp</internalKey>
     <name>WSE Misconfiguration: Unsigned Fault Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2529,7 +2616,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WSE Misconfiguration: Unsigned Request Timestamp</key>
+    <key>environment_wse_misconfiguration_unsigned_request_timestamp</key>
+    <internalKey>Environment/WSE Misconfiguration/Unsigned Request Timestamp</internalKey>
     <name>WSE Misconfiguration: Unsigned Request Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2558,7 +2646,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WSE Misconfiguration: Unsigned Response Timestamp</key>
+    <key>environment_wse_misconfiguration_unsigned_response_timestamp</key>
+    <internalKey>Environment/WSE Misconfiguration/Unsigned Response Timestamp</internalKey>
     <name>WSE Misconfiguration: Unsigned Response Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2587,7 +2676,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Empty Catch Block</key>
+    <key>errors_poor_error_handling_empty_catch_block</key>
+    <internalKey>Errors/Poor Error Handling/Empty Catch Block</internalKey>
     <name>Poor Error Handling: Empty Catch Block</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2616,7 +2706,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Overly Broad Catch</key>
+    <key>errors_poor_error_handling_overly_broad_catch</key>
+    <internalKey>Errors/Poor Error Handling/Overly Broad Catch</internalKey>
     <name>Poor Error Handling: Overly Broad Catch</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2645,7 +2736,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Program Catches NullReferenceException</key>
+    <key>errors_poor_error_handling_program_catches_nullreferenceexception</key>
+    <internalKey>Errors/Poor Error Handling/Program Catches NullReferenceException</internalKey>
     <name>Poor Error Handling: Program Catches NullReferenceException</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2673,7 +2765,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/ASP.NET Bad Practices: Unvalidated Web API Model</key>
+    <key>input_validation_and_representation_asp_net_bad_practices_unvalidated_web_api_model</key>
+    <internalKey>Input Validation and Representation/ASP.NET Bad Practices/Unvalidated Web API Model</internalKey>
     <name>ASP.NET Bad Practices: Unvalidated Web API Model</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2705,7 +2798,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Command Injection</key>
+    <key>input_validation_and_representation_command_injection</key>
+    <internalKey>Input Validation and Representation/Command Injection</internalKey>
     <name>Command Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2740,7 +2834,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Inter-Component Communication (Cloud)</key>
+    <key>input_validation_and_representation_cross_site_scripting_inter_component_communication__cloud</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Inter-Component Communication (Cloud)</internalKey>
     <name>Cross-Site Scripting: Inter-Component Communication (Cloud)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2779,7 +2874,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Persistent</key>
+    <key>input_validation_and_representation_cross_site_scripting_persistent</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Persistent</internalKey>
     <name>Cross-Site Scripting: Persistent</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2818,7 +2914,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Poor Validation</key>
+    <key>input_validation_and_representation_cross_site_scripting_poor_validation</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Poor Validation</internalKey>
     <name>Cross-Site Scripting: Poor Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2855,7 +2952,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Reflected</key>
+    <key>input_validation_and_representation_cross_site_scripting_reflected</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Reflected</internalKey>
     <name>Cross-Site Scripting: Reflected</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2893,7 +2991,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dangerous File Inclusion</key>
+    <key>input_validation_and_representation_dangerous_file_inclusion</key>
+    <internalKey>Input Validation and Representation/Dangerous File Inclusion</internalKey>
     <name>Dangerous File Inclusion</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2928,7 +3027,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service</key>
+    <key>input_validation_and_representation_denial_of_service</key>
+    <internalKey>Input Validation and Representation/Denial of Service</internalKey>
     <name>Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2953,7 +3053,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service: Routing</key>
+    <key>input_validation_and_representation_denial_of_service_routing</key>
+    <internalKey>Input Validation and Representation/Denial of Service/Routing</internalKey>
     <name>Denial of Service: Routing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2979,7 +3080,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Script Injection</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_script_injection</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Script Injection</internalKey>
     <name>Dynamic Code Evaluation: Script Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3012,7 +3114,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/HTTP Parameter Pollution</key>
+    <key>input_validation_and_representation_http_parameter_pollution</key>
+    <internalKey>Input Validation and Representation/HTTP Parameter Pollution</internalKey>
     <name>HTTP Parameter Pollution</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3037,7 +3140,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation</key>
+    <key>input_validation_and_representation_header_manipulation</key>
+    <internalKey>Input Validation and Representation/Header Manipulation</internalKey>
     <name>Header Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3072,7 +3176,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation: Cookies</key>
+    <key>input_validation_and_representation_header_manipulation_cookies</key>
+    <internalKey>Input Validation and Representation/Header Manipulation/Cookies</internalKey>
     <name>Header Manipulation: Cookies</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3107,7 +3212,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/JSON Injection</key>
+    <key>input_validation_and_representation_json_injection</key>
+    <internalKey>Input Validation and Representation/JSON Injection</internalKey>
     <name>JSON Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3139,7 +3245,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Injection</key>
+    <key>input_validation_and_representation_ldap_injection</key>
+    <internalKey>Input Validation and Representation/LDAP Injection</internalKey>
     <name>LDAP Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3173,7 +3280,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Manipulation</key>
+    <key>input_validation_and_representation_ldap_manipulation</key>
+    <internalKey>Input Validation and Representation/LDAP Manipulation</internalKey>
     <name>LDAP Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3202,7 +3310,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Log Forging</key>
+    <key>input_validation_and_representation_log_forging</key>
+    <internalKey>Input Validation and Representation/Log Forging</internalKey>
     <name>Log Forging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3236,7 +3345,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Missing XML Validation</key>
+    <key>input_validation_and_representation_missing_xml_validation</key>
+    <internalKey>Input Validation and Representation/Missing XML Validation</internalKey>
     <name>Missing XML Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3270,7 +3380,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Missing XML Validation(validating_reader)</key>
+    <key>input_validation_and_representation_missing_xml_validation_validating_reader</key>
+    <internalKey>Input Validation and Representation/Missing XML Validation(validating_reader)</internalKey>
     <name>Missing XML Validation(validating_reader)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3304,7 +3415,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Often Misused: File Upload</key>
+    <key>input_validation_and_representation_often_misused_file_upload</key>
+    <internalKey>Input Validation and Representation/Often Misused/File Upload</internalKey>
     <name>Often Misused: File Upload</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3339,7 +3451,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Open Redirect</key>
+    <key>input_validation_and_representation_open_redirect</key>
+    <internalKey>Input Validation and Representation/Open Redirect</internalKey>
     <name>Open Redirect</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3372,7 +3485,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Path Manipulation</key>
+    <key>input_validation_and_representation_path_manipulation</key>
+    <internalKey>Input Validation and Representation/Path Manipulation</internalKey>
     <name>Path Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3409,7 +3523,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Registry Manipulation</key>
+    <key>input_validation_and_representation_registry_manipulation</key>
+    <internalKey>Input Validation and Representation/Registry Manipulation</internalKey>
     <name>Registry Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3434,7 +3549,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Resource Injection</key>
+    <key>input_validation_and_representation_resource_injection</key>
+    <internalKey>Input Validation and Representation/Resource Injection</internalKey>
     <name>Resource Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3467,7 +3583,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection</key>
+    <key>input_validation_and_representation_sql_injection</key>
+    <internalKey>Input Validation and Representation/SQL Injection</internalKey>
     <name>SQL Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3507,7 +3624,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: Castle ActiveRecord</key>
+    <key>input_validation_and_representation_sql_injection_castle_activerecord</key>
+    <internalKey>Input Validation and Representation/SQL Injection/Castle ActiveRecord</internalKey>
     <name>SQL Injection: Castle ActiveRecord</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3547,7 +3665,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: LINQ</key>
+    <key>input_validation_and_representation_sql_injection_linq</key>
+    <internalKey>Input Validation and Representation/SQL Injection/LINQ</internalKey>
     <name>SQL Injection: LINQ</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3587,7 +3706,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: NHibernate</key>
+    <key>input_validation_and_representation_sql_injection_nhibernate</key>
+    <internalKey>Input Validation and Representation/SQL Injection/NHibernate</internalKey>
     <name>SQL Injection: NHibernate</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3627,7 +3747,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: SubSonic</key>
+    <key>input_validation_and_representation_sql_injection_subsonic</key>
+    <internalKey>Input Validation and Representation/SQL Injection/SubSonic</internalKey>
     <name>SQL Injection: SubSonic</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3667,7 +3788,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Server-Side Request Forgery</key>
+    <key>input_validation_and_representation_server_side_request_forgery</key>
+    <internalKey>Input Validation and Representation/Server-Side Request Forgery</internalKey>
     <name>Server-Side Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3701,7 +3823,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Setting Manipulation</key>
+    <key>input_validation_and_representation_setting_manipulation</key>
+    <internalKey>Input Validation and Representation/Setting Manipulation</internalKey>
     <name>Setting Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3728,7 +3851,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe Native Invoke</key>
+    <key>input_validation_and_representation_unsafe_native_invoke</key>
+    <internalKey>Input Validation and Representation/Unsafe Native Invoke</internalKey>
     <name>Unsafe Native Invoke</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3757,7 +3881,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe Reflection</key>
+    <key>input_validation_and_representation_unsafe_reflection</key>
+    <internalKey>Input Validation and Representation/Unsafe Reflection</internalKey>
     <name>Unsafe Reflection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3789,7 +3914,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Value Shadowing</key>
+    <key>input_validation_and_representation_value_shadowing</key>
+    <internalKey>Input Validation and Representation/Value Shadowing</internalKey>
     <name>Value Shadowing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3805,7 +3931,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Value Shadowing: Server Variable</key>
+    <key>input_validation_and_representation_value_shadowing_server_variable</key>
+    <internalKey>Input Validation and Representation/Value Shadowing/Server Variable</internalKey>
     <name>Value Shadowing: Server Variable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3822,7 +3949,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Entity Expansion Injection</key>
+    <key>input_validation_and_representation_xml_entity_expansion_injection</key>
+    <internalKey>Input Validation and Representation/XML Entity Expansion Injection</internalKey>
     <name>XML Entity Expansion Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3856,7 +3984,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML External Entity Injection</key>
+    <key>input_validation_and_representation_xml_external_entity_injection</key>
+    <internalKey>Input Validation and Representation/XML External Entity Injection</internalKey>
     <name>XML External Entity Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3892,7 +4021,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Injection</key>
+    <key>input_validation_and_representation_xml_injection</key>
+    <internalKey>Input Validation and Representation/XML Injection</internalKey>
     <name>XML Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3924,7 +4054,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XPath Injection</key>
+    <key>input_validation_and_representation_xpath_injection</key>
+    <internalKey>Input Validation and Representation/XPath Injection</internalKey>
     <name>XPath Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3957,7 +4088,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XQuery Injection</key>
+    <key>input_validation_and_representation_xquery_injection</key>
+    <internalKey>Input Validation and Representation/XQuery Injection</internalKey>
     <name>XQuery Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3989,7 +4121,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XSLT Injection</key>
+    <key>input_validation_and_representation_xslt_injection</key>
+    <internalKey>Input Validation and Representation/XSLT Injection</internalKey>
     <name>XSLT Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4021,7 +4154,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Bad Practices: Use of Impersonation Context</key>
+    <key>security_features_asp_net_bad_practices_use_of_impersonation_context</key>
+    <internalKey>Security Features/ASP.NET Bad Practices/Use of Impersonation Context</internalKey>
     <name>ASP.NET Bad Practices: Use of Impersonation Context</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4054,7 +4188,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET MVC Bad Practices: Controller Action Without AntiForgery Validation</key>
+    <key>security_features_asp_net_mvc_bad_practices_controller_action_without_antiforgery_validation</key>
+    <internalKey>Security Features/ASP.NET MVC Bad Practices/Controller Action Without AntiForgery Validation</internalKey>
     <name>ASP.NET MVC Bad Practices: Controller Action Without AntiForgery Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4089,7 +4224,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET MVC Bad Practices: Form Without AntiForgery Token</key>
+    <key>security_features_asp_net_mvc_bad_practices_form_without_antiforgery_token</key>
+    <internalKey>Security Features/ASP.NET MVC Bad Practices/Form Without AntiForgery Token</internalKey>
     <name>ASP.NET MVC Bad Practices: Form Without AntiForgery Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4124,7 +4260,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Misconfiguration: Header Checking Disabled(header_checking_disabled)</key>
+    <key>security_features_asp_net_misconfiguration_header_checking_disabled_header_checking_disabled</key>
+    <internalKey>Security Features/ASP.NET Misconfiguration/Header Checking Disabled(header_checking_disabled)</internalKey>
     <name>ASP.NET Misconfiguration: Header Checking Disabled(header_checking_disabled)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4156,7 +4293,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Misconfiguration: Missing Error Handling</key>
+    <key>security_features_asp_net_misconfiguration_missing_error_handling</key>
+    <internalKey>Security Features/ASP.NET Misconfiguration/Missing Error Handling</internalKey>
     <name>ASP.NET Misconfiguration: Missing Error Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4189,7 +4327,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Misconfiguration: Persistent Authentication</key>
+    <key>security_features_asp_net_misconfiguration_persistent_authentication</key>
+    <internalKey>Security Features/ASP.NET Misconfiguration/Persistent Authentication</internalKey>
     <name>ASP.NET Misconfiguration: Persistent Authentication</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4222,7 +4361,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Misconfiguration: ViewStateMac Disabled</key>
+    <key>security_features_asp_net_misconfiguration_viewstatemac_disabled</key>
+    <internalKey>Security Features/ASP.NET Misconfiguration/ViewStateMac Disabled</internalKey>
     <name>ASP.NET Misconfiguration: ViewStateMac Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4250,7 +4390,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/ASP.NET Misconfiguration: ViewStateMac Disabled(viewstatemac_disabled)</key>
+    <key>security_features_asp_net_misconfiguration_viewstatemac_disabled_viewstatemac_disabled</key>
+    <internalKey>Security Features/ASP.NET Misconfiguration/ViewStateMac Disabled(viewstatemac_disabled)</internalKey>
     <name>ASP.NET Misconfiguration: ViewStateMac Disabled(viewstatemac_disabled)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4278,7 +4419,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Anonymous LDAP Bind</key>
+    <key>security_features_access_control_anonymous_ldap_bind</key>
+    <internalKey>Security Features/Access Control/Anonymous LDAP Bind</internalKey>
     <name>Access Control: Anonymous LDAP Bind</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4314,7 +4456,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Database</key>
+    <key>security_features_access_control_database</key>
+    <internalKey>Security Features/Access Control/Database</internalKey>
     <name>Access Control: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4349,7 +4492,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: LDAP</key>
+    <key>security_features_access_control_ldap</key>
+    <internalKey>Security Features/Access Control/LDAP</internalKey>
     <name>Access Control: LDAP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4383,7 +4527,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Cookie not Sent Over SSL</key>
+    <key>security_features_cookie_security_cookie_not_sent_over_ssl</key>
+    <internalKey>Security Features/Cookie Security/Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4418,7 +4563,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: HTTPOnly not Set</key>
+    <key>security_features_cookie_security_httponly_not_set</key>
+    <internalKey>Security Features/Cookie Security/HTTPOnly not Set</internalKey>
     <name>Cookie Security: HTTPOnly not Set</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4443,7 +4589,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Domain</key>
+    <key>security_features_cookie_security_overly_broad_domain</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Domain</internalKey>
     <name>Cookie Security: Overly Broad Domain</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4470,7 +4617,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Path</key>
+    <key>security_features_cookie_security_overly_broad_path</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Path</internalKey>
     <name>Cookie Security: Overly Broad Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4497,7 +4645,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Persistent Cookie</key>
+    <key>security_features_cookie_security_persistent_cookie</key>
+    <internalKey>Security Features/Cookie Security/Persistent Cookie</internalKey>
     <name>Cookie Security: Persistent Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4531,7 +4680,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/HTTP Verb Tampering</key>
+    <key>security_features_http_verb_tampering</key>
+    <internalKey>Security Features/HTTP Verb Tampering</internalKey>
     <name>HTTP Verb Tampering</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4557,7 +4707,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Header Checking Disabled</key>
+    <key>security_features_header_checking_disabled</key>
+    <internalKey>Security Features/Header Checking Disabled</internalKey>
     <name>Header Checking Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4589,7 +4740,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness</key>
+    <key>security_features_insecure_randomness</key>
+    <internalKey>Security Features/Insecure Randomness</internalKey>
     <name>Insecure Randomness</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4625,7 +4777,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management</key>
+    <key>security_features_password_management</key>
+    <internalKey>Security Features/Password Management</internalKey>
     <name>Password Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4658,7 +4811,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Empty Password</key>
+    <key>security_features_password_management_empty_password</key>
+    <internalKey>Security Features/Password Management/Empty Password</internalKey>
     <name>Password Management: Empty Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4691,7 +4845,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Hardcoded Password</key>
+    <key>security_features_password_management_hardcoded_password</key>
+    <internalKey>Security Features/Password Management/Hardcoded Password</internalKey>
     <name>Password Management: Hardcoded Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4727,7 +4882,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Null Password</key>
+    <key>security_features_password_management_null_password</key>
+    <internalKey>Security Features/Password Management/Null Password</internalKey>
     <name>Password Management: Null Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4760,7 +4916,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Comment</key>
+    <key>security_features_password_management_password_in_comment</key>
+    <internalKey>Security Features/Password Management/Password in Comment</internalKey>
     <name>Password Management: Password in Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4793,7 +4950,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Weak Cryptography</key>
+    <key>security_features_password_management_weak_cryptography</key>
+    <internalKey>Security Features/Password Management/Weak Cryptography</internalKey>
     <name>Password Management: Weak Cryptography</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4827,7 +4985,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation</key>
+    <key>security_features_privacy_violation</key>
+    <internalKey>Security Features/Privacy Violation</internalKey>
     <name>Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4863,7 +5022,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Heap Inspection</key>
+    <key>security_features_privacy_violation_heap_inspection</key>
+    <internalKey>Security Features/Privacy Violation/Heap Inspection</internalKey>
     <name>Privacy Violation: Heap Inspection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4897,7 +5057,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Image</key>
+    <key>security_features_privacy_violation_image</key>
+    <internalKey>Security Features/Privacy Violation/Image</internalKey>
     <name>Privacy Violation: Image</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4928,7 +5089,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/WCF Misconfiguration: Weak Class Reference</key>
+    <key>security_features_wcf_misconfiguration_weak_class_reference</key>
+    <internalKey>Security Features/WCF Misconfiguration/Weak Class Reference</internalKey>
     <name>WCF Misconfiguration: Weak Class Reference</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4962,7 +5124,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash</key>
+    <key>security_features_weak_cryptographic_hash</key>
+    <internalKey>Security Features/Weak Cryptographic Hash</internalKey>
     <name>Weak Cryptographic Hash</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4998,7 +5161,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption</key>
+    <key>security_features_weak_encryption</key>
+    <internalKey>Security Features/Weak Encryption</internalKey>
     <name>Weak Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5039,7 +5203,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Inadequate RSA Padding</key>
+    <key>security_features_weak_encryption_inadequate_rsa_padding</key>
+    <internalKey>Security Features/Weak Encryption/Inadequate RSA Padding</internalKey>
     <name>Weak Encryption: Inadequate RSA Padding</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5075,7 +5240,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Insufficient Key Size</key>
+    <key>security_features_weak_encryption_insufficient_key_size</key>
+    <internalKey>Security Features/Weak Encryption/Insufficient Key Size</internalKey>
     <name>Weak Encryption: Insufficient Key Size</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5111,7 +5277,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Time and State/ASP.NET Bad Practices: Non-Serializable Object Stored in Session</key>
+    <key>time_and_state_asp_net_bad_practices_non_serializable_object_stored_in_session</key>
+    <internalKey>Time and State/ASP.NET Bad Practices/Non-Serializable Object Stored in Session</internalKey>
     <name>ASP.NET Bad Practices: Non-Serializable Object Stored in Session</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5138,7 +5305,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: Roaming Data Access</key>
+    <key>time_and_state_race_condition_roaming_data_access</key>
+    <internalKey>Time and State/Race Condition/Roaming Data Access</internalKey>
     <name>Race Condition: Roaming Data Access</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

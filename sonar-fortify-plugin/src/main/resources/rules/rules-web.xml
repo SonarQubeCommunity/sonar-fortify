@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/Often Misused: Price-Related Fields</key>
+    <key>api_abuse_often_misused_price_related_fields</key>
+    <internalKey>API Abuse/Often Misused/Price-Related Fields</internalKey>
     <name>Often Misused: Price-Related Fields</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -15,7 +16,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Cross-Site Request Forgery</key>
+    <key>encapsulation_cross_site_request_forgery</key>
+    <internalKey>Encapsulation/Cross-Site Request Forgery</internalKey>
     <name>Cross-Site Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -50,7 +52,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/HTML5: Sensitive Information Disclosure via Client-Side Storage</key>
+    <key>encapsulation_html5_sensitive_information_disclosure_via_client_side_storage</key>
+    <internalKey>Encapsulation/HTML5/Sensitive Information Disclosure via Client-Side Storage</internalKey>
     <name>HTML5: Sensitive Information Disclosure via Client-Side Storage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -69,7 +72,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Hardcoded Domain in HTML</key>
+    <key>encapsulation_hardcoded_domain_in_html</key>
+    <internalKey>Encapsulation/Hardcoded Domain in HTML</internalKey>
     <name>Hardcoded Domain in HTML</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -88,7 +92,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Hidden Field</key>
+    <key>encapsulation_hidden_field</key>
+    <internalKey>Encapsulation/Hidden Field</internalKey>
     <name>Hidden Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -112,7 +117,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: HTML Comment</key>
+    <key>encapsulation_system_information_leak_html_comment</key>
+    <internalKey>Encapsulation/System Information Leak/HTML Comment</internalKey>
     <name>System Information Leak: HTML Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -139,7 +145,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Environment/HTML5: CORS Unsafe Methods Allowed</key>
+    <key>environment_html5_cors_unsafe_methods_allowed</key>
+    <internalKey>Environment/HTML5/CORS Unsafe Methods Allowed</internalKey>
     <name>HTML5: CORS Unsafe Methods Allowed</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -159,7 +166,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/HTML5: Form Validation Turned Off</key>
+    <key>input_validation_and_representation_html5_form_validation_turned_off</key>
+    <internalKey>Input Validation and Representation/HTML5/Form Validation Turned Off</internalKey>
     <name>HTML5: Form Validation Turned Off</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -190,7 +198,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Often Misused: File Upload</key>
+    <key>input_validation_and_representation_often_misused_file_upload</key>
+    <internalKey>Input Validation and Representation/Often Misused/File Upload</internalKey>
     <name>Often Misused: File Upload</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -224,7 +233,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Parameter Tampering: Client-Side Price Manipulation</key>
+    <key>input_validation_and_representation_parameter_tampering_client_side_price_manipulation</key>
+    <internalKey>Input Validation and Representation/Parameter Tampering/Client-Side Price Manipulation</internalKey>
     <name>Parameter Tampering: Client-Side Price Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -250,7 +260,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/HTML5: CORS Functionality Abuse</key>
+    <key>security_features_html5_cors_functionality_abuse</key>
+    <internalKey>Security Features/HTML5/CORS Functionality Abuse</internalKey>
     <name>HTML5: CORS Functionality Abuse</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -270,7 +281,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/HTML5: CORS Prolonged Caching of Preflight Response</key>
+    <key>security_features_html5_cors_prolonged_caching_of_preflight_response</key>
+    <internalKey>Security Features/HTML5/CORS Prolonged Caching of Preflight Response</internalKey>
     <name>HTML5: CORS Prolonged Caching of Preflight Response</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -291,7 +303,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/HTML5: Misconfigured Content Security Policy</key>
+    <key>security_features_html5_misconfigured_content_security_policy</key>
+    <internalKey>Security Features/HTML5/Misconfigured Content Security Policy</internalKey>
     <name>HTML5: Misconfigured Content Security Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -310,7 +323,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Insecure Submission</key>
+    <key>security_features_password_management_insecure_submission</key>
+    <internalKey>Security Features/Password Management/Insecure Submission</internalKey>
     <name>Password Management: Insecure Submission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -346,7 +360,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in HTML Form</key>
+    <key>security_features_password_management_password_in_html_form</key>
+    <internalKey>Security Features/Password Management/Password in HTML Form</internalKey>
     <name>Password Management: Password in HTML Form</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -381,7 +396,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Autocomplete</key>
+    <key>security_features_privacy_violation_autocomplete</key>
+    <internalKey>Security Features/Privacy Violation/Autocomplete</internalKey>
     <name>Privacy Violation: Autocomplete</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -411,7 +427,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Password</key>
+    <key>security_features_privacy_violation_password</key>
+    <internalKey>Security Features/Privacy Violation/Password</internalKey>
     <name>Privacy Violation: Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

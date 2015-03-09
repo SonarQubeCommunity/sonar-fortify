@@ -57,9 +57,11 @@ public class MainTest {
     main.extractRules();
 
     String abapRules = FileUtils.readFileToString(new File(output, "src/main/resources/rules/rules-abap.xml"));
-    assertThat(abapRules).contains("<key>API Abuse/SQL Bad Practices: Direct Update</key>");
-    assertThat(abapRules).contains("<key>API Abuse/System Field Overwrite</key>");
-    assertThat(abapRules).contains("<key>Code Quality/Obsolete</key>");
+    assertThat(abapRules).contains("<key>api_abuse_sql_bad_practices_direct_update</key>");
+    assertThat(abapRules).contains("<internalKey>API Abuse/SQL Bad Practices/Direct Update</internalKey>");
+    assertThat(abapRules).contains("<key>api_abuse_system_field_overwrite</key>");
+    assertThat(abapRules).contains("<key>code_quality_obsolete</key>");
+    assertThat(abapRules).contains("<internalKey>Code Quality/Obsolete</internalKey>");
     assertThat(abapRules).contains("<tag>api-abuse</tag>");
   }
 

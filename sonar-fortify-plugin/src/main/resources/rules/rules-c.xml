@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/Dangerous Function</key>
+    <key>api_abuse_dangerous_function</key>
+    <internalKey>API Abuse/Dangerous Function</internalKey>
     <name>Dangerous Function</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -25,7 +26,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Dangerous Function: strcpy()</key>
+    <key>api_abuse_dangerous_function_strcpy_</key>
+    <internalKey>API Abuse/Dangerous Function/strcpy()</internalKey>
     <name>Dangerous Function: strcpy()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -54,7 +56,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Directory Restriction</key>
+    <key>api_abuse_directory_restriction</key>
+    <internalKey>API Abuse/Directory Restriction</internalKey>
     <name>Directory Restriction</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -73,7 +76,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Heap Inspection</key>
+    <key>api_abuse_heap_inspection</key>
+    <internalKey>API Abuse/Heap Inspection</internalKey>
     <name>Heap Inspection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -105,7 +109,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Heap Inspection: Swappable Memory</key>
+    <key>api_abuse_heap_inspection_swappable_memory</key>
+    <internalKey>API Abuse/Heap Inspection/Swappable Memory</internalKey>
     <name>Heap Inspection: Swappable Memory</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -137,7 +142,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Missing Check against Null</key>
+    <key>api_abuse_missing_check_against_null</key>
+    <internalKey>API Abuse/Missing Check against Null</internalKey>
     <name>Missing Check against Null</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -162,7 +168,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Authentication(gethostby)</key>
+    <key>api_abuse_often_misused_authentication_gethostby</key>
+    <internalKey>API Abuse/Often Misused/Authentication(gethostby)</internalKey>
     <name>Often Misused: Authentication(gethostby)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -197,7 +204,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Authentication(getlogin)</key>
+    <key>api_abuse_often_misused_authentication_getlogin</key>
+    <internalKey>API Abuse/Often Misused/Authentication(getlogin)</internalKey>
     <name>Often Misused: Authentication(getlogin)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -232,7 +240,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Exception Handling(_alloca)</key>
+    <key>api_abuse_often_misused_exception_handling__alloca</key>
+    <internalKey>API Abuse/Often Misused/Exception Handling(_alloca)</internalKey>
     <name>Often Misused: Exception Handling(_alloca)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -260,7 +269,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Exception Handling(criticalsection)</key>
+    <key>api_abuse_often_misused_exception_handling_criticalsection</key>
+    <internalKey>API Abuse/Often Misused/Exception Handling(criticalsection)</internalKey>
     <name>Often Misused: Exception Handling(criticalsection)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -288,7 +298,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: File System(getwd)</key>
+    <key>api_abuse_often_misused_file_system_getwd</key>
+    <internalKey>API Abuse/Often Misused/File System(getwd)</internalKey>
     <name>Often Misused: File System(getwd)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -314,7 +325,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: File System(readlink)</key>
+    <key>api_abuse_often_misused_file_system_readlink</key>
+    <internalKey>API Abuse/Often Misused/File System(readlink)</internalKey>
     <name>Often Misused: File System(readlink)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -341,7 +353,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: File System(realpath)</key>
+    <key>api_abuse_often_misused_file_system_realpath</key>
+    <internalKey>API Abuse/Often Misused/File System(realpath)</internalKey>
     <name>Often Misused: File System(realpath)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -368,7 +381,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: File System(umask)</key>
+    <key>api_abuse_often_misused_file_system_umask</key>
+    <internalKey>API Abuse/Often Misused/File System(umask)</internalKey>
     <name>Often Misused: File System(umask)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -394,7 +408,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: File System(windows)</key>
+    <key>api_abuse_often_misused_file_system_windows</key>
+    <internalKey>API Abuse/Often Misused/File System(windows)</internalKey>
     <name>Often Misused: File System(windows)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -420,7 +435,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Privilege Management</key>
+    <key>api_abuse_often_misused_privilege_management</key>
+    <internalKey>API Abuse/Often Misused/Privilege Management</internalKey>
     <name>Often Misused: Privilege Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -450,7 +466,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Privilege Management(setuid)</key>
+    <key>api_abuse_often_misused_privilege_management_setuid</key>
+    <internalKey>API Abuse/Often Misused/Privilege Management(setuid)</internalKey>
     <name>Often Misused: Privilege Management(setuid)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -480,7 +497,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Strings(_mbs)</key>
+    <key>api_abuse_often_misused_strings__mbs</key>
+    <internalKey>API Abuse/Often Misused/Strings(_mbs)</internalKey>
     <name>Often Misused: Strings(_mbs)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -508,7 +526,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Strings(multibytewidechar)</key>
+    <key>api_abuse_often_misused_strings_multibytewidechar</key>
+    <internalKey>API Abuse/Often Misused/Strings(multibytewidechar)</internalKey>
     <name>Often Misused: Strings(multibytewidechar)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -535,7 +554,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Unchecked Return Value</key>
+    <key>api_abuse_unchecked_return_value</key>
+    <internalKey>API Abuse/Unchecked Return Value</internalKey>
     <name>Unchecked Return Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -565,7 +585,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Arithmetic Operation on Boolean</key>
+    <key>code_quality_code_correctness_arithmetic_operation_on_boolean</key>
+    <internalKey>Code Quality/Code Correctness/Arithmetic Operation on Boolean</internalKey>
     <name>Code Correctness: Arithmetic Operation on Boolean</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -582,7 +603,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Function Not Invoked</key>
+    <key>code_quality_code_correctness_function_not_invoked</key>
+    <internalKey>Code Quality/Code Correctness/Function Not Invoked</internalKey>
     <name>Code Correctness: Function Not Invoked</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -604,7 +626,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Function Returns Stack Address</key>
+    <key>code_quality_code_correctness_function_returns_stack_address</key>
+    <internalKey>Code Quality/Code Correctness/Function Returns Stack Address</internalKey>
     <name>Code Correctness: Function Returns Stack Address</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -629,7 +652,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Macro Misuse</key>
+    <key>code_quality_code_correctness_macro_misuse</key>
+    <internalKey>Code Quality/Code Correctness/Macro Misuse</internalKey>
     <name>Code Correctness: Macro Misuse</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -653,7 +677,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Memory Free on Stack Variable</key>
+    <key>code_quality_code_correctness_memory_free_on_stack_variable</key>
+    <internalKey>Code Quality/Code Correctness/Memory Free on Stack Variable</internalKey>
     <name>Code Correctness: Memory Free on Stack Variable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -677,7 +702,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Premature Thread Termination</key>
+    <key>code_quality_code_correctness_premature_thread_termination</key>
+    <internalKey>Code Quality/Code Correctness/Premature Thread Termination</internalKey>
     <name>Code Correctness: Premature Thread Termination</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -691,7 +717,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code</key>
+    <key>code_quality_dead_code</key>
+    <internalKey>Code Quality/Dead Code</internalKey>
     <name>Dead Code</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -712,7 +739,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Double Free</key>
+    <key>code_quality_double_free</key>
+    <internalKey>Code Quality/Double Free</internalKey>
     <name>Double Free</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -738,7 +766,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Format String: Argument Number Mismatch</key>
+    <key>code_quality_format_string_argument_number_mismatch</key>
+    <internalKey>Code Quality/Format String/Argument Number Mismatch</internalKey>
     <name>Format String: Argument Number Mismatch</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -771,7 +800,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Format String: Argument Type Mismatch</key>
+    <key>code_quality_format_string_argument_type_mismatch</key>
+    <internalKey>Code Quality/Format String/Argument Type Mismatch</internalKey>
     <name>Format String: Argument Type Mismatch</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -804,7 +834,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Memory Leak</key>
+    <key>code_quality_memory_leak</key>
+    <internalKey>Code Quality/Memory Leak</internalKey>
     <name>Memory Leak</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -830,7 +861,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Memory Leak: Reallocation</key>
+    <key>code_quality_memory_leak_reallocation</key>
+    <internalKey>Code Quality/Memory Leak/Reallocation</internalKey>
     <name>Memory Leak: Reallocation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -854,7 +886,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Null Dereference</key>
+    <key>code_quality_null_dereference</key>
+    <internalKey>Code Quality/Null Dereference</internalKey>
     <name>Null Dereference</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -879,7 +912,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Obsolete</key>
+    <key>code_quality_obsolete</key>
+    <internalKey>Code Quality/Obsolete</internalKey>
     <name>Obsolete</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -895,7 +929,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Obsolete: Inadequate Pointer Validation</key>
+    <key>code_quality_obsolete_inadequate_pointer_validation</key>
+    <internalKey>Code Quality/Obsolete/Inadequate Pointer Validation</internalKey>
     <name>Obsolete: Inadequate Pointer Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -921,7 +956,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Redundant Initialization</key>
+    <key>code_quality_poor_style_redundant_initialization</key>
+    <internalKey>Code Quality/Poor Style/Redundant Initialization</internalKey>
     <name>Poor Style: Redundant Initialization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -942,7 +978,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Value Never Read</key>
+    <key>code_quality_poor_style_value_never_read</key>
+    <internalKey>Code Quality/Poor Style/Value Never Read</internalKey>
     <name>Poor Style: Value Never Read</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -963,7 +1000,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Variable Never Used</key>
+    <key>code_quality_poor_style_variable_never_used</key>
+    <internalKey>Code Quality/Poor Style/Variable Never Used</internalKey>
     <name>Poor Style: Variable Never Used</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -984,7 +1022,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Portability Flaw</key>
+    <key>code_quality_portability_flaw</key>
+    <internalKey>Code Quality/Portability Flaw</internalKey>
     <name>Portability Flaw</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1000,7 +1039,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Redundant Null Check</key>
+    <key>code_quality_redundant_null_check</key>
+    <internalKey>Code Quality/Redundant Null Check</internalKey>
     <name>Redundant Null Check</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1024,7 +1064,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Type Mismatch: Integer to Character</key>
+    <key>code_quality_type_mismatch_integer_to_character</key>
+    <internalKey>Code Quality/Type Mismatch/Integer to Character</internalKey>
     <name>Type Mismatch: Integer to Character</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1047,7 +1088,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Type Mismatch: Negative to Unsigned</key>
+    <key>code_quality_type_mismatch_negative_to_unsigned</key>
+    <internalKey>Code Quality/Type Mismatch/Negative to Unsigned</internalKey>
     <name>Type Mismatch: Negative to Unsigned</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1069,7 +1111,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Type Mismatch: Signed to Unsigned</key>
+    <key>code_quality_type_mismatch_signed_to_unsigned</key>
+    <internalKey>Code Quality/Type Mismatch/Signed to Unsigned</internalKey>
     <name>Type Mismatch: Signed to Unsigned</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1091,7 +1134,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Undefined Behavior</key>
+    <key>code_quality_undefined_behavior</key>
+    <internalKey>Code Quality/Undefined Behavior</internalKey>
     <name>Undefined Behavior</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1108,7 +1152,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Undefined Behavior: Redundant Delete</key>
+    <key>code_quality_undefined_behavior_redundant_delete</key>
+    <internalKey>Code Quality/Undefined Behavior/Redundant Delete</internalKey>
     <name>Undefined Behavior: Redundant Delete</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1132,7 +1177,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Uninitialized Variable</key>
+    <key>code_quality_uninitialized_variable</key>
+    <internalKey>Code Quality/Uninitialized Variable</internalKey>
     <name>Uninitialized Variable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1157,7 +1203,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource</key>
+    <key>code_quality_unreleased_resource</key>
+    <internalKey>Code Quality/Unreleased Resource</internalKey>
     <name>Unreleased Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1183,7 +1230,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Synchronization</key>
+    <key>code_quality_unreleased_resource_synchronization</key>
+    <internalKey>Code Quality/Unreleased Resource/Synchronization</internalKey>
     <name>Unreleased Resource: Synchronization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1208,7 +1256,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Use After Free</key>
+    <key>code_quality_use_after_free</key>
+    <internalKey>Code Quality/Use After Free</internalKey>
     <name>Use After Free</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1233,7 +1282,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak</key>
+    <key>encapsulation_system_information_leak</key>
+    <internalKey>Encapsulation/System Information Leak</internalKey>
     <name>System Information Leak</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1260,7 +1310,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: External</key>
+    <key>encapsulation_system_information_leak_external</key>
+    <internalKey>Encapsulation/System Information Leak/External</internalKey>
     <name>System Information Leak: External</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1287,7 +1338,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Internal</key>
+    <key>encapsulation_system_information_leak_internal</key>
+    <internalKey>Encapsulation/System Information Leak/Internal</internalKey>
     <name>System Information Leak: Internal</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1314,7 +1366,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Environment/Insecure Compiler Optimization</key>
+    <key>environment_insecure_compiler_optimization</key>
+    <internalKey>Environment/Insecure Compiler Optimization</internalKey>
     <name>Insecure Compiler Optimization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1348,7 +1401,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Insecure Compiler Optimization: Pointer Arithmetic</key>
+    <key>environment_insecure_compiler_optimization_pointer_arithmetic</key>
+    <internalKey>Environment/Insecure Compiler Optimization/Pointer Arithmetic</internalKey>
     <name>Insecure Compiler Optimization: Pointer Arithmetic</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1377,7 +1431,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Buffer Overflow</key>
+    <key>input_validation_and_representation_buffer_overflow</key>
+    <internalKey>Input Validation and Representation/Buffer Overflow</internalKey>
     <name>Buffer Overflow</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1412,7 +1467,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Buffer Overflow: Format String</key>
+    <key>input_validation_and_representation_buffer_overflow_format_string</key>
+    <internalKey>Input Validation and Representation/Buffer Overflow/Format String</internalKey>
     <name>Buffer Overflow: Format String</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1445,7 +1501,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Buffer Overflow: Format String (%f/%F)</key>
+    <key>input_validation_and_representation_buffer_overflow_format_string___f__f</key>
+    <internalKey>Input Validation and Representation/Buffer Overflow/Format String (%f/%F)</internalKey>
     <name>Buffer Overflow: Format String (%f/%F)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1478,7 +1535,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Buffer Overflow: Off-by-One</key>
+    <key>input_validation_and_representation_buffer_overflow_off_by_one</key>
+    <internalKey>Input Validation and Representation/Buffer Overflow/Off-by-One</internalKey>
     <name>Buffer Overflow: Off-by-One</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1512,7 +1570,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Buffer Overflow: Signed Comparison</key>
+    <key>input_validation_and_representation_buffer_overflow_signed_comparison</key>
+    <internalKey>Input Validation and Representation/Buffer Overflow/Signed Comparison</internalKey>
     <name>Buffer Overflow: Signed Comparison</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1544,7 +1603,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Command Injection</key>
+    <key>input_validation_and_representation_command_injection</key>
+    <internalKey>Input Validation and Representation/Command Injection</internalKey>
     <name>Command Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1579,7 +1639,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service</key>
+    <key>input_validation_and_representation_denial_of_service</key>
+    <internalKey>Input Validation and Representation/Denial of Service</internalKey>
     <name>Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1604,7 +1665,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Format String</key>
+    <key>input_validation_and_representation_format_string</key>
+    <internalKey>Input Validation and Representation/Format String</internalKey>
     <name>Format String</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1635,7 +1697,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Illegal Pointer Value</key>
+    <key>input_validation_and_representation_illegal_pointer_value</key>
+    <internalKey>Input Validation and Representation/Illegal Pointer Value</internalKey>
     <name>Illegal Pointer Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1664,7 +1727,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Integer Overflow</key>
+    <key>input_validation_and_representation_integer_overflow</key>
+    <internalKey>Input Validation and Representation/Integer Overflow</internalKey>
     <name>Integer Overflow</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1698,7 +1762,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Injection</key>
+    <key>input_validation_and_representation_ldap_injection</key>
+    <internalKey>Input Validation and Representation/LDAP Injection</internalKey>
     <name>LDAP Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1732,7 +1797,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Manipulation</key>
+    <key>input_validation_and_representation_ldap_manipulation</key>
+    <internalKey>Input Validation and Representation/LDAP Manipulation</internalKey>
     <name>LDAP Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1761,7 +1827,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Log Forging</key>
+    <key>input_validation_and_representation_log_forging</key>
+    <internalKey>Input Validation and Representation/Log Forging</internalKey>
     <name>Log Forging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1795,7 +1862,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Out-of-Bounds Read</key>
+    <key>input_validation_and_representation_out_of_bounds_read</key>
+    <internalKey>Input Validation and Representation/Out-of-Bounds Read</internalKey>
     <name>Out-of-Bounds Read</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1828,7 +1896,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Out-of-Bounds Read: Off-by-One</key>
+    <key>input_validation_and_representation_out_of_bounds_read_off_by_one</key>
+    <internalKey>Input Validation and Representation/Out-of-Bounds Read/Off-by-One</internalKey>
     <name>Out-of-Bounds Read: Off-by-One</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1861,7 +1930,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Out-of-Bounds Read: Signed Comparison</key>
+    <key>input_validation_and_representation_out_of_bounds_read_signed_comparison</key>
+    <internalKey>Input Validation and Representation/Out-of-Bounds Read/Signed Comparison</internalKey>
     <name>Out-of-Bounds Read: Signed Comparison</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1892,7 +1962,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Path Manipulation</key>
+    <key>input_validation_and_representation_path_manipulation</key>
+    <internalKey>Input Validation and Representation/Path Manipulation</internalKey>
     <name>Path Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1929,7 +2000,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Process Control</key>
+    <key>input_validation_and_representation_process_control</key>
+    <internalKey>Input Validation and Representation/Process Control</internalKey>
     <name>Process Control</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1961,7 +2033,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Resource Injection</key>
+    <key>input_validation_and_representation_resource_injection</key>
+    <internalKey>Input Validation and Representation/Resource Injection</internalKey>
     <name>Resource Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1994,7 +2067,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection</key>
+    <key>input_validation_and_representation_sql_injection</key>
+    <internalKey>Input Validation and Representation/SQL Injection</internalKey>
     <name>SQL Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2039,7 +2113,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Setting Manipulation</key>
+    <key>input_validation_and_representation_setting_manipulation</key>
+    <internalKey>Input Validation and Representation/Setting Manipulation</internalKey>
     <name>Setting Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2066,7 +2141,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/String Termination Error</key>
+    <key>input_validation_and_representation_string_termination_error</key>
+    <internalKey>Input Validation and Representation/String Termination Error</internalKey>
     <name>String Termination Error</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2097,7 +2173,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/String Termination Error(truncate)</key>
+    <key>input_validation_and_representation_string_termination_error_truncate</key>
+    <internalKey>Input Validation and Representation/String Termination Error(truncate)</internalKey>
     <name>String Termination Error(truncate)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2128,7 +2205,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe Reflection</key>
+    <key>input_validation_and_representation_unsafe_reflection</key>
+    <internalKey>Input Validation and Representation/Unsafe Reflection</internalKey>
     <name>Unsafe Reflection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2160,7 +2238,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML External Entity Injection</key>
+    <key>input_validation_and_representation_xml_external_entity_injection</key>
+    <internalKey>Input Validation and Representation/XML External Entity Injection</internalKey>
     <name>XML External Entity Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2192,7 +2271,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Injection</key>
+    <key>input_validation_and_representation_xml_injection</key>
+    <internalKey>Input Validation and Representation/XML Injection</internalKey>
     <name>XML Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2224,7 +2304,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XPath Injection</key>
+    <key>input_validation_and_representation_xpath_injection</key>
+    <internalKey>Input Validation and Representation/XPath Injection</internalKey>
     <name>XPath Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2257,7 +2338,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Anonymous LDAP Bind</key>
+    <key>security_features_access_control_anonymous_ldap_bind</key>
+    <internalKey>Security Features/Access Control/Anonymous LDAP Bind</internalKey>
     <name>Access Control: Anonymous LDAP Bind</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2293,7 +2375,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Database</key>
+    <key>security_features_access_control_database</key>
+    <internalKey>Security Features/Access Control/Database</internalKey>
     <name>Access Control: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2328,7 +2411,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: LDAP</key>
+    <key>security_features_access_control_ldap</key>
+    <internalKey>Security Features/Access Control/LDAP</internalKey>
     <name>Access Control: LDAP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2362,7 +2446,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness</key>
+    <key>security_features_insecure_randomness</key>
+    <internalKey>Security Features/Insecure Randomness</internalKey>
     <name>Insecure Randomness</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2404,7 +2489,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness: Poor Seed</key>
+    <key>security_features_insecure_randomness_poor_seed</key>
+    <internalKey>Security Features/Insecure Randomness/Poor Seed</internalKey>
     <name>Insecure Randomness: Poor Seed</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2438,7 +2524,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Key Management: Hardcoded Encryption Key</key>
+    <key>security_features_key_management_hardcoded_encryption_key</key>
+    <internalKey>Security Features/Key Management/Hardcoded Encryption Key</internalKey>
     <name>Key Management: Hardcoded Encryption Key</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2475,7 +2562,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Least Privilege Violation</key>
+    <key>security_features_least_privilege_violation</key>
+    <internalKey>Security Features/Least Privilege Violation</internalKey>
     <name>Least Privilege Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2503,7 +2591,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management</key>
+    <key>security_features_password_management</key>
+    <internalKey>Security Features/Password Management</internalKey>
     <name>Password Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2536,7 +2625,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Empty Password</key>
+    <key>security_features_password_management_empty_password</key>
+    <internalKey>Security Features/Password Management/Empty Password</internalKey>
     <name>Password Management: Empty Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2569,7 +2659,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Hardcoded Password</key>
+    <key>security_features_password_management_hardcoded_password</key>
+    <internalKey>Security Features/Password Management/Hardcoded Password</internalKey>
     <name>Password Management: Hardcoded Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2605,7 +2696,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Null Password</key>
+    <key>security_features_password_management_null_password</key>
+    <internalKey>Security Features/Password Management/Null Password</internalKey>
     <name>Password Management: Null Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2638,7 +2730,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Comment</key>
+    <key>security_features_password_management_password_in_comment</key>
+    <internalKey>Security Features/Password Management/Password in Comment</internalKey>
     <name>Password Management: Password in Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2671,7 +2764,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Weak Cryptography</key>
+    <key>security_features_password_management_weak_cryptography</key>
+    <internalKey>Security Features/Password Management/Weak Cryptography</internalKey>
     <name>Password Management: Weak Cryptography</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2705,7 +2799,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation</key>
+    <key>security_features_privacy_violation</key>
+    <internalKey>Security Features/Privacy Violation</internalKey>
     <name>Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2741,7 +2836,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash</key>
+    <key>security_features_weak_cryptographic_hash</key>
+    <internalKey>Security Features/Weak Cryptographic Hash</internalKey>
     <name>Weak Cryptographic Hash</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2778,7 +2874,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash: Hardcoded Salt</key>
+    <key>security_features_weak_cryptographic_hash_hardcoded_salt</key>
+    <internalKey>Security Features/Weak Cryptographic Hash/Hardcoded Salt</internalKey>
     <name>Weak Cryptographic Hash: Hardcoded Salt</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2812,7 +2909,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption</key>
+    <key>security_features_weak_encryption</key>
+    <internalKey>Security Features/Weak Encryption</internalKey>
     <name>Weak Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2854,7 +2952,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Inadequate RSA Padding</key>
+    <key>security_features_weak_encryption_inadequate_rsa_padding</key>
+    <internalKey>Security Features/Weak Encryption/Inadequate RSA Padding</internalKey>
     <name>Weak Encryption: Inadequate RSA Padding</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2890,7 +2989,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Insufficient Key Size</key>
+    <key>security_features_weak_encryption_insufficient_key_size</key>
+    <internalKey>Security Features/Weak Encryption/Insufficient Key Size</internalKey>
     <name>Weak Encryption: Insufficient Key Size</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2926,7 +3026,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Time and State/Code Correctness: Erroneous Synchronization</key>
+    <key>time_and_state_code_correctness_erroneous_synchronization</key>
+    <internalKey>Time and State/Code Correctness/Erroneous Synchronization</internalKey>
     <name>Code Correctness: Erroneous Synchronization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2950,7 +3051,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Insecure Temporary File</key>
+    <key>time_and_state_insecure_temporary_file</key>
+    <internalKey>Time and State/Insecure Temporary File</internalKey>
     <name>Insecure Temporary File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2975,7 +3077,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: File System Access</key>
+    <key>time_and_state_race_condition_file_system_access</key>
+    <internalKey>Time and State/Race Condition/File System Access</internalKey>
     <name>Race Condition: File System Access</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3000,7 +3103,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: Signal Handling</key>
+    <key>time_and_state_race_condition_signal_handling</key>
+    <internalKey>Time and State/Race Condition/Signal Handling</internalKey>
     <name>Race Condition: Signal Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>Environment/Weak XML Schema: Lax Processing</key>
+    <key>environment_weak_xml_schema_lax_processing</key>
+    <internalKey>Environment/Weak XML Schema/Lax Processing</internalKey>
     <name>Weak XML Schema: Lax Processing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -35,7 +36,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Weak XML Schema: Type Any</key>
+    <key>environment_weak_xml_schema_type_any</key>
+    <internalKey>Environment/Weak XML Schema/Type Any</internalKey>
     <name>Weak XML Schema: Type Any</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -69,7 +71,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Weak XML Schema: Unbounded Occurrences</key>
+    <key>environment_weak_xml_schema_unbounded_occurrences</key>
+    <internalKey>Environment/Weak XML Schema/Unbounded Occurrences</internalKey>
     <name>Weak XML Schema: Unbounded Occurrences</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -99,7 +102,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Weak XML Schema: Undefined Namespace</key>
+    <key>environment_weak_xml_schema_undefined_namespace</key>
+    <internalKey>Environment/Weak XML Schema/Undefined Namespace</internalKey>
     <name>Weak XML Schema: Undefined Namespace</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

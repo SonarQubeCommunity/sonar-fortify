@@ -25,6 +25,7 @@ import com.google.common.collect.ImmutableMap;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sonar.fortify.base.FortifyConstants;
 
 import javax.annotation.Nullable;
 import javax.script.ScriptEngine;
@@ -108,10 +109,12 @@ public class Main {
         for (Rule rule : rulesByLanguage.get(language)) {
           writer.append("  <rule>").append("\n");
           writer.append("    <key>" + rule.getKey() + "</key>").append("\n");
+          // Intenal key is not used but will keep track of unmodified labels
+          writer.append("    <internalKey>" + rule.getInternalKey() + "</internalKey>").append("\n");
           writer.append("    <name>" + rule.getName() + "</name>").append("\n");
           writer.append("    <description><![CDATA[" + rule.getHtmlDescription() + "]]></description>").append("\n");
           writer.append("    <severity>MAJOR</severity>").append("\n");
-          writer.append("    <tag>" + slugify(rule.getKingdom()) + "</tag>").append("\n");
+          writer.append("    <tag>" + slugifyForTags(rule.getKingdom()) + "</tag>").append("\n");
           writer.append("  </rule>").append("\n");
         }
         writer.append("</rules>").append("\n");
@@ -172,12 +175,22 @@ public class Main {
 
   public class Rule {
     private final String kingdom;
+    private final String category;
+    private final String subcategory;
     private final String name;
     private final String url;
 
     public Rule(String kingdom, String name, String url) {
-      this.kingdom = kingdom;
+      this.kingdom = kingdom.trim();
       this.name = name;
+      int indexOfColon = name.indexOf(":");
+      if (indexOfColon >= 0) {
+        this.category = name.substring(0, indexOfColon).trim();
+        this.subcategory = name.substring(indexOfColon + 1, name.length()).trim();
+      } else {
+        this.category = name.trim();
+        this.subcategory = null;
+      }
       this.url = url;
     }
 
@@ -202,11 +215,20 @@ public class Main {
     }
 
     public String getKey() {
-      return kingdom + "/" + name;
+      return FortifyConstants.fortifySQRuleKey(kingdom, category, subcategory);
+    }
+
+    public String getInternalKey() {
+      StringBuilder sb = new StringBuilder();
+      sb.append(kingdom).append("/").append(category);
+      if (subcategory != null) {
+        sb.append("/").append(subcategory);
+      }
+      return sb.toString();
     }
   }
 
-  private static String slugify(String s) {
+  private static String slugifyForTags(String s) {
     return Normalizer.normalize(s, Normalizer.Form.NFD)
       .replaceAll("[^\\p{ASCII}]", "")
       .replaceAll("[^\\w+]", "-")

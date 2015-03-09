@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/Dangerous Function</key>
+    <key>api_abuse_dangerous_function</key>
+    <internalKey>API Abuse/Dangerous Function</internalKey>
     <name>Dangerous Function</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -26,7 +27,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Regular Expressions Denial of Service</key>
+    <key>code_quality_code_correctness_regular_expressions_denial_of_service</key>
+    <internalKey>Code Quality/Code Correctness/Regular Expressions Denial of Service</internalKey>
     <name>Code Correctness: Regular Expressions Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -53,7 +55,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Encapsulation/HTML5: Overly Permissive CORS Policy</key>
+    <key>encapsulation_html5_overly_permissive_cors_policy</key>
+    <internalKey>Encapsulation/HTML5/Overly Permissive CORS Policy</internalKey>
     <name>HTML5: Overly Permissive CORS Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -76,7 +79,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Transport</key>
+    <key>encapsulation_insecure_transport</key>
+    <internalKey>Encapsulation/Insecure Transport</internalKey>
     <name>Insecure Transport</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -113,7 +117,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Transport: HTTP GET</key>
+    <key>encapsulation_insecure_transport_http_get</key>
+    <internalKey>Encapsulation/Insecure Transport/HTTP GET</internalKey>
     <name>Insecure Transport: HTTP GET</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -147,7 +152,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak</key>
+    <key>encapsulation_system_information_leak</key>
+    <internalKey>Encapsulation/System Information Leak</internalKey>
     <name>System Information Leak</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -174,7 +180,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: External</key>
+    <key>encapsulation_system_information_leak_external</key>
+    <internalKey>Encapsulation/System Information Leak/External</internalKey>
     <name>System Information Leak: External</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -201,7 +208,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Internal</key>
+    <key>encapsulation_system_information_leak_internal</key>
+    <internalKey>Encapsulation/System Information Leak/Internal</internalKey>
     <name>System Information Leak: Internal</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -228,7 +236,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Environment/CakePHP Misconfiguration: Debug Information</key>
+    <key>environment_cakephp_misconfiguration_debug_information</key>
+    <internalKey>Environment/CakePHP Misconfiguration/Debug Information</internalKey>
     <name>CakePHP Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -262,7 +271,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/CakePHP Misconfiguration: Excessive Session Timeout</key>
+    <key>environment_cakephp_misconfiguration_excessive_session_timeout</key>
+    <internalKey>Environment/CakePHP Misconfiguration/Excessive Session Timeout</internalKey>
     <name>CakePHP Misconfiguration: Excessive Session Timeout</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -296,7 +306,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: HTTPOnly not Set on Session Cookie</key>
+    <key>environment_cookie_security_httponly_not_set_on_session_cookie</key>
+    <internalKey>Environment/Cookie Security/HTTPOnly not Set on Session Cookie</internalKey>
     <name>Cookie Security: HTTPOnly not Set on Session Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -321,7 +332,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Overly Broad Session Cookie Domain</key>
+    <key>environment_cookie_security_overly_broad_session_cookie_domain</key>
+    <internalKey>Environment/Cookie Security/Overly Broad Session Cookie Domain</internalKey>
     <name>Cookie Security: Overly Broad Session Cookie Domain</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -349,7 +361,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Overly Broad Session Cookie Path</key>
+    <key>environment_cookie_security_overly_broad_session_cookie_path</key>
+    <internalKey>Environment/Cookie Security/Overly Broad Session Cookie Path</internalKey>
     <name>Cookie Security: Overly Broad Session Cookie Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -377,7 +390,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Persistent Session Cookie</key>
+    <key>environment_cookie_security_persistent_session_cookie</key>
+    <internalKey>Environment/Cookie Security/Persistent Session Cookie</internalKey>
     <name>Cookie Security: Persistent Session Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -411,7 +425,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Session Cookie not Sent Over SSL</key>
+    <key>environment_cookie_security_session_cookie_not_sent_over_ssl</key>
+    <internalKey>Environment/Cookie Security/Session Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Session Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -445,7 +460,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Cookie Security: Session Cookies Disabled</key>
+    <key>environment_cookie_security_session_cookies_disabled</key>
+    <internalKey>Environment/Cookie Security/Session Cookies Disabled</internalKey>
     <name>Cookie Security: Session Cookies Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -479,7 +495,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: Missing open_basedir Entry</key>
+    <key>environment_php_misconfiguration_missing_open_basedir_entry</key>
+    <internalKey>Environment/PHP Misconfiguration/Missing open_basedir Entry</internalKey>
     <name>PHP Misconfiguration: Missing open_basedir Entry</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -516,7 +533,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: Missing safe_mode_exec_dir Entry</key>
+    <key>environment_php_misconfiguration_missing_safe_mode_exec_dir_entry</key>
+    <internalKey>Environment/PHP Misconfiguration/Missing safe_mode_exec_dir Entry</internalKey>
     <name>PHP Misconfiguration: Missing safe_mode_exec_dir Entry</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -541,7 +559,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: Poor open_basedir Configuration</key>
+    <key>environment_php_misconfiguration_poor_open_basedir_configuration</key>
+    <internalKey>Environment/PHP Misconfiguration/Poor open_basedir Configuration</internalKey>
     <name>PHP Misconfiguration: Poor open_basedir Configuration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -577,7 +596,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: allow_url_fopen Enabled</key>
+    <key>environment_php_misconfiguration_allow_url_fopen_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/allow_url_fopen Enabled</internalKey>
     <name>PHP Misconfiguration: allow_url_fopen Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -608,7 +628,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: allow_url_include Enabled</key>
+    <key>environment_php_misconfiguration_allow_url_include_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/allow_url_include Enabled</internalKey>
     <name>PHP Misconfiguration: allow_url_include Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -642,7 +663,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: cgi.force_redirect Disabled</key>
+    <key>environment_php_misconfiguration_cgi_force_redirect_disabled</key>
+    <internalKey>Environment/PHP Misconfiguration/cgi.force_redirect Disabled</internalKey>
     <name>PHP Misconfiguration: cgi.force_redirect Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -676,7 +698,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: enable_dl Enabled</key>
+    <key>environment_php_misconfiguration_enable_dl_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/enable_dl Enabled</internalKey>
     <name>PHP Misconfiguration: enable_dl Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -710,7 +733,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: file_uploads Enabled</key>
+    <key>environment_php_misconfiguration_file_uploads_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/file_uploads Enabled</internalKey>
     <name>PHP Misconfiguration: file_uploads Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -739,7 +763,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: magic_quotes_gpc Enabled</key>
+    <key>environment_php_misconfiguration_magic_quotes_gpc_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/magic_quotes_gpc Enabled</internalKey>
     <name>PHP Misconfiguration: magic_quotes_gpc Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -765,7 +790,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: magic_quotes_runtime Enabled</key>
+    <key>environment_php_misconfiguration_magic_quotes_runtime_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/magic_quotes_runtime Enabled</internalKey>
     <name>PHP Misconfiguration: magic_quotes_runtime Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -791,7 +817,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: magic_quotes_sybase Enabled</key>
+    <key>environment_php_misconfiguration_magic_quotes_sybase_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/magic_quotes_sybase Enabled</internalKey>
     <name>PHP Misconfiguration: magic_quotes_sybase Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -817,7 +844,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: register_globals Enabled</key>
+    <key>environment_php_misconfiguration_register_globals_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/register_globals Enabled</internalKey>
     <name>PHP Misconfiguration: register_globals Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -841,7 +869,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: safe_mode Disabled</key>
+    <key>environment_php_misconfiguration_safe_mode_disabled</key>
+    <internalKey>Environment/PHP Misconfiguration/safe_mode Disabled</internalKey>
     <name>PHP Misconfiguration: safe_mode Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -867,7 +896,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/PHP Misconfiguration: session_use_trans_sid Enabled</key>
+    <key>environment_php_misconfiguration_session_use_trans_sid_enabled</key>
+    <internalKey>Environment/PHP Misconfiguration/session_use_trans_sid Enabled</internalKey>
     <name>PHP Misconfiguration: session_use_trans_sid Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -902,7 +932,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Race Condition: PHP Design Flaw</key>
+    <key>environment_race_condition_php_design_flaw</key>
+    <internalKey>Environment/Race Condition/PHP Design Flaw</internalKey>
     <name>Race Condition: PHP Design Flaw</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -931,7 +962,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/System Information Leak: PHP Errors</key>
+    <key>environment_system_information_leak_php_errors</key>
+    <internalKey>Environment/System Information Leak/PHP Errors</internalKey>
     <name>System Information Leak: PHP Errors</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -968,7 +1000,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/System Information Leak: PHP Version</key>
+    <key>environment_system_information_leak_php_version</key>
+    <internalKey>Environment/System Information Leak/PHP Version</internalKey>
     <name>System Information Leak: PHP Version</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1000,7 +1033,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Command Injection</key>
+    <key>input_validation_and_representation_command_injection</key>
+    <internalKey>Input Validation and Representation/Command Injection</internalKey>
     <name>Command Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1035,7 +1069,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Persistent</key>
+    <key>input_validation_and_representation_cross_site_scripting_persistent</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Persistent</internalKey>
     <name>Cross-Site Scripting: Persistent</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1073,7 +1108,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Poor Validation</key>
+    <key>input_validation_and_representation_cross_site_scripting_poor_validation</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Poor Validation</internalKey>
     <name>Cross-Site Scripting: Poor Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1109,7 +1145,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Reflected</key>
+    <key>input_validation_and_representation_cross_site_scripting_reflected</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Reflected</internalKey>
     <name>Cross-Site Scripting: Reflected</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1146,7 +1183,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dangerous File Inclusion</key>
+    <key>input_validation_and_representation_dangerous_file_inclusion</key>
+    <internalKey>Input Validation and Representation/Dangerous File Inclusion</internalKey>
     <name>Dangerous File Inclusion</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1183,7 +1221,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dangerous File Injection</key>
+    <key>input_validation_and_representation_dangerous_file_injection</key>
+    <internalKey>Input Validation and Representation/Dangerous File Injection</internalKey>
     <name>Dangerous File Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1218,7 +1257,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service</key>
+    <key>input_validation_and_representation_denial_of_service</key>
+    <internalKey>Input Validation and Representation/Denial of Service</internalKey>
     <name>Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1243,7 +1283,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service: Nested Array</key>
+    <key>input_validation_and_representation_denial_of_service_nested_array</key>
+    <internalKey>Input Validation and Representation/Denial of Service/Nested Array</internalKey>
     <name>Denial of Service: Nested Array</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1269,7 +1310,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Code Injection</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_code_injection</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Code Injection</internalKey>
     <name>Dynamic Code Evaluation: Code Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1302,7 +1344,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/File Permission Manipulation</key>
+    <key>input_validation_and_representation_file_permission_manipulation</key>
+    <internalKey>Input Validation and Representation/File Permission Manipulation</internalKey>
     <name>File Permission Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1330,7 +1373,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/HTTP Parameter Pollution</key>
+    <key>input_validation_and_representation_http_parameter_pollution</key>
+    <internalKey>Input Validation and Representation/HTTP Parameter Pollution</internalKey>
     <name>HTTP Parameter Pollution</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1355,7 +1399,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation</key>
+    <key>input_validation_and_representation_header_manipulation</key>
+    <internalKey>Input Validation and Representation/Header Manipulation</internalKey>
     <name>Header Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1390,7 +1435,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation: Cookies</key>
+    <key>input_validation_and_representation_header_manipulation_cookies</key>
+    <internalKey>Input Validation and Representation/Header Manipulation/Cookies</internalKey>
     <name>Header Manipulation: Cookies</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1425,7 +1471,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation: SMTP</key>
+    <key>input_validation_and_representation_header_manipulation_smtp</key>
+    <internalKey>Input Validation and Representation/Header Manipulation/SMTP</internalKey>
     <name>Header Manipulation: SMTP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1459,7 +1506,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/JSON Injection</key>
+    <key>input_validation_and_representation_json_injection</key>
+    <internalKey>Input Validation and Representation/JSON Injection</internalKey>
     <name>JSON Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1491,7 +1539,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Log Forging</key>
+    <key>input_validation_and_representation_log_forging</key>
+    <internalKey>Input Validation and Representation/Log Forging</internalKey>
     <name>Log Forging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1525,7 +1574,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Object Injection</key>
+    <key>input_validation_and_representation_object_injection</key>
+    <internalKey>Input Validation and Representation/Object Injection</internalKey>
     <name>Object Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1557,7 +1607,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Often Misused: File Upload</key>
+    <key>input_validation_and_representation_often_misused_file_upload</key>
+    <internalKey>Input Validation and Representation/Often Misused/File Upload</internalKey>
     <name>Often Misused: File Upload</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1594,7 +1645,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Open Redirect</key>
+    <key>input_validation_and_representation_open_redirect</key>
+    <internalKey>Input Validation and Representation/Open Redirect</internalKey>
     <name>Open Redirect</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1627,7 +1679,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Path Manipulation</key>
+    <key>input_validation_and_representation_path_manipulation</key>
+    <internalKey>Input Validation and Representation/Path Manipulation</internalKey>
     <name>Path Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1664,7 +1717,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Possible Variable Overwrite: Functional Scope</key>
+    <key>input_validation_and_representation_possible_variable_overwrite_functional_scope</key>
+    <internalKey>Input Validation and Representation/Possible Variable Overwrite/Functional Scope</internalKey>
     <name>Possible Variable Overwrite: Functional Scope</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1681,7 +1735,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Possible Variable Overwrite: Global Scope</key>
+    <key>input_validation_and_representation_possible_variable_overwrite_global_scope</key>
+    <internalKey>Input Validation and Representation/Possible Variable Overwrite/Global Scope</internalKey>
     <name>Possible Variable Overwrite: Global Scope</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1698,7 +1753,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Process Control</key>
+    <key>input_validation_and_representation_process_control</key>
+    <internalKey>Input Validation and Representation/Process Control</internalKey>
     <name>Process Control</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1731,7 +1787,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Query String Injection: MongoDB</key>
+    <key>input_validation_and_representation_query_string_injection_mongodb</key>
+    <internalKey>Input Validation and Representation/Query String Injection/MongoDB</internalKey>
     <name>Query String Injection: MongoDB</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1764,7 +1821,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Resource Injection</key>
+    <key>input_validation_and_representation_resource_injection</key>
+    <internalKey>Input Validation and Representation/Resource Injection</internalKey>
     <name>Resource Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1797,7 +1855,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection</key>
+    <key>input_validation_and_representation_sql_injection</key>
+    <internalKey>Input Validation and Representation/SQL Injection</internalKey>
     <name>SQL Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1837,7 +1896,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Server-Side Request Forgery</key>
+    <key>input_validation_and_representation_server_side_request_forgery</key>
+    <internalKey>Input Validation and Representation/Server-Side Request Forgery</internalKey>
     <name>Server-Side Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1871,7 +1931,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Setting Manipulation</key>
+    <key>input_validation_and_representation_setting_manipulation</key>
+    <internalKey>Input Validation and Representation/Setting Manipulation</internalKey>
     <name>Setting Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1898,7 +1959,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe Reflection</key>
+    <key>input_validation_and_representation_unsafe_reflection</key>
+    <internalKey>Input Validation and Representation/Unsafe Reflection</internalKey>
     <name>Unsafe Reflection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1930,7 +1992,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Injection</key>
+    <key>input_validation_and_representation_xml_injection</key>
+    <internalKey>Input Validation and Representation/XML Injection</internalKey>
     <name>XML Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1962,7 +2025,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XPath Injection</key>
+    <key>input_validation_and_representation_xpath_injection</key>
+    <internalKey>Input Validation and Representation/XPath Injection</internalKey>
     <name>XPath Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1995,7 +2059,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XQuery Injection</key>
+    <key>input_validation_and_representation_xquery_injection</key>
+    <internalKey>Input Validation and Representation/XQuery Injection</internalKey>
     <name>XQuery Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2027,7 +2092,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XSLT Injection</key>
+    <key>input_validation_and_representation_xslt_injection</key>
+    <internalKey>Input Validation and Representation/XSLT Injection</internalKey>
     <name>XSLT Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2059,7 +2125,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Database</key>
+    <key>security_features_access_control_database</key>
+    <internalKey>Security Features/Access Control/Database</internalKey>
     <name>Access Control: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2094,7 +2161,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Privilege Escalation</key>
+    <key>security_features_access_control_privilege_escalation</key>
+    <internalKey>Security Features/Access Control/Privilege Escalation</internalKey>
     <name>Access Control: Privilege Escalation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2130,7 +2198,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Cookie not Sent Over SSL</key>
+    <key>security_features_cookie_security_cookie_not_sent_over_ssl</key>
+    <internalKey>Security Features/Cookie Security/Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2164,7 +2233,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: HTTPOnly not Set</key>
+    <key>security_features_cookie_security_httponly_not_set</key>
+    <internalKey>Security Features/Cookie Security/HTTPOnly not Set</internalKey>
     <name>Cookie Security: HTTPOnly not Set</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2189,7 +2259,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: HTTPOnly not Set on Session Cookie</key>
+    <key>security_features_cookie_security_httponly_not_set_on_session_cookie</key>
+    <internalKey>Security Features/Cookie Security/HTTPOnly not Set on Session Cookie</internalKey>
     <name>Cookie Security: HTTPOnly not Set on Session Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2214,7 +2285,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Domain</key>
+    <key>security_features_cookie_security_overly_broad_domain</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Domain</internalKey>
     <name>Cookie Security: Overly Broad Domain</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2242,7 +2314,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Path</key>
+    <key>security_features_cookie_security_overly_broad_path</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Path</internalKey>
     <name>Cookie Security: Overly Broad Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2270,7 +2343,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Session Cookie Domain</key>
+    <key>security_features_cookie_security_overly_broad_session_cookie_domain</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Session Cookie Domain</internalKey>
     <name>Cookie Security: Overly Broad Session Cookie Domain</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2298,7 +2372,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Session Cookie Path</key>
+    <key>security_features_cookie_security_overly_broad_session_cookie_path</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Session Cookie Path</internalKey>
     <name>Cookie Security: Overly Broad Session Cookie Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2326,7 +2401,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Persistent Cookie</key>
+    <key>security_features_cookie_security_persistent_cookie</key>
+    <internalKey>Security Features/Cookie Security/Persistent Cookie</internalKey>
     <name>Cookie Security: Persistent Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2360,7 +2436,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Persistent Session Cookie</key>
+    <key>security_features_cookie_security_persistent_session_cookie</key>
+    <internalKey>Security Features/Cookie Security/Persistent Session Cookie</internalKey>
     <name>Cookie Security: Persistent Session Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2394,7 +2471,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Session Cookie not Sent Over SSL</key>
+    <key>security_features_cookie_security_session_cookie_not_sent_over_ssl</key>
+    <internalKey>Security Features/Cookie Security/Session Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Session Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2428,7 +2506,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness</key>
+    <key>security_features_insecure_randomness</key>
+    <internalKey>Security Features/Insecure Randomness</internalKey>
     <name>Insecure Randomness</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2462,7 +2541,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Key Management: Empty Encryption Key</key>
+    <key>security_features_key_management_empty_encryption_key</key>
+    <internalKey>Security Features/Key Management/Empty Encryption Key</internalKey>
     <name>Key Management: Empty Encryption Key</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2495,7 +2575,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Key Management: Hardcoded Encryption Key</key>
+    <key>security_features_key_management_hardcoded_encryption_key</key>
+    <internalKey>Security Features/Key Management/Hardcoded Encryption Key</internalKey>
     <name>Key Management: Hardcoded Encryption Key</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2530,7 +2611,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Key Management: Null Encryption Key</key>
+    <key>security_features_key_management_null_encryption_key</key>
+    <internalKey>Security Features/Key Management/Null Encryption Key</internalKey>
     <name>Key Management: Null Encryption Key</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2563,7 +2645,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management</key>
+    <key>security_features_password_management</key>
+    <internalKey>Security Features/Password Management</internalKey>
     <name>Password Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2595,7 +2678,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Empty Password</key>
+    <key>security_features_password_management_empty_password</key>
+    <internalKey>Security Features/Password Management/Empty Password</internalKey>
     <name>Password Management: Empty Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2628,7 +2712,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Hardcoded Password</key>
+    <key>security_features_password_management_hardcoded_password</key>
+    <internalKey>Security Features/Password Management/Hardcoded Password</internalKey>
     <name>Password Management: Hardcoded Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2663,7 +2748,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Null Password</key>
+    <key>security_features_password_management_null_password</key>
+    <internalKey>Security Features/Password Management/Null Password</internalKey>
     <name>Password Management: Null Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2696,7 +2782,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Comment</key>
+    <key>security_features_password_management_password_in_comment</key>
+    <internalKey>Security Features/Password Management/Password in Comment</internalKey>
     <name>Password Management: Password in Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2729,7 +2816,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Weak Cryptography</key>
+    <key>security_features_password_management_weak_cryptography</key>
+    <internalKey>Security Features/Password Management/Weak Cryptography</internalKey>
     <name>Password Management: Weak Cryptography</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2762,7 +2850,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation</key>
+    <key>security_features_privacy_violation</key>
+    <internalKey>Security Features/Privacy Violation</internalKey>
     <name>Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2798,7 +2887,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash</key>
+    <key>security_features_weak_cryptographic_hash</key>
+    <internalKey>Security Features/Weak Cryptographic Hash</internalKey>
     <name>Weak Cryptographic Hash</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2835,7 +2925,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash: Hardcoded Salt</key>
+    <key>security_features_weak_cryptographic_hash_hardcoded_salt</key>
+    <internalKey>Security Features/Weak Cryptographic Hash/Hardcoded Salt</internalKey>
     <name>Weak Cryptographic Hash: Hardcoded Salt</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2869,7 +2960,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption</key>
+    <key>security_features_weak_encryption</key>
+    <internalKey>Security Features/Weak Encryption</internalKey>
     <name>Weak Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2912,7 +3004,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Inadequate RSA Padding</key>
+    <key>security_features_weak_encryption_inadequate_rsa_padding</key>
+    <internalKey>Security Features/Weak Encryption/Inadequate RSA Padding</internalKey>
     <name>Weak Encryption: Inadequate RSA Padding</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

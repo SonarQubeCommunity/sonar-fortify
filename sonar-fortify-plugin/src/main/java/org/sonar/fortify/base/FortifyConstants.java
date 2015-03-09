@@ -24,6 +24,9 @@ import org.apache.commons.lang.StringUtils;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 
+import java.text.Normalizer;
+import java.util.Locale;
+
 public class FortifyConstants {
 
   public static final String AUDIT_FVDL_FILE = "audit.fvdl";
@@ -44,15 +47,25 @@ public class FortifyConstants {
   public static String fortifySQRuleKey(@Nullable String kingdom, @Nullable String category, @Nullable String subcategory) {
     StringBuilder sb = new StringBuilder();
     if (StringUtils.isNotBlank(kingdom)) {
-      sb.append(kingdom).append("/");
+      sb.append(slugifyForKey(kingdom)).append("_");
     }
     if (StringUtils.isNotBlank(category)) {
-      sb.append(category);
+      sb.append(slugifyForKey(category));
     }
     if (StringUtils.isNotBlank(subcategory)) {
-      sb.append(": ");
-      sb.append(subcategory);
+      sb.append("_");
+      sb.append(slugifyForKey(subcategory));
     }
     return sb.length() > 0 ? sb.toString() : null;
+  }
+
+  private static String slugifyForKey(String s) {
+    return Normalizer.normalize(s, Normalizer.Form.NFD)
+      .replaceAll("[^\\p{ASCII}]", "")
+      .replaceAll("[^\\w+]", "_")
+      .replaceAll("\\s+", "_")
+      .replaceAll("[-]+", "_")
+      .replaceAll("^_", "")
+      .replaceAll("_$", "").toLowerCase(Locale.ENGLISH);
   }
 }

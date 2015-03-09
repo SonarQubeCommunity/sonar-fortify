@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/ADF Faces Bad Practices: unsecure Attribute</key>
+    <key>api_abuse_adf_faces_bad_practices_unsecure_attribute</key>
+    <internalKey>API Abuse/ADF Faces Bad Practices/unsecure Attribute</internalKey>
     <name>ADF Faces Bad Practices: unsecure Attribute</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -17,7 +18,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Castor Bad Practices: Query Mode Not Read-Only</key>
+    <key>api_abuse_castor_bad_practices_query_mode_not_read_only</key>
+    <internalKey>API Abuse/Castor Bad Practices/Query Mode Not Read-Only</internalKey>
     <name>Castor Bad Practices: Query Mode Not Read-Only</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -42,7 +44,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Castor Bad Practices: Unspecified Query Mode</key>
+    <key>api_abuse_castor_bad_practices_unspecified_query_mode</key>
+    <internalKey>API Abuse/Castor Bad Practices/Unspecified Query Mode</internalKey>
     <name>Castor Bad Practices: Unspecified Query Mode</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -68,7 +71,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Call to System.gc()</key>
+    <key>api_abuse_code_correctness_call_to_system_gc_</key>
+    <internalKey>API Abuse/Code Correctness/Call to System.gc()</internalKey>
     <name>Code Correctness: Call to System.gc()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -93,7 +97,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Class Does Not Implement equals</key>
+    <key>api_abuse_code_correctness_class_does_not_implement_equals</key>
+    <internalKey>API Abuse/Code Correctness/Class Does Not Implement equals</internalKey>
     <name>Code Correctness: Class Does Not Implement equals</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -109,7 +114,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Erroneous finalize() Method</key>
+    <key>api_abuse_code_correctness_erroneous_finalize___method</key>
+    <internalKey>API Abuse/Code Correctness/Erroneous finalize() Method</internalKey>
     <name>Code Correctness: Erroneous finalize() Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -126,7 +132,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Multiple Stream Commits</key>
+    <key>api_abuse_code_correctness_multiple_stream_commits</key>
+    <internalKey>API Abuse/Code Correctness/Multiple Stream Commits</internalKey>
     <name>Code Correctness: Multiple Stream Commits</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -144,7 +151,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: Negative Content-Length</key>
+    <key>api_abuse_code_correctness_negative_content_length</key>
+    <internalKey>API Abuse/Code Correctness/Negative Content-Length</internalKey>
     <name>Code Correctness: Negative Content-Length</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -161,7 +169,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Code Correctness: toString on Array</key>
+    <key>api_abuse_code_correctness_tostring_on_array</key>
+    <internalKey>API Abuse/Code Correctness/toString on Array</internalKey>
     <name>Code Correctness: toString on Array</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -178,7 +187,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Dangerous Field</key>
+    <key>api_abuse_dangerous_field</key>
+    <internalKey>API Abuse/Dangerous Field</internalKey>
     <name>Dangerous Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -192,7 +202,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Dangerous Method</key>
+    <key>api_abuse_dangerous_method</key>
+    <internalKey>API Abuse/Dangerous Method</internalKey>
     <name>Dangerous Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -209,7 +220,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Dangerous Type</key>
+    <key>api_abuse_dangerous_type</key>
+    <internalKey>API Abuse/Dangerous Type</internalKey>
     <name>Dangerous Type</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -225,7 +237,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/EJB Bad Practices: Use of AWT/Swing</key>
+    <key>api_abuse_ejb_bad_practices_use_of_awt_swing</key>
+    <internalKey>API Abuse/EJB Bad Practices/Use of AWT/Swing</internalKey>
     <name>EJB Bad Practices: Use of AWT/Swing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -242,7 +255,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/EJB Bad Practices: Use of Class Loader</key>
+    <key>api_abuse_ejb_bad_practices_use_of_class_loader</key>
+    <internalKey>API Abuse/EJB Bad Practices/Use of Class Loader</internalKey>
     <name>EJB Bad Practices: Use of Class Loader</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -259,7 +273,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/EJB Bad Practices: Use of Sockets</key>
+    <key>api_abuse_ejb_bad_practices_use_of_sockets</key>
+    <internalKey>API Abuse/EJB Bad Practices/Use of Sockets</internalKey>
     <name>EJB Bad Practices: Use of Sockets</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -276,7 +291,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/EJB Bad Practices: Use of Synchronization Primitives</key>
+    <key>api_abuse_ejb_bad_practices_use_of_synchronization_primitives</key>
+    <internalKey>API Abuse/EJB Bad Practices/Use of Synchronization Primitives</internalKey>
     <name>EJB Bad Practices: Use of Synchronization Primitives</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -293,7 +309,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/EJB Bad Practices: Use of java.io</key>
+    <key>api_abuse_ejb_bad_practices_use_of_java_io</key>
+    <internalKey>API Abuse/EJB Bad Practices/Use of java.io</internalKey>
     <name>EJB Bad Practices: Use of java.io</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -310,7 +327,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/File Disclosure: J2EE</key>
+    <key>api_abuse_file_disclosure_j2ee</key>
+    <internalKey>API Abuse/File Disclosure/J2EE</internalKey>
     <name>File Disclosure: J2EE</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -338,7 +356,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/File Disclosure: Spring</key>
+    <key>api_abuse_file_disclosure_spring</key>
+    <internalKey>API Abuse/File Disclosure/Spring</internalKey>
     <name>File Disclosure: Spring</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -366,7 +385,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/File Disclosure: Spring Webflow</key>
+    <key>api_abuse_file_disclosure_spring_webflow</key>
+    <internalKey>API Abuse/File Disclosure/Spring Webflow</internalKey>
     <name>File Disclosure: Spring Webflow</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -395,7 +415,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/File Disclosure: Struts</key>
+    <key>api_abuse_file_disclosure_struts</key>
+    <internalKey>API Abuse/File Disclosure/Struts</internalKey>
     <name>File Disclosure: Struts</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -423,7 +444,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Immutable Classes: Field Mutation</key>
+    <key>api_abuse_immutable_classes_field_mutation</key>
+    <internalKey>API Abuse/Immutable Classes/Field Mutation</internalKey>
     <name>Immutable Classes: Field Mutation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -443,7 +465,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Immutable Classes: Non-final Fields</key>
+    <key>api_abuse_immutable_classes_non_final_fields</key>
+    <internalKey>API Abuse/Immutable Classes/Non-final Fields</internalKey>
     <name>Immutable Classes: Non-final Fields</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -463,7 +486,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Immutable Classes: Public Mutable Fields</key>
+    <key>api_abuse_immutable_classes_public_mutable_fields</key>
+    <internalKey>API Abuse/Immutable Classes/Public Mutable Fields</internalKey>
     <name>Immutable Classes: Public Mutable Fields</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -483,7 +507,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/J2EE Bad Practices: Sockets</key>
+    <key>api_abuse_j2ee_bad_practices_sockets</key>
+    <internalKey>API Abuse/J2EE Bad Practices/Sockets</internalKey>
     <name>J2EE Bad Practices: Sockets</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -500,7 +525,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/J2EE Bad Practices: getConnection()</key>
+    <key>api_abuse_j2ee_bad_practices_getconnection_</key>
+    <internalKey>API Abuse/J2EE Bad Practices/getConnection()</internalKey>
     <name>J2EE Bad Practices: getConnection()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -517,7 +543,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Mass Assignment: Insecure Binder Configuration</key>
+    <key>api_abuse_mass_assignment_insecure_binder_configuration</key>
+    <internalKey>API Abuse/Mass Assignment/Insecure Binder Configuration</internalKey>
     <name>Mass Assignment: Insecure Binder Configuration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -545,7 +572,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Mass Assignment: Request Parameters Bound into Persisted Objects</key>
+    <key>api_abuse_mass_assignment_request_parameters_bound_into_persisted_objects</key>
+    <internalKey>API Abuse/Mass Assignment/Request Parameters Bound into Persisted Objects</internalKey>
     <name>Mass Assignment: Request Parameters Bound into Persisted Objects</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -572,7 +600,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Missing Check against Null</key>
+    <key>api_abuse_missing_check_against_null</key>
+    <internalKey>API Abuse/Missing Check against Null</internalKey>
     <name>Missing Check against Null</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -596,7 +625,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Missing Check for Null Parameter</key>
+    <key>api_abuse_missing_check_for_null_parameter</key>
+    <internalKey>API Abuse/Missing Check for Null Parameter</internalKey>
     <name>Missing Check for Null Parameter</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -612,7 +642,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Object Model Violation: Erroneous clone() Method</key>
+    <key>api_abuse_object_model_violation_erroneous_clone___method</key>
+    <internalKey>API Abuse/Object Model Violation/Erroneous clone() Method</internalKey>
     <name>Object Model Violation: Erroneous clone() Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -628,7 +659,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Object Model Violation: Just one of equals() and hashCode() Defined</key>
+    <key>api_abuse_object_model_violation_just_one_of_equals___and_hashcode___defined</key>
+    <internalKey>API Abuse/Object Model Violation/Just one of equals() and hashCode() Defined</internalKey>
     <name>Object Model Violation: Just one of equals() and hashCode() Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -645,7 +677,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Object Model Violation: Just one of restoreState() and saveState() Defined</key>
+    <key>api_abuse_object_model_violation_just_one_of_restorestate___and_savestate___defined</key>
+    <internalKey>API Abuse/Object Model Violation/Just one of restoreState() and saveState() Defined</internalKey>
     <name>Object Model Violation: Just one of restoreState() and saveState() Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -662,7 +695,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Obsolete: Deprecated by ESAPI</key>
+    <key>api_abuse_obsolete_deprecated_by_esapi</key>
+    <internalKey>API Abuse/Obsolete/Deprecated by ESAPI</internalKey>
     <name>Obsolete: Deprecated by ESAPI</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -685,7 +719,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Authentication</key>
+    <key>api_abuse_often_misused_authentication</key>
+    <internalKey>API Abuse/Often Misused/Authentication</internalKey>
     <name>Often Misused: Authentication</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -720,7 +755,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Boolean.getBoolean()</key>
+    <key>api_abuse_often_misused_boolean_getboolean_</key>
+    <internalKey>API Abuse/Often Misused/Boolean.getBoolean()</internalKey>
     <name>Often Misused: Boolean.getBoolean()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -737,7 +773,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Encoding</key>
+    <key>api_abuse_often_misused_encoding</key>
+    <internalKey>API Abuse/Often Misused/Encoding</internalKey>
     <name>Often Misused: Encoding</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -754,7 +791,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Spring Remote Service</key>
+    <key>api_abuse_often_misused_spring_remote_service</key>
+    <internalKey>API Abuse/Often Misused/Spring Remote Service</internalKey>
     <name>Often Misused: Spring Remote Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -778,7 +816,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Often Misused: Spring Web Service</key>
+    <key>api_abuse_often_misused_spring_web_service</key>
+    <internalKey>API Abuse/Often Misused/Spring Web Service</internalKey>
     <name>Often Misused: Spring Web Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -802,7 +841,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Password Management: Weak Redundancy</key>
+    <key>api_abuse_password_management_weak_redundancy</key>
+    <internalKey>API Abuse/Password Management/Weak Redundancy</internalKey>
     <name>Password Management: Weak Redundancy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -825,7 +865,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Poor Style: Explicit Call to finalize()</key>
+    <key>api_abuse_poor_style_explicit_call_to_finalize_</key>
+    <internalKey>API Abuse/Poor Style/Explicit Call to finalize()</internalKey>
     <name>Poor Style: Explicit Call to finalize()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -841,7 +882,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Struts 2 Bad Practices: Application Map Tampering</key>
+    <key>api_abuse_struts_2_bad_practices_application_map_tampering</key>
+    <internalKey>API Abuse/Struts 2 Bad Practices/Application Map Tampering</internalKey>
     <name>Struts 2 Bad Practices: Application Map Tampering</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -867,7 +909,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Struts 2 Bad Practices: Dynamic Method Invocation</key>
+    <key>api_abuse_struts_2_bad_practices_dynamic_method_invocation</key>
+    <internalKey>API Abuse/Struts 2 Bad Practices/Dynamic Method Invocation</internalKey>
     <name>Struts 2 Bad Practices: Dynamic Method Invocation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -904,7 +947,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Struts 2 Bad Practices: Request Map Tampering</key>
+    <key>api_abuse_struts_2_bad_practices_request_map_tampering</key>
+    <internalKey>API Abuse/Struts 2 Bad Practices/Request Map Tampering</internalKey>
     <name>Struts 2 Bad Practices: Request Map Tampering</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -930,7 +974,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Struts 2 Bad Practices: Session Map Tampering</key>
+    <key>api_abuse_struts_2_bad_practices_session_map_tampering</key>
+    <internalKey>API Abuse/Struts 2 Bad Practices/Session Map Tampering</internalKey>
     <name>Struts 2 Bad Practices: Session Map Tampering</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -956,7 +1001,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Unchecked Return Value</key>
+    <key>api_abuse_unchecked_return_value</key>
+    <internalKey>API Abuse/Unchecked Return Value</internalKey>
     <name>Unchecked Return Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -985,7 +1031,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Code Quality/Android Bad Practices: Use of Released Camera Resource</key>
+    <key>code_quality_android_bad_practices_use_of_released_camera_resource</key>
+    <internalKey>Code Quality/Android Bad Practices/Use of Released Camera Resource</internalKey>
     <name>Android Bad Practices: Use of Released Camera Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1011,7 +1058,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Android Bad Practices: Use of Released Media Resource</key>
+    <key>code_quality_android_bad_practices_use_of_released_media_resource</key>
+    <internalKey>Code Quality/Android Bad Practices/Use of Released Media Resource</internalKey>
     <name>Android Bad Practices: Use of Released Media Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1038,7 +1086,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Android Bad Practices: Use of Released SQLite Resource</key>
+    <key>code_quality_android_bad_practices_use_of_released_sqlite_resource</key>
+    <internalKey>Code Quality/Android Bad Practices/Use of Released SQLite Resource</internalKey>
     <name>Android Bad Practices: Use of Released SQLite Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1064,7 +1113,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Call to Thread.run()</key>
+    <key>code_quality_code_correctness_call_to_thread_run_</key>
+    <internalKey>Code Quality/Code Correctness/Call to Thread.run()</internalKey>
     <name>Code Correctness: Call to Thread.run()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1088,7 +1138,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Call to notify()</key>
+    <key>code_quality_code_correctness_call_to_notify_</key>
+    <internalKey>Code Quality/Code Correctness/Call to notify()</internalKey>
     <name>Code Correctness: Call to notify()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1106,7 +1157,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Class Does Not Implement Cloneable</key>
+    <key>code_quality_code_correctness_class_does_not_implement_cloneable</key>
+    <internalKey>Code Quality/Code Correctness/Class Does Not Implement Cloneable</internalKey>
     <name>Code Correctness: Class Does Not Implement Cloneable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1130,7 +1182,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous Class Compare</key>
+    <key>code_quality_code_correctness_erroneous_class_compare</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous Class Compare</internalKey>
     <name>Code Correctness: Erroneous Class Compare</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1146,7 +1199,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous Negative Value</key>
+    <key>code_quality_code_correctness_erroneous_negative_value</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous Negative Value</internalKey>
     <name>Code Correctness: Erroneous Negative Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1163,7 +1217,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous String Compare</key>
+    <key>code_quality_code_correctness_erroneous_string_compare</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous String Compare</internalKey>
     <name>Code Correctness: Erroneous String Compare</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1179,7 +1234,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous Zero Value</key>
+    <key>code_quality_code_correctness_erroneous_zero_value</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous Zero Value</internalKey>
     <name>Code Correctness: Erroneous Zero Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1196,7 +1252,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Incorrect serialPersistentFields Modifier</key>
+    <key>code_quality_code_correctness_incorrect_serialpersistentfields_modifier</key>
+    <internalKey>Code Quality/Code Correctness/Incorrect serialPersistentFields Modifier</internalKey>
     <name>Code Correctness: Incorrect serialPersistentFields Modifier</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1213,7 +1270,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Misleading Method Signature</key>
+    <key>code_quality_code_correctness_misleading_method_signature</key>
+    <internalKey>Code Quality/Code Correctness/Misleading Method Signature</internalKey>
     <name>Code Correctness: Misleading Method Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1229,7 +1287,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Non-Synchronized Method Overrides Synchronized Method</key>
+    <key>code_quality_code_correctness_non_synchronized_method_overrides_synchronized_method</key>
+    <internalKey>Code Quality/Code Correctness/Non-Synchronized Method Overrides Synchronized Method</internalKey>
     <name>Code Correctness: Non-Synchronized Method Overrides Synchronized Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1245,7 +1304,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Regular Expressions Denial of Service</key>
+    <key>code_quality_code_correctness_regular_expressions_denial_of_service</key>
+    <internalKey>Code Quality/Code Correctness/Regular Expressions Denial of Service</internalKey>
     <name>Code Correctness: Regular Expressions Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1272,7 +1332,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: null Argument to equals()</key>
+    <key>code_quality_code_correctness_null_argument_to_equals_</key>
+    <internalKey>Code Quality/Code Correctness/null Argument to equals()</internalKey>
     <name>Code Correctness: null Argument to equals()</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1290,7 +1351,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Empty Try Block</key>
+    <key>code_quality_dead_code_empty_try_block</key>
+    <internalKey>Code Quality/Dead Code/Empty Try Block</internalKey>
     <name>Dead Code: Empty Try Block</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1312,7 +1374,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Expression is Always false</key>
+    <key>code_quality_dead_code_expression_is_always_false</key>
+    <internalKey>Code Quality/Dead Code/Expression is Always false</internalKey>
     <name>Dead Code: Expression is Always false</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1333,7 +1396,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Expression is Always true</key>
+    <key>code_quality_dead_code_expression_is_always_true</key>
+    <internalKey>Code Quality/Dead Code/Expression is Always true</internalKey>
     <name>Dead Code: Expression is Always true</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1354,7 +1418,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Unused Field</key>
+    <key>code_quality_dead_code_unused_field</key>
+    <internalKey>Code Quality/Dead Code/Unused Field</internalKey>
     <name>Dead Code: Unused Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1375,7 +1440,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Dead Code: Unused Method</key>
+    <key>code_quality_dead_code_unused_method</key>
+    <internalKey>Code Quality/Dead Code/Unused Method</internalKey>
     <name>Dead Code: Unused Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1396,7 +1462,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Null Dereference</key>
+    <key>code_quality_null_dereference</key>
+    <internalKey>Code Quality/Null Dereference</internalKey>
     <name>Null Dereference</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1421,7 +1488,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Obsolete</key>
+    <key>code_quality_obsolete</key>
+    <internalKey>Code Quality/Obsolete</internalKey>
     <name>Obsolete</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1437,7 +1505,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Confusing Naming(class_and_member)</key>
+    <key>code_quality_poor_style_confusing_naming_class_and_member</key>
+    <internalKey>Code Quality/Poor Style/Confusing Naming(class_and_member)</internalKey>
     <name>Poor Style: Confusing Naming(class_and_member)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1454,7 +1523,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Confusing Naming(member_and_method)</key>
+    <key>code_quality_poor_style_confusing_naming_member_and_method</key>
+    <internalKey>Code Quality/Poor Style/Confusing Naming(member_and_method)</internalKey>
     <name>Poor Style: Confusing Naming(member_and_method)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1470,7 +1540,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Empty Synchronized Block</key>
+    <key>code_quality_poor_style_empty_synchronized_block</key>
+    <internalKey>Code Quality/Poor Style/Empty Synchronized Block</internalKey>
     <name>Poor Style: Empty Synchronized Block</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1486,7 +1557,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Identifier Contains Dollar Symbol ($)</key>
+    <key>code_quality_poor_style_identifier_contains_dollar_symbol___</key>
+    <internalKey>Code Quality/Poor Style/Identifier Contains Dollar Symbol ($)</internalKey>
     <name>Poor Style: Identifier Contains Dollar Symbol ($)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1503,7 +1575,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Redundant Initialization</key>
+    <key>code_quality_poor_style_redundant_initialization</key>
+    <internalKey>Code Quality/Poor Style/Redundant Initialization</internalKey>
     <name>Poor Style: Redundant Initialization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1524,7 +1597,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Poor Style: Value Never Read</key>
+    <key>code_quality_poor_style_value_never_read</key>
+    <internalKey>Code Quality/Poor Style/Value Never Read</internalKey>
     <name>Poor Style: Value Never Read</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1545,7 +1619,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Portability Flaw: File Separator</key>
+    <key>code_quality_portability_flaw_file_separator</key>
+    <internalKey>Code Quality/Portability Flaw/File Separator</internalKey>
     <name>Portability Flaw: File Separator</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1562,7 +1637,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Redundant Null Check</key>
+    <key>code_quality_redundant_null_check</key>
+    <internalKey>Code Quality/Redundant Null Check</internalKey>
     <name>Redundant Null Check</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1586,7 +1662,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Android Camera</key>
+    <key>code_quality_unreleased_resource_android_camera</key>
+    <internalKey>Code Quality/Unreleased Resource/Android Camera</internalKey>
     <name>Unreleased Resource: Android Camera</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1613,7 +1690,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Android Media</key>
+    <key>code_quality_unreleased_resource_android_media</key>
+    <internalKey>Code Quality/Unreleased Resource/Android Media</internalKey>
     <name>Unreleased Resource: Android Media</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1641,7 +1719,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Android SQLite Database</key>
+    <key>code_quality_unreleased_resource_android_sqlite_database</key>
+    <internalKey>Code Quality/Unreleased Resource/Android SQLite Database</internalKey>
     <name>Unreleased Resource: Android SQLite Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1668,7 +1747,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Database</key>
+    <key>code_quality_unreleased_resource_database</key>
+    <internalKey>Code Quality/Unreleased Resource/Database</internalKey>
     <name>Unreleased Resource: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1694,7 +1774,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Files</key>
+    <key>code_quality_unreleased_resource_files</key>
+    <internalKey>Code Quality/Unreleased Resource/Files</internalKey>
     <name>Unreleased Resource: Files</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1720,7 +1801,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Sockets</key>
+    <key>code_quality_unreleased_resource_sockets</key>
+    <internalKey>Code Quality/Unreleased Resource/Sockets</internalKey>
     <name>Unreleased Resource: Sockets</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1746,7 +1828,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Streams</key>
+    <key>code_quality_unreleased_resource_streams</key>
+    <internalKey>Code Quality/Unreleased Resource/Streams</internalKey>
     <name>Unreleased Resource: Streams</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1772,7 +1855,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Synchronization</key>
+    <key>code_quality_unreleased_resource_synchronization</key>
+    <internalKey>Code Quality/Unreleased Resource/Synchronization</internalKey>
     <name>Unreleased Resource: Synchronization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1798,7 +1882,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Encapsulation/ADF Bad Practices: Default url-invoke-disallowed Setting</key>
+    <key>encapsulation_adf_bad_practices_default_url_invoke_disallowed_setting</key>
+    <internalKey>Encapsulation/ADF Bad Practices/Default url-invoke-disallowed Setting</internalKey>
     <name>ADF Bad Practices: Default url-invoke-disallowed Setting</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1819,7 +1904,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Cross-Site Request Forgery</key>
+    <key>encapsulation_cross_site_request_forgery</key>
+    <internalKey>Encapsulation/Cross-Site Request Forgery</internalKey>
     <name>Cross-Site Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1855,7 +1941,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Cross-Site WebSocket Hijacking</key>
+    <key>encapsulation_cross_site_websocket_hijacking</key>
+    <internalKey>Encapsulation/Cross-Site WebSocket Hijacking</internalKey>
     <name>Cross-Site WebSocket Hijacking</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1889,7 +1976,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/File Based Cross-Zone Scripting</key>
+    <key>encapsulation_file_based_cross_zone_scripting</key>
+    <internalKey>Encapsulation/File Based Cross-Zone Scripting</internalKey>
     <name>File Based Cross-Zone Scripting</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1926,7 +2014,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/HTML5: Overly Permissive CORS Policy</key>
+    <key>encapsulation_html5_overly_permissive_cors_policy</key>
+    <internalKey>Encapsulation/HTML5/Overly Permissive CORS Policy</internalKey>
     <name>HTML5: Overly Permissive CORS Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1949,7 +2038,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Hidden Field</key>
+    <key>encapsulation_hidden_field</key>
+    <internalKey>Encapsulation/Hidden Field</internalKey>
     <name>Hidden Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -1973,7 +2063,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Storage: Android Backup Storage</key>
+    <key>encapsulation_insecure_storage_android_backup_storage</key>
+    <internalKey>Encapsulation/Insecure Storage/Android Backup Storage</internalKey>
     <name>Insecure Storage: Android Backup Storage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2006,7 +2097,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Storage: Android External Storage</key>
+    <key>encapsulation_insecure_storage_android_external_storage</key>
+    <internalKey>Encapsulation/Insecure Storage/Android External Storage</internalKey>
     <name>Insecure Storage: Android External Storage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2028,7 +2120,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Storage: Android World Readable or Writeable</key>
+    <key>encapsulation_insecure_storage_android_world_readable_or_writeable</key>
+    <internalKey>Encapsulation/Insecure Storage/Android World Readable or Writeable</internalKey>
     <name>Insecure Storage: Android World Readable or Writeable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2062,7 +2155,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Insecure Transport</key>
+    <key>encapsulation_insecure_transport</key>
+    <internalKey>Encapsulation/Insecure Transport</internalKey>
     <name>Insecure Transport</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2101,7 +2195,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/J2EE Bad Practices: Leftover Debug Code</key>
+    <key>encapsulation_j2ee_bad_practices_leftover_debug_code</key>
+    <internalKey>Encapsulation/J2EE Bad Practices/Leftover Debug Code</internalKey>
     <name>J2EE Bad Practices: Leftover Debug Code</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2126,7 +2221,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/JavaScript Hijacking: Ad Hoc Ajax</key>
+    <key>encapsulation_javascript_hijacking_ad_hoc_ajax</key>
+    <internalKey>Encapsulation/JavaScript Hijacking/Ad Hoc Ajax</internalKey>
     <name>JavaScript Hijacking: Ad Hoc Ajax</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2144,7 +2240,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/JavaScript Hijacking: Vulnerable Framework</key>
+    <key>encapsulation_javascript_hijacking_vulnerable_framework</key>
+    <internalKey>Encapsulation/JavaScript Hijacking/Vulnerable Framework</internalKey>
     <name>JavaScript Hijacking: Vulnerable Framework</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2162,7 +2259,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Mass Assignment: Sensitive Field Exposure</key>
+    <key>encapsulation_mass_assignment_sensitive_field_exposure</key>
+    <internalKey>Encapsulation/Mass Assignment/Sensitive Field Exposure</internalKey>
     <name>Mass Assignment: Sensitive Field Exposure</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2190,7 +2288,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Poor Logging Practice: Logger Not Declared Static Final</key>
+    <key>encapsulation_poor_logging_practice_logger_not_declared_static_final</key>
+    <internalKey>Encapsulation/Poor Logging Practice/Logger Not Declared Static Final</internalKey>
     <name>Poor Logging Practice: Logger Not Declared Static Final</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2207,7 +2306,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Poor Logging Practice: Multiple Loggers</key>
+    <key>encapsulation_poor_logging_practice_multiple_loggers</key>
+    <internalKey>Encapsulation/Poor Logging Practice/Multiple Loggers</internalKey>
     <name>Poor Logging Practice: Multiple Loggers</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2224,7 +2324,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Poor Logging Practice: Use of a System Output Stream</key>
+    <key>encapsulation_poor_logging_practice_use_of_a_system_output_stream</key>
+    <internalKey>Encapsulation/Poor Logging Practice/Use of a System Output Stream</internalKey>
     <name>Poor Logging Practice: Use of a System Output Stream</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2253,7 +2354,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Poor Style: Non-final Public Static Field</key>
+    <key>encapsulation_poor_style_non_final_public_static_field</key>
+    <internalKey>Encapsulation/Poor Style/Non-final Public Static Field</internalKey>
     <name>Poor Style: Non-final Public Static Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2270,7 +2372,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak</key>
+    <key>encapsulation_system_information_leak</key>
+    <internalKey>Encapsulation/System Information Leak</internalKey>
     <name>System Information Leak</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2298,7 +2401,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Apache Axis</key>
+    <key>encapsulation_system_information_leak_apache_axis</key>
+    <internalKey>Encapsulation/System Information Leak/Apache Axis</internalKey>
     <name>System Information Leak: Apache Axis</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2333,7 +2437,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Apache Axis 2</key>
+    <key>encapsulation_system_information_leak_apache_axis_2</key>
+    <internalKey>Encapsulation/System Information Leak/Apache Axis 2</internalKey>
     <name>System Information Leak: Apache Axis 2</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2367,7 +2472,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: External</key>
+    <key>encapsulation_system_information_leak_external</key>
+    <internalKey>Encapsulation/System Information Leak/External</internalKey>
     <name>System Information Leak: External</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2395,7 +2501,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: HTML Comment in JSP</key>
+    <key>encapsulation_system_information_leak_html_comment_in_jsp</key>
+    <internalKey>Encapsulation/System Information Leak/HTML Comment in JSP</internalKey>
     <name>System Information Leak: HTML Comment in JSP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2420,7 +2527,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Incomplete Servlet Error Handling</key>
+    <key>encapsulation_system_information_leak_incomplete_servlet_error_handling</key>
+    <internalKey>Encapsulation/System Information Leak/Incomplete Servlet Error Handling</internalKey>
     <name>System Information Leak: Incomplete Servlet Error Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2449,7 +2557,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Internal</key>
+    <key>encapsulation_system_information_leak_internal</key>
+    <internalKey>Encapsulation/System Information Leak/Internal</internalKey>
     <name>System Information Leak: Internal</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2476,7 +2585,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: Overly Broad SQL Logging</key>
+    <key>encapsulation_system_information_leak_overly_broad_sql_logging</key>
+    <internalKey>Encapsulation/System Information Leak/Overly Broad SQL Logging</internalKey>
     <name>System Information Leak: Overly Broad SQL Logging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2507,7 +2617,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Trust Boundary Violation</key>
+    <key>encapsulation_trust_boundary_violation</key>
+    <internalKey>Encapsulation/Trust Boundary Violation</internalKey>
     <name>Trust Boundary Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2535,7 +2646,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Access Violation</key>
+    <key>encapsulation_unsafe_mobile_code_access_violation</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Access Violation</internalKey>
     <name>Unsafe Mobile Code: Access Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2554,7 +2666,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Database Access</key>
+    <key>encapsulation_unsafe_mobile_code_database_access</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Database Access</internalKey>
     <name>Unsafe Mobile Code: Database Access</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2573,7 +2686,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Inner Class</key>
+    <key>encapsulation_unsafe_mobile_code_inner_class</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Inner Class</internalKey>
     <name>Unsafe Mobile Code: Inner Class</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2592,7 +2706,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Public finalize() Method</key>
+    <key>encapsulation_unsafe_mobile_code_public_finalize___method</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Public finalize() Method</internalKey>
     <name>Unsafe Mobile Code: Public finalize() Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2611,7 +2726,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Unsafe Array Declaration</key>
+    <key>encapsulation_unsafe_mobile_code_unsafe_array_declaration</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Unsafe Array Declaration</internalKey>
     <name>Unsafe Mobile Code: Unsafe Array Declaration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2630,7 +2746,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Unsafe Mobile Code: Unsafe Public Field</key>
+    <key>encapsulation_unsafe_mobile_code_unsafe_public_field</key>
+    <internalKey>Encapsulation/Unsafe Mobile Code/Unsafe Public Field</internalKey>
     <name>Unsafe Mobile Code: Unsafe Public Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2649,7 +2766,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Environment/Android Misconfiguration: Debug Information</key>
+    <key>environment_android_misconfiguration_debug_information</key>
+    <internalKey>Environment/Android Misconfiguration/Debug Information</internalKey>
     <name>Android Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2683,7 +2801,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Misconfiguration: Debug Information</key>
+    <key>environment_axis_2_misconfiguration_debug_information</key>
+    <internalKey>Environment/Axis 2 Misconfiguration/Debug Information</internalKey>
     <name>Axis 2 Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2717,7 +2836,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Misconfiguration: Insecure Message Security</key>
+    <key>environment_axis_2_misconfiguration_insecure_message_security</key>
+    <internalKey>Environment/Axis 2 Misconfiguration/Insecure Message Security</internalKey>
     <name>Axis 2 Misconfiguration: Insecure Message Security</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2754,7 +2874,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Misconfiguration: Insecure Transport Receiver</key>
+    <key>environment_axis_2_misconfiguration_insecure_transport_receiver</key>
+    <internalKey>Environment/Axis 2 Misconfiguration/Insecure Transport Receiver</internalKey>
     <name>Axis 2 Misconfiguration: Insecure Transport Receiver</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2792,7 +2913,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Misconfiguration: Insecure Transport Sender</key>
+    <key>environment_axis_2_misconfiguration_insecure_transport_sender</key>
+    <internalKey>Environment/Axis 2 Misconfiguration/Insecure Transport Sender</internalKey>
     <name>Axis 2 Misconfiguration: Insecure Transport Sender</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2830,7 +2952,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Inbound WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_provider_misconfiguration_inbound_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Inbound WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Inbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2867,7 +2990,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Inbound Encryption</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_inbound_encryption</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Inbound Encryption</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Inbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2904,7 +3028,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Inbound Signature</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_inbound_signature</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Inbound Signature</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Inbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2934,7 +3059,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Inbound Timestamp</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_inbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Inbound Timestamp</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -2964,7 +3090,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Outbound Encryption</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_outbound_encryption</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Outbound Encryption</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Outbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3001,7 +3128,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Outbound Signature</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_outbound_signature</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Outbound Signature</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Outbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3031,7 +3159,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Missing Outbound Timestamp</key>
+    <key>environment_axis_2_service_provider_misconfiguration_missing_outbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Missing Outbound Timestamp</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Missing Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3061,7 +3190,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Outbound WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_provider_misconfiguration_outbound_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Outbound WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Outbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3098,7 +3228,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Unsigned Inbound Timestamp</key>
+    <key>environment_axis_2_service_provider_misconfiguration_unsigned_inbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Unsigned Inbound Timestamp</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Unsigned Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3129,7 +3260,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Unsigned Outbound Timestamp</key>
+    <key>environment_axis_2_service_provider_misconfiguration_unsigned_outbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Unsigned Outbound Timestamp</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Unsigned Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3160,7 +3292,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_provider_misconfiguration_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3197,7 +3330,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Provider Misconfiguration: Weak Token</key>
+    <key>environment_axis_2_service_provider_misconfiguration_weak_token</key>
+    <internalKey>Environment/Axis 2 Service Provider Misconfiguration/Weak Token</internalKey>
     <name>Axis 2 Service Provider Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3235,7 +3369,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Inbound WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_requester_misconfiguration_inbound_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Inbound WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Inbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3272,7 +3407,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Inbound Encryption</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_inbound_encryption</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Inbound Encryption</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Inbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3309,7 +3445,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Inbound Signature</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_inbound_signature</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Inbound Signature</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Inbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3339,7 +3476,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Inbound Timestamp</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_inbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Inbound Timestamp</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3369,7 +3507,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Outbound Encryption</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_outbound_encryption</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Outbound Encryption</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Outbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3406,7 +3545,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Outbound Signature</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_outbound_signature</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Outbound Signature</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Outbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3436,7 +3576,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Missing Outbound Timestamp</key>
+    <key>environment_axis_2_service_requester_misconfiguration_missing_outbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Missing Outbound Timestamp</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Missing Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3465,7 +3606,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Outbound WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_requester_misconfiguration_outbound_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Outbound WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Outbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3502,7 +3644,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Plain Text Password</key>
+    <key>environment_axis_2_service_requester_misconfiguration_plain_text_password</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Plain Text Password</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Plain Text Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3536,7 +3679,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Unsigned Inbound Timestamp</key>
+    <key>environment_axis_2_service_requester_misconfiguration_unsigned_inbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Unsigned Inbound Timestamp</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Unsigned Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3567,7 +3711,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Unsigned Outbound Timestamp</key>
+    <key>environment_axis_2_service_requester_misconfiguration_unsigned_outbound_timestamp</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Unsigned Outbound Timestamp</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Unsigned Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3598,7 +3743,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: WS-Security Not Enabled</key>
+    <key>environment_axis_2_service_requester_misconfiguration_ws_security_not_enabled</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/WS-Security Not Enabled</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3635,7 +3781,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis 2 Service Requester Misconfiguration: Weak Token</key>
+    <key>environment_axis_2_service_requester_misconfiguration_weak_token</key>
+    <internalKey>Environment/Axis 2 Service Requester Misconfiguration/Weak Token</internalKey>
     <name>Axis 2 Service Requester Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3673,7 +3820,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Misconfiguration: Debug Information</key>
+    <key>environment_axis_misconfiguration_debug_information</key>
+    <internalKey>Environment/Axis Misconfiguration/Debug Information</internalKey>
     <name>Axis Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3707,7 +3855,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Misconfiguration: Service Enumeration</key>
+    <key>environment_axis_misconfiguration_service_enumeration</key>
+    <internalKey>Environment/Axis Misconfiguration/Service Enumeration</internalKey>
     <name>Axis Misconfiguration: Service Enumeration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3740,7 +3889,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Service Provider Misconfiguration: Plain Text Password</key>
+    <key>environment_axis_service_provider_misconfiguration_plain_text_password</key>
+    <internalKey>Environment/Axis Service Provider Misconfiguration/Plain Text Password</internalKey>
     <name>Axis Service Provider Misconfiguration: Plain Text Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3774,7 +3924,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Service Provider Misconfiguration: Weak Token</key>
+    <key>environment_axis_service_provider_misconfiguration_weak_token</key>
+    <internalKey>Environment/Axis Service Provider Misconfiguration/Weak Token</internalKey>
     <name>Axis Service Provider Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3811,7 +3962,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Service Requester Misconfiguration: Plain Text Password</key>
+    <key>environment_axis_service_requester_misconfiguration_plain_text_password</key>
+    <internalKey>Environment/Axis Service Requester Misconfiguration/Plain Text Password</internalKey>
     <name>Axis Service Requester Misconfiguration: Plain Text Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3845,7 +3997,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Axis Service Requester Misconfiguration: Weak Token</key>
+    <key>environment_axis_service_requester_misconfiguration_weak_token</key>
+    <internalKey>Environment/Axis Service Requester Misconfiguration/Weak Token</internalKey>
     <name>Axis Service Requester Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3880,7 +4033,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Build Misconfiguration: Dynamic Dependency Version Usage</key>
+    <key>environment_build_misconfiguration_dynamic_dependency_version_usage</key>
+    <internalKey>Environment/Build Misconfiguration/Dynamic Dependency Version Usage</internalKey>
     <name>Build Misconfiguration: Dynamic Dependency Version Usage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3898,7 +4052,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Build Misconfiguration: External Ant Dependency Repository</key>
+    <key>environment_build_misconfiguration_external_ant_dependency_repository</key>
+    <internalKey>Environment/Build Misconfiguration/External Ant Dependency Repository</internalKey>
     <name>Build Misconfiguration: External Ant Dependency Repository</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3916,7 +4071,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Build Misconfiguration: External Ivy Dependency Repository</key>
+    <key>environment_build_misconfiguration_external_ivy_dependency_repository</key>
+    <internalKey>Environment/Build Misconfiguration/External Ivy Dependency Repository</internalKey>
     <name>Build Misconfiguration: External Ivy Dependency Repository</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3934,7 +4090,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Build Misconfiguration: External Maven Dependency Repository</key>
+    <key>environment_build_misconfiguration_external_maven_dependency_repository</key>
+    <internalKey>Environment/Build Misconfiguration/External Maven Dependency Repository</internalKey>
     <name>Build Misconfiguration: External Maven Dependency Repository</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3952,7 +4109,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/ClassLoader Manipulation: Struts 1</key>
+    <key>environment_classloader_manipulation_struts_1</key>
+    <internalKey>Environment/ClassLoader Manipulation/Struts 1</internalKey>
     <name>ClassLoader Manipulation: Struts 1</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -3985,7 +4143,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Flex Misconfiguration: Debug Information</key>
+    <key>environment_flex_misconfiguration_debug_information</key>
+    <internalKey>Environment/Flex Misconfiguration/Debug Information</internalKey>
     <name>Flex Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4018,7 +4177,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Insecure Deployment: Java Applet</key>
+    <key>environment_insecure_deployment_java_applet</key>
+    <internalKey>Environment/Insecure Deployment/Java Applet</internalKey>
     <name>Insecure Deployment: Java Applet</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4035,7 +4195,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Cookies Disabled</key>
+    <key>environment_j2ee_misconfiguration_cookies_disabled</key>
+    <internalKey>Environment/J2EE Misconfiguration/Cookies Disabled</internalKey>
     <name>J2EE Misconfiguration: Cookies Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4069,7 +4230,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Debug Information</key>
+    <key>environment_j2ee_misconfiguration_debug_information</key>
+    <internalKey>Environment/J2EE Misconfiguration/Debug Information</internalKey>
     <name>J2EE Misconfiguration: Debug Information</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4102,7 +4264,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Direct JSP Access</key>
+    <key>environment_j2ee_misconfiguration_direct_jsp_access</key>
+    <internalKey>Environment/J2EE Misconfiguration/Direct JSP Access</internalKey>
     <name>J2EE Misconfiguration: Direct JSP Access</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4135,7 +4298,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Duplicate Security Role</key>
+    <key>environment_j2ee_misconfiguration_duplicate_security_role</key>
+    <internalKey>Environment/J2EE Misconfiguration/Duplicate Security Role</internalKey>
     <name>J2EE Misconfiguration: Duplicate Security Role</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4154,7 +4318,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Duplicate Servlet Mapping</key>
+    <key>environment_j2ee_misconfiguration_duplicate_servlet_mapping</key>
+    <internalKey>Environment/J2EE Misconfiguration/Duplicate Servlet Mapping</internalKey>
     <name>J2EE Misconfiguration: Duplicate Servlet Mapping</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4171,7 +4336,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Excessive Servlet Mappings</key>
+    <key>environment_j2ee_misconfiguration_excessive_servlet_mappings</key>
+    <internalKey>Environment/J2EE Misconfiguration/Excessive Servlet Mappings</internalKey>
     <name>J2EE Misconfiguration: Excessive Servlet Mappings</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4189,7 +4355,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Excessive Session Timeout</key>
+    <key>environment_j2ee_misconfiguration_excessive_session_timeout</key>
+    <internalKey>Environment/J2EE Misconfiguration/Excessive Session Timeout</internalKey>
     <name>J2EE Misconfiguration: Excessive Session Timeout</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4223,7 +4390,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Incomplete Error Handling</key>
+    <key>environment_j2ee_misconfiguration_incomplete_error_handling</key>
+    <internalKey>Environment/J2EE Misconfiguration/Incomplete Error Handling</internalKey>
     <name>J2EE Misconfiguration: Incomplete Error Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4256,7 +4424,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Incomplete Error Handling - (404)</key>
+    <key>environment_j2ee_misconfiguration_incomplete_error_handling____404</key>
+    <internalKey>Environment/J2EE Misconfiguration/Incomplete Error Handling - (404)</internalKey>
     <name>J2EE Misconfiguration: Incomplete Error Handling - (404)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4289,7 +4458,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Incomplete Error Handling - (500)</key>
+    <key>environment_j2ee_misconfiguration_incomplete_error_handling____500</key>
+    <internalKey>Environment/J2EE Misconfiguration/Incomplete Error Handling - (500)</internalKey>
     <name>J2EE Misconfiguration: Incomplete Error Handling - (500)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4322,7 +4492,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Incomplete Error Handling - (throwable)</key>
+    <key>environment_j2ee_misconfiguration_incomplete_error_handling____throwable</key>
+    <internalKey>Environment/J2EE Misconfiguration/Incomplete Error Handling - (throwable)</internalKey>
     <name>J2EE Misconfiguration: Incomplete Error Handling - (throwable)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4355,7 +4526,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Insecure Transport</key>
+    <key>environment_j2ee_misconfiguration_insecure_transport</key>
+    <internalKey>Environment/J2EE Misconfiguration/Insecure Transport</internalKey>
     <name>J2EE Misconfiguration: Insecure Transport</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4389,7 +4561,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Insufficient Session-ID Length</key>
+    <key>environment_j2ee_misconfiguration_insufficient_session_id_length</key>
+    <internalKey>Environment/J2EE Misconfiguration/Insufficient Session-ID Length</internalKey>
     <name>J2EE Misconfiguration: Insufficient Session-ID Length</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4422,7 +4595,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Invalid Servlet Name</key>
+    <key>environment_j2ee_misconfiguration_invalid_servlet_name</key>
+    <internalKey>Environment/J2EE Misconfiguration/Invalid Servlet Name</internalKey>
     <name>J2EE Misconfiguration: Invalid Servlet Name</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4449,7 +4623,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Authentication Method</key>
+    <key>environment_j2ee_misconfiguration_missing_authentication_method</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Authentication Method</internalKey>
     <name>J2EE Misconfiguration: Missing Authentication Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4478,7 +4653,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Data Transport Constraint</key>
+    <key>environment_j2ee_misconfiguration_missing_data_transport_constraint</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Data Transport Constraint</internalKey>
     <name>J2EE Misconfiguration: Missing Data Transport Constraint</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4513,7 +4689,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Error Handling</key>
+    <key>environment_j2ee_misconfiguration_missing_error_handling</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Error Handling</internalKey>
     <name>J2EE Misconfiguration: Missing Error Handling</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4546,7 +4723,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Filter Definition</key>
+    <key>environment_j2ee_misconfiguration_missing_filter_definition</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Filter Definition</internalKey>
     <name>J2EE Misconfiguration: Missing Filter Definition</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4574,7 +4752,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Security Role</key>
+    <key>environment_j2ee_misconfiguration_missing_security_role</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Security Role</internalKey>
     <name>J2EE Misconfiguration: Missing Security Role</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4602,7 +4781,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Missing Servlet Mapping</key>
+    <key>environment_j2ee_misconfiguration_missing_servlet_mapping</key>
+    <internalKey>Environment/J2EE Misconfiguration/Missing Servlet Mapping</internalKey>
     <name>J2EE Misconfiguration: Missing Servlet Mapping</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4630,7 +4810,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Unsafe Bean Declaration</key>
+    <key>environment_j2ee_misconfiguration_unsafe_bean_declaration</key>
+    <internalKey>Environment/J2EE Misconfiguration/Unsafe Bean Declaration</internalKey>
     <name>J2EE Misconfiguration: Unsafe Bean Declaration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4663,7 +4844,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/J2EE Misconfiguration: Weak Access Permissions</key>
+    <key>environment_j2ee_misconfiguration_weak_access_permissions</key>
+    <internalKey>Environment/J2EE Misconfiguration/Weak Access Permissions</internalKey>
     <name>J2EE Misconfiguration: Weak Access Permissions</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4697,7 +4879,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Password Management: Empty Password in Configuration File</key>
+    <key>environment_password_management_empty_password_in_configuration_file</key>
+    <internalKey>Environment/Password Management/Empty Password in Configuration File</internalKey>
     <name>Password Management: Empty Password in Configuration File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4732,7 +4915,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Password Management: Password in Configuration File</key>
+    <key>environment_password_management_password_in_configuration_file</key>
+    <internalKey>Environment/Password Management/Password in Configuration File</internalKey>
     <name>Password Management: Password in Configuration File</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4764,7 +4948,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Duplicate Form Bean</key>
+    <key>environment_struts_misconfiguration_duplicate_form_bean</key>
+    <internalKey>Environment/Struts Misconfiguration/Duplicate Form Bean</internalKey>
     <name>Struts Misconfiguration: Duplicate Form Bean</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4783,7 +4968,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Invalid Path</key>
+    <key>environment_struts_misconfiguration_invalid_path</key>
+    <internalKey>Environment/Struts Misconfiguration/Invalid Path</internalKey>
     <name>Struts Misconfiguration: Invalid Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4803,7 +4989,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Action Input</key>
+    <key>environment_struts_misconfiguration_missing_action_input</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Action Input</internalKey>
     <name>Struts Misconfiguration: Missing Action Input</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4822,7 +5009,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Exception Type</key>
+    <key>environment_struts_misconfiguration_missing_exception_type</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Exception Type</internalKey>
     <name>Struts Misconfiguration: Missing Exception Type</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4854,7 +5042,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Form Bean</key>
+    <key>environment_struts_misconfiguration_missing_form_bean</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Form Bean</internalKey>
     <name>Struts Misconfiguration: Missing Form Bean</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4872,7 +5061,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Form Bean Name</key>
+    <key>environment_struts_misconfiguration_missing_form_bean_name</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Form Bean Name</internalKey>
     <name>Struts Misconfiguration: Missing Form Bean Name</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4890,7 +5080,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Form Bean Type</key>
+    <key>environment_struts_misconfiguration_missing_form_bean_type</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Form Bean Type</internalKey>
     <name>Struts Misconfiguration: Missing Form Bean Type</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4908,7 +5099,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Form Property Type</key>
+    <key>environment_struts_misconfiguration_missing_form_property_type</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Form Property Type</internalKey>
     <name>Struts Misconfiguration: Missing Form Property Type</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4926,7 +5118,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Forward Name</key>
+    <key>environment_struts_misconfiguration_missing_forward_name</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Forward Name</internalKey>
     <name>Struts Misconfiguration: Missing Forward Name</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4944,7 +5137,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Struts Misconfiguration: Missing Forward Path</key>
+    <key>environment_struts_misconfiguration_missing_forward_path</key>
+    <internalKey>Environment/Struts Misconfiguration/Missing Forward Path</internalKey>
     <name>Struts Misconfiguration: Missing Forward Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4962,7 +5156,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Tomcat Configuration: Insecure Transport</key>
+    <key>environment_tomcat_configuration_insecure_transport</key>
+    <internalKey>Environment/Tomcat Configuration/Insecure Transport</internalKey>
     <name>Tomcat Configuration: Insecure Transport</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -4996,7 +5191,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Misconfiguration: Missing Nonce</key>
+    <key>environment_websphere_misconfiguration_missing_nonce</key>
+    <internalKey>Environment/WebSphere Misconfiguration/Missing Nonce</internalKey>
     <name>WebSphere Misconfiguration: Missing Nonce</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5023,7 +5219,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Misconfiguration: Servlets Served By Class Name</key>
+    <key>environment_websphere_misconfiguration_servlets_served_by_class_name</key>
+    <internalKey>Environment/WebSphere Misconfiguration/Servlets Served By Class Name</internalKey>
     <name>WebSphere Misconfiguration: Servlets Served By Class Name</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5055,7 +5252,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Inbound WS-Security Not Enabled</key>
+    <key>environment_websphere_service_provider_misconfiguration_inbound_ws_security_not_enabled</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Inbound WS-Security Not Enabled</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Inbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5093,7 +5291,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Inbound Encryption</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_inbound_encryption</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Inbound Encryption</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Inbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5130,7 +5329,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Inbound Signature</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_inbound_signature</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Inbound Signature</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Inbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5160,7 +5360,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Inbound Timestamp</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_inbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Inbound Timestamp</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5190,7 +5391,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Outbound Encryption</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_outbound_encryption</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Outbound Encryption</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Outbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5227,7 +5429,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Outbound Signature</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_outbound_signature</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Outbound Signature</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Outbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5257,7 +5460,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Outbound Timestamp</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_outbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Outbound Timestamp</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5287,7 +5491,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Missing Timestamp Expiration</key>
+    <key>environment_websphere_service_provider_misconfiguration_missing_timestamp_expiration</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Missing Timestamp Expiration</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Missing Timestamp Expiration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5317,7 +5522,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Outbound WS-Security Not Enabled</key>
+    <key>environment_websphere_service_provider_misconfiguration_outbound_ws_security_not_enabled</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Outbound WS-Security Not Enabled</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Outbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5355,7 +5561,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Unsigned Inbound Timestamp</key>
+    <key>environment_websphere_service_provider_misconfiguration_unsigned_inbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Unsigned Inbound Timestamp</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Unsigned Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5386,7 +5593,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Unsigned Outbound Timestamp</key>
+    <key>environment_websphere_service_provider_misconfiguration_unsigned_outbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Unsigned Outbound Timestamp</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Unsigned Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5417,7 +5625,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Provider Misconfiguration: Weak Token</key>
+    <key>environment_websphere_service_provider_misconfiguration_weak_token</key>
+    <internalKey>Environment/WebSphere Service Provider Misconfiguration/Weak Token</internalKey>
     <name>WebSphere Service Provider Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5454,7 +5663,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Inbound WS-Security Not Enabled</key>
+    <key>environment_websphere_service_requester_misconfiguration_inbound_ws_security_not_enabled</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Inbound WS-Security Not Enabled</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Inbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5492,7 +5702,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Inbound Encryption</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_inbound_encryption</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Inbound Encryption</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Inbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5529,7 +5740,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Inbound Signature</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_inbound_signature</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Inbound Signature</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Inbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5559,7 +5771,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Inbound Timestamp</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_inbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Inbound Timestamp</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5589,7 +5802,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Outbound Encryption</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_outbound_encryption</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Outbound Encryption</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Outbound Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5626,7 +5840,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Outbound Signature</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_outbound_signature</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Outbound Signature</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Outbound Signature</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5656,7 +5871,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Outbound Timestamp</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_outbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Outbound Timestamp</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5686,7 +5902,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Missing Timestamp Expiration</key>
+    <key>environment_websphere_service_requester_misconfiguration_missing_timestamp_expiration</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Missing Timestamp Expiration</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Missing Timestamp Expiration</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5716,7 +5933,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Outbound WS-Security Not Enabled</key>
+    <key>environment_websphere_service_requester_misconfiguration_outbound_ws_security_not_enabled</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Outbound WS-Security Not Enabled</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Outbound WS-Security Not Enabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5754,7 +5972,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Unsigned Inbound Timestamp</key>
+    <key>environment_websphere_service_requester_misconfiguration_unsigned_inbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Unsigned Inbound Timestamp</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Unsigned Inbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5785,7 +6004,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Unsigned Outbound Timestamp</key>
+    <key>environment_websphere_service_requester_misconfiguration_unsigned_outbound_timestamp</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Unsigned Outbound Timestamp</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Unsigned Outbound Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5816,7 +6036,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/WebSphere Service Requester Misconfiguration: Weak Token</key>
+    <key>environment_websphere_service_requester_misconfiguration_weak_token</key>
+    <internalKey>Environment/WebSphere Service Requester Misconfiguration/Weak Token</internalKey>
     <name>WebSphere Service Requester Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5853,7 +6074,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Weblogic Misconfiguration: Missing Timestamp</key>
+    <key>environment_weblogic_misconfiguration_missing_timestamp</key>
+    <internalKey>Environment/Weblogic Misconfiguration/Missing Timestamp</internalKey>
     <name>Weblogic Misconfiguration: Missing Timestamp</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5888,7 +6110,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Environment/Weblogic Misconfiguration: Weak Token</key>
+    <key>environment_weblogic_misconfiguration_weak_token</key>
+    <internalKey>Environment/Weblogic Misconfiguration/Weak Token</internalKey>
     <name>Weblogic Misconfiguration: Weak Token</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5926,7 +6149,8 @@
     <tag>environment</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Empty Catch Block</key>
+    <key>errors_poor_error_handling_empty_catch_block</key>
+    <internalKey>Errors/Poor Error Handling/Empty Catch Block</internalKey>
     <name>Poor Error Handling: Empty Catch Block</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5955,7 +6179,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Overly Broad Catch</key>
+    <key>errors_poor_error_handling_overly_broad_catch</key>
+    <internalKey>Errors/Poor Error Handling/Overly Broad Catch</internalKey>
     <name>Poor Error Handling: Overly Broad Catch</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -5984,7 +6209,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Overly Broad Throws</key>
+    <key>errors_poor_error_handling_overly_broad_throws</key>
+    <internalKey>Errors/Poor Error Handling/Overly Broad Throws</internalKey>
     <name>Poor Error Handling: Overly Broad Throws</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6013,7 +6239,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Program Catches NullPointerException</key>
+    <key>errors_poor_error_handling_program_catches_nullpointerexception</key>
+    <internalKey>Errors/Poor Error Handling/Program Catches NullPointerException</internalKey>
     <name>Poor Error Handling: Program Catches NullPointerException</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6041,7 +6268,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Return Inside Finally</key>
+    <key>errors_poor_error_handling_return_inside_finally</key>
+    <internalKey>Errors/Poor Error Handling/Return Inside Finally</internalKey>
     <name>Poor Error Handling: Return Inside Finally</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6070,7 +6298,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Swallowed ThreadDeath</key>
+    <key>errors_poor_error_handling_swallowed_threaddeath</key>
+    <internalKey>Errors/Poor Error Handling/Swallowed ThreadDeath</internalKey>
     <name>Poor Error Handling: Swallowed ThreadDeath</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6089,7 +6318,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Throw Inside Finally</key>
+    <key>errors_poor_error_handling_throw_inside_finally</key>
+    <internalKey>Errors/Poor Error Handling/Throw Inside Finally</internalKey>
     <name>Poor Error Handling: Throw Inside Finally</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6119,7 +6349,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Unhandled SSL Exception</key>
+    <key>errors_poor_error_handling_unhandled_ssl_exception</key>
+    <internalKey>Errors/Poor Error Handling/Unhandled SSL Exception</internalKey>
     <name>Poor Error Handling: Unhandled SSL Exception</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6149,7 +6380,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/ADF Bad Practices: Missing URL Parameter Converter</key>
+    <key>input_validation_and_representation_adf_bad_practices_missing_url_parameter_converter</key>
+    <internalKey>Input Validation and Representation/ADF Bad Practices/Missing URL Parameter Converter</internalKey>
     <name>ADF Bad Practices: Missing URL Parameter Converter</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6179,7 +6411,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Access Specifier Manipulation</key>
+    <key>input_validation_and_representation_access_specifier_manipulation</key>
+    <internalKey>Input Validation and Representation/Access Specifier Manipulation</internalKey>
     <name>Access Specifier Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6213,7 +6446,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Android Class Loading Hijacking</key>
+    <key>input_validation_and_representation_android_class_loading_hijacking</key>
+    <internalKey>Input Validation and Representation/Android Class Loading Hijacking</internalKey>
     <name>Android Class Loading Hijacking</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6246,7 +6480,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Bean Manipulation</key>
+    <key>input_validation_and_representation_bean_manipulation</key>
+    <internalKey>Input Validation and Representation/Bean Manipulation</internalKey>
     <name>Bean Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6273,7 +6508,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Command Injection</key>
+    <key>input_validation_and_representation_command_injection</key>
+    <internalKey>Input Validation and Representation/Command Injection</internalKey>
     <name>Command Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6308,7 +6544,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: DOM</key>
+    <key>input_validation_and_representation_cross_site_scripting_dom</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/DOM</internalKey>
     <name>Cross-Site Scripting: DOM</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6346,7 +6583,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: External Links</key>
+    <key>input_validation_and_representation_cross_site_scripting_external_links</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/External Links</internalKey>
     <name>Cross-Site Scripting: External Links</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6384,7 +6622,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Inter-Component Communication</key>
+    <key>input_validation_and_representation_cross_site_scripting_inter_component_communication</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Inter-Component Communication</internalKey>
     <name>Cross-Site Scripting: Inter-Component Communication</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6424,7 +6663,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Persistent</key>
+    <key>input_validation_and_representation_cross_site_scripting_persistent</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Persistent</internalKey>
     <name>Cross-Site Scripting: Persistent</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6464,7 +6704,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Poor Validation</key>
+    <key>input_validation_and_representation_cross_site_scripting_poor_validation</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Poor Validation</internalKey>
     <name>Cross-Site Scripting: Poor Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6502,7 +6743,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Reflected</key>
+    <key>input_validation_and_representation_cross_site_scripting_reflected</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Reflected</internalKey>
     <name>Cross-Site Scripting: Reflected</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6541,7 +6783,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dangerous File Inclusion</key>
+    <key>input_validation_and_representation_dangerous_file_inclusion</key>
+    <internalKey>Input Validation and Representation/Dangerous File Inclusion</internalKey>
     <name>Dangerous File Inclusion</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6576,7 +6819,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service</key>
+    <key>input_validation_and_representation_denial_of_service</key>
+    <internalKey>Input Validation and Representation/Denial of Service</internalKey>
     <name>Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6601,7 +6845,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service: Parse Double</key>
+    <key>input_validation_and_representation_denial_of_service_parse_double</key>
+    <internalKey>Input Validation and Representation/Denial of Service/Parse Double</internalKey>
     <name>Denial of Service: Parse Double</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6631,7 +6876,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Code Injection</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_code_injection</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Code Injection</internalKey>
     <name>Dynamic Code Evaluation: Code Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6664,7 +6910,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Code Manipulation</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_code_manipulation</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Code Manipulation</internalKey>
     <name>Dynamic Code Evaluation: Code Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6694,7 +6941,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Script Injection</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_script_injection</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Script Injection</internalKey>
     <name>Dynamic Code Evaluation: Script Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6727,7 +6975,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: Unsafe XStream Deserialization</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_unsafe_xstream_deserialization</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/Unsafe XStream Deserialization</internalKey>
     <name>Dynamic Code Evaluation: Unsafe XStream Deserialization</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6760,7 +7009,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Dynamic Code Evaluation: XMLDecoder Injection</key>
+    <key>input_validation_and_representation_dynamic_code_evaluation_xmldecoder_injection</key>
+    <internalKey>Input Validation and Representation/Dynamic Code Evaluation/XMLDecoder Injection</internalKey>
     <name>Dynamic Code Evaluation: XMLDecoder Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6794,7 +7044,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Expression Language Injection</key>
+    <key>input_validation_and_representation_expression_language_injection</key>
+    <internalKey>Input Validation and Representation/Expression Language Injection</internalKey>
     <name>Expression Language Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6825,7 +7076,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/HTTP Parameter Pollution</key>
+    <key>input_validation_and_representation_http_parameter_pollution</key>
+    <internalKey>Input Validation and Representation/HTTP Parameter Pollution</internalKey>
     <name>HTTP Parameter Pollution</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6850,7 +7102,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Hadoop Cluster Manipulation</key>
+    <key>input_validation_and_representation_hadoop_cluster_manipulation</key>
+    <internalKey>Input Validation and Representation/Hadoop Cluster Manipulation</internalKey>
     <name>Hadoop Cluster Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6867,7 +7120,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Hadoop Job Manipulation</key>
+    <key>input_validation_and_representation_hadoop_job_manipulation</key>
+    <internalKey>Input Validation and Representation/Hadoop Job Manipulation</internalKey>
     <name>Hadoop Job Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6884,7 +7138,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation</key>
+    <key>input_validation_and_representation_header_manipulation</key>
+    <internalKey>Input Validation and Representation/Header Manipulation</internalKey>
     <name>Header Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6919,7 +7174,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation: Cookies</key>
+    <key>input_validation_and_representation_header_manipulation_cookies</key>
+    <internalKey>Input Validation and Representation/Header Manipulation/Cookies</internalKey>
     <name>Header Manipulation: Cookies</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6954,7 +7210,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation: SMTP</key>
+    <key>input_validation_and_representation_header_manipulation_smtp</key>
+    <internalKey>Input Validation and Representation/Header Manipulation/SMTP</internalKey>
     <name>Header Manipulation: SMTP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -6988,7 +7245,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Insecure Sanitizer Policy</key>
+    <key>input_validation_and_representation_insecure_sanitizer_policy</key>
+    <internalKey>Input Validation and Representation/Insecure Sanitizer Policy</internalKey>
     <name>Insecure Sanitizer Policy</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7028,7 +7286,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Intent Manipulation</key>
+    <key>input_validation_and_representation_intent_manipulation</key>
+    <internalKey>Input Validation and Representation/Intent Manipulation</internalKey>
     <name>Intent Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7061,7 +7320,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/JSON Injection</key>
+    <key>input_validation_and_representation_json_injection</key>
+    <internalKey>Input Validation and Representation/JSON Injection</internalKey>
     <name>JSON Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7093,7 +7353,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Injection</key>
+    <key>input_validation_and_representation_ldap_injection</key>
+    <internalKey>Input Validation and Representation/LDAP Injection</internalKey>
     <name>LDAP Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7127,7 +7388,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/LDAP Manipulation</key>
+    <key>input_validation_and_representation_ldap_manipulation</key>
+    <internalKey>Input Validation and Representation/LDAP Manipulation</internalKey>
     <name>LDAP Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7156,7 +7418,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Log Forging</key>
+    <key>input_validation_and_representation_log_forging</key>
+    <internalKey>Input Validation and Representation/Log Forging</internalKey>
     <name>Log Forging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7190,7 +7453,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Log Forging (debug)</key>
+    <key>input_validation_and_representation_log_forging__debug</key>
+    <internalKey>Input Validation and Representation/Log Forging (debug)</internalKey>
     <name>Log Forging (debug)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7224,7 +7488,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Mail Command Injection: IMAP</key>
+    <key>input_validation_and_representation_mail_command_injection_imap</key>
+    <internalKey>Input Validation and Representation/Mail Command Injection/IMAP</internalKey>
     <name>Mail Command Injection: IMAP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7260,7 +7525,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Mail Command Injection: POP3</key>
+    <key>input_validation_and_representation_mail_command_injection_pop3</key>
+    <internalKey>Input Validation and Representation/Mail Command Injection/POP3</internalKey>
     <name>Mail Command Injection: POP3</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7296,7 +7562,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Mail Command Injection: SMTP</key>
+    <key>input_validation_and_representation_mail_command_injection_smtp</key>
+    <internalKey>Input Validation and Representation/Mail Command Injection/SMTP</internalKey>
     <name>Mail Command Injection: SMTP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7332,7 +7599,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Missing XML Validation</key>
+    <key>input_validation_and_representation_missing_xml_validation</key>
+    <internalKey>Input Validation and Representation/Missing XML Validation</internalKey>
     <name>Missing XML Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7367,7 +7635,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Missing XML Validation: Untyped Response</key>
+    <key>input_validation_and_representation_missing_xml_validation_untyped_response</key>
+    <internalKey>Input Validation and Representation/Missing XML Validation/Untyped Response</internalKey>
     <name>Missing XML Validation: Untyped Response</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7402,7 +7671,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/OGNL Expression Injection</key>
+    <key>input_validation_and_representation_ognl_expression_injection</key>
+    <internalKey>Input Validation and Representation/OGNL Expression Injection</internalKey>
     <name>OGNL Expression Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7437,7 +7707,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/OGNL Expression Injection: Struts 2</key>
+    <key>input_validation_and_representation_ognl_expression_injection_struts_2</key>
+    <internalKey>Input Validation and Representation/OGNL Expression Injection/Struts 2</internalKey>
     <name>OGNL Expression Injection: Struts 2</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7474,7 +7745,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Often Misused: File Upload</key>
+    <key>input_validation_and_representation_often_misused_file_upload</key>
+    <internalKey>Input Validation and Representation/Often Misused/File Upload</internalKey>
     <name>Often Misused: File Upload</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7509,7 +7781,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Open Redirect</key>
+    <key>input_validation_and_representation_open_redirect</key>
+    <internalKey>Input Validation and Representation/Open Redirect</internalKey>
     <name>Open Redirect</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7542,7 +7815,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Path Manipulation</key>
+    <key>input_validation_and_representation_path_manipulation</key>
+    <internalKey>Input Validation and Representation/Path Manipulation</internalKey>
     <name>Path Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7579,7 +7853,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Process Control</key>
+    <key>input_validation_and_representation_process_control</key>
+    <internalKey>Input Validation and Representation/Process Control</internalKey>
     <name>Process Control</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7612,7 +7887,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Process Control: Invoker Servlet</key>
+    <key>input_validation_and_representation_process_control_invoker_servlet</key>
+    <internalKey>Input Validation and Representation/Process Control/Invoker Servlet</internalKey>
     <name>Process Control: Invoker Servlet</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7629,7 +7905,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Query String Injection: Amazon Web Services</key>
+    <key>input_validation_and_representation_query_string_injection_amazon_web_services</key>
+    <internalKey>Input Validation and Representation/Query String Injection/Amazon Web Services</internalKey>
     <name>Query String Injection: Amazon Web Services</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7666,7 +7943,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Query String Injection: Android Provider</key>
+    <key>input_validation_and_representation_query_string_injection_android_provider</key>
+    <internalKey>Input Validation and Representation/Query String Injection/Android Provider</internalKey>
     <name>Query String Injection: Android Provider</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7704,7 +7982,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Resource Injection</key>
+    <key>input_validation_and_representation_resource_injection</key>
+    <internalKey>Input Validation and Representation/Resource Injection</internalKey>
     <name>Resource Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7737,7 +8016,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection</key>
+    <key>input_validation_and_representation_sql_injection</key>
+    <internalKey>Input Validation and Representation/SQL Injection</internalKey>
     <name>SQL Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7777,7 +8057,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: Hibernate</key>
+    <key>input_validation_and_representation_sql_injection_hibernate</key>
+    <internalKey>Input Validation and Representation/SQL Injection/Hibernate</internalKey>
     <name>SQL Injection: Hibernate</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7815,7 +8096,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: JDO</key>
+    <key>input_validation_and_representation_sql_injection_jdo</key>
+    <internalKey>Input Validation and Representation/SQL Injection/JDO</internalKey>
     <name>SQL Injection: JDO</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7856,7 +8138,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: MyBatis Mapper</key>
+    <key>input_validation_and_representation_sql_injection_mybatis_mapper</key>
+    <internalKey>Input Validation and Representation/SQL Injection/MyBatis Mapper</internalKey>
     <name>SQL Injection: MyBatis Mapper</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7898,7 +8181,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: Persistence</key>
+    <key>input_validation_and_representation_sql_injection_persistence</key>
+    <internalKey>Input Validation and Representation/SQL Injection/Persistence</internalKey>
     <name>SQL Injection: Persistence</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7939,7 +8223,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection: iBatis Data Map</key>
+    <key>input_validation_and_representation_sql_injection_ibatis_data_map</key>
+    <internalKey>Input Validation and Representation/SQL Injection/iBatis Data Map</internalKey>
     <name>SQL Injection: iBatis Data Map</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -7981,7 +8266,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Server-Side Request Forgery</key>
+    <key>input_validation_and_representation_server_side_request_forgery</key>
+    <internalKey>Input Validation and Representation/Server-Side Request Forgery</internalKey>
     <name>Server-Side Request Forgery</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8015,7 +8301,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Setting Manipulation</key>
+    <key>input_validation_and_representation_setting_manipulation</key>
+    <internalKey>Input Validation and Representation/Setting Manipulation</internalKey>
     <name>Setting Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8042,7 +8329,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Action Field Without Validator</key>
+    <key>input_validation_and_representation_struts_2_action_field_without_validator</key>
+    <internalKey>Input Validation and Representation/Struts 2/Action Field Without Validator</internalKey>
     <name>Struts 2: Action Field Without Validator</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8074,7 +8362,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Duplicate Action Field Validators</key>
+    <key>input_validation_and_representation_struts_2_duplicate_action_field_validators</key>
+    <internalKey>Input Validation and Representation/Struts 2/Duplicate Action Field Validators</internalKey>
     <name>Struts 2: Duplicate Action Field Validators</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8104,7 +8393,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Duplicate Validation Files</key>
+    <key>input_validation_and_representation_struts_2_duplicate_validation_files</key>
+    <internalKey>Input Validation and Representation/Struts 2/Duplicate Validation Files</internalKey>
     <name>Struts 2: Duplicate Validation Files</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8134,7 +8424,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Duplicate Validators</key>
+    <key>input_validation_and_representation_struts_2_duplicate_validators</key>
+    <internalKey>Input Validation and Representation/Struts 2/Duplicate Validators</internalKey>
     <name>Struts 2: Duplicate Validators</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8164,7 +8455,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Undeclared Validator</key>
+    <key>input_validation_and_representation_struts_2_undeclared_validator</key>
+    <internalKey>Input Validation and Representation/Struts 2/Undeclared Validator</internalKey>
     <name>Struts 2: Undeclared Validator</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8196,7 +8488,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Unvalidated Action</key>
+    <key>input_validation_and_representation_struts_2_unvalidated_action</key>
+    <internalKey>Input Validation and Representation/Struts 2/Unvalidated Action</internalKey>
     <name>Struts 2: Unvalidated Action</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8228,7 +8521,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Validation File Without Action</key>
+    <key>input_validation_and_representation_struts_2_validation_file_without_action</key>
+    <internalKey>Input Validation and Representation/Struts 2/Validation File Without Action</internalKey>
     <name>Struts 2: Validation File Without Action</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8257,7 +8551,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts 2: Validator Without Action Field</key>
+    <key>input_validation_and_representation_struts_2_validator_without_action_field</key>
+    <internalKey>Input Validation and Representation/Struts 2/Validator Without Action Field</internalKey>
     <name>Struts 2: Validator Without Action Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8287,7 +8582,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Duplicate Validation Forms</key>
+    <key>input_validation_and_representation_struts_duplicate_validation_forms</key>
+    <internalKey>Input Validation and Representation/Struts/Duplicate Validation Forms</internalKey>
     <name>Struts: Duplicate Validation Forms</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8317,7 +8613,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Erroneous validate() Method</key>
+    <key>input_validation_and_representation_struts_erroneous_validate___method</key>
+    <internalKey>Input Validation and Representation/Struts/Erroneous validate() Method</internalKey>
     <name>Struts: Erroneous validate() Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8345,7 +8642,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Form Does Not Extend Validation Class</key>
+    <key>input_validation_and_representation_struts_form_does_not_extend_validation_class</key>
+    <internalKey>Input Validation and Representation/Struts/Form Does Not Extend Validation Class</internalKey>
     <name>Struts: Form Does Not Extend Validation Class</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8375,7 +8673,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Form Field Without Validator</key>
+    <key>input_validation_and_representation_struts_form_field_without_validator</key>
+    <internalKey>Input Validation and Representation/Struts/Form Field Without Validator</internalKey>
     <name>Struts: Form Field Without Validator</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8407,7 +8706,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Plugin Framework Not In Use</key>
+    <key>input_validation_and_representation_struts_plugin_framework_not_in_use</key>
+    <internalKey>Input Validation and Representation/Struts/Plugin Framework Not In Use</internalKey>
     <name>Struts: Plugin Framework Not In Use</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8439,7 +8739,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Unused Action Form</key>
+    <key>input_validation_and_representation_struts_unused_action_form</key>
+    <internalKey>Input Validation and Representation/Struts/Unused Action Form</internalKey>
     <name>Struts: Unused Action Form</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8458,7 +8759,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Unused Validation Form</key>
+    <key>input_validation_and_representation_struts_unused_validation_form</key>
+    <internalKey>Input Validation and Representation/Struts/Unused Validation Form</internalKey>
     <name>Struts: Unused Validation Form</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8488,7 +8790,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Unvalidated Action Form</key>
+    <key>input_validation_and_representation_struts_unvalidated_action_form</key>
+    <internalKey>Input Validation and Representation/Struts/Unvalidated Action Form</internalKey>
     <name>Struts: Unvalidated Action Form</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8520,7 +8823,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Validator Turned Off</key>
+    <key>input_validation_and_representation_struts_validator_turned_off</key>
+    <internalKey>Input Validation and Representation/Struts/Validator Turned Off</internalKey>
     <name>Struts: Validator Turned Off</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8552,7 +8856,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Struts: Validator Without Form Field</key>
+    <key>input_validation_and_representation_struts_validator_without_form_field</key>
+    <internalKey>Input Validation and Representation/Struts/Validator Without Form Field</internalKey>
     <name>Struts: Validator Without Form Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8582,7 +8887,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/System Information Leak: Struts 2</key>
+    <key>input_validation_and_representation_system_information_leak_struts_2</key>
+    <internalKey>Input Validation and Representation/System Information Leak/Struts 2</internalKey>
     <name>System Information Leak: Struts 2</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8616,7 +8922,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe JNI</key>
+    <key>input_validation_and_representation_unsafe_jni</key>
+    <internalKey>Input Validation and Representation/Unsafe JNI</internalKey>
     <name>Unsafe JNI</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8645,7 +8952,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Unsafe Reflection</key>
+    <key>input_validation_and_representation_unsafe_reflection</key>
+    <internalKey>Input Validation and Representation/Unsafe Reflection</internalKey>
     <name>Unsafe Reflection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8678,7 +8986,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Entity Expansion Injection</key>
+    <key>input_validation_and_representation_xml_entity_expansion_injection</key>
+    <internalKey>Input Validation and Representation/XML Entity Expansion Injection</internalKey>
     <name>XML Entity Expansion Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8711,7 +9020,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML External Entity Injection</key>
+    <key>input_validation_and_representation_xml_external_entity_injection</key>
+    <internalKey>Input Validation and Representation/XML External Entity Injection</internalKey>
     <name>XML External Entity Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8746,7 +9056,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XML Injection</key>
+    <key>input_validation_and_representation_xml_injection</key>
+    <internalKey>Input Validation and Representation/XML Injection</internalKey>
     <name>XML Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8778,7 +9089,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XPath Injection</key>
+    <key>input_validation_and_representation_xpath_injection</key>
+    <internalKey>Input Validation and Representation/XPath Injection</internalKey>
     <name>XPath Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8811,7 +9123,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XQuery Injection</key>
+    <key>input_validation_and_representation_xquery_injection</key>
+    <internalKey>Input Validation and Representation/XQuery Injection</internalKey>
     <name>XQuery Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8843,7 +9156,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/XSLT Injection</key>
+    <key>input_validation_and_representation_xslt_injection</key>
+    <internalKey>Input Validation and Representation/XSLT Injection</internalKey>
     <name>XSLT Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8875,7 +9189,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Amazon Web Services</key>
+    <key>security_features_access_control_amazon_web_services</key>
+    <internalKey>Security Features/Access Control/Amazon Web Services</internalKey>
     <name>Access Control: Amazon Web Services</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8909,7 +9224,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Android Provider</key>
+    <key>security_features_access_control_android_provider</key>
+    <internalKey>Security Features/Access Control/Android Provider</internalKey>
     <name>Access Control: Android Provider</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8945,7 +9261,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Anonymous LDAP Bind</key>
+    <key>security_features_access_control_anonymous_ldap_bind</key>
+    <internalKey>Security Features/Access Control/Anonymous LDAP Bind</internalKey>
     <name>Access Control: Anonymous LDAP Bind</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -8981,7 +9298,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Database</key>
+    <key>security_features_access_control_database</key>
+    <internalKey>Security Features/Access Control/Database</internalKey>
     <name>Access Control: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9016,7 +9334,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: LDAP</key>
+    <key>security_features_access_control_ldap</key>
+    <internalKey>Security Features/Access Control/LDAP</internalKey>
     <name>Access Control: LDAP</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9050,7 +9369,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: SecurityManager Bypass</key>
+    <key>security_features_access_control_securitymanager_bypass</key>
+    <internalKey>Security Features/Access Control/SecurityManager Bypass</internalKey>
     <name>Access Control: SecurityManager Bypass</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9072,7 +9392,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Weak Security Constraint</key>
+    <key>security_features_access_control_weak_security_constraint</key>
+    <internalKey>Security Features/Access Control/Weak Security Constraint</internalKey>
     <name>Access Control: Weak Security Constraint</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9108,7 +9429,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Acegi Misconfiguration: Insecure Channel Mixing</key>
+    <key>security_features_acegi_misconfiguration_insecure_channel_mixing</key>
+    <internalKey>Security Features/Acegi Misconfiguration/Insecure Channel Mixing</internalKey>
     <name>Acegi Misconfiguration: Insecure Channel Mixing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9141,7 +9463,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Acegi Misconfiguration: Run-As Authentication Replacement</key>
+    <key>security_features_acegi_misconfiguration_run_as_authentication_replacement</key>
+    <internalKey>Security Features/Acegi Misconfiguration/Run-As Authentication Replacement</internalKey>
     <name>Acegi Misconfiguration: Run-As Authentication Replacement</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9169,7 +9492,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Application Permission Defined</key>
+    <key>security_features_android_bad_practices_application_permission_defined</key>
+    <internalKey>Security Features/Android Bad Practices/Application Permission Defined</internalKey>
     <name>Android Bad Practices: Application Permission Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9200,7 +9524,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Just Provider writePermission Defined</key>
+    <key>security_features_android_bad_practices_just_provider_writepermission_defined</key>
+    <internalKey>Security Features/Android Bad Practices/Just Provider writePermission Defined</internalKey>
     <name>Android Bad Practices: Just Provider writePermission Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9235,7 +9560,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Missing Broadcaster Permission</key>
+    <key>security_features_android_bad_practices_missing_broadcaster_permission</key>
+    <internalKey>Security Features/Android Bad Practices/Missing Broadcaster Permission</internalKey>
     <name>Android Bad Practices: Missing Broadcaster Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9271,7 +9597,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Missing Component Permission</key>
+    <key>security_features_android_bad_practices_missing_component_permission</key>
+    <internalKey>Security Features/Android Bad Practices/Missing Component Permission</internalKey>
     <name>Android Bad Practices: Missing Component Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9307,7 +9634,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Missing Receiver Permission</key>
+    <key>security_features_android_bad_practices_missing_receiver_permission</key>
+    <internalKey>Security Features/Android Bad Practices/Missing Receiver Permission</internalKey>
     <name>Android Bad Practices: Missing Receiver Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9343,7 +9671,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Missing exported Flag or Component Permission</key>
+    <key>security_features_android_bad_practices_missing_exported_flag_or_component_permission</key>
+    <internalKey>Security Features/Android Bad Practices/Missing exported Flag or Component Permission</internalKey>
     <name>Android Bad Practices: Missing exported Flag or Component Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9374,7 +9703,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Mixed Component Functionality</key>
+    <key>security_features_android_bad_practices_mixed_component_functionality</key>
+    <internalKey>Security Features/Android Bad Practices/Mixed Component Functionality</internalKey>
     <name>Android Bad Practices: Mixed Component Functionality</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9406,7 +9736,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Provider Permission Defined</key>
+    <key>security_features_android_bad_practices_provider_permission_defined</key>
+    <internalKey>Security Features/Android Bad Practices/Provider Permission Defined</internalKey>
     <name>Android Bad Practices: Provider Permission Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9443,7 +9774,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Sticky Broadcast</key>
+    <key>security_features_android_bad_practices_sticky_broadcast</key>
+    <internalKey>Security Features/Android Bad Practices/Sticky Broadcast</internalKey>
     <name>Android Bad Practices: Sticky Broadcast</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9479,7 +9811,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: System Permission Defined</key>
+    <key>security_features_android_bad_practices_system_permission_defined</key>
+    <internalKey>Security Features/Android Bad Practices/System Permission Defined</internalKey>
     <name>Android Bad Practices: System Permission Defined</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9511,7 +9844,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Unnecessary Component Exposure</key>
+    <key>security_features_android_bad_practices_unnecessary_component_exposure</key>
+    <internalKey>Security Features/Android Bad Practices/Unnecessary Component Exposure</internalKey>
     <name>Android Bad Practices: Unnecessary Component Exposure</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9543,7 +9877,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: Weak Authentication</key>
+    <key>security_features_android_bad_practices_weak_authentication</key>
+    <internalKey>Security Features/Android Bad Practices/Weak Authentication</internalKey>
     <name>Android Bad Practices: Weak Authentication</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9578,7 +9913,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Android Bad Practices: normal Permission</key>
+    <key>security_features_android_bad_practices_normal_permission</key>
+    <internalKey>Security Features/Android Bad Practices/normal Permission</internalKey>
     <name>Android Bad Practices: normal Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9609,7 +9945,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Cookie not Sent Over SSL</key>
+    <key>security_features_cookie_security_cookie_not_sent_over_ssl</key>
+    <internalKey>Security Features/Cookie Security/Cookie not Sent Over SSL</internalKey>
     <name>Cookie Security: Cookie not Sent Over SSL</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9644,7 +9981,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Domain</key>
+    <key>security_features_cookie_security_overly_broad_domain</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Domain</internalKey>
     <name>Cookie Security: Overly Broad Domain</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9672,7 +10010,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Overly Broad Path</key>
+    <key>security_features_cookie_security_overly_broad_path</key>
+    <internalKey>Security Features/Cookie Security/Overly Broad Path</internalKey>
     <name>Cookie Security: Overly Broad Path</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9699,7 +10038,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Cookie Security: Persistent Cookie</key>
+    <key>security_features_cookie_security_persistent_cookie</key>
+    <internalKey>Security Features/Cookie Security/Persistent Cookie</internalKey>
     <name>Cookie Security: Persistent Cookie</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9733,7 +10073,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/HTTP Verb Tampering</key>
+    <key>security_features_http_verb_tampering</key>
+    <internalKey>Security Features/HTTP Verb Tampering</internalKey>
     <name>HTTP Verb Tampering</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9759,7 +10100,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness</key>
+    <key>security_features_insecure_randomness</key>
+    <internalKey>Security Features/Insecure Randomness</internalKey>
     <name>Insecure Randomness</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9794,7 +10136,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness: Poor Seed</key>
+    <key>security_features_insecure_randomness_poor_seed</key>
+    <internalKey>Security Features/Insecure Randomness/Poor Seed</internalKey>
     <name>Insecure Randomness: Poor Seed</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9829,7 +10172,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure SSL: Android Customized Implementation</key>
+    <key>security_features_insecure_ssl_android_customized_implementation</key>
+    <internalKey>Security Features/Insecure SSL/Android Customized Implementation</internalKey>
     <name>Insecure SSL: Android Customized Implementation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9864,7 +10208,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure SSL: Android Hostname Verification Disabled</key>
+    <key>security_features_insecure_ssl_android_hostname_verification_disabled</key>
+    <internalKey>Security Features/Insecure SSL/Android Hostname Verification Disabled</internalKey>
     <name>Insecure SSL: Android Hostname Verification Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9899,7 +10244,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure SSL: Android Socket</key>
+    <key>security_features_insecure_ssl_android_socket</key>
+    <internalKey>Security Features/Insecure SSL/Android Socket</internalKey>
     <name>Insecure SSL: Android Socket</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9935,7 +10281,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure SSL: Server Identity Verification Disabled</key>
+    <key>security_features_insecure_ssl_server_identity_verification_disabled</key>
+    <internalKey>Security Features/Insecure SSL/Server Identity Verification Disabled</internalKey>
     <name>Insecure SSL: Server Identity Verification Disabled</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -9967,7 +10314,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Transport: Mail Transmission</key>
+    <key>security_features_insecure_transport_mail_transmission</key>
+    <internalKey>Security Features/Insecure Transport/Mail Transmission</internalKey>
     <name>Insecure Transport: Mail Transmission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10000,7 +10348,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Missing SecurityManager Check: Cloneable</key>
+    <key>security_features_missing_securitymanager_check_cloneable</key>
+    <internalKey>Security Features/Missing SecurityManager Check/Cloneable</internalKey>
     <name>Missing SecurityManager Check: Cloneable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10020,7 +10369,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Missing SecurityManager Check: Serializable</key>
+    <key>security_features_missing_securitymanager_check_serializable</key>
+    <internalKey>Security Features/Missing SecurityManager Check/Serializable</internalKey>
     <name>Missing SecurityManager Check: Serializable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10040,7 +10390,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Often Misused: Android Permission Check</key>
+    <key>security_features_often_misused_android_permission_check</key>
+    <internalKey>Security Features/Often Misused/Android Permission Check</internalKey>
     <name>Often Misused: Android Permission Check</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10076,7 +10427,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/PCI Privacy Violation</key>
+    <key>security_features_pci_privacy_violation</key>
+    <internalKey>Security Features/PCI Privacy Violation</internalKey>
     <name>PCI Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10112,7 +10464,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management</key>
+    <key>security_features_password_management</key>
+    <internalKey>Security Features/Password Management</internalKey>
     <name>Password Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10145,7 +10498,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Empty Password</key>
+    <key>security_features_password_management_empty_password</key>
+    <internalKey>Security Features/Password Management/Empty Password</internalKey>
     <name>Password Management: Empty Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10179,7 +10533,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Hardcoded Password</key>
+    <key>security_features_password_management_hardcoded_password</key>
+    <internalKey>Security Features/Password Management/Hardcoded Password</internalKey>
     <name>Password Management: Hardcoded Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10215,7 +10570,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Null Password</key>
+    <key>security_features_password_management_null_password</key>
+    <internalKey>Security Features/Password Management/Null Password</internalKey>
     <name>Password Management: Null Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10249,7 +10605,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Comment</key>
+    <key>security_features_password_management_password_in_comment</key>
+    <internalKey>Security Features/Password Management/Password in Comment</internalKey>
     <name>Password Management: Password in Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10282,7 +10639,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Redirect</key>
+    <key>security_features_password_management_password_in_redirect</key>
+    <internalKey>Security Features/Password Management/Password in Redirect</internalKey>
     <name>Password Management: Password in Redirect</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10315,7 +10673,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Weak Cryptography</key>
+    <key>security_features_password_management_weak_cryptography</key>
+    <internalKey>Security Features/Password Management/Weak Cryptography</internalKey>
     <name>Password Management: Weak Cryptography</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10349,7 +10708,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation</key>
+    <key>security_features_privacy_violation</key>
+    <internalKey>Security Features/Privacy Violation</internalKey>
     <name>Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10386,7 +10746,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Android Internal Storage</key>
+    <key>security_features_privacy_violation_android_internal_storage</key>
+    <internalKey>Security Features/Privacy Violation/Android Internal Storage</internalKey>
     <name>Privacy Violation: Android Internal Storage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10426,7 +10787,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Heap Inspection</key>
+    <key>security_features_privacy_violation_heap_inspection</key>
+    <internalKey>Security Features/Privacy Violation/Heap Inspection</internalKey>
     <name>Privacy Violation: Heap Inspection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10460,7 +10822,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation: Password</key>
+    <key>security_features_privacy_violation_password</key>
+    <internalKey>Security Features/Privacy Violation/Password</internalKey>
     <name>Privacy Violation: Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10481,7 +10844,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Amazon Web Services Unchecked Permissions</key>
+    <key>security_features_privilege_management_amazon_web_services_unchecked_permissions</key>
+    <internalKey>Security Features/Privilege Management/Amazon Web Services Unchecked Permissions</internalKey>
     <name>Privilege Management: Amazon Web Services Unchecked Permissions</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10510,7 +10874,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Data Storage</key>
+    <key>security_features_privilege_management_android_data_storage</key>
+    <internalKey>Security Features/Privilege Management/Android Data Storage</internalKey>
     <name>Privilege Management: Android Data Storage</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10542,7 +10907,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Disable</key>
+    <key>security_features_privilege_management_android_disable</key>
+    <internalKey>Security Features/Privilege Management/Android Disable</internalKey>
     <name>Privilege Management: Android Disable</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10573,7 +10939,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Location</key>
+    <key>security_features_privilege_management_android_location</key>
+    <internalKey>Security Features/Privilege Management/Android Location</internalKey>
     <name>Privilege Management: Android Location</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10604,7 +10971,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Messaging</key>
+    <key>security_features_privilege_management_android_messaging</key>
+    <internalKey>Security Features/Privilege Management/Android Messaging</internalKey>
     <name>Privilege Management: Android Messaging</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10636,7 +11004,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Network</key>
+    <key>security_features_privilege_management_android_network</key>
+    <internalKey>Security Features/Privilege Management/Android Network</internalKey>
     <name>Privilege Management: Android Network</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10667,7 +11036,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Android Telephony</key>
+    <key>security_features_privilege_management_android_telephony</key>
+    <internalKey>Security Features/Privilege Management/Android Telephony</internalKey>
     <name>Privilege Management: Android Telephony</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10699,7 +11069,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Dangerous Intent Permission</key>
+    <key>security_features_privilege_management_dangerous_intent_permission</key>
+    <internalKey>Security Features/Privilege Management/Dangerous Intent Permission</internalKey>
     <name>Privilege Management: Dangerous Intent Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10732,7 +11103,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Missing API Permission</key>
+    <key>security_features_privilege_management_missing_api_permission</key>
+    <internalKey>Security Features/Privilege Management/Missing API Permission</internalKey>
     <name>Privilege Management: Missing API Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10761,7 +11133,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Missing Content Provider Permission</key>
+    <key>security_features_privilege_management_missing_content_provider_permission</key>
+    <internalKey>Security Features/Privilege Management/Missing Content Provider Permission</internalKey>
     <name>Privilege Management: Missing Content Provider Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10790,7 +11163,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Missing Intent Permission</key>
+    <key>security_features_privilege_management_missing_intent_permission</key>
+    <internalKey>Security Features/Privilege Management/Missing Intent Permission</internalKey>
     <name>Privilege Management: Missing Intent Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10819,7 +11193,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Overly Broad Access Specifier</key>
+    <key>security_features_privilege_management_overly_broad_access_specifier</key>
+    <internalKey>Security Features/Privilege Management/Overly Broad Access Specifier</internalKey>
     <name>Privilege Management: Overly Broad Access Specifier</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10847,7 +11222,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Overriding Permission Verification</key>
+    <key>security_features_privilege_management_overriding_permission_verification</key>
+    <internalKey>Security Features/Privilege Management/Overriding Permission Verification</internalKey>
     <name>Privilege Management: Overriding Permission Verification</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10880,7 +11256,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Unnecessary Permission</key>
+    <key>security_features_privilege_management_unnecessary_permission</key>
+    <internalKey>Security Features/Privilege Management/Unnecessary Permission</internalKey>
     <name>Privilege Management: Unnecessary Permission</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10914,7 +11291,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash</key>
+    <key>security_features_weak_cryptographic_hash</key>
+    <internalKey>Security Features/Weak Cryptographic Hash</internalKey>
     <name>Weak Cryptographic Hash</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10951,7 +11329,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash: Hardcoded Salt</key>
+    <key>security_features_weak_cryptographic_hash_hardcoded_salt</key>
+    <internalKey>Security Features/Weak Cryptographic Hash/Hardcoded Salt</internalKey>
     <name>Weak Cryptographic Hash: Hardcoded Salt</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -10985,7 +11364,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption</key>
+    <key>security_features_weak_encryption</key>
+    <internalKey>Security Features/Weak Encryption</internalKey>
     <name>Weak Encryption</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11028,7 +11408,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Inadequate RSA Padding</key>
+    <key>security_features_weak_encryption_inadequate_rsa_padding</key>
+    <internalKey>Security Features/Weak Encryption/Inadequate RSA Padding</internalKey>
     <name>Weak Encryption: Inadequate RSA Padding</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11064,7 +11445,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Insecure Initial Value</key>
+    <key>security_features_weak_encryption_insecure_initial_value</key>
+    <internalKey>Security Features/Weak Encryption/Insecure Initial Value</internalKey>
     <name>Weak Encryption: Insecure Initial Value</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11100,7 +11482,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Encryption: Insufficient Key Size</key>
+    <key>security_features_weak_encryption_insufficient_key_size</key>
+    <internalKey>Security Features/Weak Encryption/Insufficient Key Size</internalKey>
     <name>Weak Encryption: Insufficient Key Size</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11136,7 +11519,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak SecurityManager Check: Overridable Method</key>
+    <key>security_features_weak_securitymanager_check_overridable_method</key>
+    <internalKey>Security Features/Weak SecurityManager Check/Overridable Method</internalKey>
     <name>Weak SecurityManager Check: Overridable Method</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11158,7 +11542,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Time and State/Code Correctness: Call to sleep() in Lock</key>
+    <key>time_and_state_code_correctness_call_to_sleep___in_lock</key>
+    <internalKey>Time and State/Code Correctness/Call to sleep() in Lock</internalKey>
     <name>Code Correctness: Call to sleep() in Lock</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11182,7 +11567,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Code Correctness: Double-Checked Locking</key>
+    <key>time_and_state_code_correctness_double_checked_locking</key>
+    <internalKey>Time and State/Code Correctness/Double-Checked Locking</internalKey>
     <name>Code Correctness: Double-Checked Locking</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11200,7 +11586,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/J2EE Bad Practices: Non-Serializable Object Stored in Session</key>
+    <key>time_and_state_j2ee_bad_practices_non_serializable_object_stored_in_session</key>
+    <internalKey>Time and State/J2EE Bad Practices/Non-Serializable Object Stored in Session</internalKey>
     <name>J2EE Bad Practices: Non-Serializable Object Stored in Session</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11227,7 +11614,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/J2EE Bad Practices: System.exit</key>
+    <key>time_and_state_j2ee_bad_practices_system_exit</key>
+    <internalKey>Time and State/J2EE Bad Practices/System.exit</internalKey>
     <name>J2EE Bad Practices: System.exit</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11251,7 +11639,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/J2EE Bad Practices: Threads</key>
+    <key>time_and_state_j2ee_bad_practices_threads</key>
+    <internalKey>Time and State/J2EE Bad Practices/Threads</internalKey>
     <name>J2EE Bad Practices: Threads</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11268,7 +11657,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: Format Flaw</key>
+    <key>time_and_state_race_condition_format_flaw</key>
+    <internalKey>Time and State/Race Condition/Format Flaw</internalKey>
     <name>Race Condition: Format Flaw</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11297,7 +11687,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: Singleton Member Field</key>
+    <key>time_and_state_race_condition_singleton_member_field</key>
+    <internalKey>Time and State/Race Condition/Singleton Member Field</internalKey>
     <name>Race Condition: Singleton Member Field</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11326,7 +11717,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Race Condition: Static Database Connection(dbconn)</key>
+    <key>time_and_state_race_condition_static_database_connection_dbconn</key>
+    <internalKey>Time and State/Race Condition/Static Database Connection(dbconn)</internalKey>
     <name>Race Condition: Static Database Connection(dbconn)</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -11352,7 +11744,8 @@
     <tag>time-and-state</tag>
   </rule>
   <rule>
-    <key>Time and State/Session Fixation</key>
+    <key>time_and_state_session_fixation</key>
+    <internalKey>Time and State/Session Fixation</internalKey>
     <name>Session Fixation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

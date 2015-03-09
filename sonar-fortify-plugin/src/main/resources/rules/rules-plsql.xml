@@ -1,7 +1,8 @@
 <rules>
   <!-- see names and descriptions in org/sonar/l10n/ -->
   <rule>
-    <key>API Abuse/Dangerous Function</key>
+    <key>api_abuse_dangerous_function</key>
+    <internalKey>API Abuse/Dangerous Function</internalKey>
     <name>Dangerous Function</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -26,7 +27,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/Dangerous Function: xp_cmdshell</key>
+    <key>api_abuse_dangerous_function_xp_cmdshell</key>
+    <internalKey>API Abuse/Dangerous Function/xp_cmdshell</internalKey>
     <name>Dangerous Function: xp_cmdshell</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -46,7 +48,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>API Abuse/SQL Bad Practices: Underspecified Identifier</key>
+    <key>api_abuse_sql_bad_practices_underspecified_identifier</key>
+    <internalKey>API Abuse/SQL Bad Practices/Underspecified Identifier</internalKey>
     <name>SQL Bad Practices: Underspecified Identifier</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -62,7 +65,8 @@
     <tag>api-abuse</tag>
   </rule>
   <rule>
-    <key>Code Quality/Code Correctness: Erroneous Null Comparison</key>
+    <key>code_quality_code_correctness_erroneous_null_comparison</key>
+    <internalKey>Code Quality/Code Correctness/Erroneous Null Comparison</internalKey>
     <name>Code Correctness: Erroneous Null Comparison</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -79,7 +83,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Database Bad Practices: Use of Restricted Accounts</key>
+    <key>code_quality_database_bad_practices_use_of_restricted_accounts</key>
+    <internalKey>Code Quality/Database Bad Practices/Use of Restricted Accounts</internalKey>
     <name>Database Bad Practices: Use of Restricted Accounts</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -122,7 +127,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource</key>
+    <key>code_quality_unreleased_resource</key>
+    <internalKey>Code Quality/Unreleased Resource</internalKey>
     <name>Unreleased Resource</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -148,7 +154,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Code Quality/Unreleased Resource: Cursor Snarfing</key>
+    <key>code_quality_unreleased_resource_cursor_snarfing</key>
+    <internalKey>Code Quality/Unreleased Resource/Cursor Snarfing</internalKey>
     <name>Unreleased Resource: Cursor Snarfing</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -175,7 +182,8 @@
     <tag>code-quality</tag>
   </rule>
   <rule>
-    <key>Encapsulation/System Information Leak: External</key>
+    <key>encapsulation_system_information_leak_external</key>
+    <internalKey>Encapsulation/System Information Leak/External</internalKey>
     <name>System Information Leak: External</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -202,7 +210,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Encapsulation/Trust Boundary Violation</key>
+    <key>encapsulation_trust_boundary_violation</key>
+    <internalKey>Encapsulation/Trust Boundary Violation</internalKey>
     <name>Trust Boundary Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -230,7 +239,8 @@
     <tag>encapsulation</tag>
   </rule>
   <rule>
-    <key>Errors/Poor Error Handling: Empty Default Exception Handler</key>
+    <key>errors_poor_error_handling_empty_default_exception_handler</key>
+    <internalKey>Errors/Poor Error Handling/Empty Default Exception Handler</internalKey>
     <name>Poor Error Handling: Empty Default Exception Handler</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -260,7 +270,8 @@
     <tag>errors</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Persistent</key>
+    <key>input_validation_and_representation_cross_site_scripting_persistent</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Persistent</internalKey>
     <name>Cross-Site Scripting: Persistent</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -298,7 +309,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Poor Validation</key>
+    <key>input_validation_and_representation_cross_site_scripting_poor_validation</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Poor Validation</internalKey>
     <name>Cross-Site Scripting: Poor Validation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -334,7 +346,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Cross-Site Scripting: Reflected</key>
+    <key>input_validation_and_representation_cross_site_scripting_reflected</key>
+    <internalKey>Input Validation and Representation/Cross-Site Scripting/Reflected</internalKey>
     <name>Cross-Site Scripting: Reflected</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -371,7 +384,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Denial of Service</key>
+    <key>input_validation_and_representation_denial_of_service</key>
+    <internalKey>Input Validation and Representation/Denial of Service</internalKey>
     <name>Denial of Service</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -396,7 +410,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Header Manipulation</key>
+    <key>input_validation_and_representation_header_manipulation</key>
+    <internalKey>Input Validation and Representation/Header Manipulation</internalKey>
     <name>Header Manipulation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -431,7 +446,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Open Redirect</key>
+    <key>input_validation_and_representation_open_redirect</key>
+    <internalKey>Input Validation and Representation/Open Redirect</internalKey>
     <name>Open Redirect</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -464,7 +480,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/Resource Injection</key>
+    <key>input_validation_and_representation_resource_injection</key>
+    <internalKey>Input Validation and Representation/Resource Injection</internalKey>
     <name>Resource Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -497,7 +514,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Input Validation and Representation/SQL Injection</key>
+    <key>input_validation_and_representation_sql_injection</key>
+    <internalKey>Input Validation and Representation/SQL Injection</internalKey>
     <name>SQL Injection</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -538,7 +556,8 @@
     <tag>input-validation-and-representation</tag>
   </rule>
   <rule>
-    <key>Security Features/Access Control: Database</key>
+    <key>security_features_access_control_database</key>
+    <internalKey>Security Features/Access Control/Database</internalKey>
     <name>Access Control: Database</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -573,7 +592,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Insecure Randomness</key>
+    <key>security_features_insecure_randomness</key>
+    <internalKey>Security Features/Insecure Randomness</internalKey>
     <name>Insecure Randomness</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -608,7 +628,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management</key>
+    <key>security_features_password_management</key>
+    <internalKey>Security Features/Password Management</internalKey>
     <name>Password Management</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -640,7 +661,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Empty Password</key>
+    <key>security_features_password_management_empty_password</key>
+    <internalKey>Security Features/Password Management/Empty Password</internalKey>
     <name>Password Management: Empty Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -673,7 +695,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Hardcoded Password</key>
+    <key>security_features_password_management_hardcoded_password</key>
+    <internalKey>Security Features/Password Management/Hardcoded Password</internalKey>
     <name>Password Management: Hardcoded Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -708,7 +731,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Null Password</key>
+    <key>security_features_password_management_null_password</key>
+    <internalKey>Security Features/Password Management/Null Password</internalKey>
     <name>Password Management: Null Password</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -741,7 +765,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Password Management: Password in Comment</key>
+    <key>security_features_password_management_password_in_comment</key>
+    <internalKey>Security Features/Password Management/Password in Comment</internalKey>
     <name>Password Management: Password in Comment</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -774,7 +799,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privacy Violation</key>
+    <key>security_features_privacy_violation</key>
+    <internalKey>Security Features/Privacy Violation</internalKey>
     <name>Privacy Violation</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -810,7 +836,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Default Function or Procedure Rights</key>
+    <key>security_features_privilege_management_default_function_or_procedure_rights</key>
+    <internalKey>Security Features/Privilege Management/Default Function or Procedure Rights</internalKey>
     <name>Privilege Management: Default Function or Procedure Rights</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -837,7 +864,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Default Package Rights</key>
+    <key>security_features_privilege_management_default_package_rights</key>
+    <internalKey>Security Features/Privilege Management/Default Package Rights</internalKey>
     <name>Privilege Management: Default Package Rights</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -864,7 +892,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Privilege Management: Overly Broad Grant</key>
+    <key>security_features_privilege_management_overly_broad_grant</key>
+    <internalKey>Security Features/Privilege Management/Overly Broad Grant</internalKey>
     <name>Privilege Management: Overly Broad Grant</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>
@@ -890,7 +919,8 @@
     <tag>security-features</tag>
   </rule>
   <rule>
-    <key>Security Features/Weak Cryptographic Hash</key>
+    <key>security_features_weak_cryptographic_hash</key>
+    <internalKey>Security Features/Weak Cryptographic Hash</internalKey>
     <name>Weak Cryptographic Hash</name>
     <description><![CDATA[<h2>ABSTRACT</h2>
 							<p>

@@ -82,7 +82,7 @@ public class FortifySensorTest {
     fileSystem.setBaseDir(baseDir);
     fileSystem.addLanguages("web");
     ActiveRule activeRule = mock(ActiveRule.class);
-    RuleKey ruleKey = RuleKey.of("fortify-web", "Code Quality/Unreleased Resource: Database");
+    RuleKey ruleKey = RuleKey.of("fortify-web", "code_quality_unreleased_resource_database");
     when(activeRule.ruleKey()).thenReturn(ruleKey);
     when(this.activeRules.find(ruleKey)).thenReturn(activeRule);
     SensorContext context = mock(SensorContext.class);
@@ -96,7 +96,7 @@ public class FortifySensorTest {
 
     this.sensor.analyse(project, context);
 
-    assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "Code Quality/Unreleased Resource: Database"));
+    assertThat(mockIssueBuilder.ruleKey).isEqualTo(RuleKey.of("fortify-web", "code_quality_unreleased_resource_database"));
     assertThat(mockIssueBuilder.line).isEqualTo(163);
     assertThat(mockIssueBuilder.message)
       .isEqualTo(

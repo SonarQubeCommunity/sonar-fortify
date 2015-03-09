@@ -12,6 +12,8 @@
   <packaging>jar</packaging>
   <name>Crawler for HP Fortify Web site to extract rule description</name>
 
+
+
   <build>
     <plugins>
       <plugin>
@@ -49,6 +51,11 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.codehaus.sonar-plugins</groupId>
+      <artifactId>sonar-fortify-plugin</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
