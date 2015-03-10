@@ -34,23 +34,23 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.utils.TimeProfiler;
-import org.sonar.fortify.base.AnalysisState;
 import org.sonar.fortify.base.FortifyConstants;
 import org.sonar.fortify.base.metrics.FortifyMetrics;
 import org.sonar.fortify.fvdl.element.Fvdl;
 import org.sonar.fortify.fvdl.element.Vulnerability;
-import org.xml.sax.SAXException;
 
 import javax.annotation.CheckForNull;
-import javax.xml.parsers.ParserConfigurationException;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
-import java.util.Map;
 
 public class FortifySensor implements Sensor {
   private static final Logger LOG = LoggerFactory.getLogger(FortifySensor.class);
+
+  private static final double BLOCKER_SECURITY_RATING_LEVEL = 1.0;
+  private static final double CRITICAL_SECURITY_RATING_LEVEL = 2.0;
+  private static final double MAJOR_SECURITY_RATING_LEVEL = 3.0;
+  private static final double MINOR_SECURITY_RATING_LEVEL = 4.0;
+  private static final double DEFAULT_SECURITY_RATING_LEVEL = 5.0;
 
   private final FortifySensorConfiguration configuration;
   private final ResourcePerspectives resourcePerspectives;
@@ -58,11 +58,10 @@ public class FortifySensor implements Sensor {
   private final ActiveRules activeRules;
   private final FortifyReportFile report;
 
-  private final int[] blockerIssuesCounts = new int[] {0, 0, 0, 0, 0, 0};
-  private final int[] criticalIssuesCounts = new int[] {0, 0, 0, 0, 0, 0};
-  private final int[] majorIssuesCounts = new int[] {0, 0, 0, 0, 0, 0};
-  private final int[] minorIssuesCounts = new int[] {0, 0, 0, 0, 0, 0};
-  private final int[] infoIssuesCounts = new int[] {0, 0, 0, 0, 0, 0};
+  private int blockerIssuesCount = 0;
+  private int criticalIssuesCount = 0;
+  private int majorIssuesCount = 0;
+  private int minorIssuesCount = 0;
 
   public FortifySensor(
     FortifySensorConfiguration configuration,
@@ -95,22 +94,20 @@ public class FortifySensor implements Sensor {
         .severity(severity)
         .build();
       if (issuable.addIssue(issue)) {
-        incrementCount(vulnerability, severity);
+        incrementCount(severity);
       }
     }
   }
 
-  private void incrementCount(Vulnerability vulnerability, String severity) {
+  private void incrementCount(String severity) {
     if (Severity.BLOCKER.equals(severity)) {
-      this.blockerIssuesCounts[vulnerability.getAnalysisState().ordinal()]++;
+      this.blockerIssuesCount++;
     } else if (Severity.CRITICAL.equals(severity)) {
-      this.criticalIssuesCounts[vulnerability.getAnalysisState().ordinal()]++;
+      this.criticalIssuesCount++;
     } else if (Severity.MAJOR.equals(severity)) {
-      this.majorIssuesCounts[vulnerability.getAnalysisState().ordinal()]++;
+      this.majorIssuesCount++;
     } else if (Severity.MINOR.equals(severity)) {
-      this.minorIssuesCounts[vulnerability.getAnalysisState().ordinal()]++;
-    } else {
-      this.infoIssuesCounts[vulnerability.getAnalysisState().ordinal()]++;
+      this.minorIssuesCount++;
     }
   }
 
@@ -134,41 +131,17 @@ public class FortifySensor implements Sensor {
     }
   }
 
-  private Fvdl parseFvdl() throws IOException, ParserConfigurationException, SAXException {
-    InputStream stream = this.report.getFvdlInputStream();
-    try {
-      return new FvdlStAXParser().parse(stream);
-    } finally {
-      stream.close();
-    }
-  }
-
-  private Map<String, AnalysisState> parseAudit() throws IOException, ParserConfigurationException, SAXException {
-    InputStream stream = this.report.getAuditInputStream();
-    if (stream == null) {
-      return Collections.emptyMap();
-    } else {
-      try {
-        return new AuditStAXParser().parse(stream);
-      } finally {
-        stream.close();
-      }
-    }
-  }
-
   @Override
   public void analyse(Project project, SensorContext context) {
     TimeProfiler profiler = new TimeProfiler().start("Process Fortify report");
     try {
-      Fvdl fvdl = parseFvdl();
-      Map<String, AnalysisState> analysisStates = parseAudit();
-      for (Vulnerability vulnerability : fvdl.getVulnerabilities()) {
-        AnalysisState analysisState = analysisStates.get(vulnerability.getInstanceID());
-        if (analysisState != null) {
-          vulnerability.setAnalysisState(analysisState);
-        }
+      InputStream stream = this.report.getInputStream();
+      try {
+        Fvdl fvdl = new FvdlStAXParser().parse(stream);
+        addIssues(context, project, fvdl);
+      } finally {
+        stream.close();
       }
-      addIssues(context, project, fvdl);
     } catch (Exception e) {
       throw new IllegalStateException("Can not process Fortify report", e);
     } finally {
@@ -178,46 +151,21 @@ public class FortifySensor implements Sensor {
   }
 
   private void saveMeasures(SensorContext context) {
-    int blockerIssuesCount = sumOf(this.blockerIssuesCounts);
-    int criticalIssuesCount = sumOf(this.criticalIssuesCounts);
-    int majorIssuesCount = sumOf(this.majorIssuesCounts);
-    int minorIssuesCount = sumOf(this.minorIssuesCounts);
-    int badPracticeCount = sumOf(AnalysisState.BAD_PRACTICE);
-    int exploitableCount = sumOf(AnalysisState.EXPLOITABLE);
-    int notAnIssueCount = sumOf(AnalysisState.NOT_AN_ISSUE);
-    int notAuditedCount = sumOf(AnalysisState.NOT_AUDITED);
-    int reliabilityIssueCount = sumOf(AnalysisState.RELIABILITY_ISSUE);
-    int suspiciousCount = sumOf(AnalysisState.SUSPICIOUS);
-
-    context.saveMeasure(FortifyMetrics.CFPO, Double.valueOf(blockerIssuesCount));
-    context.saveMeasure(FortifyMetrics.HFPO, Double.valueOf(criticalIssuesCount));
-    context.saveMeasure(FortifyMetrics.MFPO, Double.valueOf(majorIssuesCount));
-    context.saveMeasure(FortifyMetrics.LFPO, Double.valueOf(minorIssuesCount));
-
-    context.saveMeasure(FortifyMetrics.AUDIT_BAD_PRACTICE, Double.valueOf(badPracticeCount));
-    context.saveMeasure(FortifyMetrics.AUDIT_EXPLOITABLE, Double.valueOf(exploitableCount));
-    context.saveMeasure(FortifyMetrics.AUDIT_NOT_AN_ISSUE, Double.valueOf(notAnIssueCount));
-    context.saveMeasure(FortifyMetrics.AUDIT_NOT_AUDITED, Double.valueOf(notAuditedCount));
-    context.saveMeasure(FortifyMetrics.AUDIT_RELIABILITY_ISSUE, Double.valueOf(reliabilityIssueCount));
-    context.saveMeasure(FortifyMetrics.AUDIT_SUSPICIOUS, Double.valueOf(suspiciousCount));
-
-    context.saveMeasure(FortifyMetrics.CRITICAL_NOT_AUDITED_ISSUES, Double.valueOf(this.blockerIssuesCounts[AnalysisState.NOT_AUDITED.ordinal()]));
-    context.saveMeasure(FortifyMetrics.HIGH_NOT_AUDITED_ISSUES, Double.valueOf(this.criticalIssuesCounts[AnalysisState.NOT_AUDITED.ordinal()]));
-    context.saveMeasure(FortifyMetrics.MEDIUM_NOT_AUDITED_ISSUES, Double.valueOf(this.majorIssuesCounts[AnalysisState.NOT_AUDITED.ordinal()]));
-    context.saveMeasure(FortifyMetrics.LOW_NOT_AUDITED_ISSUES, Double.valueOf(this.minorIssuesCounts[AnalysisState.NOT_AUDITED.ordinal()]));
-  }
-
-  private int sumOf(int[] counts) {
-    int sum = 0;
-    for (int i : counts) {
-      sum += i;
+    context.saveMeasure(FortifyMetrics.CFPO, Double.valueOf(this.blockerIssuesCount));
+    context.saveMeasure(FortifyMetrics.HFPO, Double.valueOf(this.criticalIssuesCount));
+    context.saveMeasure(FortifyMetrics.MFPO, Double.valueOf(this.majorIssuesCount));
+    context.saveMeasure(FortifyMetrics.LFPO, Double.valueOf(this.minorIssuesCount));
+    if (this.blockerIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.BLOCKER_SECURITY_RATING_LEVEL);
+    } else if (this.criticalIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.CRITICAL_SECURITY_RATING_LEVEL);
+    } else if (this.majorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.MAJOR_SECURITY_RATING_LEVEL);
+    } else if (this.minorIssuesCount > 0) {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.MINOR_SECURITY_RATING_LEVEL);
+    } else {
+      context.saveMeasure(FortifyMetrics.SECURITY_RATING, FortifySensor.DEFAULT_SECURITY_RATING_LEVEL);
     }
-    return sum;
-  }
-
-  private int sumOf(AnalysisState analysisState) {
-    int i = analysisState.ordinal();
-    return this.blockerIssuesCounts[i] + this.criticalIssuesCounts[i] + this.majorIssuesCounts[i] + this.minorIssuesCounts[i] + this.infoIssuesCounts[i];
   }
 
   @CheckForNull

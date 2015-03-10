@@ -59,15 +59,15 @@ class FortifyReportFile {
         return report;
       }
       throw MessageException.of("Fortify report does not exist. Please check property " +
-        FortifyConstants.REPORT_PATH_PROPERTY + ": " + path);
+          FortifyConstants.REPORT_PATH_PROPERTY + ": " + path);
     }
     return null;
   }
 
-  private InputStream getInputStreamFromFprFile(File file, String filename) throws IOException {
+  private InputStream getInputStreamFromFprFile(File file) throws IOException {
     final ZipFile fprFile = new ZipFile(file);
     try {
-      final InputStream reportStream = fprFile.getInputStream(fprFile.getEntry(filename));
+      final InputStream reportStream = fprFile.getInputStream(fprFile.getEntry(FortifyConstants.AUDIT_FVDL_FILE));
       return new InputStream() {
         @Override
         public int read() throws IOException {
@@ -93,29 +93,17 @@ class FortifyReportFile {
     return new FileInputStream(file);
   }
 
-  InputStream getFvdlInputStream() throws IOException {
+  InputStream getInputStream() throws IOException {
     File file = getReportFromProperty();
     if (file == null) {
       throw new FileNotFoundException();
     }
     String fileExtension = FilenameUtils.getExtension(file.getName());
     if ("fpr".equalsIgnoreCase(fileExtension)) {
-      return getInputStreamFromFprFile(file, FortifyConstants.AUDIT_FVDL_FILE);
+      return getInputStreamFromFprFile(file);
     } else {
       return getInputStreamFromFVDLFile(file);
     }
-  }
-
-  @CheckForNull
-  InputStream getAuditInputStream() throws IOException {
-    File file = getReportFromProperty();
-    if (file != null) {
-      String fileExtension = FilenameUtils.getExtension(file.getName());
-      if ("fpr".equalsIgnoreCase(fileExtension)) {
-        return getInputStreamFromFprFile(file, FortifyConstants.AUDIT_FILE);
-      }
-    }
-    return null;
   }
 
   boolean exist() {

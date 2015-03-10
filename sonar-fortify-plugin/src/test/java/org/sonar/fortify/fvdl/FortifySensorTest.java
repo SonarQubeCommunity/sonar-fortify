@@ -107,19 +107,7 @@ public class FortifySensorTest {
     verify(context).saveMeasure(FortifyMetrics.HFPO, 0.0);
     verify(context).saveMeasure(FortifyMetrics.MFPO, 0.0);
     verify(context).saveMeasure(FortifyMetrics.LFPO, 0.0);
-
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_BAD_PRACTICE, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_EXPLOITABLE, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_NOT_AN_ISSUE, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_NOT_AUDITED, 1.0);
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_RELIABILITY_ISSUE, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.AUDIT_SUSPICIOUS, 0.0);
-
-    verify(context).saveMeasure(FortifyMetrics.CRITICAL_NOT_AUDITED_ISSUES, 1.0);
-    verify(context).saveMeasure(FortifyMetrics.HIGH_NOT_AUDITED_ISSUES, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.MEDIUM_NOT_AUDITED_ISSUES, 0.0);
-    verify(context).saveMeasure(FortifyMetrics.LOW_NOT_AUDITED_ISSUES, 0.0);
-
+    verify(context).saveMeasure(FortifyMetrics.SECURITY_RATING, 1.0);
   }
 
   private class MockIssueBuilder implements IssueBuilder {

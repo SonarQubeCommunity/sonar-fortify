@@ -19,9 +19,8 @@
  */
 package org.sonar.fortify;
 
-import org.sonar.fortify.base.metrics.FortifyMetrics;
-
 import org.sonar.api.SonarPlugin;
+import org.sonar.fortify.base.metrics.FortifyMetrics;
 import org.sonar.fortify.fvdl.FortifySensor;
 import org.sonar.fortify.fvdl.FortifySensorConfiguration;
 import org.sonar.fortify.rule.FortifyRulesDefinition;
