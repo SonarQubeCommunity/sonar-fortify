@@ -10,7 +10,7 @@
   <artifactId>sonar-fortify-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
   <name>Fortify Plugin for SonarQube</name>
-  <url>http://docs.codehaus.org/display/SONAR/Fortify+Plugin</url>
+  <url>http://redirect.sonarsource.com/plugins/fortify.html</url>
 
   <properties>
     <sonar.version>4.5.2</sonar.version>
