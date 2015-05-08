@@ -52,8 +52,8 @@
   </developers>
 
   <scm>
-    <connection>scm:git:https://github.com/SonarCommunity/sonar-fortify</connection>
-    <developerConnection>scm:git:https://github.com/SonarCommunity/sonar-fortify</developerConnection>
+    <connection>scm:git:git@github.com:SonarCommunity/sonar-fortify</connection>
+    <developerConnection>scm:git:git@github.com:SonarCommunity/sonar-fortify</developerConnection>
     <url>https://github.com/SonarCommunity/sonar-fortify</url>
   </scm>
 
