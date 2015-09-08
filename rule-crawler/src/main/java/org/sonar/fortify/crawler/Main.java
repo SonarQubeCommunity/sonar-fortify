@@ -49,7 +49,7 @@ public class Main {
     .put("ActionScript", "flex")
     .put("COBOL", "cobol")
     .put("C/C++", "c")
-    .put("C#/VB.NET/ASP.NET", "csharp")
+    .put("C#/VB.NET/ASP.NET", "cs")
     .put("HTML", "web")
     .put("Java/JSP", "java")
     .put("Javascript", "js")
