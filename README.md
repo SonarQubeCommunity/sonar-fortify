@@ -1,7 +1,8 @@
 Fortify SCA Plugin for SonarQube
 ================================
 
-Download and Versions information: http://update.sonarsource.org/plugins/fortify-confluence.html
+> The plugin is deprecated, it is indeed not possible to support it without support from HP.
+> You might want to take a look at the [SonarQube plugin for ThreadFix](https://github.com/denimgroup/threadfix) - which is supposed to support Fortify.
 
 ## Note
 The current version of the plugin does not allow the import of rule definitions any longer. As a consequence, it is *no longer usable*. A new version will be released soon to fix this issue.
